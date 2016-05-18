@@ -11,6 +11,6 @@ scripts created by Sébastien RAVEL at BGPI on CIRAD
 
 ## Contact
 
-For bug tracking purpose you can use the GitHub or questions about TOGGLE, you can contact the mainteners using the following email addresses:
+For bug tracking purpose you can use the GitHub or questions about Scrips, you can contact the mainteners using the following email addresses:
 
-* sebastien.ravel&#x72cirad.fr
+* sebastien.ravel@cirad.fr
