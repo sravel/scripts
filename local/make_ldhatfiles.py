@@ -1,20 +1,117 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
 ## @package make_ldhatfiles.py
-# @author Lea Picard
+# @author Lea Picard, Sebastien RAVEL
+##/usr/bin/env python
 
 ##################################################
 ## Modules
 ##################################################
 ## Python modules
-import argparse, re, os
+from sys import version_info, version
+try:
+	assert version_info <= (3,0)
+except AssertionError:
+	print("You are using version %s but version 2.7.x is require for this script!\n" % version.split(" ")[0])
+	exit(1)
+
+import argparse, re, os, glob
 from subprocess import check_output
 import egglib # USE EGGLIB_3
+from Bio import SeqIO
+from Bio.SeqRecord import SeqRecord
+from Bio.Seq import Seq
 
 ##################################################
 ## Variables Globales
-version="0.1"
-VERSION_DATE='15/03/2016'
+version = "0.1"
+VERSION_DATE = '15/03/2016'
+completeLDhatPATH = "completeLDhat"
+#intervalLDhatPATH = "interval"
+intervalLDhatPATH = "rhomap"
+statLDhatPATH = "statLDhat"
+
+#################################################
+# CLASS
+#################################################
+
+
+#*********************************************** Classe directory *******************
+class directory(str):
+	"""Class which derives from string.
+		Checks that the string is and path to valid directory and not empty"
+
+	Returns object which able to return basename and list file (with an extention, else consider as folder)
+
+	Example:
+
+	>>> inDirectory=directory("/home/sravel/Documents")
+	>>> print(inDirectory.pathDirectory())
+	>>> /home/sravel/Documents/
+
+	>>> print(inDirectory.listFiles())
+	>>> ["File1.txt","File2.pl","file.toto"]
+	"""
+	def __init__(self, pathDirectory = None):
+		"""
+			Initialise variable
+		"""
+		self.listPath = []			# all in the path
+		self.listDir = []			# only directory in path
+		self.listFiles = []			# only files in path
+
+		self.current_dir = os.path.dirname(os.path.abspath(__file__))
+
+		#Change relative path to absolute path
+		self.pathDirectory = relativeToAbsolutePath(pathDirectory)
+
+		# appel les fonctions
+		self.testDirExist()
+		self.lsInDir()
+		self.splitFilesDir()
+
+	def __repr__(self):
+		"""Fonction qui permet de formater le text de sortie lors du print du dictionnaire"""
+		txtOut = """
+pathDirectory=%s\n
+listPath=%s\n
+listDir=%s\n
+listFiles=%s\n
+""" % (self.pathDirectory, str(self.listPath), str(self.listDir), str(self.listFiles))
+		return txtOut
+
+	def testDirExist(self):
+		"""Test l'existance du répertoire"""
+		if os.path.isdir(self.pathDirectory) != True :
+			print("ERROR MODULES_SEB::Class-directory : path '%s' is not valide path" % self.pathDirectory )
+			exit()
+
+	def lsInDir(self):
+		"""List all in directory"""
+		self.testDirExist()
+		if self.pathDirectory[-1] != "/":
+			self.pathDirectory += "/"
+		if self.pathDirectory[-1] != "*":
+			pathDirectoryList = self.pathDirectory+"*"
+		self.listPath=glob.glob(pathDirectoryList)
+
+	def splitFilesDir(self):
+		"""list files and list directory"""
+		self.lsInDir()
+		self.listDir = []		# only directory in path
+		self.listFiles = []		# only files in path
+		# Ouverture des fichiers du repertoire
+		for fichier in self.listPath:
+			try:
+				if os.path.isdir(fichier) == True :		# C'est un dossier
+					self.listDir.append(str(fichier))
+				elif os.path.exists(fichier) == True :	# C'est un fichier
+					self.listFiles.append(str(fichier))
+			except:
+				print("ERROR MODULES_SEB::Class-directory : path '%s' is not valide path contain other type (not files or directory)" % self.pathDirectory)
+				exit()
+
+
 
 ##################################################
 ## Functions
@@ -37,10 +134,12 @@ def build_sites(paramfilename, dataType):
 		nameChro = lligne[0]
 		posSNP = lligne[1]
 
-		if nameChro not in dictListPositions.keys():
-			dictListPositions[nameChro] = [posSNP]
-		else:
-			dictListPositions[nameChro].append(posSNP)
+		dictListPositions.setdefault(nameChro, [posSNP]).append(posSNP)
+
+		#if nameChro not in dictListPositions.keys():
+			#dictListPositions[nameChro] = [posSNP]
+		#else:
+			#dictListPositions[nameChro].append(posSNP)
 
 		ligneoutput="\t".join(lligne[1:2])
 		ref=lligne[2]
@@ -69,8 +168,16 @@ def build_sites(paramfilename, dataType):
 ############################################################################################
 	# Récupère le fichier de conf passer en argument
 	genometab = "temps.tab"
-	outputfilename = paramfilename.split(".")[0]+".sites"
-	outputfile = open(outputfilename, 'w')
+
+	if paramfilename.count(".") > 1:
+		outputfilenameSite = ".".join(paramfilename.split(".")[0:-1])+".sites"
+		outputfilenameFasta = ".".join(paramfilename.split(".")[0:-1])+".fasta"
+	else:
+		outputfilenameSite = paramfilename.split(".")[0]+".sites"
+		outputfilenameFasta = paramfilename.split(".")[0]+".fasta"
+
+	outputfileSite = open(outputfilenameSite, 'w')
+	outputfileFasta = open(outputfilenameFasta, 'w')
 
 	# Utilisation du tab
 	TabFile = open(genometab, "r")
@@ -92,17 +199,23 @@ def build_sites(paramfilename, dataType):
 			#get nb of SNPs in fasta sequence
 			nbSNP = len(dictseq[souche])
 
-	outputfile.write("%i %i %i\n" %(nbInd, nbSNP, dataType))
+	outputfileSite.write("%i %i %i\n" %(nbInd, nbSNP, dataType))
 
 	for souche in orderlist:
-		outputfile.write(">"+souche+"\n"+dictseq[souche]+"\n")
+		IDname = souche
+		seq = dictseq[souche]
+		record = SeqRecord(Seq(seq),id=IDname,name=IDname, description="")
+		SeqIO.write(record,outputfileSite, "fasta")
+		SeqIO.write(record,outputfileFasta, "fasta")
 
-	outputfile.close()
+
+	outputfileSite.close()
+	outputfileFasta.close()
 
 	####### Remove temps file
 	os.remove(genometab)
 	os.remove("temps1.tab")
-	return nbSNP, dictListPositions[nameChro], outputfile.name
+	return nbSNP, dictListPositions[nameChro], str(outputfileFasta.name), nbInd
 
 def relativeToAbsolutePath(relative):
 	from subprocess import check_output
@@ -179,6 +292,9 @@ if __name__ == "__main__":
 	dataType = args.datatype
 	flag = args.flag
 
+	print(workdir)
+
+	#exit()
 ##
 # code
 ##
@@ -244,7 +360,7 @@ if __name__ == "__main__":
 		chroName = name.split("/")[-1].split(".")[0].replace(basename+"_","")
 		fileOut.close()
 		# create corresponding .sites file and associate Nb of SNPs
-		dictNbSNP[chroName], listPos, fasta = build_sites(name, dataType)
+		dictNbSNP[chroName], listPos, fasta, nbInd = build_sites(name, dataType)
 		listFasta.append(fasta)
 		dictListPos[chroName] = listPos
 
@@ -271,6 +387,8 @@ if __name__ == "__main__":
 	cs = egglib.stats.ComputeStats()
 	cs.add_stat('Pi')
 	cs.add_stat('thetaW')
+	cs.add_stat('ls')
+	cs.add_stat('ls_o')
 
 
 	# load alignement
@@ -279,20 +397,20 @@ if __name__ == "__main__":
 		scaffold = nameFasta.split("/")[-1].split(".")[0].replace(basename+"_","")
 
 		# use egglib
-		align = egglib.io.from_fasta(nameFasta)
+		align = egglib.io.from_fasta(nameFasta, groups=False)
 		stats = cs.process_align(align)		# extract polymorphism data
 
 		# get number of SNPs in file
 		nbSNP = stats['ls']
-
+		#nbSNP = stats['ls_o']
 
 		# print results
 		if scaffold not in dictThetaInfo:
-			dictThetaInfo[scaffold] = {	"Theta_SNP":stats['thetaW'],
-										"Pi":stats['Pi'],
+			dictThetaInfo[scaffold] = {	"Theta_SNP":stats['thetaW']/stats['ls'],
+										"Pi":stats['Pi']/stats['ls'],
 										"Nb_SNPs":nbSNP,
-										"Theta_allSNPs":stats['thetaW']*nbSNP,
-										"Theta_scaffold":stats['thetaW']*nbSNP/int(dictSizes[scaffold])
+										"Theta_allSNPs":stats['thetaW'],
+										"Theta_scaffold":stats['thetaW']/int(dictSizes[scaffold])
 										}
 
 	dicoMeanTheta = {}
@@ -303,6 +421,62 @@ if __name__ == "__main__":
 
 	thetaCoreGenome = sommeTheta/sommeSize
 
-	with open(workdir+basename+"_ThetaValues.tab", "w") as ThetaTab:
+	with open(workdir+basename+"/"+basename+"_ThetaValues.tab", "w") as ThetaTab:
 		ThetaTab.write(dictDict2txt(dictThetaInfo))
-		ThetaTab.write("\nthetaCoreGenome\t%f.5" % thetaCoreGenome)
+		ThetaTab.write("\nthetaCoreGenome\t%.4f" % thetaCoreGenome)
+
+
+
+	#MAKE sh script to run LDhat
+	objDir = directory(workdir+basename)		# list all directory and files in the path
+
+
+	#nbInd = 13
+	#thetaCoreGenome = 0.007
+
+	cmdLoadR = "module load compiler/gcc/4.9.2 bioinfo/geos/3.4.2 bioinfo/gdal/1.9.2 mpi/openmpi/1.6.5 bioinfo/R/3.2.2"
+	cmdLookTable = completeLDhatPATH+" -n "+str(nbInd)+" -rhomax 100 -n_pts 201 -theta "+str(thetaCoreGenome)+" -prefix "+objDir.pathDirectory+basename
+
+	with open(workdir+basename+"/runLDhat_"+basename+".sh", "w") as runSHFile:
+
+		runSHFile.write("%s\n" % cmdLoadR)
+		runSHFile.write("%s\n" % cmdLookTable)
+		for scaff in sorted(objDir.listDir):
+			scaffObjDir = directory(scaff)
+			#print scaffObjDir.__repr__
+			siteFile =	 [s for s in scaffObjDir.listFiles if ".site" in s][0]
+			locsFile =	 [s for s in scaffObjDir.listFiles if ".locs" in s][0]
+			basenameScaff = siteFile.split("/")[-1].split(".")[0]
+			#print basename
+
+
+			cmdCD = "cd "+scaff
+
+			if "rhomap" in intervalLDhatPATH:
+				cmdInterval = intervalLDhatPATH+" -seq "+siteFile+" -loc "+locsFile+" -lk "+objDir.pathDirectory+basename+"new_lk.txt -its 5000000 -bpen 10 -burn 100000 -samp 5000 -prefix "+scaffObjDir.pathDirectory+basenameScaff
+
+			if "interval" in intervalLDhatPATH:
+				cmdInterval = intervalLDhatPATH+" -seq "+siteFile+" -loc "+locsFile+" -lk "+objDir.pathDirectory+basename+"new_lk.txt -its 5000000 -bpen 10 -samp 5000 -prefix "+scaffObjDir.pathDirectory+basenameScaff
+
+			cmdStat = statLDhatPATH+" -input "+scaffObjDir.pathDirectory+basenameScaff+"rates.txt -prefix "+scaffObjDir.pathDirectory+basenameScaff
+
+
+			cmdGraph = "makeLDhatgraphs.R -f "+scaffObjDir.pathDirectory+basenameScaff+"rates.txt -o "+scaffObjDir.pathDirectory+basenameScaff+""
+
+
+
+
+			#print "%s\n%s\n%s\n%s\n" % (cmdCD,cmdLookTable,cmdInterval,cmdStat)
+
+			runSHFile.write("%s\n%s\n%s\n%s\n" % (cmdCD,cmdInterval,cmdStat,cmdGraph))
+
+
+
+
+
+	os.system("chmod 755 "+workdir+basename+"/runLDhat_"+basename+".sh")
+
+
+	cmdQsub = "qsub -V -q long.q -N "+basename+" -b Y -pe parallel_smp 4 "+workdir+basename+"/runLDhat_"+basename+".sh"
+
+	print(cmdQsub)

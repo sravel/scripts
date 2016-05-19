@@ -1,4 +1,4 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 ## @package grepMotifFromAlignment.py
 # @author Sebastien Ravel
@@ -178,14 +178,7 @@ if __name__ == "__main__":
 										 "lenAlign":lenAlignement}
 
 
-		if nbSNPtotal not in dicoFilenbSNP.keys():
-			dicoFilenbSNP[nbSNPtotal] = 1
-		else:
-			dicoFilenbSNP[nbSNPtotal] +=1
-
-
-
-
+		dicoFilenbSNP[nbSNPtotal] = (dicoFilenbSNP.get(nbSNPtotal, 1))+1
 
 
 		#print(nbSNPtotal)

@@ -1,4 +1,4 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 ## @package extractColfromList.py
 # @author Lea Picard
@@ -76,11 +76,8 @@ if __name__ == "__main__":
 			#get position for each ID to be kept, +1 for cut command (sh col1 = python col0)
 			listIndiceKeep.append(str(indice+1))
 		indice += 1
-	
+
 	txtListIndiceKeep = ",".join(listIndiceKeep)
 	#print(txtListIndiceKeep)
 
 	os.system("cut -f"+txtListIndiceKeep+" "+tableFile+" > "+tableFileOut)
-
-
-

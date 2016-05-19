@@ -8,7 +8,7 @@ library("optparse")
 option_list = list(
   make_option(c("-f", "--file"), type="character", default=NULL, help="vcftools .hap.ld file", metavar="filename"),
   make_option(c("-o", "--out"), type="character", default="out", help="Output filename\n\t\t[default = %default.png]", metavar="filename")
-); 
+);
 
 opt_parser = OptionParser(option_list=option_list);
 opt = parse_args(opt_parser);
@@ -28,4 +28,3 @@ df1 = df[-1,]
 png(paste(out, "_recombinationplots.png", sep=""), width = 1500, height = 1500, res=200)
 plot(df1$Loci, df1$Mean_rho, type = "l", main="Mean Rho", xlab="Loci", ylab="Mean rho", ylim=c(0,12))
 dev.off()
-
