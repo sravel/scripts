@@ -370,6 +370,26 @@ def loadInList(filename):
 	listgood=[line.rstrip() for line in list]
 	return listgood
 
+def loadInListCol(filename, col):
+	"""
+	Load file in list() and then remove \\n at end of line
+
+	:param filename: a file
+	:type filename: file
+	:rtype: list()
+	:return: - list of row's file without \\n
+	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
+
+	Example:
+		>>> rows = loadInListCol(filename, 0)
+		>>> rows
+		["i like pears, but apples scare me","i like apples, but pears scare me","End of file"]
+	"""
+
+	list = open(filename,"r").readlines()
+	listgood=[line.rstrip().split("\t")[col] for line in list]
+	return listgood
+
 def loadInListWithHeader(filename):
 	"""
 	Load file in list() and then remove \\n at end of line
@@ -457,6 +477,36 @@ def loadInDictCol(filename,columnkey, columnvalue):
 			if tabLine[columnkey] not in dicoOut.keys():
 				dicoOut[tabLine[columnkey]] = tabLine[columnvalue]
 	return dicoOut
+
+def loadInDictLine(filename):
+	"""
+	Load file in Dict() and then remove \\n at end of line, then add first column in key of dict and valueare other column.
+
+	:param filename: a file
+	:type filename: file
+	:rtype: dict()
+	:return: - dict of row's file without \\n with key is first column and value list of other column
+	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
+
+	Example:
+		>>> dico = loadInDictLine(filename)
+		>>> dico
+		{
+		"col1",[line1],
+		"indiv1",[line2],
+		"indiv2",[line3]
+		}
+	"""
+
+	dicoOut={}
+	with open(filename) as filein:
+		for line in filein:
+			tabLine = line.rstrip().split("\t")
+			#print(tabLine[0], tabLine[1])
+			if tabLine[0] not in dicoOut.keys():
+				dicoOut[tabLine[0]] = line
+	return dicoOut
+
 
 def extractListFromFasta(sequenceFile,FileList ):
 	"""
