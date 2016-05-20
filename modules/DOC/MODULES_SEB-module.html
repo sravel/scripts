@@ -387,6 +387,24 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInListCol" class="summary-sig-name">loadInListCol</a>(<span class="summary-sig-arg">filename</span>,
+        <span class="summary-sig-arg">col</span>)</span><br />
+      Load file in list() and then remove \n at end of line</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInListCol">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInListWithHeader" class="summary-sig-name">loadInListWithHeader</a>(<span class="summary-sig-arg">filename</span>)</span><br />
       Load file in list() and then remove \n at end of line</td>
           <td align="right" valign="top">
@@ -429,6 +447,24 @@
       column in key of dict and valu specify column.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInDictCol">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInDictLine" class="summary-sig-name">loadInDictLine</a>(<span class="summary-sig-arg">filename</span>)</span><br />
+      Load file in Dict() and then remove \n at end of line, then add first
+      column in key of dict and valueare other column.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInDictLine">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -1006,6 +1042,34 @@
   </dl>
 </td></tr></table>
 </div>
+<a name="loadInListCol"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">loadInListCol</span>(<span class="sig-arg">filename</span>,
+        <span class="sig-arg">col</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInListCol">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Load file in list() and then remove \n at end of line</p>
+  <p>:param filename: a file :type filename: file :rtype: list() :return: -
+  list of row's file without \n :warn: Use this function with small file 
+  !!! except more RAM are use and crash systeme.</p>
+  <p>Example:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>rows = loadInListCol(filename, 0)
+<span class="py-prompt">&gt;&gt;&gt; </span>rows
+<span class="py-output">[&quot;i like pears, but apples scare me&quot;,&quot;i like apples, but pears scare me&quot;,&quot;End of file&quot;]</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="loadInListWithHeader"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1106,6 +1170,39 @@
 <span class="py-output">&quot;col1&quot;,&quot;col3&quot;,</span>
 <span class="py-output">&quot;indiv1&quot;,&quot;valeurcol3&quot;,</span>
 <span class="py-output">&quot;indiv2&quot;,&quot;valeurcol3&quot;</span>
+<span class="py-output">}</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="loadInDictLine"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">loadInDictLine</span>(<span class="sig-arg">filename</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInDictLine">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Load file in Dict() and then remove \n at end of line, then add first 
+  column in key of dict and valueare other column.</p>
+  <p>:param filename: a file :type filename: file :rtype: dict() :return: -
+  dict of row's file without \n with key is first column and value list of 
+  other column :warn: Use this function with small file !!! except more RAM
+  are use and crash systeme.</p>
+  <p>Example:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>dico = loadInDictLine(filename)
+<span class="py-prompt">&gt;&gt;&gt; </span>dico
+<span class="py-output">{</span>
+<span class="py-output">&quot;col1&quot;,[line1],</span>
+<span class="py-output">&quot;indiv1&quot;,[line2],</span>
+<span class="py-output">&quot;indiv2&quot;,[line3]</span>
 <span class="py-output">}</span></pre>
   <dl class="fields">
   </dl>
@@ -1418,7 +1515,7 @@
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Fri May 20 07:31:09 2016
+    on Fri May 20 09:20:55 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

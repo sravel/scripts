@@ -19,10 +19,12 @@ MODULES_SEB.lsDirToList	MODULES_SEB-module.html#lsDirToList
 MODULES_SEB.dict2fasta	MODULES_SEB-module.html#dict2fasta
 MODULES_SEB.extractInverseListFromFasta	MODULES_SEB-module.html#extractInverseListFromFasta
 MODULES_SEB.VERSION_DATE	MODULES_SEB-module.html#VERSION_DATE
+MODULES_SEB.loadInDictLine	MODULES_SEB-module.html#loadInDictLine
 MODULES_SEB.loadInList	MODULES_SEB-module.html#loadInList
 MODULES_SEB.sort_human	MODULES_SEB-module.html#sort_human
 MODULES_SEB.nbSeqInFile2dict	MODULES_SEB-module.html#nbSeqInFile2dict
 MODULES_SEB.loadInListWithHeader	MODULES_SEB-module.html#loadInListWithHeader
+MODULES_SEB.loadInListCol	MODULES_SEB-module.html#loadInListCol
 MODULES_SEB.concatFastasFiles	MODULES_SEB-module.html#concatFastasFiles
 MODULES_SEB.replace_all	MODULES_SEB-module.html#replace_all
 MODULES_SEB.dictList2txt	MODULES_SEB-module.html#dictList2txt
