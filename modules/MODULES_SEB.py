@@ -68,6 +68,25 @@ def _test():
 	doctest.testmod()
 
 
+def sort_human(text):
+	""" Sort the given list in the way that humans expect.
+
+	:param text: a python string
+	:type text: str()
+	:rtype: list()
+	:return: liste human sort
+
+	Example:
+		>>> listToSorted = ["something1","something32","something17","something2","something29","something24"]
+		>>> print(listToSorted.sort(key=sort_human))
+		['something1', 'something17', 'something2', 'something25', 'something29', 'something32']
+		>>> print(sorted(listToSorted, key=sort_human))
+		['something1', 'something17', 'something2', 'something25', 'something29', 'something32']
+
+	"""
+	return [ int(c) if text.isdigit() is True else c for c in re.split('(\d+)', text) ]
+
+
 def dict2txt(dico):
 	"""
 	Function that takes a dictionary and returns a tabular string with::
