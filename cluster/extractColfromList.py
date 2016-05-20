@@ -36,9 +36,9 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-ti', '--tablein', metavar="<filename>", dest = 'tableFile', help = 'Name of table file in')
-	files.add_argument('-l', '--listID', metavar="<filename>", dest = 'IDlist', help = 'File with IDs to be kept')
-	files.add_argument('-to', '--tableout', metavar="<filename>", dest = 'tableFileOut', help = 'Name of table file out (default tablein_extractedIDs.tab)')
+	files.add_argument('-ti', '--tablein', metavar="<filename>", required=True, dest = 'tableFile', help = 'Name of table file in')
+	files.add_argument('-l', '--listID', metavar="<filename>", required=True, dest = 'IDlist', help = 'File with IDs to be kept')
+	files.add_argument('-to', '--tableout', metavar="<filename>", required=True, dest = 'tableFileOut', help = 'Name of table file out (default tablein_extractedIDs.tab)')
 
 	# Check parameters
 	args = parser.parse_args()

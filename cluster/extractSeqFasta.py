@@ -51,10 +51,10 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-f', '--fasta', metavar="<filename>", dest = 'fastaFile', help = 'fasta files')
-	files.add_argument('-l', '--list', metavar="<filename>", dest = 'listFile', help = 'list files with keep name or not keep')
-	files.add_argument('-o', '--out', metavar="<filename>", dest = 'paramoutfile', help = 'Name of output file')
-	files.add_argument('-k', '--keep', metavar="<yes/y/no/n>", dest = 'keepValue',choices = ["yes","y","no","n"], help = 'choise keep (y/yes) or not keep (n/no) sequences in list file')
+	files.add_argument('-f', '--fasta', metavar="<filename>", required=True, dest = 'fastaFile', help = 'fasta files')
+	files.add_argument('-l', '--list', metavar="<filename>", required=True, dest = 'listFile', help = 'list files with keep name or not keep')
+	files.add_argument('-o', '--out', metavar="<filename>", required=True, dest = 'paramoutfile', help = 'Name of output file')
+	files.add_argument('-k', '--keep', metavar="<yes/y/no/n>", required=True, dest = 'keepValue',choices = ["yes","y","no","n"], help = 'choise keep (y/yes) or not keep (n/no) sequences in list file')
 
 	# Check parameters
 	args = parser.parse_args()
