@@ -69,7 +69,7 @@ def _test():
 
 
 def sort_human(text):
-	""" Sort the given list in the way that humans expect.
+	""" Sort the list in the way that humans expect, use list.sort(key=sort_human) or sorted(list, key=sort_human)).
 
 	:param text: a python string
 	:type text: str()
