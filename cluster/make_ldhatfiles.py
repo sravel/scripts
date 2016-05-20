@@ -18,11 +18,12 @@ except AssertionError:
 
 
 #Import MODULES_SEB
-import sys
-sys.path.insert(1,'../modules/')
+import sys, os
+current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
+sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import directory, relativeToAbsolutePath, dictDict2txt
 
-import argparse, os
+import argparse
 
 import egglib # USE EGGLIB_3
 from Bio import SeqIO

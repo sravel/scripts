@@ -7,19 +7,19 @@
 ## Modules
 ##################################################
 #Import MODULES_SEB
-import sys
-sys.path.insert(1,'../modules/')
+import sys, os
+current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
+sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import directory, relativeToAbsolutePath, nbSeqInFile2dict, dict2txt,fasta2dict
 
 ## Python modules
-import argparse, os
+import argparse
 from time import localtime, strftime
 
 ## BIO Python modules
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
-
 
 ##################################################
 ## Variables Globales
@@ -201,4 +201,3 @@ if __name__ == "__main__":
 	print("#################################################################")
 	print("#                        End of execution                       #")
 	print("#################################################################")
-
