@@ -6,6 +6,11 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import relativeToAbsolutePath
+
 ## Python modules
 import argparse, os, sys
 from time import localtime, strftime
@@ -17,17 +22,6 @@ VERSION_DATE='18/05/2016'
 debug="False"
 #debug="True"
 
-##################################################
-## Functions
-def relativeToAbsolutePath(relative):
-	from subprocess import check_output
-	if relative[0] != "/":			# The provided path is a relative path, ie does not start with /
-		command = "readlink -m "+relative
-		absolutePath = check_output(command, shell=True).decode("utf-8").rstrip()
-		return absolutePath
-	else:						# Relative is in fact an absolute path, send a warning
-		absolutePath = relative;
-		return absolutePath
 
 ##################################################
 ## Main code

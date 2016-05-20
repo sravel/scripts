@@ -6,17 +6,21 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import directory, relativeToAbsolutePath, nbSeqInFile2dict, dict2txt,fasta2dict
+
+
+
 ## Python modules
-import argparse, os, sys
+import argparse, os
 from time import localtime, strftime
-from MODULES_SEB import *
 
 ## BIO Python modules
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
-from Bio.Alphabet import SingleLetterAlphabet
-from Bio.Align.Applications import ClustalwCommandline
 
 from pyfaidx import Fasta
 
@@ -180,7 +184,6 @@ if __name__ == "__main__":
 			os.system("cp "+pathDirectoryOut.pathDirectory+fileName+".fas "+pathDirectoryOut.pathDirectory+"/../test/")
 			countCP+=1
 
-	print("il y a %i file copier" % countCP)
 
 	#alignDirecory = directory(current_dir+"/test/")
 	#for nameFile in alignDirecory.listFiles:
@@ -192,17 +195,13 @@ if __name__ == "__main__":
 
 
 
+	print("\n\nExecution summary:")
 
+	print("  - Outputting \n\
+     il y a %i file copier" % countCP)
 
+	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
+	print("#################################################################")
+	print("#                        End of execution                       #")
+	print("#################################################################")
 
-
-
-
-
-
-
-
-
-
-
-	#

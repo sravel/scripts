@@ -6,6 +6,11 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import fasta2dict, lenSeq2dict, relativeToAbsolutePath
+
 ## Python modules
 import argparse
 from time import localtime, strftime
@@ -18,84 +23,6 @@ version="0.1"
 VERSION_DATE='31/03/2015'
 debug="False"
 #debug="True"
-
-
-##################################################
-## Functions
-def fasta2dict(filename):
-	"""
-	Function that take a file name (fasta), and return a dictionnary of sequence
-
-	:param filename: a fasta file
-	:type filename: file in fasta format
-	:rtype: record_dict()
-	:return: dict() - dictionnary with keys are Id and value SeqRecord() fields
-	:requires: this function require ## BIO Python modules: (from Bio import SeqIO,\\n
-															 from Bio.SeqRecord import SeqRecord \\n
-															 from Bio.Seq import Seq \\n
-															 from Bio.Alphabet import SingleLetterAlphabet)
-
-	Example:
-		>>> filename = "sequence.fasta"
-		>>> fasta2dict(filename)
-		{">Seq1":"SeqRecord()"}
-	"""
-
-	# chargement du fasta des MGG en mémoire
-	handle = open(filename, "rU")
-	record_dict = SeqIO.to_dict(SeqIO.parse(handle, "fasta"))
-	handle.close()
-	return record_dict
-
-def lenSeq2dict(filename):
-	"""
-	Function that take a file name (fasta), and return a dictionnary with length of sequence
-
-	:param filename: a fasta file
-	:type filename: file in fasta format
-	:rtype: record_dict()
-	:return: dict() - contain length of sequences
-	:requires: this function require fasta2dict(filename)
-
-	Example:
-		>>> filename = "sequence.fasta"
-		>>> lenSeq2dict(filename)
-		{">Seq1":20154}
-	"""
-
-	dicoLenMGG = {}
-	record_dict = fasta2dict(filename)
-	for gene in sorted(record_dict.keys()):
-		if record_dict[gene].id not in dicoLenMGG:
-			lenseq = len(record_dict[gene].seq)
-			dicoLenMGG[gene]=int(lenseq)
-	return dicoLenMGG
-
-def relativeToAbsolutePath(relative):
-	"""	Return the absolutPath
-
-	:param relative: a string path
-	:type relative: string
-	:rtype: string()
-	:return: absolutePath
-	:warn: need subprocess::check_output
-
-	Example:
-		>>> print(relative)
-			../test
-		>>> pathDirectory = relativeToAbsolutePath(relative)
-		>>> print(pathDirectory)
-			/home/sebastien/test
-
-	"""
-	from subprocess import check_output
-	if relative[0] != "/":			# The relative path is a relative path, ie do not starts with /
-		command = "readlink -m "+relative
-		absolutePath = subprocess.check_output(command, shell=True).decode("utf-8").rstrip()
-		return absolutePath
-	else:						# Relative is in fact an absolute path, send a warning
-		absolutePath = relative;
-		return absolutePath
 
 
 ##################################################

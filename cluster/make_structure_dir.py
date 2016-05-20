@@ -6,9 +6,15 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import replace_all, relativeToAbsolutePath
+
+
 ## Python modules
-import argparse, os, subprocess, sys, re
-from time import localtime, strftime, sleep, clock, time
+import argparse, os
+from time import localtime, strftime
 
 ##################################################
 ## Variables Globales
@@ -87,38 +93,6 @@ Command line options:
 -o output file
 -D SEED
 """
-
-##################################################
-## Functions
-
-def replace_all(repls, str):
-	return re.sub('|'.join(re.escape(key) for key in repls.keys()),lambda k: repls[k.group(0)], str)
-
-def relativeToAbsolutePath(relative):
-	"""	Return the absolutPath
-
-	:param relative: a string path
-	:type relative: string
-	:rtype: string()
-	:return: absolutePath
-	:warn: need subprocess::check_output
-
-	Example:
-		>>> print(relative)
-			../test
-		>>> pathDirectory = relativeToAbsolutePath(relative)
-		>>> print(pathDirectory)
-			/home/sebastien/test
-
-	"""
-	from subprocess import check_output
-	if relative[0] != "/":			# The relative path is a relative path, ie do not starts with /
-		command = "readlink -m "+relative
-		absolutePath = subprocess.check_output(command, shell=True).decode("utf-8").rstrip()
-		return absolutePath
-	else:						# Relative is in fact an absolute path, send a warning
-		absolutePath = relative;
-		return absolutePath
 
 
 ##################################################

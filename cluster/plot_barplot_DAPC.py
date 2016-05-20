@@ -7,74 +7,24 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import relativeToAbsolutePath, lsExtInDirToList
+
 ## Python modules
-import sys, os, glob, argparse
+import os, glob, argparse
 from time import localtime, strftime
 from matplotlib import rcParams, colors
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 import numpy as np
 
-from MODULES_SEB import *
 
 ##################################################
 ## Variables Globales
 version="0.1"
 VERSION_DATE='22/04/2016'
-
-##################################################
-## Functions
-
-def relativeToAbsolutePath(relative):
-	from subprocess import check_output
-	if relative[0] != "/":			# The relative path is a relative path, ie do not starts with /
-		command = "readlink -m "+relative
-		absolutePath = check_output(command, shell=True).decode("utf-8").rstrip()
-		return absolutePath
-	else:						# Relative is in fact an absolute path, send a warning
-		absolutePath = relative;
-		return absolutePath
-
-def lsExtInDirToList(pathDirectory, extentionFichierKeep):
-	"""
-	Return a list of 'ext' file's find in directory (exemple ext = "txt" or ["txt","py"])
-
-	:param pathDirectory: a directory Path
-	:type pathDirectory: Path
-	:param extentionFichierKeep: a list or string with extention
-	:type extentionFichierKeep: list or string
-	:rtype: list()
-	:return: list of 'ext' filename in pathDirectory ( file with extention find in param extentionFichierKeep )
-
-	Example:
-		>>> lsDirectory = lsExtInDirToList(path/to/directory/,"txt")
-		>>> print(lsDirectory)
-		["./out/gemo10_4497_ortho_rename_add.txt", "./out/gemo10_6825_ortho_rename_add.txt", "./out/gemo10_3497_ortho_rename_add.txt"]
-	"""
-
-	lsFilesFasta = []
-	if pathDirectory[-1] != "/":
-		pathDirectory += "/"
-	if pathDirectory[-1] != "*":
-		pathDirectory += "*"
-	directoryFiles=glob.glob(pathDirectory)
-
-	# Ouverture des fichiers du repertoire pour stocker les sequences en mémoire
-	for fichier in directoryFiles:
-		try:
-			if "." in fichier.split("/")[-1]:
-				nameFichier = fichier.split("/")[-1].split(".")[0]
-				extentionFichier = fichier.split("/")[-1].split(".")[1]
-			else:
-				nameFichier = fichier.split("/")[-1]
-				extentionFichier = ""
-		except:
-			extentionFichier = "directory"
-		if extentionFichier == extentionFichierKeep:
-			lsFilesFasta.append(str(fichier))
-	return sorted(lsFilesFasta)
-
-
 
 
 ##################################################
