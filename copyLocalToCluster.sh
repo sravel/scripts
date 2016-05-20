@@ -21,3 +21,6 @@ do
 
 	sed -i -e "s|#!/usr/bin/Rscript --vanilla|#!/usr/local/bioinfo/R/3.2.2/bin/Rscript --vanilla|" $f
 done
+
+
+git commit -m "update Cluster scripts" ./cluster/*
