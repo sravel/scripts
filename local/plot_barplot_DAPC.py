@@ -8,12 +8,13 @@
 ## Modules
 ##################################################
 #Import MODULES_SEB
-import sys
-sys.path.insert(1,'../modules/')
+import sys, os
+current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
+sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import relativeToAbsolutePath, lsExtInDirToList
 
 ## Python modules
-import os, glob, argparse
+import glob, argparse
 from time import localtime, strftime
 from matplotlib import rcParams, colors
 import matplotlib.pyplot as plt

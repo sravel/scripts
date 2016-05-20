@@ -7,8 +7,9 @@
 ## Modules
 ##################################################
 #Import MODULES_SEB
-import sys
-sys.path.insert(1,'../modules/')
+import sys, os
+current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
+#sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import directory, dictList2txt, dictDict2txt, dict2txt
 
 ## Python modules
