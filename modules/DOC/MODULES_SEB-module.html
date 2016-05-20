@@ -30,12 +30,7 @@
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-  <!-- Project homepage -->
-      <th class="navbar" align="right" width="100%">
-        <table border="0" cellpadding="0" cellspacing="0">
-          <tr><th class="navbar" align="center"
-            ><a class="navbar" target="_top" href="http://194.254.138.95/DOC/index.html">Script-SEB</a></th>
-          </tr></table></th>
+      <th class="navbar" width="100%"></th>
   </tr>
 </table>
 <table width="100%" cellpadding="0" cellspacing="0">
@@ -60,8 +55,11 @@
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
 <h1 class="epydoc">Module MODULES_SEB</h1><p class="nomargin-top"><span class="codelink"><a href="MODULES_SEB-pysrc.html">source&nbsp;code</a></span></p>
-<p>Use it to import very handy functions.</p>
-<p>Example:</p>
+<h1 class="heading">The MODULES_SEB module</h1>
+    <p>:author: Sebastien Ravel :contact: sebastien.ravel@cirad.fr :date: 
+    31/07/2015 :version: 0.2</p>
+    <p>Use it to import very handy functions.</p>
+    <p>Example:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> MODULES_SEB <span class="py-keyword">import</span> dict2txt
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = {<span class="py-string">&quot;key1&quot;</span>:<span class="py-string">&quot;value1&quot;</span>,<span class="py-string">&quot;key2&quot;</span>:<span class="py-string">&quot;value2&quot;</span>,<span class="py-string">&quot;key3&quot;</span>:<span class="py-string">&quot;value3&quot;</span>}
@@ -69,39 +67,28 @@
 <span class="py-output">key1    value1</span>
 <span class="py-output">key2    value2</span>
 <span class="py-output">key3    value3</span></pre>
-<div class="rst-section" id="rst-required-module-install">
-<h1 class="heading">Required Module install</h1>
-<p>This module run with Python 3.x and not Python 2.x</p>
-<dl class="rst-docutils">
-<dt>** Include module of python:</dt>
-<dd><ul class="rst-first rst-last rst-simple">
-<li>argparse, os, subprocess, sys, time, glob</li>
-</ul>
-</dd>
-<dt>** Module need to install before use:</dt>
-<dd><ul class="rst-first rst-last rst-simple">
-<li>BioPython</li>
-<li>pyvcf</li>
-<li>pyfaidx</li>
-</ul>
-</dd>
-</dl>
-</div>
+    <h2 class="heading">Required Module install</h2>
+      <p>This module run with Python 3.x and not Python 2.x</p>
+      <p>** Include module of python:</p>
+      <ul>
+        <li>
+          argparse, os, subprocess, sys, time, glob
+        </li>
+      </ul>
+      <p>** Module need to install before use:</p>
+      <ul>
+        <li>
+          BioPython
+        </li>
+        <li>
+          pyvcf
+        </li>
+        <li>
+          pyfaidx
+        </li>
+      </ul>
 
-<hr />
-<div class="fields">      <p><strong>Author:</strong>
-        Sebastien Ravel
-      </p>
-      <p><strong>Contact:</strong>
-        <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
-      </p>
-      <p><strong>Date:</strong>
-        31/07/2015
-      </p>
-      <p><strong>Version:</strong>
-        0.2
-      </p>
-</div><!-- ==================== CLASSES ==================== -->
+<!-- ==================== CLASSES ==================== -->
 <a name="section-Classes"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
@@ -123,7 +110,7 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="MODULES_SEB.directory-class.html" class="summary-name">directory</a><br />
-      Checks that the string is and path to valid directory and not empty&quot;
+      Class which derives from string.
     </td>
   </tr>
 <tr>
@@ -131,7 +118,9 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="MODULES_SEB.StrList-class.html" class="summary-name">StrList</a><br />
-      Classe qui d&#233;rive de list et qui v&#233;rifie que la variable ajouter dans l'objet (list) est bien dans la liste &quot;expectedValue&quot;
+      Classe qui d&#233;rive de list et qui v&#233;rifie que la variable ajouter 
+        dans l'objet (list) est bien dans la liste 
+        &quot;expectedValue&quot;
     </td>
   </tr>
 <tr>
@@ -139,8 +128,9 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="MODULES_SEB.NumberList-class.html" class="summary-name">NumberList</a><br />
-      Classe qui d&#233;rive de list et qui v&#233;rifie que le nombre ajout&#233; dans l'objet (list) est bien du type d&#233;fini dans &quot;dataType&quot;
-Returns list
+      Classe qui d&#233;rive de list et qui v&#233;rifie que le nombre ajout&#233; dans 
+        l'objet (list) est bien du type d&#233;fini dans &quot;dataType&quot; 
+        Returns list
     </td>
   </tr>
 <tr>
@@ -148,9 +138,9 @@ Returns list
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="MODULES_SEB.StrSpaceList-class.html" class="summary-name">StrSpaceList</a><br />
-      &quot;Classe qui d&#233;rive de list et qui v&#233;rifie que la variable ajouter dans l'objet (list) est bien du type d&#233;fini dans &quot;dataType&quot;
-pour une chaine de plusieurs valeurs. test &#233;galement si la valeur et comprise entre 2 bornes; et le nobre de valeur attendu.
-Returns list
+      &quot;Classe qui d&#233;rive de list et qui v&#233;rifie que la variable 
+        ajouter dans l'objet (list) est bien du type d&#233;fini dans 
+        &quot;dataType&quot; pour une chaine de plusieurs valeurs.
     </td>
   </tr>
 <tr>
@@ -158,8 +148,7 @@ Returns list
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="MODULES_SEB.LetterList-class.html" class="summary-name">LetterList</a><br />
-      Class which derives from list. Checks that the string added to the object (list) contains only the letters from the list &quot;Letters&quot;
-Returns list
+      Class which derives from list.
     </td>
   </tr>
 </table>
@@ -187,8 +176,8 @@ Returns list
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="_test"></a><span class="summary-sig-name">_test</span>()</span><br />
-      Function to launch doctests use with _test ()
-:note: You need install doctest module.</td>
+      Function to launch doctests use with _test () :note: You need install
+      doctest module.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#_test">source&nbsp;code</a></span>
             
@@ -200,7 +189,25 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">str()</span>
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#sort_human" class="summary-sig-name">sort_human</a>(<span class="summary-sig-arg">text</span>)</span><br />
+      Sort the list in the way that humans expect, use 
+      list.sort(key=sort_human) or sorted(list, key=sort_human)).</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="MODULES_SEB-pysrc.html#sort_human">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -217,7 +224,7 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">str()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -234,7 +241,7 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">str()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -251,12 +258,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">fasta str()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#dict2fasta" class="summary-sig-name">dict2fasta</a>(<span class="summary-sig-arg">dico</span>)</span><br />
-      Function that takes a dictionary with key are ID and value Seq, and returns a fasta string.</td>
+      Function that takes a dictionary with key are ID and value Seq, and 
+      returns a fasta string.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#dict2fasta">source&nbsp;code</a></span>
             
@@ -268,12 +276,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">record_dict()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#fasta2dict" class="summary-sig-name">fasta2dict</a>(<span class="summary-sig-arg">filename</span>)</span><br />
-      Function that take a file name (fasta), and return a dictionnary of sequence</td>
+      Function that take a file name (fasta), and return a dictionnary of 
+      sequence</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#fasta2dict">source&nbsp;code</a></span>
             
@@ -285,12 +294,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">record_dict()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#lenSeq2dict" class="summary-sig-name">lenSeq2dict</a>(<span class="summary-sig-arg">filename</span>)</span><br />
-      Function that take a file name (fasta), and return a dictionnary with length of sequence</td>
+      Function that take a file name (fasta), and return a dictionnary with
+      length of sequence</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#lenSeq2dict">source&nbsp;code</a></span>
             
@@ -302,12 +312,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">dict1(), dict2()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#nbSeqInFile2dict" class="summary-sig-name">nbSeqInFile2dict</a>(<span class="summary-sig-arg">pathDirectory</span>)</span><br />
-      Function  that take a Path Directory and returna dictionnary with number of sequences in fasta file's</td>
+      Function  that take a Path Directory and returna dictionnary with 
+      number of sequences in fasta file's</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#nbSeqInFile2dict">source&nbsp;code</a></span>
             
@@ -336,13 +347,14 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">str()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#replace_all" class="summary-sig-name">replace_all</a>(<span class="summary-sig-arg">repls</span>,
         <span class="summary-sig-arg">str</span>)</span><br />
-      Function that take a dictionnary and text variable and return text variable with replace 'Key' from dictionnary with 'Value'.</td>
+      Function that take a dictionnary and text variable and return text 
+      variable with replace 'Key' from dictionnary with 'Value'.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#replace_all">source&nbsp;code</a></span>
             
@@ -354,12 +366,12 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">list()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInList" class="summary-sig-name">loadInList</a>(<span class="summary-sig-arg">filename</span>)</span><br />
-      Load file in list() and then remove n at end of line</td>
+      Load file in list() and then remove \n at end of line</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInList">source&nbsp;code</a></span>
             
@@ -371,12 +383,12 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">str(), list()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInListWithHeader" class="summary-sig-name">loadInListWithHeader</a>(<span class="summary-sig-arg">filename</span>)</span><br />
-      Load file in list() and then remove n at end of line</td>
+      Load file in list() and then remove \n at end of line</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInListWithHeader">source&nbsp;code</a></span>
             
@@ -388,12 +400,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">dict()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInDict" class="summary-sig-name">loadInDict</a>(<span class="summary-sig-arg">filename</span>)</span><br />
-      Load file in Dict() and then remove n at end of line, then add first column in key of dict and valueare other column.</td>
+      Load file in Dict() and then remove \n at end of line, then add first
+      column in key of dict and valueare other column.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInDict">source&nbsp;code</a></span>
             
@@ -405,14 +418,15 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">dict()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInDictCol" class="summary-sig-name">loadInDictCol</a>(<span class="summary-sig-arg">filename</span>,
         <span class="summary-sig-arg">columnkey</span>,
         <span class="summary-sig-arg">columnvalue</span>)</span><br />
-      Load file in Dict() and then remove n at end of line, then add first column in key of dict and valu specify column.</td>
+      Load file in Dict() and then remove \n at end of line, then add first
+      column in key of dict and valu specify column.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInDictCol">source&nbsp;code</a></span>
             
@@ -424,13 +438,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">dict() and int()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#extractListFromFasta" class="summary-sig-name">extractListFromFasta</a>(<span class="summary-sig-arg">sequenceFile</span>,
         <span class="summary-sig-arg">FileList</span>)</span><br />
-      fasta : file with all Sequences</td>
+      Function who use 2 files:\n</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#extractListFromFasta">source&nbsp;code</a></span>
             
@@ -442,13 +456,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">dict() and int()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#extractInverseListFromFasta" class="summary-sig-name">extractInverseListFromFasta</a>(<span class="summary-sig-arg">sequenceFile</span>,
         <span class="summary-sig-arg">FileList</span>)</span><br />
-      fasta : file with all Sequences</td>
+      Function who use 2 files:\n</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#extractInverseListFromFasta">source&nbsp;code</a></span>
             
@@ -460,7 +474,7 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">list()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -477,12 +491,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">list()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#lsFastaInDirToList" class="summary-sig-name">lsFastaInDirToList</a>(<span class="summary-sig-arg">pathDirectory</span>)</span><br />
-      Return a list of fasta file's find in directory (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;)</td>
+      Return a list of fasta file's find in directory (&quot;fasta&quot;, 
+      &quot;fa&quot;, &quot;fas&quot;)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#lsFastaInDirToList">source&nbsp;code</a></span>
             
@@ -494,13 +509,14 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">list()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#lsExtInDirToList" class="summary-sig-name">lsExtInDirToList</a>(<span class="summary-sig-arg">pathDirectory</span>,
         <span class="summary-sig-arg">extentionFichierKeep</span>)</span><br />
-      Return a list of 'ext' file's find in directory (exemple ext = &quot;txt&quot; or [&quot;txt&quot;,&quot;py&quot;])</td>
+      Return a list of 'ext' file's find in directory (exemple ext = 
+      &quot;txt&quot; or [&quot;txt&quot;,&quot;py&quot;])</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#lsExtInDirToList">source&nbsp;code</a></span>
             
@@ -512,12 +528,13 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">dict()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#concatFastasFiles" class="summary-sig-name">concatFastasFiles</a>(<span class="summary-sig-arg">pathDirectory</span>)</span><br />
-      Return a fasta dictionnary of concatenation fasta file's find in directory (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;)</td>
+      Return a fasta dictionnary of concatenation fasta file's find in 
+      directory (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#concatFastasFiles">source&nbsp;code</a></span>
             
@@ -529,13 +546,15 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">int()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#convertFasta2Nexus" class="summary-sig-name">convertFasta2Nexus</a>(<span class="summary-sig-arg">pathDirectoryIn</span>,
         <span class="summary-sig-arg">pathDirectoryOut</span>)</span><br />
-      Return the number of fasta file's convert  find in directory (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;) where are converted</td>
+      Return the number of fasta file's convert  find in directory 
+      (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;) where are 
+      converted</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#convertFasta2Nexus">source&nbsp;code</a></span>
             
@@ -547,7 +566,7 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">string()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -566,7 +585,7 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">string()</span>
+      <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -640,6 +659,35 @@ Returns list
   </td>
 </tr>
 </table>
+<a name="sort_human"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sort_human</span>(<span class="sig-arg">text</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#sort_human">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Sort the list in the way that humans expect, use 
+  list.sort(key=sort_human) or sorted(list, key=sort_human)).</p>
+  <p>:param text: a python string :type text: str() :rtype: list() :return:
+  liste human sort</p>
+  <p>Example:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>listToSorted = [<span class="py-string">&quot;something1&quot;</span>,<span class="py-string">&quot;something32&quot;</span>,<span class="py-string">&quot;something17&quot;</span>,<span class="py-string">&quot;something2&quot;</span>,<span class="py-string">&quot;something29&quot;</span>,<span class="py-string">&quot;something24&quot;</span>]
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(listToSorted.sort(key=sort_human))
+<span class="py-output">['something1', 'something17', 'something2', 'something25', 'something29', 'something32']</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(sorted(listToSorted, key=sort_human))
+<span class="py-output">['something1', 'something17', 'something2', 'something25', 'something29', 'something32']</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="dict2txt"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -654,32 +702,25 @@ Returns list
     </td>
   </tr></table>
   
-  <p>Function that takes a dictionary and returns a tabular string with:</p>
-<pre class="rst-literal-block">
-&quot;key\tvalue\n&quot;.
+  <p>Function that takes a dictionary and returns a tabular string 
+  with:</p>
+<pre class="literalblock">
+       &quot;key\tvalue\n&quot;.
 </pre>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>:param dico: a python dictionary :type dico: dict() :rtype: str() 
+  :return: string with &quot;key\tvalue\n</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = {<span class="py-string">&quot;key1&quot;</span>:<span class="py-string">&quot;value1&quot;</span>,<span class="py-string">&quot;key2&quot;</span>:<span class="py-string">&quot;value2&quot;</span>,<span class="py-string">&quot;key3&quot;</span>:<span class="py-string">&quot;value3&quot;</span>}
 <span class="py-prompt">&gt;&gt;&gt; </span>dict2txt(dico)
 <span class="py-output">key1    value1</span>
 <span class="py-output">key2    value2</span>
 <span class="py-output">key3    value3</span></pre>
-</dd>
-</dl>
+  <p>:warn: if the value of the value list or dictionary, the display will 
+  be plain and without formatting data.</p>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>dico</code></strong> (dict()) - a python dictionary</li>
-    </ul></dd>
-    <dt>Returns: str()</dt>
-        <dd>string with &quot;keytvaluen</dd>
   </dl>
-<div class="fields">      <p><strong>Warning:</strong>
-        if the value of the value list or dictionary, the display will be plain and without formatting data.
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="dictList2txt"></a>
 <div>
@@ -695,27 +736,21 @@ Returns list
     </td>
   </tr></table>
   
-  <p>Function that takes a dictionary and returns a tabular string with:</p>
-<pre class="rst-literal-block">
-&quot;key\tvalue\n&quot;.
+  <p>Function that takes a dictionary and returns a tabular string 
+  with:</p>
+<pre class="literalblock">
+       &quot;key\tvalue\n&quot;.
 </pre>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>:param dico: a python dictionary :type dico: dict() :rtype: str() 
+  :return: string with &quot;key\tvalue\n</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = {<span class="py-string">&quot;key1&quot;</span>:[<span class="py-string">&quot;value1&quot;</span>,<span class="py-string">&quot;value1&quot;</span>], <span class="py-string">&quot;key2&quot;</span>:[<span class="py-string">&quot;value2&quot;</span>,<span class="py-string">&quot;value2&quot;</span>],<span class="py-string">&quot;key3&quot;</span>:[<span class="py-string">&quot;value3&quot;</span>,<span class="py-string">&quot;value3&quot;</span>]}
 <span class="py-prompt">&gt;&gt;&gt; </span>dict2txt(dico)
 <span class="py-output">key1    value1  value1</span>
 <span class="py-output">key2    value2  value2</span>
 <span class="py-output">key3    value3  value3</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>dico</code></strong> (dict()) - a python dictionary</li>
-    </ul></dd>
-    <dt>Returns: str()</dt>
-        <dd>string with &quot;keytvaluen</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -733,28 +768,22 @@ Returns list
     </td>
   </tr></table>
   
-  <p>Function that takes a dictionary and returns a tabular string with:</p>
-<pre class="rst-literal-block">
-&quot;key\tvalue\n&quot;.
+  <p>Function that takes a dictionary and returns a tabular string 
+  with:</p>
+<pre class="literalblock">
+       &quot;key\tvalue\n&quot;.
 </pre>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>:param dico: a python dictionary :type dico: dict() :rtype: str() 
+  :return: string with &quot;key\tvalue\n</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = {<span class="py-string">&quot;Souche1&quot;</span>:{<span class="py-string">&quot;NUM&quot;</span>:<span class="py-string">&quot;171&quot;</span>,<span class="py-string">&quot;MIN&quot;</span>:<span class="py-string">&quot;2042&quot;</span>,<span class="py-string">&quot;MAX&quot;</span>:<span class="py-string">&quot;3133578&quot;</span>,<span class="py-string">&quot;N50 BP&quot;</span>:<span class="py-string">&quot;938544&quot;</span>,<span class="py-string">&quot;N50 NUM&quot;</span>:<span class="py-string">&quot;11&quot;</span>},
 <span class="py-output">                    &quot;Souche2&quot;:{&quot;NUM&quot;:&quot;182&quot;,&quot;MIN&quot;:&quot;5004&quot;,&quot;MAX&quot;:&quot;74254&quot;,&quot;N50 BP&quot;:&quot;45245&quot;,&quot;N50 NUM&quot;:&quot;45&quot;}}</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>dictDict2txt(dico)
 <span class="py-output">Info    NUM     MIN     MAX     N50 BP  N50 NUM</span>
 <span class="py-output">Souche1 171     2042    3133578 938544  11</span>
 <span class="py-output">Souche2 182     5004    74254   45245   45</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>dico</code></strong> (dict()) - a python dictionary</li>
-    </ul></dd>
-    <dt>Returns: str()</dt>
-        <dd>string with &quot;keytvaluen</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -772,10 +801,12 @@ Returns list
     </td>
   </tr></table>
   
-  <p>Function that takes a dictionary with key are ID and value Seq, and returns a fasta string.</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Function that takes a dictionary with key are ID and value Seq, and 
+  returns a fasta string.</p>
+  <p>:param dico: a python dictionary :type dico: dict() :rtype: fasta 
+  str() :return: string with format fasta</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = {<span class="py-string">&quot;Seq1&quot;</span>:<span class="py-string">&quot;ATGCTGCAGTAG&quot;</span>,<span class="py-string">&quot;Seq2&quot;</span>:<span class="py-string">&quot;ATGCCGATCGATG&quot;</span>,<span class="py-string">&quot;Seq3&quot;</span>:<span class="py-string">&quot;ATGCTCAGTCAGTAG&quot;</span>}
 <span class="py-prompt">&gt;&gt;&gt; </span>dict2fasta(dico)
 <span class="py-output">&gt;Seq1</span>
@@ -784,15 +815,7 @@ Returns list
 <span class="py-output">ATGCCGATCGATG</span>
 <span class="py-output">&gt;Seq3</span>
 <span class="py-output">ATGCTCAGTCAGTAG</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>dico</code></strong> (dict()) - a python dictionary</li>
-    </ul></dd>
-    <dt>Returns: fasta str()</dt>
-        <dd>string with format fasta</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -810,30 +833,22 @@ Returns list
     </td>
   </tr></table>
   
-  <p>Function that take a file name (fasta), and return a dictionnary of sequence</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Function that take a file name (fasta), and return a dictionnary of 
+  sequence</p>
+  <p>:param filename: a fasta file :type filename: file in fasta format 
+  :rtype: record_dict() :return: dict() - dictionnary with keys are Id and 
+  value SeqRecord() fields :requires: this function require ## BIO Python 
+  modules: (from Bio import SeqIO,\n from Bio.SeqRecord import SeqRecord \n
+  from Bio.Seq import Seq \n from Bio.Alphabet import 
+  SingleLetterAlphabet)</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>filename = <span class="py-string">&quot;sequence.fasta&quot;</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>fasta2dict(filename)
 <span class="py-output">{&quot;&gt;Seq1&quot;:&quot;SeqRecord()&quot;}</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>filename</code></strong> (file in fasta format) - a fasta file</li>
-    </ul></dd>
-    <dt>Returns: record_dict()</dt>
-        <dd>dict() - dictionnary with keys are Id and value SeqRecord() fields</dd>
   </dl>
-<div class="fields">      <p><strong>Requires:</strong>
-        this function require ## BIO Python modules: (from Bio import SeqIO,n
-from Bio.SeqRecord import SeqRecord n
-from Bio.Seq import Seq n
-from Bio.Alphabet import SingleLetterAlphabet)
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="lenSeq2dict"></a>
 <div>
@@ -849,27 +864,19 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Function that take a file name (fasta), and return a dictionnary with length of sequence</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Function that take a file name (fasta), and return a dictionnary with 
+  length of sequence</p>
+  <p>:param filename: a fasta file :type filename: file in fasta format 
+  :rtype: record_dict() :return: dict() - contain length of sequences 
+  :requires: this function require fasta2dict(filename)</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>filename = <span class="py-string">&quot;sequence.fasta&quot;</span>
 <span class="py-prompt">&gt;&gt;&gt; </span>lenSeq2dict(filename)
 <span class="py-output">{&quot;&gt;Seq1&quot;:20154}</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>filename</code></strong> (file in fasta format) - a fasta file</li>
-    </ul></dd>
-    <dt>Returns: record_dict()</dt>
-        <dd>dict() - contain length of sequences</dd>
   </dl>
-<div class="fields">      <p><strong>Requires:</strong>
-        this function require fasta2dict(filename)
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="nbSeqInFile2dict"></a>
 <div>
@@ -885,10 +892,21 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Function  that take a Path Directory and returna dictionnary with number of sequences in fasta file's</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Function  that take a Path Directory and returna dictionnary with 
+  number of sequences in fasta file's</p>
+  <p>:param pathDirectory: a directory Path :type pathDirectory: Path 
+  :rtype: dict1(), dict2() :return: - contient le nombre de sequences dans 
+  les fichiers (key = nom de fichier value =  nombre de sequences)</p>
+  <ul>
+    <li>
+      contient le nombre de fichier qui ont x sequences (key = nombre de 
+      sequence =  nombre de fichier)
+    </li>
+  </ul>
+  <p>:raise print: print(&quot;ERROR: Sequence: &quot;+nameFichier+&quot; 
+  allready read&quot;) with nameFichier is the current file read.</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico1,dico2 = nbSeqInFile2dict(path/to/directory/)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(dict2txt(dico1))
 <span class="py-output">./out/gemo10_4497_ortho_rename_add.fasta        58</span>
@@ -898,22 +916,7 @@ from Bio.Alphabet import SingleLetterAlphabet)
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(dict2txt(dico2))
 <span class="py-output">58      1</span>
 <span class="py-output">59      3</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>pathDirectory</code></strong> (Path) - a directory Path</li>
-    </ul></dd>
-    <dt>Returns: dict1(), dict2()</dt>
-        <dd><ul class="rst-simple">
-<li>contient le nombre de sequences dans les fichiers (key = nom de fichier value =  nombre de sequences)</li>
-<li>contient le nombre de fichier qui ont x sequences (key = nombre de sequence =  nombre de fichier)</li>
-</ul></dd>
-    <dt>Raises:</dt>
-    <dd><ul class="nomargin-top">
-        <li><code><strong class='fraise'>print</strong></code> - print(&quot;ERROR: Sequence: &quot;+nameFichier+&quot; allready read&quot;) with nameFichier is the current file read.</li>
-    </ul></dd>
   </dl>
 </td></tr></table>
 </div>
@@ -932,24 +935,18 @@ from Bio.Alphabet import SingleLetterAlphabet)
   </tr></table>
   
   <p>Check if directory exist and if is readable</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>:param prospective_dir: a directory Path :type prospective_dir: 
+  Path</p>
+  <p>:raise error: raise argparse.ArgumentTypeError(&quot; :{0} is not a 
+  valid path&quot;.format(prospective_dir)) :raise error: raise 
+  argparse.ArgumentTypeError(&quot; :{0} is not a readable 
+  dir&quot;.format(prospective_dir))</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>parser = argparse.ArgumentParser(prog=<span class="py-string">'make_structure_dir.py'</span>, description=<span class="py-string">'''This Programme make arborescence of rep of programme structure'''</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>paths = parser.add_argument_group(<span class="py-string">'Input PATH for running'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>paths.add_argument(<span class="py-string">'-p'</span>, <span class="py-string">'--path'</span>, metavar=<span class="py-string">&quot;&lt;path/to/&gt;&quot;</span>, type = readable_dir, required=True, dest = <span class="py-string">'pathParam'</span>, help = <span class="py-string">'Path to '</span>)</pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>prospective_dir</code></strong> (Path) - a directory Path</li>
-    </ul></dd>
-    <dt>Raises:</dt>
-    <dd><ul class="nomargin-top">
-        <li><code><strong class='fraise'>error</strong></code> - raise argparse.ArgumentTypeError(&quot; :{0} is not a valid path&quot;.format(prospective_dir))</li>
-        <li><code><strong class='fraise'>error</strong></code> - raise argparse.ArgumentTypeError(&quot; :{0} is not a readable dir&quot;.format(prospective_dir))</li>
-    </ul></dd>
   </dl>
 </td></tr></table>
 </div>
@@ -968,25 +965,17 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Function that take a dictionnary and text variable and return text variable with replace 'Key' from dictionnary with 'Value'.</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Function that take a dictionnary and text variable and return text 
+  variable with replace 'Key' from dictionnary with 'Value'.</p>
+  <p>:param repls: a python dictionary :type repls: dict() :param str: a 
+  string where remplace some words :type str: str() :rtype: str() :return: 
+  - txt with replace 'Key' of dictionnary with 'Value' in the input txt</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>text =  <span class="py-string">&quot;i like apples, but pears scare me&quot;</span>
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(replace_all({<span class="py-string">&quot;apple&quot;</span>: <span class="py-string">&quot;pear&quot;</span>, <span class="py-string">&quot;pear&quot;</span>: <span class="py-string">&quot;apple&quot;</span>}, text))
 <span class="py-output">i like pears, but apples scare me</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>repls</code></strong> (dict()) - a python dictionary</li>
-        <li><strong class="pname"><code>str</code></strong> (str()) - a string where remplace some words</li>
-    </ul></dd>
-    <dt>Returns: str()</dt>
-        <dd><ul class="rst-simple">
-<li>txt with replace 'Key' of dictionnary with 'Value' in the input txt</li>
-</ul></dd>
   </dl>
 </td></tr></table>
 </div>
@@ -1004,29 +993,18 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Load file in list() and then remove n at end of line</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Load file in list() and then remove \n at end of line</p>
+  <p>:param filename: a file :type filename: file :rtype: list() :return: -
+  list of row's file without \n :warn: Use this function with small file 
+  !!! except more RAM are use and crash systeme.</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>rows = loadInList(filename)
 <span class="py-prompt">&gt;&gt;&gt; </span>rows
 <span class="py-output">[&quot;i like pears, but apples scare me&quot;,&quot;i like apples, but pears scare me&quot;,&quot;End of file&quot;]</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>filename</code></strong> (file) - a file</li>
-    </ul></dd>
-    <dt>Returns: list()</dt>
-        <dd><ul class="rst-simple">
-<li>list of row's file without n</li>
-</ul></dd>
   </dl>
-<div class="fields">      <p><strong>Warning:</strong>
-        Use this function with small file !!! except more RAM are use and crash systeme.
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="loadInListWithHeader"></a>
 <div>
@@ -1042,32 +1020,26 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Load file in list() and then remove n at end of line</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Load file in list() and then remove \n at end of line</p>
+  <p>:param filename: a file :type filename: file :rtype: str(), list() 
+  :return: - header liste</p>
+  <ul>
+    <li>
+      list of row's file without
+    </li>
+  </ul>
+  <p>:warn: Use this function with small file !!! except more RAM are use 
+  and crash systeme.</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>header, rows = loadInListWithHeader(filename)
 <span class="py-prompt">&gt;&gt;&gt; </span>header
 <span class="py-output">&quot;head1  head2   head3&quot;</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>rows
 <span class="py-output">[&quot;i like pears, but apples scare me&quot;,&quot;i like apples, but pears scare me&quot;,&quot;End of file&quot;]</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>filename</code></strong> (file) - a file</li>
-    </ul></dd>
-    <dt>Returns: str(), list()</dt>
-        <dd><ul class="rst-simple">
-<li>header liste</li>
-<li>list of row's file without</li>
-</ul></dd>
   </dl>
-<div class="fields">      <p><strong>Warning:</strong>
-        Use this function with small file !!! except more RAM are use and crash systeme.
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="loadInDict"></a>
 <div>
@@ -1083,10 +1055,14 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Load file in Dict() and then remove n at end of line, then add first column in key of dict and valueare other column.</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Load file in Dict() and then remove \n at end of line, then add first 
+  column in key of dict and valueare other column.</p>
+  <p>:param filename: a file :type filename: file :rtype: dict() :return: -
+  dict of row's file without \n with key is first column and value list of 
+  other column :warn: Use this function with small file !!! except more RAM
+  are use and crash systeme.</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = loadInDict(filename)
 <span class="py-prompt">&gt;&gt;&gt; </span>dico
 <span class="py-output">{</span>
@@ -1094,22 +1070,9 @@ from Bio.Alphabet import SingleLetterAlphabet)
 <span class="py-output">&quot;indiv1&quot;,[&quot;valeurcol2&quot;,&quot;valeurcol3&quot;],</span>
 <span class="py-output">&quot;indiv2&quot;,[&quot;valeurcol2&quot;,&quot;valeurcol3&quot;]</span>
 <span class="py-output">}</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>filename</code></strong> (file) - a file</li>
-    </ul></dd>
-    <dt>Returns: dict()</dt>
-        <dd><ul class="rst-simple">
-<li>dict of row's file without n with key is first column and value list of other column</li>
-</ul></dd>
   </dl>
-<div class="fields">      <p><strong>Warning:</strong>
-        Use this function with small file !!! except more RAM are use and crash systeme.
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="loadInDictCol"></a>
 <div>
@@ -1127,10 +1090,16 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Load file in Dict() and then remove n at end of line, then add first column in key of dict and valu specify column.</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Load file in Dict() and then remove \n at end of line, then add first 
+  column in key of dict and valu specify column.</p>
+  <p>:param filename: a file :type filename: file :param columnkey: int of 
+  column :type columnkey: int :param columnvalue: int of column :type 
+  columnvalue: int :rtype: dict() :return: - dict of row's file without \n 
+  with key is first column and value column number pass :warn: Use this 
+  function with small file !!! except more RAM are use and crash 
+  systeme.</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = loadInDict(filename,columnkey=1,columnvalue=3 )
 <span class="py-prompt">&gt;&gt;&gt; </span>dico
 <span class="py-output">{</span>
@@ -1138,24 +1107,9 @@ from Bio.Alphabet import SingleLetterAlphabet)
 <span class="py-output">&quot;indiv1&quot;,&quot;valeurcol3&quot;,</span>
 <span class="py-output">&quot;indiv2&quot;,&quot;valeurcol3&quot;</span>
 <span class="py-output">}</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>filename</code></strong> (file) - a file</li>
-        <li><strong class="pname"><code>columnkey</code></strong> (int) - int of column</li>
-        <li><strong class="pname"><code>columnvalue</code></strong> (int) - int of column</li>
-    </ul></dd>
-    <dt>Returns: dict()</dt>
-        <dd><ul class="rst-simple">
-<li>dict of row's file without n with key is first column and value column number pass</li>
-</ul></dd>
   </dl>
-<div class="fields">      <p><strong>Warning:</strong>
-        Use this function with small file !!! except more RAM are use and crash systeme.
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="extractListFromFasta"></a>
 <div>
@@ -1172,38 +1126,29 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <dl class="rst-docutils">
-<dt>Function who use 2 files:n</dt>
-<dd><ul class="rst-first rst-last rst-simple">
-<li>fasta : file with all Sequences</li>
-<li>list : file with name of sequence to extract from fasta</li>
-</ul>
-</dd>
-</dl>
-<p>then return dict() with only Sequence in listed file.</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Function who use 2 files:\n</p>
+  <ul>
+    <li>
+      fasta : file with all Sequences
+    </li>
+    <li>
+      list : file with name of sequence to extract from fasta
+    </li>
+  </ul>
+  <p>then return dict() with only Sequence in listed file.</p>
+  <p>:param sequenceFile: a file with all Sequences :type sequenceFile: 
+  file :param FileList: a file with name of sequence to extract from fasta 
+  :type FileList: file :rtype: dict() and int() :return: - dict with only 
+  Sequence in listed file and nbtotal seq in file :requires: this function 
+  require fasta2dict(filename) and loadInList(filename)</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dictSequences = extractListFromFasta(sequenceFile, FileList)
 <span class="py-prompt">&gt;&gt;&gt; </span>dictSequences
 <span class="py-output">{&quot;Seq1&quot;:&quot;ATGCTGCAGTAG&quot;,&quot;Seq2&quot;:&quot;ATGCCGATCGATG&quot;,&quot;Seq3&quot;:&quot;ATGCTCAGTCAGTAG&quot;}</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>sequenceFile</code></strong> (file) - a file with all Sequences</li>
-        <li><strong class="pname"><code>FileList</code></strong> (file) - a file with name of sequence to extract from fasta</li>
-    </ul></dd>
-    <dt>Returns: dict() and int()</dt>
-        <dd><ul class="rst-simple">
-<li>dict with only Sequence in listed file and nbtotal seq in file</li>
-</ul></dd>
   </dl>
-<div class="fields">      <p><strong>Requires:</strong>
-        this function require fasta2dict(filename) and loadInList(filename)
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="extractInverseListFromFasta"></a>
 <div>
@@ -1220,38 +1165,29 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <dl class="rst-docutils">
-<dt>Function who use 2 files:n</dt>
-<dd><ul class="rst-first rst-last rst-simple">
-<li>fasta : file with all Sequences</li>
-<li>list : file with name of sequence to extract from fasta</li>
-</ul>
-</dd>
-</dl>
-<p>then return dict() with only Sequence not in listed file.</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Function who use 2 files:\n</p>
+  <ul>
+    <li>
+      fasta : file with all Sequences
+    </li>
+    <li>
+      list : file with name of sequence to extract from fasta
+    </li>
+  </ul>
+  <p>then return dict() with only Sequence not in listed file.</p>
+  <p>:param sequenceFile: a file with all Sequences :type sequenceFile: 
+  file :param FileList: a file with name of sequence to not extract from 
+  fasta :type FileList: file :rtype: dict() and int() :return: - dict with 
+  only Sequence in listed file and nbtotal seq in file :requires: this 
+  function require fasta2dict(filename) and loadInList(filename)</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dictSequences = extractListFromFasta(sequenceFile, FileList)
 <span class="py-prompt">&gt;&gt;&gt; </span>dictSequences
 <span class="py-output">{&quot;Seq1&quot;:&quot;ATGCTGCAGTAG&quot;,&quot;Seq2&quot;:&quot;ATGCCGATCGATG&quot;,&quot;Seq3&quot;:&quot;ATGCTCAGTCAGTAG&quot;}</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>sequenceFile</code></strong> (file) - a file with all Sequences</li>
-        <li><strong class="pname"><code>FileList</code></strong> (file) - a file with name of sequence to not extract from fasta</li>
-    </ul></dd>
-    <dt>Returns: dict() and int()</dt>
-        <dd><ul class="rst-simple">
-<li>dict with only Sequence in listed file and nbtotal seq in file</li>
-</ul></dd>
   </dl>
-<div class="fields">      <p><strong>Requires:</strong>
-        this function require fasta2dict(filename) and loadInList(filename)
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="lsDirToList"></a>
 <div>
@@ -1268,21 +1204,14 @@ from Bio.Alphabet import SingleLetterAlphabet)
   </tr></table>
   
   <p>Return a list of file and directory find in directory</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>:param pathDirectory: a directory Path :type pathDirectory: Path 
+  :rtype: list() :return: list of filename in pathDirectory</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>lsDirectory = lsDirToList(path/to/directory/)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(lsDirectory)
 <span class="py-output">[&quot;./out/gemo10_4497_ortho_rename_add.fasta&quot;, &quot;./out/gemo10_6825_ortho_rename_add.fasta&quot;, &quot;./out/gemo10_3497_ortho_rename_add.fasta&quot;, &quot;./out/rename/&quot;]</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>pathDirectory</code></strong> (Path) - a directory Path</li>
-    </ul></dd>
-    <dt>Returns: list()</dt>
-        <dd>list of filename in pathDirectory</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -1300,22 +1229,17 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Return a list of fasta file's find in directory (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;)</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Return a list of fasta file's find in directory (&quot;fasta&quot;, 
+  &quot;fa&quot;, &quot;fas&quot;)</p>
+  <p>:param pathDirectory: a directory Path :type pathDirectory: Path 
+  :rtype: list() :return: list of fasta filename in pathDirectory ( file 
+  with extention &quot;fa&quot;, &quot;fasta&quot;, &quot;fas&quot; )</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>lsDirectory = lsFastaInDirToList(path/to/directory/)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(lsDirectory)
 <span class="py-output">[&quot;./out/gemo10_4497_ortho_rename_add.fasta&quot;, &quot;./out/gemo10_6825_ortho_rename_add.fasta&quot;, &quot;./out/gemo10_3497_ortho_rename_add.fasta&quot;]</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>pathDirectory</code></strong> (Path) - a directory Path</li>
-    </ul></dd>
-    <dt>Returns: list()</dt>
-        <dd>list of fasta filename in pathDirectory ( file with extention &quot;fa&quot;, &quot;fasta&quot;, &quot;fas&quot; )</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -1334,23 +1258,19 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Return a list of 'ext' file's find in directory (exemple ext = &quot;txt&quot; or [&quot;txt&quot;,&quot;py&quot;])</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Return a list of 'ext' file's find in directory (exemple ext = 
+  &quot;txt&quot; or [&quot;txt&quot;,&quot;py&quot;])</p>
+  <p>:param pathDirectory: a directory Path :type pathDirectory: Path 
+  :param extentionFichierKeep: a list or string with extention :type 
+  extentionFichierKeep: list or string :rtype: list() :return: list of 
+  'ext' filename in pathDirectory ( file with extention find in param 
+  extentionFichierKeep )</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>lsDirectory = lsExtInDirToList(path/to/directory/,<span class="py-string">&quot;txt&quot;</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(lsDirectory)
 <span class="py-output">[&quot;./out/gemo10_4497_ortho_rename_add.txt&quot;, &quot;./out/gemo10_6825_ortho_rename_add.txt&quot;, &quot;./out/gemo10_3497_ortho_rename_add.txt&quot;]</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>pathDirectory</code></strong> (Path) - a directory Path</li>
-        <li><strong class="pname"><code>extentionFichierKeep</code></strong> (list or string) - a list or string with extention</li>
-    </ul></dd>
-    <dt>Returns: list()</dt>
-        <dd>list of 'ext' filename in pathDirectory ( file with extention find in param extentionFichierKeep )</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -1368,22 +1288,18 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Return a fasta dictionnary of concatenation fasta file's find in directory (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;)</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Return a fasta dictionnary of concatenation fasta file's find in 
+  directory (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;)</p>
+  <p>:param pathDirectory: a directory Path :type pathDirectory: Path 
+  :rtype: dict() :return: dict of concatenation fasta filename in 
+  pathDirectory ( file with extention &quot;fa&quot;, &quot;fasta&quot;, 
+  &quot;fas&quot; )</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico_concate = concatFastasFiles(path/to/directory/)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(dico_concate)
 <span class="py-output">        {&quot;Seq1&quot;:&quot;ATGCTGCAGTAG&quot;,&quot;Seq2&quot;:&quot;ATGCCGATCGATG&quot;,&quot;Seq3&quot;:&quot;ATGCTCAGTCAGTAG&quot;}</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>pathDirectory</code></strong> (Path) - a directory Path</li>
-    </ul></dd>
-    <dt>Returns: dict()</dt>
-        <dd>dict of concatenation fasta filename in pathDirectory ( file with extention &quot;fa&quot;, &quot;fasta&quot;, &quot;fas&quot; )</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -1402,23 +1318,19 @@ from Bio.Alphabet import SingleLetterAlphabet)
     </td>
   </tr></table>
   
-  <p>Return the number of fasta file's convert  find in directory (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;) where are converted</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>Return the number of fasta file's convert  find in directory 
+  (&quot;fasta&quot;, &quot;fa&quot;, &quot;fas&quot;) where are 
+  converted</p>
+  <p>:param pathDirectoryIn: a directory Path :type pathDirectoryIn: Path 
+  :param pathDirectoryOut: a directory Path :type pathDirectoryOut: Path 
+  :rtype: int() :return: pathDirectory with file's converted and nb file 
+  converted( file with extention &quot;nex&quot; )</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>nbFileConvert = convertFasta2Nexus(path/to/directory/, path/to/directory/)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(nbFileConvert)
 <span class="py-output">        &quot;4172&quot;</span></pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>pathDirectoryIn</code></strong> (Path) - a directory Path</li>
-        <li><strong class="pname"><code>pathDirectoryOut</code></strong> (Path) - a directory Path</li>
-    </ul></dd>
-    <dt>Returns: int()</dt>
-        <dd>pathDirectory with file's converted and nb file converted( file with extention &quot;nex&quot; )</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -1439,28 +1351,20 @@ from Bio.Alphabet import SingleLetterAlphabet)
   </tr></table>
   
   <p>Return the printed color txt format</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
+  <p>:param txt: a string :type txt: string :param color: a color value 
+  :type color: string :type noprint: int 0=noprint 1=print (default) 
+  :rtype: string() :return: string with acci color for printed :warn: List 
+  of avail color: reset, hicolor, underline, inverse, fblack, fred, fgreen,
+  fyellow, fblue, fmagenta, fcyan, fwhite, bblack, bred, bgreen, byellow, 
+  bblue, bmagenta, bcyan, bwhite</p>
+  <p>Example:</p>
+<pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>printcolor(<span class="py-string">&quot;il fait beau aujourd'hui&quot;</span>,<span class="py-string">&quot;bgreen&quot;</span>)
 <span class="py-output">        &quot;\033[36mil fait beau aujourd'hui&quot;</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>txtcolor = printcolor(<span class="py-string">&quot;il fait beau aujourd'hui&quot;</span>,<span class="py-string">&quot;bgreen&quot;</span>, 0)</pre>
-</dd>
-</dl>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>txt</code></strong> (string) - a string</li>
-        <li><strong class="pname"><code>color</code></strong> (string) - a color value</li>
-        <li><strong class="pname"><code>noprint</code></strong> (int 0=noprint 1=print (default))</li>
-    </ul></dd>
-    <dt>Returns: string()</dt>
-        <dd>string with acci color for printed</dd>
   </dl>
-<div class="fields">      <p><strong>Warning:</strong>
-        List of avail color: reset, hicolor, underline, inverse, fblack, fred, fgreen, fyellow, fblue, fmagenta, fcyan, fwhite, bblack, bred, bgreen, byellow, bblue, bmagenta, bcyan, bwhite
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <a name="relativeToAbsolutePath"></a>
 <div>
@@ -1477,28 +1381,14 @@ from Bio.Alphabet import SingleLetterAlphabet)
   </tr></table>
   
   <p>Return the absolutPath</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(relative)
-<span class="py-output">        ../test</span>
-<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>pathDirectory = relativeToAbsolutePath(relative)
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(pathDirectory)
-<span class="py-output">        /home/sebastien/test</span></pre>
-</dd>
-</dl>
+  <p>:param relative: a string path :type relative: string :rtype: string()
+  :return: absolutePath :warn: need subprocess::check_output</p>
+  <p>Example: &gt;&gt;&gt;print(relative) ../test &gt;&gt;&gt; 
+  pathDirectory = relativeToAbsolutePath(relative) 
+  &gt;&gt;&gt;print(pathDirectory) /home/sebastien/test</p>
   <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>relative</code></strong> (string) - a string path</li>
-    </ul></dd>
-    <dt>Returns: string()</dt>
-        <dd>absolutePath</dd>
   </dl>
-<div class="fields">      <p><strong>Warning:</strong>
-        need subprocess::check_output
-      </p>
-</div></td></tr></table>
+</td></tr></table>
 </div>
 <br />
 <!-- ==================== NAVIGATION BAR ==================== -->
@@ -1521,19 +1411,14 @@ from Bio.Alphabet import SingleLetterAlphabet)
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-  <!-- Project homepage -->
-      <th class="navbar" align="right" width="100%">
-        <table border="0" cellpadding="0" cellspacing="0">
-          <tr><th class="navbar" align="center"
-            ><a class="navbar" target="_top" href="http://194.254.138.95/DOC/index.html">Script-SEB</a></th>
-          </tr></table></th>
+      <th class="navbar" width="100%"></th>
   </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Thu May 19 12:18:43 2016
+    on Fri May 20 07:31:09 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

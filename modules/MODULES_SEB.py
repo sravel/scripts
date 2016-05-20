@@ -1,4 +1,4 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 ## @package MODULES_SEB.py
 # @author Sebastien Ravel
@@ -212,9 +212,9 @@ def fasta2dict(filename):
 	:rtype: record_dict()
 	:return: dict() - dictionnary with keys are Id and value SeqRecord() fields
 	:requires: this function require ## BIO Python modules: (from Bio import SeqIO,\\n
-															 from Bio.SeqRecord import SeqRecord \\n
-															 from Bio.Seq import Seq \\n
-															 from Bio.Alphabet import SingleLetterAlphabet)
+	from Bio.SeqRecord import SeqRecord \\n
+	from Bio.Seq import Seq \\n
+	from Bio.Alphabet import SingleLetterAlphabet)
 
 	Example:
 		>>> filename = "sequence.fasta"
@@ -797,11 +797,11 @@ def relativeToAbsolutePath(relative):
 	:warn: need subprocess::check_output
 
 	Example:
-		>>> print(relative)
-			../test
-		>>> pathDirectory = relativeToAbsolutePath(relative)
-		>>> print(pathDirectory)
-			/home/sebastien/test
+	>>>print(relative)
+	../test
+	>>> pathDirectory = relativeToAbsolutePath(relative)
+	>>>print(pathDirectory)
+	/home/sebastien/test
 
 	"""
 	from subprocess import check_output
@@ -822,12 +822,11 @@ def relativeToAbsolutePath(relative):
 #*********************************************** Classe directory *******************
 class directory(str):
 	"""Class which derives from string.
-		Checks that the string is and path to valid directory and not empty"
+	Checks that the string is and path to valid directory and not empty
 
 	Returns object which able to return basename and list file (with an extention, else consider as folder)
 
 	Example:
-
 	>>> inDirectory=directory("/home/sravel/Documents")
 	>>> print(inDirectory.pathDirectory())
 	>>> /home/sravel/Documents/

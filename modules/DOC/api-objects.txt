@@ -20,6 +20,7 @@ MODULES_SEB.dict2fasta	MODULES_SEB-module.html#dict2fasta
 MODULES_SEB.extractInverseListFromFasta	MODULES_SEB-module.html#extractInverseListFromFasta
 MODULES_SEB.VERSION_DATE	MODULES_SEB-module.html#VERSION_DATE
 MODULES_SEB.loadInList	MODULES_SEB-module.html#loadInList
+MODULES_SEB.sort_human	MODULES_SEB-module.html#sort_human
 MODULES_SEB.nbSeqInFile2dict	MODULES_SEB-module.html#nbSeqInFile2dict
 MODULES_SEB.loadInListWithHeader	MODULES_SEB-module.html#loadInListWithHeader
 MODULES_SEB.concatFastasFiles	MODULES_SEB-module.html#concatFastasFiles
