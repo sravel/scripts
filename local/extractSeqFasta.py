@@ -6,18 +6,18 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import extractInverseListFromFasta, extractListFromFasta, relativeToAbsolutePath
+
 ## Python modules
-import argparse, os, subprocess, sys
-from time import localtime, strftime, sleep, clock, time
-import glob
+import argparse
+from time import localtime, strftime
+
 ## BIO Python modules
-from Bio import AlignIO
-from Bio.Align import AlignInfo
 from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
-from Bio.Alphabet import SingleLetterAlphabet
-from MODULES_SEB import *
+
 
 ##################################################
 ## Variables Globales
@@ -66,10 +66,11 @@ if __name__ == "__main__":
 	print('Start time: ', start_time,'\n')
 
 	# Récupère le fichier de conf passer en argument
-	fastaFile = args.fastaFile
-	outputfilename = args.paramoutfile
-	listFile = args.listFile
+	fastaFile = relativeToAbsolutePath(args.fastaFile)
+	outputfilename = relativeToAbsolutePath(args.paramoutfile)
+	listFile = relativeToAbsolutePath(args.listFile)
 	keepValue = args.keepValue
+
 	output_handle = open(outputfilename, "w")
 
 
@@ -82,6 +83,7 @@ if __name__ == "__main__":
 	for geneId, sequence in dico_keep.items():
 		SeqIO.write(sequence,output_handle, "fasta")
 
+	output_handle.close()
 	print("\n\nExecution summary:")
 
 	print("  - Outputting \n\

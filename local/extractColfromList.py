@@ -6,8 +6,14 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import loadInList, relativeToAbsolutePath
+
+from time import localtime, strftime
 ## Python modules
-import argparse, os, subprocess, sys
+import argparse, os
 
 ##################################################
 ## Variables Globales
@@ -15,16 +21,6 @@ version="0.1"
 VERSION_DATE='04/01/2016'
 #debug="False"
 #debug="True"
-
-##################################################
-## Functions
-##################################################
-def loadInList(filename):
-	'''charge un fichier dans une liste puis supprime les \n'''
-	list = open(filename,"r").readlines()
-	listgood=[line.rstrip() for line in list]
-	return listgood
-
 
 ##################################################
 ## Main code
@@ -47,18 +43,18 @@ if __name__ == "__main__":
 	args = parser.parse_args()
 
 	#Welcome message
-	#print("#################################################################")
-	#print("#            Welcome in extractColfromList (Version " + version + ")              #")
-	#print("#################################################################")
-	#print('Start time: ', start_time,'\n')
+	print("#################################################################")
+	print("#            Welcome in extractColfromList (Version " + version + ")              #")
+	print("#################################################################")
+	print('Start time: ', start_time,'\n')
 
 	#get arguments
-	tableFile = args.tableFile
+	tableFile = relativeToAbsolutePath(args.tableFile)
 	tableFileOut = args.tableFileOut
 	IDlist = args.IDlist
 
 	if tableFileOut == "":
-		tableFileOut=tableFile.split("/")[-1].split(".")[0]+"_extractedIDs.tab"
+		tableFileOut=tableFile.split(".")[0]+"_extractedIDs.tab"
 
 	#loading IDs to be kept in a list
 	listNameKeep = loadInList(IDlist)
@@ -81,3 +77,13 @@ if __name__ == "__main__":
 	#print(txtListIndiceKeep)
 
 	os.system("cut -f"+txtListIndiceKeep+" "+tableFile+" > "+tableFileOut)
+
+	print("\n\nExecution summary:")
+
+	print("  - Outputting \n\
+	Le ficher est créé dans %s \n" %(tableFileOut))
+
+	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
+	print("#################################################################")
+	print("#                        End of execution                       #")
+	print("#################################################################")

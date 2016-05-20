@@ -7,6 +7,7 @@
 ##################################################
 ## Modules
 ##################################################
+
 ## Python modules
 from sys import version_info, version
 try:
@@ -15,8 +16,14 @@ except AssertionError:
 	print("You are using version %s but version 2.7.x is require for this script!\n" % version.split(" ")[0])
 	exit(1)
 
-import argparse, re, os, glob
-from subprocess import check_output
+
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import directory, relativeToAbsolutePath, dictDict2txt
+
+import argparse, os
+
 import egglib # USE EGGLIB_3
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
@@ -30,87 +37,6 @@ completeLDhatPATH = "completeLDhat"
 #intervalLDhatPATH = "interval"
 intervalLDhatPATH = "rhomap"
 statLDhatPATH = "statLDhat"
-
-#################################################
-# CLASS
-#################################################
-
-
-#*********************************************** Classe directory *******************
-class directory(str):
-	"""Class which derives from string.
-		Checks that the string is and path to valid directory and not empty"
-
-	Returns object which able to return basename and list file (with an extention, else consider as folder)
-
-	Example:
-
-	>>> inDirectory=directory("/home/sravel/Documents")
-	>>> print(inDirectory.pathDirectory())
-	>>> /home/sravel/Documents/
-
-	>>> print(inDirectory.listFiles())
-	>>> ["File1.txt","File2.pl","file.toto"]
-	"""
-	def __init__(self, pathDirectory = None):
-		"""
-			Initialise variable
-		"""
-		self.listPath = []			# all in the path
-		self.listDir = []			# only directory in path
-		self.listFiles = []			# only files in path
-
-		self.current_dir = os.path.dirname(os.path.abspath(__file__))
-
-		#Change relative path to absolute path
-		self.pathDirectory = relativeToAbsolutePath(pathDirectory)
-
-		# appel les fonctions
-		self.testDirExist()
-		self.lsInDir()
-		self.splitFilesDir()
-
-	def __repr__(self):
-		"""Fonction qui permet de formater le text de sortie lors du print du dictionnaire"""
-		txtOut = """
-pathDirectory=%s\n
-listPath=%s\n
-listDir=%s\n
-listFiles=%s\n
-""" % (self.pathDirectory, str(self.listPath), str(self.listDir), str(self.listFiles))
-		return txtOut
-
-	def testDirExist(self):
-		"""Test l'existance du répertoire"""
-		if os.path.isdir(self.pathDirectory) != True :
-			print("ERROR MODULES_SEB::Class-directory : path '%s' is not valide path" % self.pathDirectory )
-			exit()
-
-	def lsInDir(self):
-		"""List all in directory"""
-		self.testDirExist()
-		if self.pathDirectory[-1] != "/":
-			self.pathDirectory += "/"
-		if self.pathDirectory[-1] != "*":
-			pathDirectoryList = self.pathDirectory+"*"
-		self.listPath=glob.glob(pathDirectoryList)
-
-	def splitFilesDir(self):
-		"""list files and list directory"""
-		self.lsInDir()
-		self.listDir = []		# only directory in path
-		self.listFiles = []		# only files in path
-		# Ouverture des fichiers du repertoire
-		for fichier in self.listPath:
-			try:
-				if os.path.isdir(fichier) == True :		# C'est un dossier
-					self.listDir.append(str(fichier))
-				elif os.path.exists(fichier) == True :	# C'est un fichier
-					self.listFiles.append(str(fichier))
-			except:
-				print("ERROR MODULES_SEB::Class-directory : path '%s' is not valide path contain other type (not files or directory)" % self.pathDirectory)
-				exit()
-
 
 
 ##################################################
@@ -217,51 +143,6 @@ def build_sites(paramfilename, dataType):
 	os.remove("temps1.tab")
 	return nbSNP, dictListPositions[nameChro], str(outputfileFasta.name), nbInd
 
-def relativeToAbsolutePath(relative):
-	from subprocess import check_output
-	if relative[0] != "/":			# The provided path is a relative path, ie does not start with /
-		command = "readlink -m "+relative
-		absolutePath = check_output(command, shell=True).decode("utf-8").rstrip()
-		return absolutePath+"/"
-	else:						# Relative is in fact an absolute path, send a warning
-		absolutePath = relative;
-		return absolutePath+"/"
-
-
-def dictDict2txt(dico):
-	"""
-	Function that takes a dictionary and returns a tabular string with::
-
-		"key\\tvalue\\n".
-
-	:param dico: a python dictionary
-	:type dico: dict()
-	:rtype: str()
-	:return: string with "key\\tvalue\\n
-
-	Example:
-		>>> dico = {"Souche1":{"NUM":"171","MIN":"2042","MAX":"3133578","N50 BP":"938544","N50 NUM":"11"},
-				    "Souche2":{"NUM":"182","MIN":"5004","MAX":"74254","N50 BP":"45245","N50 NUM":"45"}}
-		>>> dictDict2txt(dico)
-		Info	NUM	MIN	MAX	N50 BP	N50 NUM
-		Souche1	171	2042	3133578	938544	11
-		Souche2	182	5004	74254	45245	45
-
-	"""
-
-	txtoutput = ""
-	headerc=0
-	for key in sorted(dico.keys()):
-		dicoInfosValues = [str(item) for item in dico[key].values()]
-		if headerc == 0:
-			header = dico[key].keys()
-			value = "Info\t" + "\t".join(header)
-			txtoutput += "%s\n" % str(value)
-			headerc=1
-
-		value = "\t".join(dicoInfosValues)
-		txtoutput += "%s\t%s\n" % (str(key),str(value))
-	return txtoutput
 
 ############
 ## Main code

@@ -6,97 +6,19 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import replace_all, relativeToAbsolutePath, loadInListCol, loadInDictLine
+
 ## Python modules
-import argparse, os, subprocess, sys, re
-from time import localtime, strftime, sleep, clock, time
+import argparse, os
+from time import localtime, strftime
 from shutil import rmtree
 ##################################################
 ## Variables Globales
 version="0.3"
 VERSION_DATE='21/04/2016'
-
-
-##################################################
-## Functions
-def replace_all(repls, str):
-	return re.sub('|'.join(re.escape(key) for key in repls.keys()),lambda k: repls[k.group(0)], str)
-
-def relativeToAbsolutePath(relative):
-	"""	Return the absolutPath
-
-	:param relative: a string path
-	:type relative: string
-	:rtype: string()
-	:return: absolutePath
-	:warn: need subprocess::check_output
-	Example:
-		>>> print(relative)
-			../test
-		>>> pathDirectory = relativeToAbsolutePath(relative)
-		>>> print(pathDirectory)
-			/home/sebastien/test
-
-	"""
-	from subprocess import check_output
-	if relative[0] != "/":			# The relative path is a relative path, ie do not starts with /
-		command = "readlink -m "+relative
-		absolutePath = subprocess.check_output(command, shell=True).decode("utf-8").rstrip()
-		return absolutePath
-	else:						# Relative is in fact an absolute path, send a warning
-		absolutePath = relative;
-		return absolutePath
-
-def loadInListCol(filename, col):
-	"""
-	Load file in list() and then remove \\n at end of line
-
-	:param filename: a file
-	:type filename: file
-	:rtype: list()
-	:return: - list of row's file without \\n
-	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
-
-	Example:
-		>>> rows = loadInListCol(filename, 0)
-		>>> rows
-		["i like pears, but apples scare me","i like apples, but pears scare me","End of file"]
-	"""
-
-	list = open(filename,"r").readlines()
-	listgood=[line.rstrip().split("\t")[col] for line in list]
-	return listgood
-
-
-def loadInDictLine(filename):
-	"""
-	Load file in Dict() and then remove \\n at end of line, then add first column in key of dict and valueare other column.
-
-	:param filename: a file
-	:type filename: file
-	:rtype: dict()
-	:return: - dict of row's file without \\n with key is first column and value list of other column
-	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
-
-	Example:
-		>>> dico = loadInDictLine(filename)
-		>>> dico
-		{
-		"col1",[line1],
-		"indiv1",[line2],
-		"indiv2",[line3]
-		}
-	"""
-
-	dicoOut={}
-	with open(filename) as filein:
-		for line in filein:
-			tabLine = line.rstrip().split("\t")
-			#print(tabLine[0], tabLine[1])
-			if tabLine[0] not in dicoOut.keys():
-				dicoOut[tabLine[0]] = line
-			#else:
-				#dicoOut[tabLine[0]].append(tabLine[1])
-	return dicoOut
 
 ##################################################
 ## PARAM DAPC R
@@ -166,8 +88,6 @@ dev.off()
 
 
 """
-
-
 
 
 ##################################################

@@ -6,18 +6,17 @@
 ##################################################
 ## Modules
 ##################################################
+#Import MODULES_SEB
+import sys
+sys.path.insert(1,'../modules/')
+from MODULES_SEB import directory, dictList2txt, dictDict2txt, dict2txt
+
 ## Python modules
-import argparse, os, subprocess, sys
-from time import localtime, strftime, sleep, clock, time
-import glob
+import argparse
+from time import localtime, strftime
 ## BIO Python modules
 from Bio import AlignIO
-from Bio.Align import AlignInfo
-from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
-from Bio.Alphabet import SingleLetterAlphabet
-from MODULES_SEB import *
+
 ##################################################
 ## Variables Globales
 version="0.1"
@@ -38,27 +37,6 @@ def checkParameters (arg_list):
 		parser.format_help()
 		exit()
 
-def loadInDict(filename):
-	'''charge un fichier dans une liste puis supprime les \n et ajoute dans un dict  avec clé la 1er colonne et value la 2eme'''
-	dicoOut={}
-	with open(filename) as filein:
-		for line in filein:
-			tabLine = line.rstrip().split("\t")
-			#print(tabLine[0], tabLine[1])
-			if tabLine[0] not in dicoOut.keys():
-				dicoOut[tabLine[0]] = [tabLine[1]]
-			else:
-				dicoOut[tabLine[0]].append(tabLine[1])
-	return dicoOut
-
-def lsDirToList(pathFiles):
-	'''retourne une liste du contenue du répertoire donnée (fichiers ET dossiers)'''
-	if pathFiles[-1] != "/":
-		pathFiles += "/"
-	if pathFiles[-1] != "*":
-		pathFiles += "*"
-	lsFiles=glob.glob(pathFiles)
-	return lsFiles
 
 ##################################################
 ## Main code
