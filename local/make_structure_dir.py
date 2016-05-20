@@ -1,4 +1,4 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 ## @package make_structure_dir.py
 # @author Sebastien Ravel
