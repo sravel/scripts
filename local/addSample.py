@@ -11,8 +11,6 @@ import sys
 sys.path.insert(1,'../modules/')
 from MODULES_SEB import directory, relativeToAbsolutePath, nbSeqInFile2dict, dict2txt,fasta2dict
 
-
-
 ## Python modules
 import argparse, os
 from time import localtime, strftime
@@ -21,8 +19,6 @@ from time import localtime, strftime
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
-
-from pyfaidx import Fasta
 
 ##################################################
 ## Variables Globales
@@ -204,4 +200,3 @@ if __name__ == "__main__":
 	print("#################################################################")
 	print("#                        End of execution                       #")
 	print("#################################################################")
-
