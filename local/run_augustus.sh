@@ -94,6 +94,18 @@ if [ $fasta != "" ] && [ $gff != "" ] && [ $species != "" ] ; then
 	else
 		mkdir $pathAnalysis"sh"
 	fi
+	if [ -d $pathAnalysis"AA" ]; then
+		rm -r $pathAnalysis"AA"
+		mkdir $pathAnalysis"AA"
+	else
+		mkdir $pathAnalysis"AA"
+	fi
+	if [ -d $pathAnalysis"CDS" ]; then
+		rm -r $pathAnalysis"CDS"
+		mkdir $pathAnalysis"CDS"
+	else
+		mkdir $pathAnalysis"CDS"
+	fi
 	if [ -e $pathAnalysis"runAllQsub_Augustus.sh" ]; then
 		rm $pathAnalysis"runAllQsub_Augustus.sh"
 	fi
@@ -104,7 +116,10 @@ if [ $fasta != "" ] && [ $gff != "" ] && [ $species != "" ] ; then
 		((compteur++))
 		name=$(basename ${f%%.fasta})
 		echo " "$name
-		echo "augustus --species=$species $f --codingseq=on --outfile=$gffPath/$name.gff" > $pathAnalysis"sh/"$name-augustus.sh
+		echo "augustus --species=$species $f --codingseq=on --protein=on --outfile=$gffPath/$name.gff" > $pathAnalysis"sh/"$name-augustus.sh
+		echo "getAnnoFasta.pl $gffPath/$name.gff" >> $pathAnalysis"sh/"$name-augustus.sh
+		echo "mv $gffPath/$name.aa ../AA/" >> $pathAnalysis"sh/"$name-augustus.sh
+		echo "mv $gffPath/$name.codingseq ../CDS/" >> $pathAnalysis"sh/"$name-augustus.sh
 		echo "qsub -N Augustus -b Y -V -q long.q -cwd $cmdMail -e trash/ -o trash/ $pathAnalysis"sh/"$name-augustus.sh" >> $pathAnalysis"runAllQsub_Augustus.sh"
 
 	done
