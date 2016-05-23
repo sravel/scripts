@@ -21,13 +21,16 @@ function help
 	directory with fasta's files
  Output:
 	directory with GFF
+	directory with AA
+	directory with CDS
+	directory with sh
+	directory with trash
 
- Exemple Usage: ./run_augustus.sh -f ./fasta -g ./gff -s magnaporthe_grisea -m sebastien.ravel@cirad.fr
+ Exemple Usage: ./run_augustus.sh -f ./fasta -s magnaporthe_grisea -m sebastien.ravel@cirad.fr
 
- Usage: ./run_augustus.sh -f {path/to/fasta} -g {output/path} -s species -m obiwankenobi@jedi.force
+ Usage: ./run_augustus.sh -f {path/to/fasta} -s species -m obiwankenobi@jedi.force
 	options:
 		-f {path/to/fasta} = path to fasta
-		-g {output/path} = path where gff output
 		-s {sting} = species name (without space)
 		-m {email} = email to add to qsub job end (not mandatory)
 
@@ -41,7 +44,6 @@ function help
 while getopts f:g:s:m:h: OPT;
 	do case $OPT in
 		f)	fasta=$OPTARG;;
-		g)	gff=$OPTARG;;
 		s)	species=$OPTARG;;
 		m)	mail=$OPTARG;;
 		h)	help;;
@@ -64,7 +66,7 @@ else
 	cmdMail="-M $mail -m beas"
 fi
 
-if [ $fasta != "" ] && [ $gff != "" ] && [ $species != "" ] ; then
+if [ $fasta != "" ] && [ $species != "" ] ; then
 	#version
 	printf "\033[36m ####################################################################\n";
 	printf "\033[36m #        Welcome to Run Augustus directory ( Version $version )         #\n";
