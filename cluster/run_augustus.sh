@@ -147,7 +147,7 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
  For run all sub-script in qsub, a runAllQsub_Augustus.sh was created, It lunch programm make:\n"
 
 	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/bamtools/8a5d650 bioinfo/augustus/3.0.3\n"
-	printf "\033[35m \tsh "$SHPath"runAllQsub_Augustus.sh\n\n"
+	printf "\033[35m \tsh "$pathAnalysis"runAllQsub_Augustus.sh\n\n"
 
 
 	# Print end
