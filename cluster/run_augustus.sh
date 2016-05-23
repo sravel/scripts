@@ -138,8 +138,11 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
 		echo "mv "$gffPath"/"$name".codingseq "$CDSPath"/" >> $SHPath"/"$name-augustus.sh
 		echo "qsub -N Augustus -b Y -V -q long.q -cwd "$cmdMail" -e "$trashPath" -o "$trashPath" "$SHPath"/"$name"-augustus.sh" >> $pathAnalysis"runAllQsub_Augustus.sh"
 
+		chmod 755 $SHPath"/"$name-augustus.sh
+
 	done
 
+	chmod 755 $pathAnalysis"runAllQsub_Augustus.sh"
 
 	# Print final infos
 	printf "\n\n You want run augustus for "$compteur" fasta,
@@ -148,9 +151,6 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
 
 	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/bamtools/8a5d650 bioinfo/augustus/3.0.3\n"
 	printf "\033[35m \tsh "$pathAnalysis"runAllQsub_Augustus.sh\n\n"
-
-	chmod 755 $pathAnalysis"sh/*.sh"
-	chmod 755 $pathAnalysis"runAllQsub_Augustus.sh"
 
 	# Print end
 	printf "\033[36m ####################################################################\n";
