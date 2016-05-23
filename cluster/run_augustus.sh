@@ -149,7 +149,7 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
 	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/bamtools/8a5d650 bioinfo/augustus/3.0.3\n"
 	printf "\033[35m \tsh "$pathAnalysis"runAllQsub_Augustus.sh\n\n"
 
-	chmod 755 $SHPath"/*"
+	chmod 755 $SHPath"/*.sh"
 	chmod 755 $pathAnalysis"runAllQsub_Augustus.sh"
 
 	# Print end
