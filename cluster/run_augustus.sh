@@ -132,11 +132,11 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
 		((compteur++))
 		name=$(basename ${f%%.fasta})
 		echo " "$name
-		echo "augustus --species=$species $f --codingseq=on --protein=on --outfile=$gffPath/$name.gff" > $SHPath$name-augustus.sh
-		echo "getAnnoFasta.pl $gffPath/$name.gff" >> $SHPath$name-augustus.sh
-		echo "mv $gffPath/$name.aa $AAPath" >> $SHPath$name-augustus.sh
-		echo "mv $gffPath/$name.codingseq $CDSPath" >> $SHPath$name-augustus.sh
-		echo "qsub -N Augustus -b Y -V -q long.q -cwd $cmdMail -e $trashPath -o $trashPath $SHPath$name-augustus.sh" >> $pathAnalysis"runAllQsub_Augustus.sh"
+		echo "augustus --species=$species $f --codingseq=on --protein=on --outfile="$gffPath"/"$name".gff" > $SHPath"/"$name-augustus.sh
+		echo "getAnnoFasta.pl "$gffPath"/"$name".gff" >> $SHPath"/"$name-augustus.sh
+		echo "mv "$gffPath"/"$name".aa "$AAPath"/" >> $SHPath"/"$name-augustus.sh
+		echo "mv "$gffPath"/"$name".codingseq "$CDSPath"/" >> $SHPath"/"$name-augustus.sh
+		echo "qsub -N Augustus -b Y -V -q long.q -cwd "$cmdMail" -e "$trashPath" -o "$trashPath" "$SHPath"/"$name"-augustus.sh" >> $pathAnalysis"runAllQsub_Augustus.sh"
 
 	done
 
