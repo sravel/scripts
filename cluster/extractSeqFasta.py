@@ -88,8 +88,8 @@ if __name__ == "__main__":
 	print("\n\nExecution summary:")
 
 	print("  - Outputting \n\
-	Il y a au final %i Sequences garder sur les %i initial\n\
-	les sequences sont ajouter dans le fichier %s" %(nbKeep,nbTotal,outputfilename))
+	Il y a au final %i Sequences gardées sur les %i initial\n\
+	les sequences sont ajoutées dans le fichier %s" %(nbKeep,nbTotal,outputfilename))
 	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
 	print("#                        End of execution                       #")
