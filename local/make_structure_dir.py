@@ -22,7 +22,7 @@ from time import localtime, strftime
 version="0.2"
 VERSION_DATE='05/05/2015'
 
-qsubtxt = "qsub -V -q long.q -cwd -e trash/ -o trash/ "
+qsubtxt = "qsub -V -q long.q -cwd "
 
 mainparams = """
 
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-ri', '--repi', metavar="<int>",type = int, default=1, required=False, dest = 'nbRepiParam', help = 'Number of repetition min (default = 1)')
 	files.add_argument('-rm', '--repm', metavar="<int>",type = int, default=10, required=False, dest = 'nbRepmParam', help = 'Number of repetition max (default = 10)')
-	files.add_argument('-pi', '--popi', metavar="<int>",type = int, default=10, required=False, dest = 'nbpopiParam', help = 'Number of pop Min (default = 1)')
+	files.add_argument('-pi', '--popi', metavar="<int>",type = int, default=1, required=False, dest = 'nbpopiParam', help = 'Number of pop Min (default = 1)')
 	files.add_argument('-o', '--outfile', metavar="<PrefixFileName>", required=False, dest = 'outputFile', help = 'output file Prefix (default = name of matrice file)')
 
 	# Check parameters
@@ -140,13 +140,17 @@ if __name__ == "__main__":
 	nbMarkerParam = args.nbMarkerParam
 	inputFile = relativeToAbsolutePath(args.inputFile)
 	outputFile = args.outputFile
-	workingDir = "/".join(inputFile.split("/")[:-1])
+
+
 
 	if outputFile == None:
 		outputFile = inputFile.split("/")[-1].split(".")[0]
 
+	workingDir = "/".join(inputFile.split("/")[:-1])+"/"+outputFile+"/"
+
 	print("\t - Input matrice is: %s" % inputFile)
 	print("\t - Output prefix name is: %s" % outputFile)
+	print("\t - You want %s < K < %s and %s < Repetition < %s" % (nbpopiParam, nbpopmParam, nbRepiParam, nbRepmParam))
 	print("\t - Working directory is: %s" % workingDir)
 
 	# ajoute à la variable current_dir le chemin ou est executer le script
@@ -186,7 +190,7 @@ if __name__ == "__main__":
 	os.makedirs(workingDir+"/sh_scripts", exist_ok=True)															# création d'un dossier sh_scripts pour lancer les analyses structures
 	os.makedirs(workingDir+"/trash", exist_ok=True)
 
-	shqsub=open(workingDir+"/sh_scripts/Qsub_all_structure.sh","w")												# création d'un script qsub pour lancer les sous-scripts
+	shqsub=open(workingDir+"sh_scripts/Qsub_all_structure.sh","w")												# création d'un script qsub pour lancer les sous-scripts
 
 	for rep in range(nbRepiParam,nbRepmParam+1):																	# boucle sur le nombre de répétition
 		os.makedirs(workingDir+"/repetition_"+str(rep), exist_ok=True)												# Création du répertoire correspondant
@@ -228,13 +232,16 @@ if __name__ == "__main__":
 		## Display a summary of the execution
 	print("\n\nExecution summary:")
 
-	print("  - Outputting \n\
-\t- %i directories have been created corresponding to the number repeats, each with %i subdirectories corresponding to the variation number of populations (K).\n\
-\t- One directory 'sh_scripts' was created, to launch Structure execute: \n\
-\tmodule load bioinfo/structure/2.3.4\n\
-\tsh %s\non the cluster." %(nbRepmParam,nbpopmParam,shqsub.name))
 
-	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
+
+	print("  - Outputting \n\
+\t- %i directories have been created corresponding to the number repeats, each with %i subdirectories corresponding to the variation number of populations (K).\n\n\
+\033[31m  - To launch Structure execute: \n\
+\tmodule load bioinfo/structure/2.3.4\n\
+\tcd %strash; sh %s\n\
+\033[0mon the cluster." %(nbRepmParam, nbpopmParam ,workingDir, shqsub.name))
+
+	print("\033[0m\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
 	print("#                        End of execution                       #")
 	print("#################################################################")
