@@ -67,7 +67,7 @@ fi
 if [ $fasta != "" ] && [ $gff != "" ] && [ $species != "" ] ; then
 	#version
 	printf "\033[36m ####################################################################\n";
-	printf "\033[36m #        Welcome to Run Augustus directory ( Version $version )          #\n";
+	printf "\033[36m #        Welcome to Run Augustus directory ( Version $version )         #\n";
 	printf "\033[36m ####################################################################\n";
 
 	##################################################
@@ -75,36 +75,50 @@ if [ $fasta != "" ] && [ $gff != "" ] && [ $species != "" ] ; then
 
 	pathAnalysis=`readlink -m $(dirname $fasta)`"/"
 	fastaPath=`readlink -m $fasta`
-	gffPath=`readlink -m $gff`
+	gffPath=$pathAnalysis"gff"
+	AAPath=$pathAnalysis"AA"
+	CDSPath=$pathAnalysis"CDS"
+	SHPath=$pathAnalysis"sh"
+	trashPath=$pathAnalysis"trash"
 
-	printf "\033[32m \n Working in directory: "$pathAnalysis"\n"
-	printf "\033[32m \n Species is: "$species"\n"
-	printf "\033[32m \n Fasta were in directory: "$fastaPath"\n"
-	printf "\033[32m \n Output GFF were in directory: "$gffPath"\n\n"
+	printf "\033[32m \n Working in directory: "$pathAnalysis
+	printf "\033[32m \n Species is: "$species
+	printf "\033[32m \n Fasta were in directory: "$fastaPath
+	printf "\033[32m \n Output GFF were in directory: "$gffPath
+	printf "\033[32m \n Output AA were in directory: "$AAPath
+	printf "\033[32m \n Output CDS were in directory: "$CDSPath
+	printf "\033[32m \n Output sh were in directory: "$SHPath
+	printf "\033[32m \n Output trash were in directory: "$trashPath"\n\n"
 
-	if [ -d $pathAnalysis"trash" ]; then
-		rm -r $pathAnalysis"trash"
-		mkdir $pathAnalysis"trash"
+	if [ -d $trashPath ]; then
+		rm -r $trashPath
+		mkdir $trashPath
 	else
-		mkdir $pathAnalysis"trash"
+		mkdir $trashPath
 	fi
-	if [ -d $pathAnalysis"sh" ]; then
-		rm -r $pathAnalysis"sh"
-		mkdir $pathAnalysis"sh"
+	if [ -d $SHPath ]; then
+		rm -r $SHPath
+		mkdir $SHPath
 	else
-		mkdir $pathAnalysis"sh"
+		mkdir $SHPath
 	fi
-	if [ -d $pathAnalysis"AA" ]; then
-		rm -r $pathAnalysis"AA"
-		mkdir $pathAnalysis"AA"
+	if [ -d $gffPath ]; then
+		rm -r $gffPath
+		mkdir $gffPath
 	else
-		mkdir $pathAnalysis"AA"
+		mkdir $gffPath
 	fi
-	if [ -d $pathAnalysis"CDS" ]; then
-		rm -r $pathAnalysis"CDS"
-		mkdir $pathAnalysis"CDS"
+	if [ -d $AAPath ]; then
+		rm -r $AAPath
+		mkdir $AAPath
 	else
-		mkdir $pathAnalysis"CDS"
+		mkdir $AAPath
+	fi
+	if [ -d $CDSPath ]; then
+		rm -r $CDSPath
+		mkdir $CDSPath
+	else
+		mkdir $CDSPath
 	fi
 	if [ -e $pathAnalysis"runAllQsub_Augustus.sh" ]; then
 		rm $pathAnalysis"runAllQsub_Augustus.sh"
@@ -116,11 +130,11 @@ if [ $fasta != "" ] && [ $gff != "" ] && [ $species != "" ] ; then
 		((compteur++))
 		name=$(basename ${f%%.fasta})
 		echo " "$name
-		echo "augustus --species=$species $f --codingseq=on --protein=on --outfile=$gffPath/$name.gff" > $pathAnalysis"sh/"$name-augustus.sh
-		echo "getAnnoFasta.pl $gffPath/$name.gff" >> $pathAnalysis"sh/"$name-augustus.sh
-		echo "mv $gffPath/$name.aa ../AA/" >> $pathAnalysis"sh/"$name-augustus.sh
-		echo "mv $gffPath/$name.codingseq ../CDS/" >> $pathAnalysis"sh/"$name-augustus.sh
-		echo "qsub -N Augustus -b Y -V -q long.q -cwd $cmdMail -e trash/ -o trash/ $pathAnalysis"sh/"$name-augustus.sh" >> $pathAnalysis"runAllQsub_Augustus.sh"
+		echo "augustus --species=$species $f --codingseq=on --protein=on --outfile=$gffPath/$name.gff" > $SHPath$name-augustus.sh
+		echo "getAnnoFasta.pl $gffPath/$name.gff" >> $SHPath$name-augustus.sh
+		echo "mv $gffPath/$name.aa $AAPath" >> $SHPath$name-augustus.sh
+		echo "mv $gffPath/$name.codingseq $CDSPath" >> $SHPath$name-augustus.sh
+		echo "qsub -N Augustus -b Y -V -q long.q -cwd $cmdMail -e $trashPath -o $trashPath $SHPath$name-augustus.sh" >> $pathAnalysis"runAllQsub_Augustus.sh"
 
 	done
 
@@ -131,7 +145,7 @@ if [ $fasta != "" ] && [ $gff != "" ] && [ $species != "" ] ; then
  For run all sub-script in qsub, a runAllQsub_Augustus.sh was created, It lunch programm make:\n"
 
 	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/bamtools/8a5d650 bioinfo/augustus/3.0.3\n"
-	printf "\033[35m \tsh "$pathAnalysis"sh/runAllQsub_Augustus.sh\n\n"
+	printf "\033[35m \tsh "$SHPath"runAllQsub_Augustus.sh\n\n"
 
 
 	# Print end
