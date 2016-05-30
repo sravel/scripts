@@ -1,6 +1,6 @@
 #!/bin/bash -a
 # -*- coding: utf-8 -*-
-## @package run_augustus.sh
+## @package run_proteineOrtho.sh
 # @author Sebastien Ravel
 
 
@@ -26,12 +26,12 @@ function help
 	directory with sh
 	directory with trash
 
- Exemple Usage: ./run_augustus.sh -f ./fasta -s magnaporthe_grisea -m sebastien.ravel@cirad.fr
+ Exemple Usage: ./run_proteineOrtho.sh -c ./CDS -t thread -m sebastien.ravel@cirad.fr
 
- Usage: ./run_augustus.sh -f {path/to/fasta} -s species -m obiwankenobi@jedi.force
+ Usage: ./run_proteineOrtho.sh -c {path/to/CDS} -t 10 -m obiwankenobi@jedi.force
 	options:
-		-f {path/to/fasta} = path to fasta
-		-s {sting} = species name (without space)
+		-c {path/to/CDS} = path to fasta with CDS
+		-t {int} = number of threads job cluster
 		-m {email} = email to add to qsub job end (not mandatory)
 
 		-h = see help\n\n"
@@ -43,8 +43,8 @@ function help
 ## Parse command line options.
 while getopts f:g:s:m:h: OPT;
 	do case $OPT in
-		f)	fasta=$OPTARG;;
-		s)	species=$OPTARG;;
+		c)	fasta=$OPTARG;;
+		t)	thread=$OPTARG;;
 		m)	mail=$OPTARG;;
 		h)	help;;
 		\?)	help;;
@@ -66,10 +66,10 @@ else
 	cmdMail="-M $mail -m beas"
 fi
 
-if [ $fasta != "" ] && [ $species != "" ] ; then
+if [ $fasta != "" ] && [ $thread != "" ] ; then
 	#version
 	printf "\033[36m ####################################################################\n";
-	printf "\033[36m #        Welcome to Run Augustus directory ( Version $version )         #\n";
+	printf "\033[36m #        Welcome to Run ProteineOrtho directory ( Version $version )         #\n";
 	printf "\033[36m ####################################################################\n";
 
 	##################################################
@@ -83,8 +83,11 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
 	SHPath=$pathAnalysis"sh"
 	trashPath=$pathAnalysis"trash"
 
+
+#proteinortho5.pl -cpus=3 -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique_48souches70-15
+
 	printf "\033[32m \n Working in directory: "$pathAnalysis
-	printf "\033[32m \n Species is: "$species
+	printf "\033[32m \n thread is: "$thread
 	printf "\033[32m \n Fasta were in directory: "$fastaPath
 	printf "\033[32m \n Output GFF were in directory: "$gffPath
 	printf "\033[32m \n Output AA were in directory: "$AAPath
@@ -132,7 +135,7 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
 		((compteur++))
 		name=$(basename ${f%%.fasta})
 		echo " "$name
-		echo "augustus --species=$species $f --codingseq=on --protein=on --outfile="$gffPath"/"$name".gff" > $SHPath"/"$name-augustus.sh
+		echo "augustus --thread=$thread $f --codingseq=on --protein=on --outfile="$gffPath"/"$name".gff" > $SHPath"/"$name-augustus.sh
 		echo "getAnnoFasta.pl "$gffPath"/"$name".gff" >> $SHPath"/"$name-augustus.sh
 		echo "mv "$gffPath"/"$name".aa "$AAPath"/" >> $SHPath"/"$name-augustus.sh
 		echo "mv "$gffPath"/"$name".codingseq "$CDSPath"/" >> $SHPath"/"$name-augustus.sh
@@ -160,7 +163,7 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
 # if arguments empty
 else
 	echo "\033[31m you select fasta = "$fasta
-	echo "\033[31m you select species = "$species
+	echo "\033[31m you select thread = "$thread
 	echo "\033[31m you select mail = "$mail
 	printf "\033[31m \n\n You must inform all the required options !!!!!!!!!!!! \n\n"
 	help

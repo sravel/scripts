@@ -8,7 +8,7 @@
 	======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 31/07/2015
+	:date: 24-05-2016
 	:version: 0.2
 
 	Use it to import very handy functions.
@@ -54,7 +54,7 @@ from Bio import AlignIO
 ##################################################
 ## Variables Globales
 version="0.1"
-VERSION_DATE='31/07/2015'
+VERSION_DATE='24-05-2016'
 
 ##################################################
 ## Fonctions
