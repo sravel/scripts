@@ -4,9 +4,13 @@
 # @author Sebastien Ravel
 
 
+jour=$(date +%d-%m-%Y)
+
+sed -i -e "s|[0-9]\{,2\}-[0-9]\{,2\}-[0-9]\{4\}|${jour}|g" ./modules/MODULES_SEB.py
+
 cp ./modules/DOC/index.html ./
 
-epydoc --html ./modules/MODULES_SEB.py -o ./modules/DOC/ -v
+epydoc --html ./modules/MODULES_SEB.py -o ./modules/DOC/ -v --graph all --inheritance grouped
 
 mv ./index.html ./modules/DOC/
 
