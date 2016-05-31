@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath
+from MODULES_SEB import directory, relativeToAbsolutePath, extant_file
 
 ## Python modules
 import argparse
@@ -150,12 +150,14 @@ if __name__ == "__main__":
 						'display struc2runClumpak version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-d', '--directory', metavar="<path/to/directory>",type = directory, required=True, dest = 'dirPath', help = 'path of result structure')
-	files.add_argument('-c', '--clumpak', metavar="<path/to/directory/clumpak>",type = directory, required=True, dest = 'dirPathClumpak', help = 'path of clumpak directory')
-	files.add_argument('-l', '--label', metavar="<filename>", required=True, dest = 'labelFileParam', help = 'File with LABEL, first column name, second top label info')
-	files.add_argument('-dp', '--drawparams', metavar="<filename>", required=False, dest = 'drawparamsParam', help = 'Check your own drawparams file')
-	files.add_argument('-co', '--color', metavar="<filename>", required=False, dest = 'colorParam', help = 'File with colors (default 15 color max)')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-d', '--directory', metavar="<path/to/directory>",type = directory, required=True, dest = 'dirPath', help = 'path of result structure')
+	filesreq.add_argument('-c', '--clumpak', metavar="<path/to/directory/clumpak>",type = directory, required=True, dest = 'dirPathClumpak', help = 'path of clumpak directory')
+	filesreq.add_argument('-l', '--label', metavar="<filename>",type=extant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, first column name, second top label info')
+
+	files = parser.add_argument_group('Input infos for running with default values')
+	files.add_argument('-dp', '--drawparams', metavar="<filename>",type=extant_file, required=False, dest = 'drawparamsParam', help = 'Check your own drawparams file')
+	files.add_argument('-co', '--color', metavar="<filename>",type=extant_file, required=False, dest = 'colorParam', help = 'File with colors (default 15 color max)')
 
 
 	# Check parameters
@@ -173,6 +175,7 @@ if __name__ == "__main__":
 	# création de l'objet directory
 	workingObjDir = args.dirPath
 	clumpakObjDir = args.dirPathClumpak
+	labelFileParam = relativeToAbsolutePath(args.labelFileParam)
 
 	# build Drawparam if not add
 	if args.drawparamsParam != None:
@@ -213,7 +216,7 @@ if __name__ == "__main__":
 
 	# build label files
 	print("Build label files into %s" %workingObjDir.pathDirectory)
-	labelFile, labelAtopFile, orderlist = buildLabelFile(args.labelFileParam, workingObjDir.pathDirectory)
+	labelFile, labelAtopFile, orderlist = buildLabelFile(labelFileParam, workingObjDir.pathDirectory)
 	print(orderlist)
 
 
@@ -295,7 +298,7 @@ if __name__ == "__main__":
 
 	## build label files
 	print("Build label files into %s" %workingObjDir.pathDirectory)
-	labelFile, labelAtopFile, orderlist = buildLabelFile(args.labelFileParam, workingObjDir.pathDirectory)
+	labelFile, labelAtopFile, orderlist = buildLabelFile(labelFileParam, workingObjDir.pathDirectory)
 
 	# copy labelAtop into CLUMPAK/distruct
 	cmd = "cp "+labelAtopFile+" "+clumpakObjDir.pathDirectory+"/distruct/labelsAtop"
@@ -303,9 +306,10 @@ if __name__ == "__main__":
 	stream = check_output(cmd, shell=True).decode("utf-8")
 
 	# make outuput directory of clumpak:
-	outputClumpak = workingObjDir.pathDirectory+"CLUMPAK_OUT/"
+	nameDirectoryOutput = labelFileParam.split("/")[-1].split(".")[0]+"/"
+	outputClumpak = workingObjDir.pathDirectory+nameDirectoryOutput
 	if os.path.isdir(outputClumpak) == True:
-		print("\nWARNNING struc2runClumpak : path '%s' already contain output of CLUMPAK (CLUMPAK_OUT)\nIt will be remove and rebuild\n" %(workingObjDir.pathDirectory))
+		print("\nWARNNING struc2runClumpak : path '%s' already contain output of CLUMPAK (%s)\nIt will be remove and rebuild\n" %(workingObjDir.pathDirectory, nameDirectoryOutput))
 		cmd = "rm -rf "+outputClumpak
 		stream = check_output(cmd, shell=True).decode("utf-8")
 
@@ -342,8 +346,9 @@ if __name__ == "__main__":
 --drawparams "+drawparamsFile+" \
 --labels "+labelFile
 
+	print("\nRun CLUMPAK with command:%s\n\nPlease Wait ....\n" % cmd)
+
 	logClumpack = check_output(cmd,stderr=STDOUT, shell=True).decode("utf-8")
-	print("\n\n"+cmd)
 	with open(outputClumpak+"Clumpak.log", "w") as log:
 		log.write(logClumpack)
 
@@ -354,20 +359,22 @@ if __name__ == "__main__":
 	--id "+nameZip+" \
 	--d "+outputClumpak+" \
 	--f "+zipFile
+
+	print("Run BestKByEvanno with command:%s\n\nPlease Wait ....\n" % cmd)
 	logBestKByEvanno = check_output(cmd,stderr=STDOUT, shell=True).decode("utf-8")
 	with open(outputClumpak+"BestKByEvanno.log", "w") as log:
 		log.write(logClumpack)
 
+	print("RESTORE Environment PATH and PERL5LIB:\n")
 	# Rechange PERL5LIB and PATH
 	os.environ['PERL5LIB'] = oldPERL5LIB
 	os.environ['PATH'] = oldPATH
 
-	#print("\n\nExecution summary:")
+	print("\n\nExecution summary:")
 
-	##print("  - Outputting \n\
-##\t-"+str(rep)+" directories have been created corresponding to the number repeats, each with "+str(pop)+" subdirectories corresponding to the variation number of populations (K).\n\
-##\t- One directory 'sh_scripts' was created, to launch Structure execute: \n\
-##\tsh ./sh_scripts/Qsub_all_structure.sh on the cluster.")
+	print("  - Outputting \n\
+\t- Files created in %s." % clumpakObjDir.pathDirectory)
+
 	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
 	print("#                        End of execution                       #")
