@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import replace_all, relativeToAbsolutePath
+from MODULES_SEB import replace_all, relativeToAbsolutePath, extant_file
 
 
 ## Python modules
@@ -112,7 +112,7 @@ if __name__ == "__main__":
 
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
 	filesreq.add_argument('-pm', '--popm', metavar="<int>",type = int, required=True, dest = 'nbpopmParam', help = 'Number of pop Max')
-	filesreq.add_argument('-i', '--infile', metavar="<fileName>", required=True, dest = 'inputFile', help = 'input file matrice')
+	filesreq.add_argument('-i', '--infile', metavar="<fileName>",type=extant_file, required=True, dest = 'inputFile', help = 'input file matrice')
 	filesreq.add_argument('-nbi', '--nbIndiv', metavar="<int>",type = int, required=True, dest = 'nbIndivParam', help = 'Number of individus un matrice')
 	filesreq.add_argument('-nbm', '--nbMarker', metavar="<int>",type = int, required=True, dest = 'nbMarkerParam', help = 'Number of markers un matrice')
 

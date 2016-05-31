@@ -59,6 +59,16 @@ VERSION_DATE='24-05-2016'
 ##################################################
 ## Fonctions
 
+def extant_file(x):
+	"""
+	'Type' for argparse - checks that file exists but does not open.
+	"""
+	if not os.path.exists(x):
+		# Argparse uses the ArgumentTypeError to give a rejection message like:
+		# error: argument input: x does not exist
+		raise argparse.ArgumentTypeError("{0} does not exist".format(x))
+	return x
+
 def _test():
 	"""
 	Function to launch doctests use with _test ()
@@ -153,7 +163,7 @@ def dictDict2txt(dico):
 
 	Example:
 		>>> dico = {"Souche1":{"NUM":"171","MIN":"2042","MAX":"3133578","N50 BP":"938544","N50 NUM":"11"},
-				    "Souche2":{"NUM":"182","MIN":"5004","MAX":"74254","N50 BP":"45245","N50 NUM":"45"}}
+					"Souche2":{"NUM":"182","MIN":"5004","MAX":"74254","N50 BP":"45245","N50 NUM":"45"}}
 		>>> dictDict2txt(dico)
 		Info	NUM	MIN	MAX	N50 BP	N50 NUM
 		Souche1	171	2042	3133578	938544	11
