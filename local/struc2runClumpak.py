@@ -373,7 +373,7 @@ if __name__ == "__main__":
 	print("\n\nExecution summary:")
 
 	print("  - Outputting \n\
-\t- Files created in %s." % clumpakObjDir.pathDirectory)
+\t- Files created in %s." % nameDirectoryOutput)
 
 	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
