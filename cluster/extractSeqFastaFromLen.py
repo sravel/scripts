@@ -67,8 +67,8 @@ if __name__ == "__main__":
 	nbKeep=0
 	nbTotal = len(dicoFasta.keys())
 
-	for ID in sorted(dictSequences.keys(), key=sort_human):
-		lenSeq = dictSequences[ID]
+	for ID in sorted(dicoSize.keys(), key=sort_human):
+		lenSeq = dicoSize[ID]
 		if keepValue in ["g","greater"]:
 			if lenSeq >= lenSize:
 				sequence = dicoFasta[ID]
