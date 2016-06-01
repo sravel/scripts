@@ -78,11 +78,11 @@ def _test():
 	doctest.testmod()
 
 
-def sort_human(text):
+def sort_human(s, _nsre=re.compile('([0-9]+)')):
 	""" Sort the list in the way that humans expect, use list.sort(key=sort_human) or sorted(list, key=sort_human)).
 
-	:param text: a python string
-	:type text: str()
+	:param s: a python list
+	:type s: list()
 	:rtype: list()
 	:return: liste human sort
 
@@ -94,7 +94,8 @@ def sort_human(text):
 		['something1', 'something17', 'something2', 'something25', 'something29', 'something32']
 
 	"""
-	return [ int(c) if text.isdigit() is True else c for c in re.split('(\d+)', text) ]
+	return [ int(text) if text.isdigit() else text.lower() for text in re.split(_nsre, s)]
+
 
 
 def dict2txt(dico):
