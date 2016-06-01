@@ -550,7 +550,6 @@ def extractListFromFasta(sequenceFile,FileList ):
 	noKeepID=[]
 	#for ID, record in dictSequences.items():
 	for ID in sorted(dictSequences.keys(), key=sort_human):
-		print(ID)
 		record = dictSequences[ID]
 		if ID in listKeep:
 			keep +=1
@@ -596,7 +595,6 @@ def extractInverseListFromFasta(sequenceFile,FileList ):
 	noKeepID=[]
 	#for ID, record in dictSequences.items():
 	for ID in sorted(dictSequences.keys(), key=sort_human):
-		print(ID)
 		record = dictSequences[ID]
 		if ID not in listnotKeep:
 			keep +=1
