@@ -25,6 +25,8 @@ VERSION_DATE='21/04/2016'
 ## PARAM DAPC R
 DAPCfix = """
 
+.libPaths("/home/sebastien/R/x86_64-pc-linux-gnu-library/3.1")
+
 library(ade4)
 library(adegenet)
 library(ggplot2)
@@ -72,7 +74,7 @@ dev.off()
 write.csv2(dapc$posterior, file="**current_dir**K**pop**.csv")
 
 
-png("**current_dir**K**pop**.png",width = 30000, height = 2000, res=400)
+png("**current_dir**K**pop**.png",width = 1500, height = 1000, res=200)
 compoplot(dapc, only.grp=NULL,# affiche que le groupe selectionné
           subset=NULL,      # pour affichier un sous ensemble des données
           new.pred=NULL,
@@ -210,6 +212,9 @@ if __name__ == "__main__":
 	with open(outputDir+basename+"_Reorder.tab","w") as reorderMatriceFile:
 		reorderMatriceFile.write(header)
 		for ind in orderList:
+			if ind not in dicoMatrice.keys():
+				print("ERROR: The individu %s define in label file was not in the matrice file !!! Exit programme" % ind)
+				exit()
 			line = dicoMatrice[ind].split("\t")[0]+"\t"+"\t".join(dicoMatrice[ind].split("\t")[1:]).replace("999","-9")
 			reorderMatriceFile.write(line)
 
