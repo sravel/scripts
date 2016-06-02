@@ -25,6 +25,8 @@ VERSION_DATE='21/04/2016'
 ## PARAM DAPC R
 DAPCfix = """
 
+.libPaths("/home/sebastien/R/x86_64-pc-linux-gnu-library/3.1")
+
 library(ade4)
 library(adegenet)
 library(ggplot2)
@@ -210,6 +212,9 @@ if __name__ == "__main__":
 	with open(outputDir+basename+"_Reorder.tab","w") as reorderMatriceFile:
 		reorderMatriceFile.write(header)
 		for ind in orderList:
+			if ind not in dicoMatrice.keys():
+				print("ERROR: The individu %s define in label file was not in the matrice file !!! Exit programme" % ind)
+				exit()
 			line = dicoMatrice[ind].split("\t")[0]+"\t"+"\t".join(dicoMatrice[ind].split("\t")[1:]).replace("999","-9")
 			reorderMatriceFile.write(line)
 
