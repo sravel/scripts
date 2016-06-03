@@ -120,7 +120,7 @@ def dict2txt(dico):
 	"""
 
 	txtoutput = ""
-	for key in sorted(dico.keys()):
+	for key in sorted(dico.keys(), key=sort_human):
 		value = dico[key]
 		txtoutput += "%s\t%s\n" % (str(key),str(value))
 	return txtoutput
@@ -146,7 +146,7 @@ def dictList2txt(dico):
 	"""
 
 	txtoutput = ""
-	for key in sorted(dico.keys()):
+	for key in sorted(dico.keys(), key=sort_human):
 		value = "\t".join(dico[key])
 		txtoutput += "%s\t%s\n" % (str(key),str(value))
 	return txtoutput
@@ -174,7 +174,7 @@ def dictDict2txt(dico):
 
 	txtoutput = ""
 	headerc=0
-	for key in sorted(dico.keys()):
+	for key in sorted(dico.keys(), key=sort_human):
 		dicoInfosValues = list(dico[key].values())
 		dicoInfosValues = [ str(k) for k in dicoInfosValues]
 
@@ -257,7 +257,7 @@ def lenSeq2dict(filename):
 
 	dicoLenMGG = {}
 	record_dict = fasta2dict(filename)
-	for gene in sorted(record_dict.keys()):
+	for gene in sorted(record_dict.keys(), key=sort_human):
 		if record_dict[gene].id not in dicoLenMGG:
 			lenseq = len(record_dict[gene].seq)
 			dicoLenMGG[gene]=int(lenseq)
@@ -941,6 +941,23 @@ listFiles=%s\n
 		if self.pathDirectory[-1] != "*":
 			pathDirectoryList = self.pathDirectory+"*"
 		self.listPath=glob.glob(pathDirectoryList)
+
+	def lsExtInDirToList(self, ext):
+		"""List specific extention file in directory"""
+		lsFilesFasta =[]
+		for fichier in self.listPath:
+			try:
+				if "." in fichier.split("/")[-1]:
+					nameFichier = fichier.split("/")[-1].split(".")[0]
+					extentionFichier = fichier.split("/")[-1].split(".")[1]
+				else:
+					nameFichier = fichier.split("/")[-1]
+					extentionFichier = ""
+			except:
+				extentionFichier = "directory"
+			if extentionFichier == ext:
+				lsFilesFasta.append(fichier)
+		return sorted(lsFilesFasta)
 
 	def splitFilesDir(self):
 		"""list files and list directory"""
