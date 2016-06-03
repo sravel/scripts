@@ -57,7 +57,7 @@
 <h1 class="epydoc">Module MODULES_SEB</h1><p class="nomargin-top"><span class="codelink"><a href="MODULES_SEB-pysrc.html">source&nbsp;code</a></span></p>
 <h1 class="heading">The MODULES_SEB module</h1>
     <p>:author: Sebastien Ravel :contact: sebastien.ravel@cirad.fr :date: 
-    23-05-2016 :version: 0.2</p>
+    03-06-2016 :version: 0.2</p>
     <p>Use it to import very handy functions.</p>
     <p>Example:</p>
 <pre class="py-doctest">
@@ -169,6 +169,23 @@
     </table>
   </td>
 </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="extant_file"></a><span class="summary-sig-name">extant_file</span>(<span class="summary-sig-arg">x</span>)</span><br />
+      'Type' for argparse - checks that file exists but does not open.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="MODULES_SEB-pysrc.html#extant_file">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
 <tr class="private">
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
@@ -193,7 +210,8 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#sort_human" class="summary-sig-name">sort_human</a>(<span class="summary-sig-arg">text</span>)</span><br />
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#sort_human" class="summary-sig-name">sort_human</a>(<span class="summary-sig-arg">s</span>,
+        <span class="summary-sig-arg">_nsre</span>=<span class="summary-sig-default">re.compile(r'<code class="re-group">(</code><code class="re-group">[</code>0<code class="re-op">-</code>9<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code>')</span>)</span><br />
       Sort the list in the way that humans expect, use 
       list.sort(key=sort_human) or sorted(list, key=sort_human)).</td>
           <td align="right" valign="top">
@@ -665,7 +683,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'23-05-2016'"><code class="variable-quote">'</code><code class="variable-string">23-05-2016</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'03-06-2016'"><code class="variable-quote">'</code><code class="variable-string">03-06-2016</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -702,7 +720,8 @@
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">sort_human</span>(<span class="sig-arg">text</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sort_human</span>(<span class="sig-arg">s</span>,
+        <span class="sig-arg">_nsre</span>=<span class="sig-default">re.compile(r'<code class="re-group">(</code><code class="re-group">[</code>0<code class="re-op">-</code>9<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code>')</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="MODULES_SEB-pysrc.html#sort_human">source&nbsp;code</a></span>&nbsp;
@@ -711,8 +730,8 @@
   
   <p>Sort the list in the way that humans expect, use 
   list.sort(key=sort_human) or sorted(list, key=sort_human)).</p>
-  <p>:param text: a python string :type text: str() :rtype: list() :return:
-  liste human sort</p>
+  <p>:param s: a python list :type s: list() :rtype: list() :return: liste 
+  human sort</p>
   <p>Example:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>listToSorted = [<span class="py-string">&quot;something1&quot;</span>,<span class="py-string">&quot;something32&quot;</span>,<span class="py-string">&quot;something17&quot;</span>,<span class="py-string">&quot;something2&quot;</span>,<span class="py-string">&quot;something29&quot;</span>,<span class="py-string">&quot;something24&quot;</span>]
@@ -814,7 +833,7 @@
   <p>Example:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = {<span class="py-string">&quot;Souche1&quot;</span>:{<span class="py-string">&quot;NUM&quot;</span>:<span class="py-string">&quot;171&quot;</span>,<span class="py-string">&quot;MIN&quot;</span>:<span class="py-string">&quot;2042&quot;</span>,<span class="py-string">&quot;MAX&quot;</span>:<span class="py-string">&quot;3133578&quot;</span>,<span class="py-string">&quot;N50 BP&quot;</span>:<span class="py-string">&quot;938544&quot;</span>,<span class="py-string">&quot;N50 NUM&quot;</span>:<span class="py-string">&quot;11&quot;</span>},
-<span class="py-output">                    &quot;Souche2&quot;:{&quot;NUM&quot;:&quot;182&quot;,&quot;MIN&quot;:&quot;5004&quot;,&quot;MAX&quot;:&quot;74254&quot;,&quot;N50 BP&quot;:&quot;45245&quot;,&quot;N50 NUM&quot;:&quot;45&quot;}}</span>
+<span class="py-output">                        &quot;Souche2&quot;:{&quot;NUM&quot;:&quot;182&quot;,&quot;MIN&quot;:&quot;5004&quot;,&quot;MAX&quot;:&quot;74254&quot;,&quot;N50 BP&quot;:&quot;45245&quot;,&quot;N50 NUM&quot;:&quot;45&quot;}}</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>dictDict2txt(dico)
 <span class="py-output">Info    NUM     MIN     MAX     N50 BP  N50 NUM</span>
 <span class="py-output">Souche1 171     2042    3133578 938544  11</span>
@@ -1515,7 +1534,7 @@
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Mon May 23 09:23:47 2016
+    on Fri Jun  3 07:54:29 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

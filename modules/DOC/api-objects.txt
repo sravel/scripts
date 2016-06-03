@@ -10,6 +10,7 @@ MODULES_SEB.dict2txt	MODULES_SEB-module.html#dict2txt
 MODULES_SEB.loadInDictCol	MODULES_SEB-module.html#loadInDictCol
 MODULES_SEB.loadInDict	MODULES_SEB-module.html#loadInDict
 MODULES_SEB.readable_dir	MODULES_SEB-module.html#readable_dir
+MODULES_SEB.extant_file	MODULES_SEB-module.html#extant_file
 MODULES_SEB.lenSeq2dict	MODULES_SEB-module.html#lenSeq2dict
 MODULES_SEB.__package__	MODULES_SEB-module.html#__package__
 MODULES_SEB.version	MODULES_SEB-module.html#version
