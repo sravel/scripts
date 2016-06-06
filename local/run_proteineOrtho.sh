@@ -20,11 +20,7 @@ function help
  Input:
 	directory with fasta's files
  Output:
-	directory with GFF
-	directory with AA
-	directory with CDS
-	directory with sh
-	directory with trash
+	directory with proteinOrtho Results
 
  Exemple Usage: ./run_proteineOrtho.sh -f ./CDS -t thread -m sebastien.ravel@cirad.fr
 
