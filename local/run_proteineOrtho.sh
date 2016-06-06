@@ -14,7 +14,7 @@ path=`pwd`
 function help
 {
 	printf "\033[36m####################################################################\n";
-	printf "#       Run augustus on fastq directory Help ( Version $version )       #\n";
+	printf "#       Run ProteinOrtho on fastq directory Help ( Version $version )       #\n";
 	printf "####################################################################\n";
 	printf "
  Input:
