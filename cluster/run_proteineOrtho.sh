@@ -26,11 +26,11 @@ function help
 	directory with sh
 	directory with trash
 
- Exemple Usage: ./run_proteineOrtho.sh -c ./CDS -t thread -m sebastien.ravel@cirad.fr
+ Exemple Usage: ./run_proteineOrtho.sh -f ./CDS -t thread -m sebastien.ravel@cirad.fr
 
- Usage: ./run_proteineOrtho.sh -c {path/to/CDS} -t 10 -m obiwankenobi@jedi.force
+ Usage: ./run_proteineOrtho.sh -f {path/to/CDS} -t 10 -m obiwankenobi@jedi.force
 	options:
-		-c {path/to/CDS} = path to fasta with CDS
+		-f {path/to/CDS} = path to fasta with CDS
 		-t {int} = number of threads job cluster
 		-m {email} = email to add to qsub job end (not mandatory)
 
@@ -41,9 +41,9 @@ function help
 
 ##################################################
 ## Parse command line options.
-while getopts f:g:s:m:h: OPT;
+while getopts f:t:m:h: OPT;
 	do case $OPT in
-		c)	fasta=$OPTARG;;
+		f)	fasta=$OPTARG;;
 		t)	thread=$OPTARG;;
 		m)	mail=$OPTARG;;
 		h)	help;;
@@ -77,83 +77,41 @@ if [ $fasta != "" ] && [ $thread != "" ] ; then
 
 	pathAnalysis=`readlink -m $(dirname $fasta)`"/"
 	fastaPath=`readlink -m $fasta`
-	gffPath=$pathAnalysis"gff"
-	AAPath=$pathAnalysis"AA"
-	CDSPath=$pathAnalysis"CDS"
-	SHPath=$pathAnalysis"sh"
-	trashPath=$pathAnalysis"trash"
 
 
 #proteinortho5.pl -cpus=3 -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique_48souches70-15
 
 	printf "\033[32m \n Working in directory: "$pathAnalysis
 	printf "\033[32m \n thread is: "$thread
-	printf "\033[32m \n Fasta were in directory: "$fastaPath
-	printf "\033[32m \n Output GFF were in directory: "$gffPath
-	printf "\033[32m \n Output AA were in directory: "$AAPath
-	printf "\033[32m \n Output CDS were in directory: "$CDSPath
-	printf "\033[32m \n Output sh were in directory: "$SHPath
-	printf "\033[32m \n Output trash were in directory: "$trashPath"\n\n"
+	printf "\033[32m \n Fasta were in directory: "$fastaPath"\n\n"
 
-	if [ -d $trashPath ]; then
-		rm -r $trashPath
-		mkdir $trashPath
-	else
-		mkdir $trashPath
+	if [ -e $pathAnalysis"run_protheineOrtho.sh" ]; then
+		rm $pathAnalysis"run_protheineOrtho.sh"
 	fi
-	if [ -d $SHPath ]; then
-		rm -r $SHPath
-		mkdir $SHPath
-	else
-		mkdir $SHPath
-	fi
-	if [ -d $gffPath ]; then
-		rm -r $gffPath
-		mkdir $gffPath
-	else
-		mkdir $gffPath
-	fi
-	if [ -d $AAPath ]; then
-		rm -r $AAPath
-		mkdir $AAPath
-	else
-		mkdir $AAPath
-	fi
-	if [ -d $CDSPath ]; then
-		rm -r $CDSPath
-		mkdir $CDSPath
-	else
-		mkdir $CDSPath
-	fi
-	if [ -e $pathAnalysis"runAllQsub_Augustus.sh" ]; then
-		rm $pathAnalysis"runAllQsub_Augustus.sh"
-	fi
+
+
+#proteinortho5.pl -cpus=$thread -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique
 
 	compteur=0
+	list=""
 	for f in $fastaPath/*.fasta ;
 	do
 		((compteur++))
-		name=$(basename ${f%%.fasta})
-		echo " "$name
-		echo "augustus --thread=$thread $f --codingseq=on --protein=on --outfile="$gffPath"/"$name".gff" > $SHPath"/"$name-augustus.sh
-		echo "getAnnoFasta.pl "$gffPath"/"$name".gff" >> $SHPath"/"$name-augustus.sh
-		echo "mv "$gffPath"/"$name".aa "$AAPath"/" >> $SHPath"/"$name-augustus.sh
-		echo "mv "$gffPath"/"$name".codingseq "$CDSPath"/" >> $SHPath"/"$name-augustus.sh
-		echo "qsub -N Augustus -b Y -V -q long.q -cwd "$cmdMail" -e "$trashPath" -o "$trashPath" "$SHPath"/"$name"-augustus.sh" >> $pathAnalysis"runAllQsub_Augustus.sh"
-
-		chmod 755 $SHPath"/"$name-augustus.sh
+		list=$list" "$f
 
 	done
 
-	chmod 755 $pathAnalysis"runAllQsub_Augustus.sh"
+
+	echo "proteinortho5.pl -cpus=$thread -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique $list" >> $pathAnalysis"run_protheineOrtho.sh"
+
+	chmod 755 $pathAnalysis"run_protheineOrtho.sh"
 
 	# Print final infos
-	printf "\n\n You want run augustus for "$compteur" fasta,
- The script are created all fasta-augustus.sh for all fasta into "$pathAnalysis"sh,\n
- For run all sub-script in qsub, a runAllQsub_Augustus.sh was created, It lunch programm make:\n"
+	printf "\n\n You want run ProteineOrtho for "$compteur" fasta,
+ For run use run_protheineOrtho.sh , lunch programm with:\n"
 
-	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/bamtools/8a5d650 bioinfo/augustus/3.0.3\n"
-	printf "\033[35m \tsh "$pathAnalysis"runAllQsub_Augustus.sh\n\n"
+	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30 bioinfo/proteinortho/5.11\n"
+	printf "\033[35m \tqsub -V -b Y -N ProteinOtho -cwd -q long.q -pe parallel_smp=$thread "$pathAnalysis"run_protheineOrtho.sh\n\n"
 
 	# Print end
 	printf "\033[36m ####################################################################\n";

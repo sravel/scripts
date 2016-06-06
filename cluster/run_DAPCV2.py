@@ -74,7 +74,7 @@ dev.off()
 write.csv2(dapc$posterior, file="**current_dir**K**pop**.csv")
 
 
-png("**current_dir**K**pop**.png",width = 1500, height = 1000, res=200)
+png("**current_dir**K**pop**.png",width = 30000, height = 1500, res=200)
 compoplot(dapc, only.grp=NULL,# affiche que le groupe selectionné
           subset=NULL,      # pour affichier un sous ensemble des données
           new.pred=NULL,
