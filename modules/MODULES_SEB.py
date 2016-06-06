@@ -59,26 +59,23 @@ VERSION_DATE='03-06-2016'
 ##################################################
 ## Fonctions
 
-def extant_file(x,op=False):
+def extant_file(x):
 	"""
 	'Type' for argparse - checks that file exists but does not open by default.
 
 	:param x: a file path
 	:type x: str()
-	:param op: boolean
-	:type op: boolean
-	:rtype: string or open file
-	:return: string or open file
+	:rtype: string
+	:return: string
 
 	"""
 	if not os.path.exists(x):
 		# Argparse uses the ArgumentTypeError to give a rejection message like:
 		# error: argument input: x does not exist
 		raise argparse.ArgumentTypeError("{0} does not exist".format(x))
-	if op == False:
-		return x
-	elif op == True:
-		return open(x, "r")
+
+	return x
+
 
 def _test():
 	"""
