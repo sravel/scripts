@@ -49,12 +49,10 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input info for running')
 	files.add_argument('-po', '--pathout', metavar="<path/to/fileout>", type = directory, required=True, dest = 'pathFileOut', help = 'path to fasta files Out')
-	files.add_argument('-p', '--proteine', metavar="<filename>",type=extant_file, required=True, , dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
-
+	files.add_argument('-p', '--proteine', metavar="<filename>",type=extant_file(True), required=True, dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
 
 	# Check parameters
 	args = parser.parse_args()
-	checkParameters(args)
 
 	#Welcome message
 	print("#################################################################")
@@ -65,8 +63,11 @@ if __name__ == "__main__":
 	# Récupère le fichier de conf passer en argument
 
 	pathFileOut = args.pathFileOut
-	proteineOrthoFile = open(args.proteineOrthoFile,"r")
+	proteineOrthoFile = args.proteineOrthoFile,"r"
 
+	print(pathFileOut)
+	print(proteineOrthoFile)
+	exit()
 
 	if pathFileOut[-1] != "/":
 		pathFileOut += "/"
