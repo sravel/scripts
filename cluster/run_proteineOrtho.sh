@@ -107,7 +107,7 @@ if [ $fasta != "" ] && [ $thread != "" ] ; then
  For run use run_protheineOrtho.sh , lunch programm with:\n"
 
 	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30 bioinfo/proteinortho/5.11\n"
-	printf "\033[35m \tqsub -V -b Y -N ProteinOtho -cwd -q long.q -pe parallel_smp=$thread "$pathAnalysis"run_protheineOrtho.sh\n\n"
+	printf "\033[35m \tqsub -V -b Y -N ProteinOtho -cwd -q long.q -pe parallel_smp $thread "$pathAnalysis"run_protheineOrtho.sh\n\n"
 
 	# Print end
 	printf "\033[36m ####################################################################\n";
