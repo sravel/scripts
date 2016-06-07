@@ -57,7 +57,7 @@
 <h1 class="epydoc">Module MODULES_SEB</h1><p class="nomargin-top"><span class="codelink"><a href="MODULES_SEB-pysrc.html">source&nbsp;code</a></span></p>
 <h1 class="heading">The MODULES_SEB module</h1>
     <p>:author: Sebastien Ravel :contact: sebastien.ravel@cirad.fr :date: 
-    03-06-2016 :version: 0.2</p>
+    07-06-2016 :version: 0.2</p>
     <p>Use it to import very handy functions.</p>
     <p>Example:</p>
 <pre class="py-doctest">
@@ -105,6 +105,14 @@
     </table>
   </td>
 </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="MODULES_SEB.AutoVivification-class.html" class="summary-name">AutoVivification</a><br />
+      Implementation of perl's autovivification feature.
+    </td>
+  </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
@@ -175,8 +183,9 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="extant_file"></a><span class="summary-sig-name">extant_file</span>(<span class="summary-sig-arg">x</span>)</span><br />
-      'Type' for argparse - checks that file exists but does not open.</td>
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#extant_file" class="summary-sig-name">extant_file</a>(<span class="summary-sig-arg">x</span>)</span><br />
+      'Type' for argparse - checks that file exists but does not open by 
+      default.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#extant_file">source&nbsp;code</a></span>
             
@@ -263,7 +272,8 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#dictDict2txt" class="summary-sig-name">dictDict2txt</a>(<span class="summary-sig-arg">dico</span>)</span><br />
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#dictDict2txt" class="summary-sig-name">dictDict2txt</a>(<span class="summary-sig-arg">dico</span>,
+        <span class="summary-sig-arg">first</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">Info</code><code class="variable-quote">'</code></span>)</span><br />
       Function that takes a dictionary and returns a tabular string with:</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#dictDict2txt">source&nbsp;code</a></span>
@@ -683,7 +693,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'03-06-2016'"><code class="variable-quote">'</code><code class="variable-string">03-06-2016</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'07-06-2016'"><code class="variable-quote">'</code><code class="variable-string">07-06-2016</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -713,6 +723,28 @@
   </td>
 </tr>
 </table>
+<a name="extant_file"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">extant_file</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#extant_file">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>'Type' for argparse - checks that file exists but does not open by 
+  default.</p>
+  <p>:param x: a file path :type x: str() :rtype: string :return: 
+  string</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="sort_human"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -816,7 +848,8 @@
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">dictDict2txt</span>(<span class="sig-arg">dico</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dictDict2txt</span>(<span class="sig-arg">dico</span>,
+        <span class="sig-arg">first</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">Info</code><code class="variable-quote">'</code></span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="MODULES_SEB-pysrc.html#dictDict2txt">source&nbsp;code</a></span>&nbsp;
@@ -828,14 +861,15 @@
 <pre class="literalblock">
        &quot;key\tvalue\n&quot;.
 </pre>
-  <p>:param dico: a python dictionary :type dico: dict() :rtype: str() 
-  :return: string with &quot;key\tvalue\n</p>
+  <p>:param dico: a python dictionary :type dico: dict() :param first: 
+  string for name first column :type first: str() :rtype: str() :return: 
+  string with &quot;key\tvalue\n</p>
   <p>Example:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>dico = {<span class="py-string">&quot;Souche1&quot;</span>:{<span class="py-string">&quot;NUM&quot;</span>:<span class="py-string">&quot;171&quot;</span>,<span class="py-string">&quot;MIN&quot;</span>:<span class="py-string">&quot;2042&quot;</span>,<span class="py-string">&quot;MAX&quot;</span>:<span class="py-string">&quot;3133578&quot;</span>,<span class="py-string">&quot;N50 BP&quot;</span>:<span class="py-string">&quot;938544&quot;</span>,<span class="py-string">&quot;N50 NUM&quot;</span>:<span class="py-string">&quot;11&quot;</span>},
 <span class="py-output">                        &quot;Souche2&quot;:{&quot;NUM&quot;:&quot;182&quot;,&quot;MIN&quot;:&quot;5004&quot;,&quot;MAX&quot;:&quot;74254&quot;,&quot;N50 BP&quot;:&quot;45245&quot;,&quot;N50 NUM&quot;:&quot;45&quot;}}</span>
-<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>dictDict2txt(dico)
-<span class="py-output">Info    NUM     MIN     MAX     N50 BP  N50 NUM</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>dictDict2txt(dico,<span class="py-string">&quot;souches&quot;</span>)
+<span class="py-output">souches NUM     MIN     MAX     N50 BP  N50 NUM</span>
 <span class="py-output">Souche1 171     2042    3133578 938544  11</span>
 <span class="py-output">Souche2 182     5004    74254   45245   45</span></pre>
   <dl class="fields">
@@ -1534,7 +1568,7 @@
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Fri Jun  3 07:55:38 2016
+    on Tue Jun  7 14:42:05 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

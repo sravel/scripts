@@ -11,13 +11,13 @@ MODULES_SEB.loadInDictCol	MODULES_SEB-module.html#loadInDictCol
 MODULES_SEB.loadInDict	MODULES_SEB-module.html#loadInDict
 MODULES_SEB.readable_dir	MODULES_SEB-module.html#readable_dir
 MODULES_SEB.extant_file	MODULES_SEB-module.html#extant_file
+MODULES_SEB.dict2fasta	MODULES_SEB-module.html#dict2fasta
 MODULES_SEB.lenSeq2dict	MODULES_SEB-module.html#lenSeq2dict
 MODULES_SEB.__package__	MODULES_SEB-module.html#__package__
 MODULES_SEB.version	MODULES_SEB-module.html#version
 MODULES_SEB.lsExtInDirToList	MODULES_SEB-module.html#lsExtInDirToList
 MODULES_SEB.extractListFromFasta	MODULES_SEB-module.html#extractListFromFasta
 MODULES_SEB.lsDirToList	MODULES_SEB-module.html#lsDirToList
-MODULES_SEB.dict2fasta	MODULES_SEB-module.html#dict2fasta
 MODULES_SEB.extractInverseListFromFasta	MODULES_SEB-module.html#extractInverseListFromFasta
 MODULES_SEB.VERSION_DATE	MODULES_SEB-module.html#VERSION_DATE
 MODULES_SEB.loadInDictLine	MODULES_SEB-module.html#loadInDictLine
@@ -29,6 +29,8 @@ MODULES_SEB.loadInListCol	MODULES_SEB-module.html#loadInListCol
 MODULES_SEB.concatFastasFiles	MODULES_SEB-module.html#concatFastasFiles
 MODULES_SEB.replace_all	MODULES_SEB-module.html#replace_all
 MODULES_SEB.dictList2txt	MODULES_SEB-module.html#dictList2txt
+MODULES_SEB.AutoVivification	MODULES_SEB.AutoVivification-class.html
+MODULES_SEB.AutoVivification.__getitem__	MODULES_SEB.AutoVivification-class.html#__getitem__
 MODULES_SEB.LetterList	MODULES_SEB.LetterList-class.html
 MODULES_SEB.LetterList.append	MODULES_SEB.LetterList-class.html#append
 MODULES_SEB.LetterList.testItem	MODULES_SEB.LetterList-class.html#testItem
@@ -52,6 +54,7 @@ MODULES_SEB.StrSpaceList.insert	MODULES_SEB.StrSpaceList-class.html#insert
 MODULES_SEB.directory	MODULES_SEB.directory-class.html
 MODULES_SEB.directory.__init__	MODULES_SEB.directory-class.html#__init__
 MODULES_SEB.directory.lsInDir	MODULES_SEB.directory-class.html#lsInDir
+MODULES_SEB.directory.lsExtInDirToList	MODULES_SEB.directory-class.html#lsExtInDirToList
 MODULES_SEB.directory.testDirExist	MODULES_SEB.directory-class.html#testDirExist
 MODULES_SEB.directory.__repr__	MODULES_SEB.directory-class.html#__repr__
 MODULES_SEB.directory.splitFilesDir	MODULES_SEB.directory-class.html#splitFilesDir
