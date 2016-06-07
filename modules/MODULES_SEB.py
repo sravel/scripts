@@ -164,7 +164,7 @@ def dictList2txt(dico):
 		txtoutput += "%s\t%s\n" % (str(key),str(value))
 	return txtoutput
 
-def dictDict2txt(dico):
+def dictDict2txt(dico,first="Info"):
 	"""
 	Function that takes a dictionary and returns a tabular string with::
 
@@ -172,14 +172,16 @@ def dictDict2txt(dico):
 
 	:param dico: a python dictionary
 	:type dico: dict()
+	:param first: string for name first column
+	:type first: str()
 	:rtype: str()
 	:return: string with "key\\tvalue\\n
 
 	Example:
 		>>> dico = {"Souche1":{"NUM":"171","MIN":"2042","MAX":"3133578","N50 BP":"938544","N50 NUM":"11"},
 					"Souche2":{"NUM":"182","MIN":"5004","MAX":"74254","N50 BP":"45245","N50 NUM":"45"}}
-		>>> dictDict2txt(dico)
-		Info	NUM	MIN	MAX	N50 BP	N50 NUM
+		>>> dictDict2txt(dico,"souches")
+		souches	NUM	MIN	MAX	N50 BP	N50 NUM
 		Souche1	171	2042	3133578	938544	11
 		Souche2	182	5004	74254	45245	45
 
@@ -194,7 +196,7 @@ def dictDict2txt(dico):
 		if headerc == 0:
 			header = dico[key].keys()
 			header = [ str(k) for k in header]
-			value = "Info\t" + "\t".join(header)
+			value = first+"\t" + "\t".join(header)
 			txtoutput += "%s\n" % str(value)
 			headerc=1
 
@@ -896,6 +898,15 @@ def relativeToAbsolutePath(relative):
 #################################################
 # CLASS
 #################################################
+
+class AutoVivification(dict):
+	"""Implementation of perl's autovivification feature."""
+	def __getitem__(self, item):
+		try:
+			return dict.__getitem__(self, item)
+		except KeyError:
+			value = self[item] = type(self)()
+			return value
 
 #*********************************************** Classe directory *******************
 class directory(str):
