@@ -66,7 +66,7 @@ if __name__ == "__main__":
 	pathFileOut = args.pathFileOut
 	ref = args.refName
 	workingDir = "/".join(pathFileOut.pathDirectory.split("/")[:-2])+"/"
-	correspondingCDSDir = workingDir+"correspondingCDS-contig"
+	correspondingCDSDir = workingDir+"correspondingCDS-contig/"
 
 	print("\t - Input Path is: %s" % pathFileOut.pathDirectory)
 	print("\t - ref strain is : %s" % ref)
@@ -84,7 +84,7 @@ if __name__ == "__main__":
 		print("  Warning , folder "+correspondingCDSDir+" already exist !!!!" )
 		exist=1
 	else:
-		os.makedirs(workingDir+"correspondingCDS-contig")
+		os.makedirs(correspondingCDSDir)
 	if exist == 1:
 		print("  Do you want to remove all analysis? (y/n)\n")
 		inp = None
@@ -137,17 +137,16 @@ if __name__ == "__main__":
 			for soucheFind in listcorresp:
 				souche_contig2 = soucheFind
 				namesouche2 = souche_contig2.split("_")[0]
-				correspondanceMGGContig = open(workingDir+"correspondingCDS-contig/"+namesouche2+"_corespondingMGG-contig","a")
+				correspondanceMGGContig = open(correspondingCDSDir+namesouche2+"_corespondingMGG-contig","a")
 				correspondanceMGGContig.write("%s\t%s\n"%(souche_contig1,souche_contig2))
 			nbOrtho1_1+=1
 
 	print("\t - %i orthologues 1/1 found on the %s strains" % (nbOrtho1_1, len(listSouchessort)+1))
 
 	# ouverture d'un tableau résumer
-	with open("tab_Stats.tab","w") as tabFileOut:
+	with open(workingDir+"Orthologue_Tab_Stats.tab","w") as tabFileOut:
 
 		dicoCountNB = AutoVivification()
-		dico = {}
 		for souche_contig1 in sorted(dico_ortho.keys(), key=sort_human):
 			namesouche1 = souche_contig1.split("_")[0]
 
@@ -168,7 +167,16 @@ if __name__ == "__main__":
 
 
 
+	print("\n\nExecution summary:")
 
+	print("  - Outputting \n\
+     - %s\n\
+     - %s\n\n" % (tabFileOut.name,correspondingCDSDir) )
+
+	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
+	print("#################################################################")
+	print("#                        End of execution                       #")
+	print("#################################################################")
 
 
 
