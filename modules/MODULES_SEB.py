@@ -900,9 +900,14 @@ def relativeToAbsolutePath(relative):
 #################################################
 
 class AutoVivification(dict):
-	"""Implementation of perl's autovivification feature.
+	"""
+	AutoVivification(dict) CLASS
+	============================
+
+	Implementation of perl's autovivification feature.
 
 	Example:
+
 	>>> a = AutoVivification()
 	>>> a[1][2][3] = 4
 	>>> a[1][3][3] = 5
@@ -920,12 +925,17 @@ class AutoVivification(dict):
 
 #*********************************************** Classe directory *******************
 class directory(str):
-	"""Class which derives from string.
+	"""
+	directory() CLASS
+	=================
+
+	Class which derives from string.
 	Checks that the string is and path to valid directory and not empty
 
 	Returns object which able to return basename and list file (with an extention, else consider as folder)
 
 	Example:
+
 	>>> inDirectory=directory("/home/sravel/Documents")
 	>>> print(inDirectory.pathDirectory())
 	>>> /home/sravel/Documents/
