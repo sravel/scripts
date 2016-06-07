@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, extant_file
+from MODULES_SEB import directory, relativeToAbsolutePath, extant_file, dict2txt
 
 ## Python modules
 import argparse
@@ -242,21 +242,23 @@ if __name__ == "__main__":
 					c=1
 					inputFile = open(workingObjDir.pathDirectory+"/repetition_"+str(rep)+"/population_"+str(pop)+"/"+filename,"r")
 					for ligne in inputFile:
+						#print(ligne)
 						lignetab = re.sub('\s{2,}', '\t', ligne)
 						lligne=lignetab.rstrip().split("\t")
-						if "Estimated Allele Frequencies in each cluster" in ligne or (toto == 1 and ligne.rstrip() == ""):
-							if toto == 1:
+						if "Estimated Allele Frequencies in each cluster" in ligne or ligne.rstrip() == "":
+							if toto == 1 or toto == 2:
 								toto=0
 								compte=1
+								#print(dict2txt(dicoFileInfo))
 								for souche in orderlist:
 									txtOut = str(compte)+" "+" ".join(dicoFileInfo[souche].split(" ")[0:2])+" "+str(compte)+" "+" ".join(dicoFileInfo[souche].split(" ")[3:])
 									#print(souche+"\t\t"+txtOut+"\n")
 									outfile.write(txtOut+"\n")
 									compte+=1
-						if toto == 1 :
+
+						if toto == 1:
 							lignetab = re.sub('\s{1,}', '\t', ligne)
 							lligne=lignetab.rstrip().split("\t")
-							#print(lligne[0])
 							if c < 100:
 								c+=1
 								out=lligne[1]+' '+lligne[2]+' '+lligne[3]
@@ -273,12 +275,25 @@ if __name__ == "__main__":
 							souche = out.rstrip().split(" ")[1]
 							keep = " ".join(out.rstrip().split(" ")[1:])
 							dicoFileInfo[souche] = keep
+						if toto == 2:
+							lignetab = re.sub('\s{1}', '\t', ligne)
+							lligne=lignetab.rstrip().split("\t")
+							souche = lligne[1]
+							keep = " ".join(lligne[1:])
+							dicoFileInfo[souche] = keep
+
+
+
 						elif "        Label (%Miss) :  Inferred clusters" not in ligne.rstrip():
 							outfile.write(ligne)
 
 						if "        Label (%Miss) :  Inferred clusters" in ligne.rstrip():
 							outfile.write("        Label (%Miss) Pop:  Inferred clusters\n")
 							toto=1
+						if "        Label (%Miss) Pop:  Inferred clusters" in ligne.rstrip():
+							outfile.write("        Label (%Miss) Pop:  Inferred clusters\n")
+							toto=2
+							c=0
 
 					outfile.close()
 					os.remove(workingObjDir.pathDirectory+"/repetition_"+str(rep)+"/population_"+str(pop)+"/"+filename)

@@ -11,7 +11,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, extant_file
+from MODULES_SEB import directory, extant_file, dict2txt
 
 ## Python modules
 import argparse, re
@@ -49,7 +49,8 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input info for running')
 	files.add_argument('-po', '--pathout', metavar="<path/to/fileout>", type = directory, required=True, dest = 'pathFileOut', help = 'path to fasta files Out')
-	files.add_argument('-p', '--proteine', metavar="<filename>",type=extant_file(True), required=True, dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
+	files.add_argument('-p', '--proteine', metavar="<filename>",type=extant_file, required=True, dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
+	files.add_argument('-r', '--ref', metavar="<string>", required=True, dest = 'refName', help = 'Name of strain reference (ex: Mycfi) ')
 
 	# Check parameters
 	args = parser.parse_args()
@@ -63,74 +64,64 @@ if __name__ == "__main__":
 	# Récupère le fichier de conf passer en argument
 
 	pathFileOut = args.pathFileOut
-	proteineOrthoFile = args.proteineOrthoFile,"r"
+	ref = args.refName
 
-	print(pathFileOut)
-	print(proteineOrthoFile)
-	exit()
-
-	if pathFileOut[-1] != "/":
-		pathFileOut += "/"
-
+	print(pathFileOut.pathDirectory)
 
 	# ajoute à la variable current_dir le chemin ou est executer le script
 	current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 
-	# creation liste des souches:
+	# liste de toute les souches de proteineOrtho
 	listSouches =[]
 
 	# dico de proteine orthologue
-	dico_ortho_MGG = {}
+	dico_ortho = {}
 
 	# ouverture du fichier de résultat protine ortho pour construire liste de seq ortho
-	#SSFL02_contig00001.g1.t1	GY11_GY11_scaffold00003.g766.t1	0.0	2427	0.0	2427
-	for line in proteineOrthoFile:
-		if "#" not in line:
-			tabline = line.split("\t")
-			souche1 = tabline[0]						# nom de la souche et contig
-			souche2 = tabline[1]
-			nameSouche1 = tabline[0].split("_")[0]		# nom de la souche seul
-			nameSouche2 = tabline[1].split("_")[0]
-			#print(souche1, nameSouche1,souche2, nameSouche2)
-			if "MGG" in nameSouche1:
-				if souche1 not in dico_ortho_MGG.keys():
-					dico_ortho_MGG[souche1] = [souche2]
-				else:
-					dico_ortho_MGG[souche1].append(souche2)
-				correspondanceMGGContig = open(pathFileOut+nameSouche2+"_corespondingMGG-contig","a")
-				# rename souche
-				souche2rn = souche2.replace(nameSouche2+"_"+nameSouche2+"_",nameSouche2+"_")
-				correspondanceMGGContig.write("%s\t%s\n"%(souche1,souche2rn))
-				if nameSouche2 not in listSouches:
-					listSouches.append(nameSouche2)
+	with open(args.proteineOrthoFile,"r") as proteineOrthoFile:
+		for line in proteineOrthoFile:
+			if "#" not in line:
+				tabline = line.split("\t")
+				souche_contig1 = tabline[0]						# nom de la souche et contig
+				souche_contig2 = tabline[1]
+				namesouche1 = tabline[0].split("_")[0]		# nom de la souche seul
+				namesouche2 = tabline[1].split("_")[0]
+				# DEBUG print(souche_contig1, namesouche1,souche_contig2, namesouche2)
+
+				if ref in namesouche1:
+					dico_ortho.setdefault(souche_contig1, []).append(souche_contig2)
+					#correspondanceMGGContig = open(pathFileOut+namesouche2+"_corespondingMGG-contig","a")
+					## rename souche
+					#souche_contig2rn = souche_contig2.replace(namesouche2+"_"+namesouche2+"_",namesouche2+"_")
+					#correspondanceMGGContig.write("%s\t%s\n"%(souche_contig1,souche_contig2rn))
+					if namesouche2 not in listSouches:
+						listSouches.append(namesouche2)
 
 
-			if "MGG" in nameSouche2:
-				if souche2 not in dico_ortho_MGG.keys():
-					dico_ortho_MGG[souche2] = [souche1]
-				else:
-					dico_ortho_MGG[souche2].append(souche1)
-				correspondanceMGGContig = open(pathFileOut+nameSouche1+"_corespondingMGG-contig","a")
-				correspondanceMGGContig.write("%s\t%s\n"%(souche2,souche1.replace(nameSouche1+"_"+nameSouche1+"_",nameSouche1+"_")))
-				if nameSouche1 not in listSouches:
-					listSouches.append(nameSouche1)
+				if ref in namesouche2:
+					dico_ortho.setdefault(souche_contig2, []).append(souche_contig1)
+					#correspondanceMGGContig = open(pathFileOut+namesouche1+"_corespondingMGG-contig","a")
+					#correspondanceMGGContig.write("%s\t%s\n"%(souche_contig2,souche_contig1.replace(namesouche1+"_"+namesouche1+"_",namesouche1+"_")))
+					if namesouche1 not in listSouches:
+						listSouches.append(namesouche1)
 
 
-	print(dict2txt(dico_ortho_MGG))
-	#listSouches.append("70-15")
+
+	# DEBUG print(dict2txt(dico_ortho))
+
 	listSouchessort = sorted(listSouches)
 	print(listSouchessort)
 	print(len(listSouchessort))
-	#listSouches = loadInList(current_dir+"souche.txt")
+
 
 	# ouverture d'un tableau résumer
 	tabFileOut = open("tab_Stats.tab","w")
-	tabFileOut.write("Gene MGG\t"+"\t".join(listSouchessort)+"\n")
+	tabFileOut.write("Gene "+ref+"\t"+"\t".join(listSouchessort)+"\n")
 
 	dicoCountNB = {}
-	for key in sorted(dico_ortho_MGG.keys()):
+	for key in sorted(dico_ortho.keys()):
 		txtout = key
-		value = dico_ortho_MGG[key]
+		value = dico_ortho[key]
 		tabsoucheFind = [souche.split("_")[0] for souche in value]
 		#print(tabsoucheFind)
 		for souche in sorted(listSouches):
