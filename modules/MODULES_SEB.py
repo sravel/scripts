@@ -102,7 +102,12 @@ def sort_human(s, _nsre=re.compile('([0-9]+)')):
 		['something1', 'something17', 'something2', 'something25', 'something29', 'something32']
 
 	"""
-	return [ int(text) if text.isdigit() else text.lower() for text in re.split(_nsre, s)]
+	try:
+		return [ int(text) if text.isdigit() else text.lower() for text in re.split(_nsre, s)]
+	except TypeError:
+		if not isinstance(s,int):
+			print("WARNNING MODULES_SEB::sort_human : List %s value not understand so don't sort \n" % s)
+		return s
 
 
 
