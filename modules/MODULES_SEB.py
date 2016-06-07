@@ -8,7 +8,7 @@
 	======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 03-06-2016
+	:date: 07-06-2016
 	:version: 0.2
 
 	Use it to import very handy functions.
@@ -54,7 +54,7 @@ from Bio import AlignIO
 ##################################################
 ## Variables Globales
 version="0.1"
-VERSION_DATE='03-06-2016'
+VERSION_DATE='07-06-2016'
 
 ##################################################
 ## Fonctions
@@ -900,7 +900,17 @@ def relativeToAbsolutePath(relative):
 #################################################
 
 class AutoVivification(dict):
-	"""Implementation of perl's autovivification feature."""
+	"""Implementation of perl's autovivification feature.
+
+	Example:
+	>>> a = AutoVivification()
+	>>> a[1][2][3] = 4
+	>>> a[1][3][3] = 5
+	>>> a[1][2]['test'] = 6
+	>>> print a
+	>>> {1: {2: {'test': 6, 3: 4}, 3: {3: 5}}}
+
+	"""
 	def __getitem__(self, item):
 		try:
 			return dict.__getitem__(self, item)
