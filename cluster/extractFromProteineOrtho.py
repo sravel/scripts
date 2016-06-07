@@ -11,7 +11,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, extant_file, dict2txt
+from MODULES_SEB import directory, extant_file, dict2txt, sort_human, dictDict2txt, AutoVivification
 
 ## Python modules
 import argparse, re
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(prog='extractFromProteineOrtho.py', description='''This Programme take proteineOrtho output and take file with Orthologue 1/1''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display extractFromProteineOrtho version number and exit')
-	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
+	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	files = parser.add_argument_group('Input info for running')
 	files.add_argument('-po', '--pathout', metavar="<path/to/fileout>", type = directory, required=True, dest = 'pathFileOut', help = 'path to fasta files Out')
@@ -57,7 +57,7 @@ if __name__ == "__main__":
 
 	#Welcome message
 	print("#################################################################")
-	print("#        Welcome in extractFromProteineOrtho (Version " + version + ")           #")
+	print("#      Welcome in extractFromProteineOrtho (Version " + version + ")        #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 
@@ -65,17 +65,39 @@ if __name__ == "__main__":
 
 	pathFileOut = args.pathFileOut
 	ref = args.refName
+	workingDir = "/".join(pathFileOut.pathDirectory.split("/")[:-2])+"/"
+	correspondingCDSDir = workingDir+"correspondingCDS-contig/"
 
-	print(pathFileOut.pathDirectory)
-
-	# ajoute à la variable current_dir le chemin ou est executer le script
-	current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
+	print("\t - Input Path is: %s" % pathFileOut.pathDirectory)
+	print("\t - ref strain is : %s" % ref)
+	print("\t - Working directory is: %s" % workingDir)
+	print("\t - Corresonding CDS ref/strain directory is: %s\n\n" % correspondingCDSDir)
 
 	# liste de toute les souches de proteineOrtho
 	listSouches =[]
 
 	# dico de proteine orthologue
 	dico_ortho = {}
+	exist=0
+	# creer le répertoire contenant les correspondance entre ref et souches
+	if os.path.exists(correspondingCDSDir):
+		print("  Warning , folder "+correspondingCDSDir+" already exist !!!!" )
+		exist=1
+	else:
+		os.makedirs(correspondingCDSDir)
+	if exist == 1:
+		print("  Do you want to remove all analysis? (y/n)\n")
+		inp = None
+		while inp == None and inp != "y" and inp != "n" and inp != "yes" and inp != "no":
+			inp = input()
+			if inp == "y":
+				os.popen('rm -r '+correspondingCDSDir+'; mkdir '+correspondingCDSDir )
+				exist=0
+
+			elif inp == "n":
+				print(">>>Program exit\n")
+				exit()
+
 
 	# ouverture du fichier de résultat protine ortho pour construire liste de seq ortho
 	with open(args.proteineOrthoFile,"r") as proteineOrthoFile:
@@ -86,65 +108,75 @@ if __name__ == "__main__":
 				souche_contig2 = tabline[1]
 				namesouche1 = tabline[0].split("_")[0]		# nom de la souche seul
 				namesouche2 = tabline[1].split("_")[0]
-				# DEBUG print(souche_contig1, namesouche1,souche_contig2, namesouche2)
+
+				if args.debug == "True" : print(souche_contig1, namesouche1,souche_contig2, namesouche2)				# DEBUG
 
 				if ref in namesouche1:
 					dico_ortho.setdefault(souche_contig1, []).append(souche_contig2)
-					#correspondanceMGGContig = open(pathFileOut+namesouche2+"_corespondingMGG-contig","a")
-					## rename souche
-					#souche_contig2rn = souche_contig2.replace(namesouche2+"_"+namesouche2+"_",namesouche2+"_")
-					#correspondanceMGGContig.write("%s\t%s\n"%(souche_contig1,souche_contig2rn))
 					if namesouche2 not in listSouches:
 						listSouches.append(namesouche2)
 
-
 				if ref in namesouche2:
 					dico_ortho.setdefault(souche_contig2, []).append(souche_contig1)
-					#correspondanceMGGContig = open(pathFileOut+namesouche1+"_corespondingMGG-contig","a")
-					#correspondanceMGGContig.write("%s\t%s\n"%(souche_contig2,souche_contig1.replace(namesouche1+"_"+namesouche1+"_",namesouche1+"_")))
 					if namesouche1 not in listSouches:
 						listSouches.append(namesouche1)
 
 
+	listSouchessort = sorted(listSouches, key=sort_human)
+	if args.debug == "True" : print(dict2txt(dico_ortho))
+	if args.debug == "True" : print(listSouchessort)
+	if args.debug == "True" : print(len(listSouchessort))
 
-	# DEBUG print(dict2txt(dico_ortho))
+	# ecriture des correspondence othologue 1/1:
+	nbOrtho1_1=0
+	for souche_contig1 , listcorresp in dico_ortho.items():
+		namesouche1 = souche_contig1.split("_")[0]
+		tabsoucheFind = [souche.split("_")[0] for souche in listcorresp]
 
-	listSouchessort = sorted(listSouches)
-	print(listSouchessort)
-	print(len(listSouchessort))
+		if len(listcorresp) == len(listSouchessort) and sorted(listSouchessort, key=sort_human) == sorted(tabsoucheFind, key=sort_human):
+			for soucheFind in listcorresp:
+				souche_contig2 = soucheFind
+				namesouche2 = souche_contig2.split("_")[0]
+				correspondanceMGGContig = open(correspondingCDSDir+namesouche2+"_corespondingMGG-contig","a")
+				correspondanceMGGContig.write("%s\t%s\n"%(souche_contig1,souche_contig2))
+			nbOrtho1_1+=1
 
+	print("\t - %i orthologues 1/1 found on the %s strains" % (nbOrtho1_1, len(listSouchessort)+1))
 
 	# ouverture d'un tableau résumer
-	tabFileOut = open("tab_Stats.tab","w")
-	tabFileOut.write("Gene "+ref+"\t"+"\t".join(listSouchessort)+"\n")
+	with open(workingDir+"Orthologue_Tab_Stats.tab","w") as tabFileOut:
 
-	dicoCountNB = {}
-	for key in sorted(dico_ortho.keys()):
-		txtout = key
-		value = dico_ortho[key]
-		tabsoucheFind = [souche.split("_")[0] for souche in value]
-		#print(tabsoucheFind)
-		for souche in sorted(listSouches):
-			count = tabsoucheFind.count(souche)
-			txtout += "\t"+str(count)
-		tabFileOut.write(txtout+"\n")
+		dicoCountNB = AutoVivification()
+		for souche_contig1 in sorted(dico_ortho.keys(), key=sort_human):
+			namesouche1 = souche_contig1.split("_")[0]
 
-		if len(value) not in dicoCountNB.keys():
-			dicoCountNB[len(value)] = 1
-		else:
-			dicoCountNB[len(value)] += 1
+			# initialisation du dico a 0
+			for souche in listSouchessort:
+				dicoCountNB[souche_contig1][souche] = 0
+
+			for souche_contig2 in dico_ortho[souche_contig1]:
+				namesouche2 = souche_contig2.split("_")[0]
+
+				dicoCountNB[souche_contig1][namesouche2]+=1
 
 
-	tabFileOut.close()
-	print("NB seq retrouver:")
-	print(dict2txt(dicoCountNB))
+		tabFileOut.write(dictDict2txt(dicoCountNB,ref))
 
 
 
 
 
 
+	print("\n\nExecution summary:")
 
+	print("  - Outputting \n\
+     - %s\n\
+     - %s\n\n" % (tabFileOut.name,correspondingCDSDir) )
+
+	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
+	print("#################################################################")
+	print("#                        End of execution                       #")
+	print("#################################################################")
 
 
 
