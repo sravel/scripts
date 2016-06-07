@@ -166,7 +166,7 @@ if __name__ == "__main__":
 		#exit()
 
 
-	# Test si les répertoires existe déjà
+	# Test si les sous répertoires existent déjà
 	exist=0
 	for rep in range(nbRepiParam,nbRepmParam+1):																				# boucle sur le nombre de répétition
 		if os.path.exists(workingDir+"/repetition_"+str(rep)):
