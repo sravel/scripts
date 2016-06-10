@@ -158,7 +158,7 @@ if __name__ == "__main__":
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display make_ldhatfiles version number and exit')
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
-	filesreq.add_argument('-wd', '--workdir', metavar="<path>", required=True, dest = 'workdir', help = 'Path of the directory where files will be created')
+	filesreq.add_argument('-wd', '--workdir', metavar="<path>",type=directory, required=True, dest = 'workdir', help = 'Path of the directory where files will be created')
 	filesreq.add_argument('-t', '--tab', metavar="<filename>",type=extant_file, required=True, dest = 'tabFile', help = 'Name of tab file in (input whole path if file is not in the current working directory')
 	filesreq.add_argument('-st', '--size_tab', metavar="<filename>",type=extant_file, required=True, dest = 'sizeTab', help = 'Name of a tab file containing the identifiers of the subunits of division (chromosome/scaffold/contig) and their total size. If some scaffolds are not wanted, comment the line.')
 
@@ -171,14 +171,16 @@ if __name__ == "__main__":
 	args = parser.parse_args()
 
 	# get arguments
-	workdir = relativeToAbsolutePath(args.workdir)
+	workingObjDir = args.workdir
 	tabFile = relativeToAbsolutePath(args.tabFile)
 	sizeTab = relativeToAbsolutePath(args.sizeTab)
 	dataType = args.datatype
 	intervalLDhatPATH = args.methode
 	flag = args.flag
 
-	print("\t - Workink Directory: %s" % workdir)
+
+
+	print("\t - Workink Directory: %s" % workingObjDir.pathDirectory)
 	print("\t - Input Path matrice is: %s" % tabFile)
 	print("\t - Input Path size is: %s" % sizeTab)
 	print("\t - dataType is : %s" % dataType)
@@ -224,11 +226,11 @@ if __name__ == "__main__":
 			if chro in listRange:
 
 				# create subdirectory for the current scaffold
-				subdir = workdir+basename+"/"+chro
+				subdir = workingObjDir.pathDirectory+basename+"/"+chro
 				if not os.path.exists(subdir):
 					os.makedirs(subdir)
 
-				outputName = workdir+basename+"/"+chro+"/"+basename+"_"+chro+".tab"
+				outputName = workingObjDir.pathDirectory+basename+"/"+chro+"/"+basename+"_"+chro+".tab"
 
 				# if chro not encountered yet, create file add header and current line
 				if chro not in dictFilesOut.keys():
@@ -258,7 +260,7 @@ if __name__ == "__main__":
 	# for each subunit and its list of SNP positions
 	for checkChro, listPos in dictListPos.items():
 		if checkChro in dictFilesOut.keys():
-			outputLocsName = workdir+basename+"/"+checkChro+"/"+basename+"_"+checkChro+".locs"
+			outputLocsName = workingObjDir.pathDirectory+basename+"/"+checkChro+"/"+basename+"_"+checkChro+".locs"
 
 			# create .locs file
 			outputLocs = open(outputLocsName, "w")
