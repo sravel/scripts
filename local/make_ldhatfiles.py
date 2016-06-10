@@ -21,7 +21,7 @@ except AssertionError:
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, dictDict2txt
+from MODULES_SEB import directory, relativeToAbsolutePath, dictDict2txt, extant_file
 
 import argparse
 
@@ -157,10 +157,12 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(prog='make_ldhatfiles.py', description='''This Program takes a tab file and returns LDhat .sites and .locs files''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display make_ldhatfiles version number and exit')
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-wd', '--workdir', metavar="<path>", required=True, dest = 'workdir', help = 'Path of the directory where files will be created')
-	files.add_argument('-t', '--tab', metavar="<filename>", required=True, dest = 'tabFile', help = 'Name of tab file in (input whole path if file is not in the current working directory')
-	files.add_argument('-st', '--size_tab', metavar="<filename>", required=True, dest = 'sizeTab', help = 'Name of a tab file containing the identifiers of the subunits of division (chromosome/scaffold/contig) and their total size. If some scaffolds are not wanted, comment the line.')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-wd', '--workdir', metavar="<path>", required=True, dest = 'workdir', help = 'Path of the directory where files will be created')
+	filesreq.add_argument('-t', '--tab', metavar="<filename>",type=extant_file, required=True, dest = 'tabFile', help = 'Name of tab file in (input whole path if file is not in the current working directory')
+	filesreq.add_argument('-st', '--size_tab', metavar="<filename>",type=extant_file, required=True, dest = 'sizeTab', help = 'Name of a tab file containing the identifiers of the subunits of division (chromosome/scaffold/contig) and their total size. If some scaffolds are not wanted, comment the line.')
+
+	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-dt', '--datatype', metavar="<int>", default=1, type=int, choices=[1,2], dest = 'datatype', help = '1 for haplotypic data (default), 2 for genotypic')
 	files.add_argument('-m', '--methode', metavar="<char>", default="interval", choices=["interval","rhomap"], dest = 'methode', help = 'rhomap or interval (default)')
 	files.add_argument('-f', '--flag', metavar="<char>", default="L", choices=["L","C"], dest = 'flag', help = 'L for CO (default), C pour gene conversion')
@@ -170,13 +172,18 @@ if __name__ == "__main__":
 
 	# get arguments
 	workdir = relativeToAbsolutePath(args.workdir)
-	tabFile = args.tabFile
-	sizeTab = args.sizeTab
+	tabFile = relativeToAbsolutePath(args.tabFile)
+	sizeTab = relativeToAbsolutePath(args.sizeTab)
 	dataType = args.datatype
 	intervalLDhatPATH = args.methode
 	flag = args.flag
 
-	print(workdir)
+	print("\t - Workink Directory: %s" % workdir)
+	print("\t - Input Path matrice is: %s" % tabFile)
+	print("\t - Input Path size is: %s" % sizeTab)
+	print("\t - dataType is : %s" % dataType)
+	print("\t - Working with : %s" % intervalLDhatPATH)
+	print("\t - flag is: %s\n\n" % flag)
 
 	#exit()
 ##
