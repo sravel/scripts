@@ -291,7 +291,6 @@ if __name__ == "__main__":
 							outfile.write("        Label (%Miss) Pop:  Inferred clusters\n")
 							toto=1
 						if "        Label (%Miss) Pop:  Inferred clusters" in ligne.rstrip():
-							outfile.write("        Label (%Miss) Pop:  Inferred clusters\n")
 							toto=2
 							c=0
 

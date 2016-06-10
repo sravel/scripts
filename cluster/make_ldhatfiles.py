@@ -36,7 +36,7 @@ version = "0.1"
 VERSION_DATE = '15/03/2016'
 completeLDhatPATH = "completeLDhat"
 #intervalLDhatPATH = "interval"
-intervalLDhatPATH = "rhomap"
+##intervalLDhatPATH = "rhomap"
 statLDhatPATH = "statLDhat"
 
 
@@ -162,6 +162,7 @@ if __name__ == "__main__":
 	files.add_argument('-t', '--tab', metavar="<filename>", required=True, dest = 'tabFile', help = 'Name of tab file in (input whole path if file is not in the current working directory')
 	files.add_argument('-st', '--size_tab', metavar="<filename>", required=True, dest = 'sizeTab', help = 'Name of a tab file containing the identifiers of the subunits of division (chromosome/scaffold/contig) and their total size. If some scaffolds are not wanted, comment the line.')
 	files.add_argument('-dt', '--datatype', metavar="<int>", default=1, type=int, choices=[1,2], dest = 'datatype', help = '1 for haplotypic data (default), 2 for genotypic')
+	files.add_argument('-m', '--methode', metavar="<char>", default="interval", choices=["interval","rhomap"], dest = 'methode', help = 'rhomap or interval (default)')
 	files.add_argument('-f', '--flag', metavar="<char>", default="L", choices=["L","C"], dest = 'flag', help = 'L for CO (default), C pour gene conversion')
 
 	# check parameters
@@ -172,6 +173,7 @@ if __name__ == "__main__":
 	tabFile = args.tabFile
 	sizeTab = args.sizeTab
 	dataType = args.datatype
+	intervalLDhatPATH = args.methode
 	flag = args.flag
 
 	print(workdir)
