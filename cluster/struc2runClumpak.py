@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, extant_file, dict2txt
+from MODULES_SEB import directory, relativeToAbsolutePath, extant_file, dict2txt, printCol
 
 ## Python modules
 import argparse
@@ -120,10 +120,8 @@ color = """
 def buildLabelFile(labelFile, pathDir):
 	"""Build label file and labelAtop file"""
 	labelFile = relativeToAbsolutePath(labelFile)
-	labelAtopOut = open(pathDir+"labelsAtop", "w")
-	labelOut = open(pathDir+"label", "w")
 	orderlist = []
-	with open(labelFile, "r") as labelFileOpen:
+	with open(labelFile, "r") as labelFileOpen, open(pathDir+"labelsAtop", "w") as labelAtopOut, open(pathDir+"label", "w") as labelOut:
 		i=1
 		for line in labelFileOpen:
 			souche, hote = line.rstrip().split("\t")
@@ -132,8 +130,6 @@ def buildLabelFile(labelFile, pathDir):
 			labelAtopOut.write("%i %s\n" %(i, hote))
 			labelOut.write("%i\t%s\n" %(i, souche))
 			i += 1
-	labelAtopOut.close()
-	labelOut.close()
 	return pathDir+"label", pathDir+"labelsAtop", orderlist
 
 ##################################################
@@ -206,7 +202,7 @@ if __name__ == "__main__":
 			tabNbPop = [repo.split("/")[-1].split("_")[-1] for repo in workingObjDirPop.listDir ]
 			break
 	if tabNbPop == []:
-		print("ERROR struc2runClumpak : path '%s' not contain folder 'repetition_*' with population sub-directory. Make sure take results product by script 'make_structure_dir.py' " % workingObjDir.pathDirectory)
+		printCol.red("ERROR struc2runClumpak : path '%s' not contain folder 'repetition_*' with population sub-directory. Make sure take results product by script 'make_structure_dir.py' " % workingObjDir.pathDirectory)
 		exit()
 	tabNbRepSort = sorted(tabNbRep, key=int)
 	tabNbPopSort = sorted(tabNbPop, key=int)
@@ -217,9 +213,11 @@ if __name__ == "__main__":
 	# build label files
 	print("Build label files into %s" %workingObjDir.pathDirectory)
 	labelFile, labelAtopFile, orderlist = buildLabelFile(labelFileParam, workingObjDir.pathDirectory)
-	print(orderlist)
+	print("Number of indiv in orderList: %s\n" % len(orderlist))
 
+	print("Reorder files tab\n")
 
+	count = 0
 	for rep in tabNbRepSort:																				# boucle sur le nombre de répétition
 		if os.path.exists(workingObjDir.pathDirectory+"/repetition_"+str(rep)):
 			for pop in tabNbPopSort:
@@ -234,7 +232,7 @@ if __name__ == "__main__":
 
 					# open file result to add pop info in order to run clumpak
 					filename = os.listdir(workingObjDir.pathDirectory+"/repetition_"+str(rep)+"/population_"+str(pop)+"/")[0]		####### read file name
-					print(filename)
+					#print(filename)
 
 					outfile=open(workingObjDir.pathDirectory+"/repetition_"+str(rep)+"/population_"+str(pop)+"/"+filename+'tmp',"w")	# création d'un fichier temps
 					toto=0
@@ -295,16 +293,17 @@ if __name__ == "__main__":
 							c=0
 
 					outfile.close()
+					count+=1
 					os.remove(workingObjDir.pathDirectory+"/repetition_"+str(rep)+"/population_"+str(pop)+"/"+filename)
 					os.rename(workingObjDir.pathDirectory+"/repetition_"+str(rep)+"/population_"+str(pop)+"/"+filename+'tmp',workingObjDir.pathDirectory+"/repetition_"+str(rep)+"/population_"+str(pop)+"/"+filename)
 
-
+	print("Number of file reorder: %s\n" % count)
 	# Si tous va bien les fichiers sont Ok
 	# zip du répertoire
 	nameZip = str(workingObjDir.pathDirectory).split("/")[-2]
 	zipFile = workingObjDir.pathDirectory+nameZip+".zip"
 	if os.path.exists(zipFile):
-		print("\nWARNNING struc2runClumpak : path '%s' already contain file %s.zip\nIt will be remove and rebuild\n" %(workingObjDir.pathDirectory, zipFile))
+		printCol.yellow("\nWARNNING struc2runClumpak : path '%s' already contain file %s.zip\nIt will be remove and rebuild\n" %(workingObjDir.pathDirectory, zipFile))
 		os.remove(zipFile)
 	cmd = "cd "+workingObjDir.pathDirectory+";zip -r "+zipFile+" repetition_*"
 	print("Zip directory repetition into %s with file name: %s.zip with command:\n\t%s\n" %(workingObjDir.pathDirectory, zipFile, cmd))
@@ -323,7 +322,7 @@ if __name__ == "__main__":
 	nameDirectoryOutput = labelFileParam.split("/")[-1].split(".")[0]+"/"
 	outputClumpak = workingObjDir.pathDirectory+nameDirectoryOutput
 	if os.path.isdir(outputClumpak) == True:
-		print("\nWARNNING struc2runClumpak : path '%s' already contain output of CLUMPAK (%s)\nIt will be remove and rebuild\n" %(workingObjDir.pathDirectory, nameDirectoryOutput))
+		printCol.yellow("\nWARNNING struc2runClumpak : path '%s' already contain output of CLUMPAK (%s)\nIt will be remove and rebuild\n" %(workingObjDir.pathDirectory, nameDirectoryOutput))
 		cmd = "rm -rf "+outputClumpak
 		stream = check_output(cmd, shell=True).decode("utf-8")
 
