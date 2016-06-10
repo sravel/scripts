@@ -314,14 +314,14 @@ if __name__ == "__main__":
 
 	thetaCoreGenome = sommeTheta/sommeSize
 
-	with open(workdir+basename+"/"+basename+"_ThetaValues.tab", "w") as ThetaTab:
+	with open(workingObjDir.pathDirectory+basename+"/"+basename+"_ThetaValues.tab", "w") as ThetaTab:
 		ThetaTab.write(dictDict2txt(dictThetaInfo))
 		ThetaTab.write("\nthetaCoreGenome\t%.4f" % thetaCoreGenome)
 
 
 
 	#MAKE sh script to run LDhat
-	objDir = directory(workdir+basename)		# list all directory and files in the path
+	objDir = directory(workingObjDir.pathDirectory+basename)		# list all directory and files in the path
 
 
 	#nbInd = 13
@@ -330,7 +330,7 @@ if __name__ == "__main__":
 	cmdLoadR = "module load compiler/gcc/4.9.2 bioinfo/geos/3.4.2 bioinfo/gdal/1.9.2 mpi/openmpi/1.6.5 bioinfo/R/3.2.2"
 	cmdLookTable = completeLDhatPATH+" -n "+str(nbInd)+" -rhomax 100 -n_pts 201 -theta "+str(thetaCoreGenome)+" -prefix "+objDir.pathDirectory+basename
 
-	with open(workdir+basename+"/runLDhat_"+basename+".sh", "w") as runSHFile:
+	with open(workingObjDir.pathDirectory+basename+"/runLDhat_"+basename+".sh", "w") as runSHFile:
 
 		runSHFile.write("%s\n" % cmdLoadR)
 		runSHFile.write("%s\n" % cmdLookTable)
@@ -367,9 +367,9 @@ if __name__ == "__main__":
 
 
 
-	os.system("chmod 755 "+workdir+basename+"/runLDhat_"+basename+".sh")
+	os.system("chmod 755 "+workingObjDir.pathDirectory+basename+"/runLDhat_"+basename+".sh")
 
 
-	cmdQsub = "qsub -V -q long.q -N "+basename+" -b Y -pe parallel_smp 4 "+workdir+basename+"/runLDhat_"+basename+".sh"
+	cmdQsub = "qsub -V -q long.q -N "+basename+" -b Y -pe parallel_smp 4 "+workingObjDir.pathDirectory+basename+"/runLDhat_"+basename+".sh"
 
 	print(cmdQsub)
