@@ -331,12 +331,15 @@ if __name__ == "__main__":
 	stream = check_output(cmd, shell=True).decode("utf-8")
 
 	# ADD CLUMPAK to perl5lib
-	print("LOAD Environment PATH and PERL5LIB:\n")
+	print("LOAD Environment PATH and PERL5LIB:\n\n")
 	oldPERL5LIB = check_output("echo $PERL5LIB", shell=True).decode("utf-8").rstrip()
-	os.environ['PERL5LIB'] += ":"+clumpakObjDir.pathDirectory							# add Clumpak to PERL5LIB
+	os.environ['PERL5LIB'] += ":"+clumpakObjDir.pathDirectory				# add Clumpak to PERL5LIB
 	os.environ['PERL5LIB'] += ":"+PathPerl5libSeb							# add module perl for CLUMPAK to PERL5LIB
+	print("PERL5LIB Variable:\n%s\n\n" % os.environ['PERL5LIB'])
 	oldPATH = check_output("echo $PATH", shell=True).decode("utf-8").rstrip()
 	os.environ['PATH'] += ":"+clumpakObjDir.pathDirectory
+	print("PATH Variable:\n%s\n\n" % os.environ['PATH'])
+
 
 	# MAKE chmod 755 to Clumpak
 	print("Check if exucutable CLUMPAK:\n")
@@ -360,9 +363,10 @@ if __name__ == "__main__":
 --drawparams "+drawparamsFile+" \
 --labels "+labelFile
 
-	print("\nRun CLUMPAK with command:%s\n\nPlease Wait ....\n" % cmd)
+	print("\nRun CLUMPAK with command:\n%s\n\nPlease Wait ....\n" % cmd)
 
 	logClumpack = check_output(cmd,stderr=STDOUT, shell=True).decode("utf-8")
+	print(logClumpack)
 	with open(outputClumpak+"Clumpak.log", "w") as log:
 		log.write(logClumpack)
 
