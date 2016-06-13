@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, extant_file, dict2txt, printCol
+from MODULES_SEB import directory, relativeToAbsolutePath, existant_file, dict2txt, printCol
 
 ## Python modules
 import argparse
@@ -149,11 +149,11 @@ if __name__ == "__main__":
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
 	filesreq.add_argument('-d', '--directory', metavar="<path/to/directory>",type = directory, required=True, dest = 'dirPath', help = 'path of result structure')
 	filesreq.add_argument('-c', '--clumpak', metavar="<path/to/directory/clumpak>",type = directory, required=True, dest = 'dirPathClumpak', help = 'path of clumpak directory')
-	filesreq.add_argument('-l', '--label', metavar="<filename>",type=extant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, first column name, second top label info')
+	filesreq.add_argument('-l', '--label', metavar="<filename>",type=existant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, first column name, second top label info')
 
 	files = parser.add_argument_group('Input infos for running with default values')
-	files.add_argument('-dp', '--drawparams', metavar="<filename>",type=extant_file, required=False, dest = 'drawparamsParam', help = 'Check your own drawparams file')
-	files.add_argument('-co', '--color', metavar="<filename>",type=extant_file, required=False, dest = 'colorParam', help = 'File with colors (default 15 color max)')
+	files.add_argument('-dp', '--drawparams', metavar="<filename>",type=existant_file, required=False, dest = 'drawparamsParam', help = 'Check your own drawparams file')
+	files.add_argument('-co', '--color', metavar="<filename>",type=existant_file, required=False, dest = 'colorParam', help = 'File with colors (default 15 color max)')
 
 
 	# Check parameters

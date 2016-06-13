@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import fasta2dict, lenSeq2dict, relativeToAbsolutePath, sort_human
+from MODULES_SEB import fasta2dict, lenSeq2dict, relativeToAbsolutePath, sort_human,existant_file
 
 ## Python modules
 import argparse
@@ -40,7 +40,7 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-f', '--fasta', metavar="<filename>", required=True, dest = 'fastaFile', help = 'fasta files')
+	files.add_argument('-f', '--fasta', metavar="<filename>",type=existant_file, required=True, dest = 'fastaFile', help = 'fasta files')
 	files.add_argument('-l', '--len', metavar="<int>", required=True, type = int, dest = 'lenSize', help = 'lensize cutoff')
 	files.add_argument('-o', '--out', metavar="<filename>", required=True, dest = 'paramoutfile', help = 'Name of output file')
 	files.add_argument('-k', '--keep', metavar="<g/greater/l/lower>", required=True, dest = 'keepValue',choices = ["g","greater","l","lower"], help = 'choice keep sequences size greater than -l (g/greater) or keep lower (l/lower)')

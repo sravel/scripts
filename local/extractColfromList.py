@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import loadInList, relativeToAbsolutePath
+from MODULES_SEB import loadInList, relativeToAbsolutePath, existant_file
 
 from time import localtime, strftime
 ## Python modules
@@ -36,8 +36,8 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-ti', '--tablein', metavar="<filename>", required=True, dest = 'tableFile', help = 'Name of table file in')
-	files.add_argument('-l', '--listID', metavar="<filename>", required=True, dest = 'IDlist', help = 'File with IDs to be kept')
+	files.add_argument('-ti', '--tablein', metavar="<filename>", type=existant_file, required=True, dest = 'tableFile', help = 'Name of table file in')
+	files.add_argument('-l', '--listID', metavar="<filename>", type=existant_file, required=True, dest = 'IDlist', help = 'File with IDs to be kept')
 	files.add_argument('-to', '--tableout', metavar="<filename>", required=True, dest = 'tableFileOut', help = 'Name of table file out (default tablein_extractedIDs.tab)')
 
 	# Check parameters

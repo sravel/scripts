@@ -59,7 +59,7 @@ VERSION_DATE='07-06-2016'
 ##################################################
 ## Fonctions
 
-def extant_file(x):
+def existant_file(x):
 	"""
 	'Type' for argparse - checks that file exists but does not open by default.
 

@@ -21,7 +21,7 @@ except AssertionError:
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, dictDict2txt, extant_file
+from MODULES_SEB import directory, relativeToAbsolutePath, dictDict2txt, existant_file
 
 import argparse
 
@@ -159,8 +159,8 @@ if __name__ == "__main__":
 						'display make_ldhatfiles version number and exit')
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
 	filesreq.add_argument('-wd', '--workdir', metavar="<path>",type=directory, required=True, dest = 'workdir', help = 'Path of the directory where files will be created')
-	filesreq.add_argument('-t', '--tab', metavar="<filename>",type=extant_file, required=True, dest = 'tabFile', help = 'Name of tab file in (input whole path if file is not in the current working directory')
-	filesreq.add_argument('-st', '--size_tab', metavar="<filename>",type=extant_file, required=True, dest = 'sizeTab', help = 'Name of a tab file containing the identifiers of the subunits of division (chromosome/scaffold/contig) and their total size. If some scaffolds are not wanted, comment the line.')
+	filesreq.add_argument('-t', '--tab', metavar="<filename>",type=existant_file, required=True, dest = 'tabFile', help = 'Name of tab file in (input whole path if file is not in the current working directory')
+	filesreq.add_argument('-st', '--size_tab', metavar="<filename>",type=existant_file, required=True, dest = 'sizeTab', help = 'Name of a tab file containing the identifiers of the subunits of division (chromosome/scaffold/contig) and their total size. If some scaffolds are not wanted, comment the line.')
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-dt', '--datatype', metavar="<int>", default=1, type=int, choices=[1,2], dest = 'datatype', help = '1 for haplotypic data (default), 2 for genotypic')

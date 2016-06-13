@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath
+from MODULES_SEB import relativeToAbsolutePath,existant_file
 
 ## Python modules
 import argparse
@@ -39,7 +39,7 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-i', '--input', metavar="<filename>", required=True, dest = 'paramfile', help = 'tab file')
+	files.add_argument('-i', '--input', metavar="<filename>",type=existant_file, required=True, dest = 'paramfile', help = 'tab file')
 
 	# Check parameters
 	args = parser.parse_args()
