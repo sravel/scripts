@@ -11,7 +11,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, extant_file, dict2txt, sort_human, dictDict2txt, AutoVivification
+from MODULES_SEB import directory, extant_file, dict2txt, sort_human, dictDict2txt, AutoVivification,printCol
 
 ## Python modules
 import argparse, re
@@ -81,12 +81,12 @@ if __name__ == "__main__":
 	exist=0
 	# creer le répertoire contenant les correspondance entre ref et souches
 	if os.path.exists(correspondingCDSDir):
-		print("  Warning , folder "+correspondingCDSDir+" already exist !!!!" )
+		printCol.yellow("  Warning , folder "+correspondingCDSDir+" already exist !!!!" )
 		exist=1
 	else:
 		os.makedirs(correspondingCDSDir)
 	if exist == 1:
-		print("  Do you want to remove all analysis? (y/n)\n")
+		printCol.yellow("  Do you want to remove all analysis? (y/n)\n")
 		inp = None
 		while inp == None and inp != "y" and inp != "n" and inp != "yes" and inp != "no":
 			inp = input()
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 				exist=0
 
 			elif inp == "n":
-				print(">>>Program exit\n")
+				printCol.red(">>>Program exit\n")
 				exit()
 
 

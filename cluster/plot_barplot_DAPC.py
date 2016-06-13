@@ -11,7 +11,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath, lsExtInDirToList
+from MODULES_SEB import relativeToAbsolutePath, lsExtInDirToList, existant_file
 
 ## Python modules
 import glob, argparse
@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input info for running')
 	files.add_argument('-d', '--directory', metavar="<path/to/directory>", required=True, dest = 'dirPath', help = 'path of result DAPC with csv file')
-	files.add_argument('-l', '--label', metavar="<filename>", required=True, dest = 'labelFileParam', help = 'File with LABEL, one per line')
+	files.add_argument('-l', '--label', metavar="<filename>",type=existant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, one per line')
 	files.add_argument('-o', '--output', metavar="<filename>", required=True, dest = 'outputFileParam', help = 'Name of output figure file')
 
 

@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import replace_all, relativeToAbsolutePath, loadInListCol, loadInDictLine
+from MODULES_SEB import replace_all, relativeToAbsolutePath, loadInListCol, loadInDictLine, existant_file
 
 ## Python modules
 import argparse
@@ -108,8 +108,8 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
-	filesreq.add_argument('-m', '--mat', metavar="<filename>", required=True, dest = 'matriceParam', help = 'matrice file path')
-	filesreq.add_argument('-o', '--order', metavar="<filename>", required=True, dest = 'orderMatriceParam', help = 'file with re-order name of matrice')
+	filesreq.add_argument('-m', '--mat', metavar="<filename>",type=existant_file, required=True, dest = 'matriceParam', help = 'matrice file path')
+	filesreq.add_argument('-o', '--order', metavar="<filename>",type=existant_file, required=True, dest = 'orderMatriceParam', help = 'file with re-order name of matrice')
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-pca', '--pcanum', metavar="<int>", required=False, default = "NULL", dest = 'pcaParam', help = 'Number value of PCA retains (default = NULL)')

@@ -53,7 +53,7 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-d', '--directory', metavar="<path/to/directory>", required=True, dest = 'pathDirectory', help = 'path to directory fasta files')
+	files.add_argument('-d', '--directory', metavar="<path/to/directory>",type=directory, required=True, dest = 'pathDirectory', help = 'path to directory fasta files')
 	files.add_argument('-o', '--out', metavar="<filename>", required=True, dest = 'paramoutfile', help = 'Name of output file')
 
 	# Check parameters
@@ -67,7 +67,7 @@ if __name__ == "__main__":
 	print('Start time: ', start_time,'\n')
 
 	# Récupère le fichier de conf passer en argument
-	pathDirectory = directory(args.pathDirectory)
+	pathDirectory = args.pathDirectory
 
 	outputfilename = args.paramoutfile
 
