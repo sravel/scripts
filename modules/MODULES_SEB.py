@@ -920,24 +920,24 @@ class printCol():
 	END = '\033[0m'
 
 	@classmethod
-	def red(cls, s, **kwargs):
-		print(cls.RED + s + cls.END, **kwargs)
+	def red(cls, s):
+		print(cls.RED + s + cls.END)
 
 	@classmethod
-	def green(cls, s, **kwargs):
-		print(cls.GREEN + s + cls.END, **kwargs)
+	def green(cls, s):
+		print(cls.GREEN + s + cls.END)
 
 	@classmethod
-	def yellow(cls, s, **kwargs):
-		print(cls.YELLOW + s + cls.END, **kwargs)
+	def yellow(cls, s):
+		print(cls.YELLOW + s + cls.END)
 
 	@classmethod
-	def lightPurple(cls, s, **kwargs):
-		print(cls.LIGHT_PURPLE + s + cls.END, **kwargs)
+	def lightPurple(cls, s):
+		print(cls.LIGHT_PURPLE + s + cls.END)
 
 	@classmethod
-	def purple(cls, s, **kwargs):
-		print(cls.PURPLE + s + cls.END, **kwargs)
+	def purple(cls, s):
+		print(cls.PURPLE + s + cls.END)
 
 class AutoVivification(dict):
 	"""
