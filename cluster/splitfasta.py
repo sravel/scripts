@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input info for running')
 	files.add_argument('-f', '--fasta', metavar="<filename>", type=existant_file, required=True, dest = 'fastaFile', help = 'fasta files to split')
-	files.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathFileOut', help = 'Name of output file directory')
+	files.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathOut', help = 'Name of output file directory')
 
 	# Check parameters
 	args = parser.parse_args()
@@ -60,7 +60,7 @@ if __name__ == "__main__":
 
 	# Récupère le fichier de conf passer en argument
 	fastaFile = relativeToAbsolutePath(args.fastaFile)
-	pathFileOut = relativeToAbsolutePath(args.pathFileOut)
+	pathFileOut = args.pathOut
 
 	print("\t - Input Path is: %s" % pathFileOut.pathDirectory)
 	print("\t - fasta file is : %s" % fastaFile)
