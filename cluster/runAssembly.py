@@ -2,6 +2,36 @@
 # -*- coding: utf-8 -*-
 ## @package runAssembly.py
 # @author Sebastien Ravel
+#__docformat__ = "restructuredtext en"
+"""
+	The runAssembly script
+	============================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 18/05/2015
+	:version: 2.0
+
+	Use it to transform tabular matrice of SNP on fasta file
+
+	Example:
+
+	>>> python runAssembly.py -t
+
+	Input require
+	-------------
+
+	- Name of tab file
+
+	Required Module install
+	-----------------------
+
+	This module run with Python 3.x and not Python 2.x
+
+	** Include module of python:
+		- argparse, time
+
+"""
+
 
 ##################################################
 ## Modules
