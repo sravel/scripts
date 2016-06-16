@@ -11,7 +11,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, extant_file, dict2txt, sort_human, dictDict2txt, AutoVivification,printCol
+from MODULES_SEB import directory, existant_file, dict2txt, sort_human, dictDict2txt, AutoVivification,printCol
 
 ## Python modules
 import argparse, re
@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input info for running')
 	files.add_argument('-po', '--pathout', metavar="<path/to/fileout>", type = directory, required=True, dest = 'pathFileOut', help = 'path to fasta files Out')
-	files.add_argument('-p', '--proteine', metavar="<filename>",type=extant_file, required=True, dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
+	files.add_argument('-p', '--proteine', metavar="<filename>",type=existant_file, required=True, dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
 	files.add_argument('-r', '--ref', metavar="<string>", required=True, dest = 'refName', help = 'Name of strain reference (ex: Mycfi) ')
 
 	# Check parameters
