@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-t', '--type', metavar="<sting>",type = str, default="blastx", required=False, dest = 'typeBlast', help = 'Type of blast (blastx, blastn, ...) (default = blastx)')
-	files.add_argument('-b', '--databank', metavar="<path/to/directory/bank>",type = existant_file, default="/work/BANK/biomaj/nr/nr_2016-05-21/flat/nr",required=False, dest = 'dbPath', help = 'Path to bank fasta (default = /work/BANK/biomaj/nr/nr_2016-05-21/flat/nr)')
+	files.add_argument('-b', '--databank', metavar="<path/to/directory/bank>", default="/work/BANK/biomaj/nr/nr_2016-05-21/flat/nr",required=False, dest = 'dbPath', help = 'Path to bank fasta (default = /work/BANK/biomaj/nr/nr_2016-05-21/flat/nr)')
 	files.add_argument('-of', '--outfmt', metavar="<int/string>",type = str, default="6",required=False, dest = 'outfmtValue', help = 'outfmt of blast (default = 6)')
 	files.add_argument('-bo', '--blastoption', metavar="<string>", nargs='*', default=[""],required=False, dest = 'blastOptionValue', help = 'Other blast options like -bo "-evalue 10-3" "-gapopen 5" (default = "")')
 
