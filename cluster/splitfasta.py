@@ -40,7 +40,7 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='splitFasta.py', description='''This Programme extract Fasta Seq with liste keep''')
+	parser = argparse.ArgumentParser(prog='splitFasta.py', description='''This Programme split multi-fasta to one file/sequences''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display splitFasta.py version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
