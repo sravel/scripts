@@ -103,7 +103,7 @@ if __name__ == "__main__":
 		basenameFasta = fasta.split("/")[-1].split(".")[0]
 
 		with open(outputSHDir+str(count)+"_blast.sh", "w") as shScript:
-			shScript.write("module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30")
+			shScript.write("module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30\n")
 			blastcmd = "%s -query %s -db %s -outfmt %s %s -out %s" % (typeBlast, fasta, dbPath, outfmtValue, blastOptionValue, outputBlastResDir+basenameFasta+".txt")
 			if args.debug == "True" : print(blastcmd)
 			shScript.write(blastcmd)
@@ -124,15 +124,15 @@ if __name__ == "__main__":
 	#$ -tc 100
 	#$ -S /bin/bash
 
-	/bin/bash """+outputSHDir+"""$SGE_TASK_ID'_blast.sh"""
+	/bin/bash """+outputSHDir+"""$SGE_TASK_ID_blast.sh"""
 
 
 	with open(SGENameFile, "w") as SGEFile:
 		SGEFile.write(headerSGE)
 
-	print("\n\nExecution summary:")
+	print("\n - Execution summary:")
 
-	print("\n\n You want run MutilblastX for %s fasta,\
+	print("\n  You want run MutilblastX for %s fasta,\
  The script are created all fasta-MutilblastX.sh for all fasta into %s,\n\
  For run all sub-script in qsub, %s was created, It lunch programm make:\n\n" %(count,outputSHDir,SGENameFile))
 	printCol.green("\tqsub %s" % SGENameFile)
