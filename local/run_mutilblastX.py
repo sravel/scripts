@@ -41,7 +41,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(prog='run_multiblastX.py', description='''This Programme extract Fasta Seq with liste keep''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display run_multiblastX.py version number and exit')
-	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
+	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesReq = parser.add_argument_group('Input mandatory infos for running')
 	filesReq.add_argument('-f', '--fasta', metavar="<path/to/directory/fasta>", type=directory, required=True, dest = 'fastaFileDir', help = 'path to fasta files')
@@ -105,8 +105,9 @@ if __name__ == "__main__":
 		with open(outputSHDir+str(count)+"_blast.sh", "w") as shScript:
 			shScript.write("module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30")
 			blastcmd = "%s -query %s -db %s -outfmt %s %s -out %s" % (typeBlast, fasta, dbPath, outfmtValue, blastOptionValue, outputBlastResDir+basenameFasta+".txt")
-			print(blastcmd)
+			if args.debug == "True" : print(blastcmd)
 			shScript.write(blastcmd)
+		count+=1
 
 
 
