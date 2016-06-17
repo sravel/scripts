@@ -90,7 +90,7 @@ if __name__ == "__main__":
 	print(" - Output Info:")
 	print("\t - Output with result Blast were in directory: %s" % outputBlastResDir)
 	print("\t - Output sh were in directory: %s" % outputSHDir)
-	print("\t - Output trash were in directory: %s" % outputTrashDir)
+	print("\t - Output trash were in directory: %s\n\n" % outputTrashDir)
 
 
 	# build directory out
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 	#$ -e """+outputTrashDir+"""
 	#$ -o """+outputTrashDir+"""
 	#$ -q long.q
-	#$ -t 1-"""+count+"""
+	#$ -t 1-"""+str(count)+"""
 	#$ -tc 100
 	#$ -S /bin/bash
 
