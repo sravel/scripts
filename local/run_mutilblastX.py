@@ -102,7 +102,7 @@ if __name__ == "__main__":
 	for fasta in pathFastaFile.lsExtInDirToList("fasta"):
 		basenameFasta = fasta.split("/")[-1].split(".")[0]
 
-		with open(outputSHDir+count+"_blast.sh", "w") as shScript:
+		with open(outputSHDir+str(count)+"_blast.sh", "w") as shScript:
 			shScript.write("module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30")
 			blastcmd = "%s -query %s -db %s -outfmt %s %s -out %s" % (typeBlast, fasta, dbPath, outfmtValue, blastOptionValue, outputBlastResDir+basenameFasta+".txt")
 			print(blastcmd)
