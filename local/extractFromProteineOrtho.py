@@ -11,7 +11,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, existant_file, dict2txt, sort_human, dictDict2txt, AutoVivification,printCol
+from MODULES_SEB import directory, existant_file, dict2txt, sort_human, dictDict2txt, AutoVivification,printCol,relativeToAbsolutePath
 
 ## Python modules
 import argparse, re
@@ -64,7 +64,7 @@ if __name__ == "__main__":
 	# Récupère le fichier de conf passer en argument
 
 	ref = args.refName
-	workingDir = "/".join(args.proteineOrthoFile.split("/")[:-1])+"/"
+	workingDir = "/".join(relativeToAbsolutePath(args.proteineOrthoFile).split("/")[:-1])+"/"
 	correspondingCDSDir = workingDir+"correspondingCDS-contig"+args.suffixParam+"/"
 
 	print("\t - Suffix is: %s" % args.suffixParam)
