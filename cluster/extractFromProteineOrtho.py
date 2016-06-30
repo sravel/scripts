@@ -146,7 +146,6 @@ if __name__ == "__main__":
 	with open(workingDir+"Orthologue_Tab_Stats"+args.suffixParam+".tab","w") as tabFileOut:
 
 		dicoCountNB = AutoVivification()
-		dicoCountNBZero = AutoVivification()
 		nbOrthoTotal=0
 		for souche_contig1 in sorted(dico_ortho.keys(), key=sort_human):
 			namesouche1 = souche_contig1.split("_")[0]
@@ -154,6 +153,7 @@ if __name__ == "__main__":
 			# initialisation du dico a 0
 			for souche in listSouchessort:
 				dicoCountNB[souche_contig1][souche] = 0
+				dicoCountNB["ZERO-NB"][souche] = 0
 
 			for souche_contig2 in dico_ortho[souche_contig1]:
 				namesouche2 = souche_contig2.split("_")[0]
@@ -164,11 +164,12 @@ if __name__ == "__main__":
 			nbOrthoTotal+=1
 			for souche, nbOrtho in dico.items():
 				if nbOrtho == 0:
-					dicoCountNBZero[souche]+=1
+					dicoCountNB["ZERO-NB"][souche]+=1
 
 		tabFileOut.write(dictDict2txt(dicoCountNB,ref))
 
-	print(dict2txt(dicoCountNBZero))
+	print(dict2txt(dicoCountNB["ZERO-NB"]))
+	print(nbOrthoTotal)
 
 
 
