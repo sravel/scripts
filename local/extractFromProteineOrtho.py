@@ -48,7 +48,7 @@ if __name__ == "__main__":
 	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-po', '--pathout', metavar="<path/to/fileout>", type = directory, required=True, dest = 'pathFileOut', help = 'path to fasta files Out')
+	files.add_argument('-s', '--suffix', metavar="<string>", required=True, dest = 'suffixParam', help = 'Suffix to output Name directory and tab')
 	files.add_argument('-p', '--proteine', metavar="<filename>",type=existant_file, required=True, dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
 	files.add_argument('-r', '--ref', metavar="<string>", required=True, dest = 'refName', help = 'Name of strain reference (ex: Mycfi) ')
 
@@ -63,13 +63,12 @@ if __name__ == "__main__":
 
 	# Récupère le fichier de conf passer en argument
 
-	pathFileOut = args.pathFileOut
 	ref = args.refName
-	workingDir = "/".join(pathFileOut.pathDirectory.split("/")[:-2])+"/"
-	correspondingCDSDir = workingDir+"correspondingCDS-contig/"
+	workingDir = "/".join(args.proteineOrthoFile.split("/")[:-1])+"/"
+	correspondingCDSDir = workingDir+"correspondingCDS-contig"+args.suffixParam+"/"
 
-	print("\t - Input Path is: %s" % pathFileOut.pathDirectory)
-	print("\t - ref strain is : %s" % ref)
+	print("\t - Suffix is: %s" % args.suffixParam)
+	print("\t - Ref strain is : %s" % ref)
 	print("\t - Working directory is: %s" % workingDir)
 	print("\t - Corresonding CDS ref/strain directory is: %s\n\n" % correspondingCDSDir)
 
@@ -144,7 +143,7 @@ if __name__ == "__main__":
 	print("\t - %i orthologues 1/1 found on the %s strains" % (nbOrtho1_1, len(listSouchessort)+1))
 
 	# ouverture d'un tableau résumer
-	with open(workingDir+"Orthologue_Tab_Stats.tab","w") as tabFileOut:
+	with open(workingDir+"Orthologue_Tab_Stats"+args.suffixParam+".tab","w") as tabFileOut:
 
 		dicoCountNB = AutoVivification()
 		for souche_contig1 in sorted(dico_ortho.keys(), key=sort_human):
@@ -170,8 +169,8 @@ if __name__ == "__main__":
 	print("\n\nExecution summary:")
 
 	print("  - Outputting \n\
-     - %s\n\
-     - %s\n\n" % (tabFileOut.name,correspondingCDSDir) )
+	- %s\n\
+	- %s\n\n" % (tabFileOut.name,correspondingCDSDir) )
 
 	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
