@@ -194,13 +194,12 @@ def dictDict2txt(dico,first="Info"):
 		dicoInfosValues = [ str(k) for k in dicoInfosValues]
 
 		if headerc == 0:
-			header = dico[key].keys()
-			header = [ str(k) for k in header]
+			header = [ str(k) for k in sorted(dico[key].keys(), key=sort_human) ]
 			value = first+"\t" + "\t".join(header)
 			txtoutput += "%s\n" % str(value)
 			headerc=1
 
-		value = "\t".join(dicoInfosValues)
+		value = "\t".join([ str(dico[key][key2]) for key2 in header])
 		txtoutput += "%s\t%s\n" % (str(key),str(value))
 	return txtoutput
 
