@@ -38,7 +38,7 @@ function help
 
 ##################################################
 ## Parse command line options.
-while getopts f:t:m:h: OPT;
+while getopts f:t:m:s:h: OPT;
 	do case $OPT in
 		f)	fasta=$OPTARG;;
 		t)	thread=$OPTARG;;
