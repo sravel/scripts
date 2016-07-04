@@ -102,14 +102,14 @@ if [ $fasta != "" ] && [ $thread != "" ] ; then
 
 	echo "proteinortho5.pl -cpus=$thread -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique"$suffix" $list" >> $pathAnalysis"run_protheineOrtho"$suffix".sh"
 
-	chmod 755 $pathAnalysis"run_protheineOrtho.sh"
+	chmod 755 $pathAnalysis"run_protheineOrtho"$suffix".sh"
 
 	# Print final infos
 	printf "\n\n You want run ProteineOrtho for "$compteur" fasta,
- For run use run_protheineOrtho.sh , lunch programm with:\n"
+ For run use run_protheineOrtho"$suffix".sh , lunch programm with:\n"
 
 	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30 bioinfo/proteinortho/5.11\n"
-	printf "\033[35m \tqsub -V -b Y -N ProteinOtho -cwd -q long.q -pe parallel_smp $thread "$pathAnalysis"run_protheineOrtho.sh\n\n"
+	printf "\033[35m \tqsub -V -b Y -N ProteinOtho -cwd -q long.q -pe parallel_smp $thread "$pathAnalysis"run_protheineOrtho"$suffix".sh\n\n"
 
 	# Print end
 	printf "\033[36m ####################################################################\n";
