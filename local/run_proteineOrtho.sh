@@ -22,13 +22,14 @@ function help
  Output:
 	directory with proteinOrtho Results
 
- Exemple Usage: ./run_proteineOrtho.sh -f ./CDS -t thread -m sebastien.ravel@cirad.fr
+ Exemple Usage: ./run_proteineOrtho.sh -f ./CDS -t thread -m sebastien.ravel@cirad.fr -s _ALL
 
- Usage: ./run_proteineOrtho.sh -f {path/to/CDS} -t 10 -m obiwankenobi@jedi.force
+ Usage: ./run_proteineOrtho.sh -f {path/to/CDS} -t 10 -m obiwankenobi@jedi.force -s .toto
 	options:
 		-f {path/to/CDS} = path to fasta with CDS
 		-t {int} = number of threads job cluster
 		-m {email} = email to add to qsub job end (not mandatory)
+		-s {str} = output Suffix Name (not mandatory)
 
 		-h = see help\n\n"
 	exit 0
@@ -42,6 +43,7 @@ while getopts f:t:m:h: OPT;
 		f)	fasta=$OPTARG;;
 		t)	thread=$OPTARG;;
 		m)	mail=$OPTARG;;
+		s)	suffix=$OPTARG;;
 		h)	help;;
 		\?)	help;;
 	esac
@@ -61,6 +63,9 @@ if [ -z ${mail+x} ]; then
 else
 	cmdMail="-M $mail -m beas"
 fi
+if [ -z ${suffix+x} ]; then
+	suffix=""
+fi
 
 if [ $fasta != "" ] && [ $thread != "" ] ; then
 	#version
@@ -75,18 +80,15 @@ if [ $fasta != "" ] && [ $thread != "" ] ; then
 	fastaPath=`readlink -m $fasta`
 
 
-#proteinortho5.pl -cpus=3 -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique_48souches70-15
-
 	printf "\033[32m \n Working in directory: "$pathAnalysis
 	printf "\033[32m \n thread is: "$thread
 	printf "\033[32m \n Fasta were in directory: "$fastaPath"\n\n"
+	printf "\033[32m \n Suffix is: "$suffix"\n\n"
 
-	if [ -e $pathAnalysis"run_protheineOrtho.sh" ]; then
-		rm $pathAnalysis"run_protheineOrtho.sh"
+	if [ -e $pathAnalysis"run_protheineOrtho"$suffix".sh" ]; then
+		rm $pathAnalysis"run_protheineOrtho"$suffix".sh"
 	fi
 
-
-#proteinortho5.pl -cpus=$thread -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique
 
 	compteur=0
 	list=""
@@ -98,7 +100,7 @@ if [ $fasta != "" ] && [ $thread != "" ] ; then
 	done
 
 
-	echo "proteinortho5.pl -cpus=$thread -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique $list" >> $pathAnalysis"run_protheineOrtho.sh"
+	echo "proteinortho5.pl -cpus=$thread -p=blastn+ -singles -clean -graph -verbose -blastParameters='' -project=phylogenomique"$suffix" $list" >> $pathAnalysis"run_protheineOrtho"$suffix".sh"
 
 	chmod 755 $pathAnalysis"run_protheineOrtho.sh"
 
