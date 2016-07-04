@@ -1040,7 +1040,7 @@ listFiles=%s\n
 				extentionFichier = "directory"
 			if extentionFichier == ext:
 				lsFilesFasta.append(fichier)
-		return sorted(lsFilesFasta)
+		return sorted(lsFilesFasta, key=sort_human)
 
 	def splitFilesDir(self):
 		"""list files and list directory"""
