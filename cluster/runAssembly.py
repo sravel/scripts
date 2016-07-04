@@ -5,7 +5,7 @@
 #__docformat__ = "restructuredtext en"
 """
 	The runAssembly script
-	============================
+	======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
 	:date: 18/05/2015

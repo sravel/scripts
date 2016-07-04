@@ -9,7 +9,7 @@
 ## Python modules
 import re, argparse, sys, os
 sys.path.insert(1,'/homedir/sravel/programme/ScriptsSEB/scripts/modules/')
-from MODULES_SEB import relativeToAbsolutePath, extant_file
+from MODULES_SEB import relativeToAbsolutePath, existant_file
 
 ## Variables Globales
 version="0.1"
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 						help='display make_hapmapfile.py version number and exit')
 
 	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-f', '--fileIn', metavar="<filename>", type = extant_file, required = True,  dest = 'fileIn', help = 'Table of SNPs without FU')
+	files.add_argument('-f', '--fileIn', metavar="<filename>", type = existant_file, required = True,  dest = 'fileIn', help = 'Table of SNPs without FU')
 	files.add_argument('-o', '--out', metavar="<filename>", default="outfile.hapmap", dest = 'fileOut', help = 'Name of hapmap file (default outfile.hapmap)')
 	files.add_argument('-w', '--window', metavar="<int>", type = int, default=1, dest = 'window', help = 'Minimal window by which SNPs have to be separated, in bp (default = 1 - keep everything)')
 	files.add_argument('-c', '--chrom', action='store_true', dest = 'chrom', help = 'If used, hapmap files will be produced by chromosomes')
