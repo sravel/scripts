@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>splitfasta</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;splitfasta
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="splitfasta-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="splitfasta-module.html">Module splitfasta</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/python3.5</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment">## @package splitFasta.py.py</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment"># @author Sebastien Ravel</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment">## Modules</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-comment">#Import MODULES_SEB</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable addSample.current_dir=addSample-module.html#current_dir,Variable countCDSStartStop.current_dir=countCDSStartStop-module.html#current_dir,Variable extractColfromList.current_dir=extractColfromList-module.html#current_dir,Variable extractFromProteineOrtho.current_dir=extractFromProteineOrtho-module.html#current_dir,Variable extractSeqFasta.current_dir=extractSeqFasta-module.html#current_dir,Variable extractSeqFastaFromLen.current_dir=extractSeqFastaFromLen-module.html#current_dir,Variable getdistrgenotypeTAB.current_dir=getdistrgenotypeTAB-module.html#current_dir,Variable grepMotifFromAlignment.current_dir=grepMotifFromAlignment-module.html#current_dir,Variable make_ldhatfiles.current_dir=make_ldhatfiles-module.html#current_dir,Variable make_structure_dir.current_dir=make_structure_dir-module.html#current_dir,Variable plot_barplot_DAPC.current_dir=plot_barplot_DAPC-module.html#current_dir,Variable renameFile.current_dir=renameFile-module.html#current_dir,Variable runAssembly.current_dir=runAssembly-module.html#current_dir,Variable run_DAPCV2.current_dir=run_DAPCV2-module.html#current_dir,Variable run_mutilblastX.current_dir=run_mutilblastX-module.html#current_dir,Variable splitfasta.current_dir=splitfasta-module.html#current_dir,Variable struc2runClumpak.current_dir=struc2runClumpak-module.html#current_dir"><a title="addSample.current_dir
+countCDSStartStop.current_dir
+extractColfromList.current_dir
+extractFromProteineOrtho.current_dir
+extractSeqFasta.current_dir
+extractSeqFastaFromLen.current_dir
+getdistrgenotypeTAB.current_dir
+grepMotifFromAlignment.current_dir
+make_ldhatfiles.current_dir
+make_structure_dir.current_dir
+plot_barplot_DAPC.current_dir
+renameFile.current_dir
+runAssembly.current_dir
+run_DAPCV2.current_dir
+run_mutilblastX.current_dir
+splitfasta.current_dir
+struc2runClumpak.current_dir" class="py-name" href="#" onclick="return doclink('link-0', 'current_dir', 'link-0');">current_dir</a></tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">abspath</tt><tt class="py-op">(</tt><tt class="py-name">__file__</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"/"</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">insert</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">,</tt><tt id="link-1" class="py-name"><a title="addSample.current_dir
+countCDSStartStop.current_dir
+extractColfromList.current_dir
+extractFromProteineOrtho.current_dir
+extractSeqFasta.current_dir
+extractSeqFastaFromLen.current_dir
+getdistrgenotypeTAB.current_dir
+grepMotifFromAlignment.current_dir
+make_ldhatfiles.current_dir
+make_structure_dir.current_dir
+plot_barplot_DAPC.current_dir
+renameFile.current_dir
+runAssembly.current_dir
+run_DAPCV2.current_dir
+run_mutilblastX.current_dir
+splitfasta.current_dir
+struc2runClumpak.current_dir" class="py-name" href="#" onclick="return doclink('link-1', 'current_dir', 'link-0');">current_dir</a></tt><tt class="py-op">+</tt><tt class="py-string">'../modules/'</tt><tt class="py-op">)</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">MODULES_SEB</tt> <tt class="py-keyword">import</tt> <tt class="py-name">relativeToAbsolutePath</tt><tt class="py-op">,</tt> <tt class="py-name">existant_file</tt><tt class="py-op">,</tt> <tt class="py-name">fasta2dict</tt><tt class="py-op">,</tt> <tt class="py-name">directory</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-comment">## Python modules</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">argparse</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">time</tt> <tt class="py-keyword">import</tt> <tt class="py-name">localtime</tt><tt class="py-op">,</tt> <tt class="py-name">strftime</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment">## BIO Python modules</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">Bio</tt> <tt class="py-keyword">import</tt> <tt class="py-name">SeqIO</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment">## Variables Globales</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable addSample.version=addSample-module.html#version,Variable countCDSStartStop.version=countCDSStartStop-module.html#version,Variable extractColfromList.version=extractColfromList-module.html#version,Variable extractFromProteineOrtho.version=extractFromProteineOrtho-module.html#version,Variable extractSeqFasta.version=extractSeqFasta-module.html#version,Variable extractSeqFastaFromLen.version=extractSeqFastaFromLen-module.html#version,Variable getdistrgenotypeTAB.version=getdistrgenotypeTAB-module.html#version,Variable grepMotifFromAlignment.version=grepMotifFromAlignment-module.html#version,Variable make_hapmapfile2.version=make_hapmapfile2-module.html#version,Variable make_ldhatfiles.version=make_ldhatfiles-module.html#version,Variable make_structure_dir.version=make_structure_dir-module.html#version,Variable plot_barplot_DAPC.version=plot_barplot_DAPC-module.html#version,Variable renameFile.version=renameFile-module.html#version,Variable runAssembly.version=runAssembly-module.html#version,Variable run_DAPCV2.version=run_DAPCV2-module.html#version,Variable run_mutilblastX.version=run_mutilblastX-module.html#version,Variable splitfasta.version=splitfasta-module.html#version,Variable struc2runClumpak.version=struc2runClumpak-module.html#version"><a title="addSample.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaFromLen.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+plot_barplot_DAPC.version
+renameFile.version
+runAssembly.version
+run_DAPCV2.version
+run_mutilblastX.version
+splitfasta.version
+struc2runClumpak.version" class="py-name" href="#" onclick="return doclink('link-2', 'version', 'link-2');">version</a></tt><tt class="py-op">=</tt><tt class="py-string">"0.1"</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable addSample.VERSION_DATE=addSample-module.html#VERSION_DATE,Variable countCDSStartStop.VERSION_DATE=countCDSStartStop-module.html#VERSION_DATE,Variable extractColfromList.VERSION_DATE=extractColfromList-module.html#VERSION_DATE,Variable extractFromProteineOrtho.VERSION_DATE=extractFromProteineOrtho-module.html#VERSION_DATE,Variable extractSeqFasta.VERSION_DATE=extractSeqFasta-module.html#VERSION_DATE,Variable extractSeqFastaFromLen.VERSION_DATE=extractSeqFastaFromLen-module.html#VERSION_DATE,Variable getdistrgenotypeTAB.VERSION_DATE=getdistrgenotypeTAB-module.html#VERSION_DATE,Variable grepMotifFromAlignment.VERSION_DATE=grepMotifFromAlignment-module.html#VERSION_DATE,Variable make_hapmapfile2.VERSION_DATE=make_hapmapfile2-module.html#VERSION_DATE,Variable make_ldhatfiles.VERSION_DATE=make_ldhatfiles-module.html#VERSION_DATE,Variable make_structure_dir.VERSION_DATE=make_structure_dir-module.html#VERSION_DATE,Variable plot_barplot_DAPC.VERSION_DATE=plot_barplot_DAPC-module.html#VERSION_DATE,Variable renameFile.VERSION_DATE=renameFile-module.html#VERSION_DATE,Variable runAssembly.VERSION_DATE=runAssembly-module.html#VERSION_DATE,Variable run_DAPCV2.VERSION_DATE=run_DAPCV2-module.html#VERSION_DATE,Variable run_mutilblastX.VERSION_DATE=run_mutilblastX-module.html#VERSION_DATE,Variable splitfasta.VERSION_DATE=splitfasta-module.html#VERSION_DATE,Variable struc2runClumpak.VERSION_DATE=struc2runClumpak-module.html#VERSION_DATE"><a title="addSample.VERSION_DATE
+countCDSStartStop.VERSION_DATE
+extractColfromList.VERSION_DATE
+extractFromProteineOrtho.VERSION_DATE
+extractSeqFasta.VERSION_DATE
+extractSeqFastaFromLen.VERSION_DATE
+getdistrgenotypeTAB.VERSION_DATE
+grepMotifFromAlignment.VERSION_DATE
+make_hapmapfile2.VERSION_DATE
+make_ldhatfiles.VERSION_DATE
+make_structure_dir.VERSION_DATE
+plot_barplot_DAPC.VERSION_DATE
+renameFile.VERSION_DATE
+runAssembly.VERSION_DATE
+run_DAPCV2.VERSION_DATE
+run_mutilblastX.VERSION_DATE
+splitfasta.VERSION_DATE
+struc2runClumpak.VERSION_DATE" class="py-name" href="#" onclick="return doclink('link-3', 'VERSION_DATE', 'link-3');">VERSION_DATE</a></tt><tt class="py-op">=</tt><tt class="py-string">'16/06/2016'</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt id="link-4" class="py-name" targets="Variable addSample.debug=addSample-module.html#debug,Variable countCDSStartStop.debug=countCDSStartStop-module.html#debug,Variable extractFromProteineOrtho.debug=extractFromProteineOrtho-module.html#debug,Variable extractSeqFasta.debug=extractSeqFasta-module.html#debug,Variable extractSeqFastaFromLen.debug=extractSeqFastaFromLen-module.html#debug,Variable getdistrgenotypeTAB.debug=getdistrgenotypeTAB-module.html#debug,Variable grepMotifFromAlignment.debug=grepMotifFromAlignment-module.html#debug,Variable run_mutilblastX.debug=run_mutilblastX-module.html#debug,Variable splitfasta.debug=splitfasta-module.html#debug"><a title="addSample.debug
+countCDSStartStop.debug
+extractFromProteineOrtho.debug
+extractSeqFasta.debug
+extractSeqFastaFromLen.debug
+getdistrgenotypeTAB.debug
+grepMotifFromAlignment.debug
+run_mutilblastX.debug
+splitfasta.debug" class="py-name" href="#" onclick="return doclink('link-4', 'debug', 'link-4');">debug</a></tt><tt class="py-op">=</tt><tt class="py-string">"False"</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-comment">#debug="True"</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-comment">## Functions</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-comment">## Main code</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">"__main__"</tt><tt class="py-op">:</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-comment"># Initializations</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-name">start_time</tt> <tt class="py-op">=</tt> <tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d-%m-%Y_%H:%M:%S"</tt><tt class="py-op">,</tt> <tt class="py-name">localtime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">        <tt class="py-comment"># Parameters recovery</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">        <tt class="py-name">parser</tt> <tt class="py-op">=</tt> <tt class="py-name">argparse</tt><tt class="py-op">.</tt><tt class="py-name">ArgumentParser</tt><tt class="py-op">(</tt><tt class="py-name">prog</tt><tt class="py-op">=</tt><tt class="py-string">'splitFasta.py'</tt><tt class="py-op">,</tt> <tt class="py-name">description</tt><tt class="py-op">=</tt><tt class="py-string">'''This Programme split multi-fasta to one file/sequences'''</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-v'</tt><tt class="py-op">,</tt> <tt class="py-string">'--version'</tt><tt class="py-op">,</tt> <tt class="py-name">action</tt><tt class="py-op">=</tt><tt class="py-string">'version'</tt><tt class="py-op">,</tt> <tt id="link-5" class="py-name"><a title="addSample.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaFromLen.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+plot_barplot_DAPC.version
+renameFile.version
+runAssembly.version
+run_DAPCV2.version
+run_mutilblastX.version
+splitfasta.version
+struc2runClumpak.version" class="py-name" href="#" onclick="return doclink('link-5', 'version', 'link-2');">version</a></tt><tt class="py-op">=</tt><tt class="py-string">'You are using %(prog)s version: '</tt> <tt class="py-op">+</tt> <tt id="link-6" class="py-name"><a title="addSample.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaFromLen.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+plot_barplot_DAPC.version
+renameFile.version
+runAssembly.version
+run_DAPCV2.version
+run_mutilblastX.version
+splitfasta.version
+struc2runClumpak.version" class="py-name" href="#" onclick="return doclink('link-6', 'version', 'link-2');">version</a></tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt>\ </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">                                                <tt class="py-string">'display splitFasta.py version number and exit'</tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt class="py-comment">#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-name">files</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument_group</tt><tt class="py-op">(</tt><tt class="py-string">'Input info for running'</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt class="py-name">files</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-f'</tt><tt class="py-op">,</tt> <tt class="py-string">'--fasta'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;filename&gt;"</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt><tt class="py-op">=</tt><tt class="py-name">existant_file</tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'fastaFile'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'fasta files to split'</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-name">files</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-o'</tt><tt class="py-op">,</tt> <tt class="py-string">'--out'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;path/to/directory&gt;"</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt> <tt class="py-op">=</tt> <tt class="py-name">directory</tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'pathOut'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'Name of output file directory'</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-comment"># Check parameters</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt class="py-name">args</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">parse_args</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt class="py-comment">#Welcome message</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#        Welcome in splitFasta (Version "</tt> <tt class="py-op">+</tt> <tt id="link-7" class="py-name"><a title="addSample.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaFromLen.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+plot_barplot_DAPC.version
+renameFile.version
+runAssembly.version
+run_DAPCV2.version
+run_mutilblastX.version
+splitfasta.version
+struc2runClumpak.version" class="py-name" href="#" onclick="return doclink('link-7', 'version', 'link-2');">version</a></tt> <tt class="py-op">+</tt> <tt class="py-string">")          #"</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">'Start time: '</tt><tt class="py-op">,</tt> <tt class="py-name">start_time</tt><tt class="py-op">,</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">        <tt class="py-comment"># R&#233;cup&#232;re le fichier de conf passer en argument</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">        <tt class="py-name">fastaFile</tt> <tt class="py-op">=</tt> <tt class="py-name">relativeToAbsolutePath</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">fastaFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">        <tt class="py-name">pathFileOut</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pathOut</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\t - Input Path is: %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">pathFileOut</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\t - fasta file is : %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">fastaFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">        <tt class="py-name">dicoFasta</tt> <tt class="py-op">=</tt> <tt class="py-name">fasta2dict</tt><tt class="py-op">(</tt><tt class="py-name">fastaFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line"> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">name</tt><tt class="py-op">,</tt> <tt class="py-name">sequence</tt> <tt class="py-keyword">in</tt> <tt class="py-name">dicoFasta</tt><tt class="py-op">.</tt><tt class="py-name">items</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">                <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">pathFileOut</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">+</tt><tt class="py-name">name</tt><tt class="py-op">+</tt><tt class="py-string">".fasta"</tt><tt class="py-op">,</tt> <tt class="py-string">"w"</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">output_handle</tt><tt class="py-op">:</tt> </tt>
+<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">                        <tt class="py-name">SeqIO</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">sequence</tt><tt class="py-op">,</tt><tt class="py-name">output_handle</tt><tt class="py-op">,</tt> <tt class="py-string">"fasta"</tt><tt class="py-op">)</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">        <tt class="py-comment">#print("\n\nExecution summary:")</tt> </tt>
+<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line"> </tt>
+<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">        <tt class="py-comment">#print("  - Outputting \n\</tt> </tt>
+<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">        <tt class="py-comment">#Il y a au final %i Sequences gard&#233;es sur les %i initial\n\</tt> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">        <tt class="py-comment">#les sequences sont ajout&#233;es dans le fichier %s" %(nbKeep,nbTotal,outputfilename))</tt> </tt>
+<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">        <tt class="py-comment">#print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))</tt> </tt>
+<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#                        End of execution                       #"</tt><tt class="py-op">)</tt> </tt>
+<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1
+    on Mon Jul  4 07:15:08 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
