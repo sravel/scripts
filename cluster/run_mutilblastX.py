@@ -52,6 +52,8 @@ if __name__ == "__main__":
 	files.add_argument('-b', '--databank', metavar="<path/to/directory/bank>", default="/work/BANK/biomaj/nr/nr_2016-05-21/flat/nr",required=False, dest = 'dbPath', help = 'Path to bank fasta (default = /work/BANK/biomaj/nr/nr_2016-05-21/flat/nr)')
 	files.add_argument('-of', '--outfmt', metavar="<int/string>",type = str, default="6",required=False, dest = 'outfmtValue', help = 'outfmt of blast (default = 6)')
 	files.add_argument('-bo', '--blastoption', metavar="<string>", nargs='*', default=[""],required=False, dest = 'blastOptionValue', help = 'Other blast options like -bo "-evalue 10-3" "-gapopen 5" (default = "")')
+	files.add_argument('-j', '--nbjob', metavar="<int>", type = int, default=100,required=False, dest = 'nbJobValue', help = 'Number of job array lunch (default = 100)')
+	files.add_argument('-e', '--extention', metavar="<string>", type = str, default=".txt",required=False, dest = 'extValue', help = 'Extention of blast output file (default = ".txt")')
 
 
 	# Check parameters
@@ -59,7 +61,7 @@ if __name__ == "__main__":
 
 	#Welcome message
 	print("#################################################################")
-	print("#        Welcome in run_multiblastX (Version " + version + ")          #")
+	print("#           Welcome in run_multiblastX (Version " + version + ")            #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 
@@ -76,7 +78,7 @@ if __name__ == "__main__":
 	outputBlastResDir = pathFileOut.pathDirectory+"blastRes/"
 	outputSHDir = pathFileOut.pathDirectory+"sh/"
 	outputTrashDir = pathFileOut.pathDirectory+"trash/"
-	SGENameFile = outputSHDir+"submitQsub.sge"
+	SGENameFile = outputSHDir+"submitQsubBLAST.sge"
 
 	# resume value to user
 	print(" - Intput Info:")
@@ -104,7 +106,7 @@ if __name__ == "__main__":
 
 		with open(outputSHDir+str(count)+"_blast.sh", "w") as shScript:
 			shScript.write("module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30\n")
-			blastcmd = "%s -query %s -db %s -outfmt %s %s -out %s" % (typeBlast, fasta, dbPath, outfmtValue, blastOptionValue, outputBlastResDir+basenameFasta+".txt")
+			blastcmd = "%s -query %s -db %s -outfmt %s %s -out %s" % (typeBlast, fasta, dbPath, outfmtValue, blastOptionValue, outputBlastResDir+basenameFasta+args.extValue)
 			if args.debug == "True" : print(blastcmd)
 			shScript.write(blastcmd)
 		count+=1
@@ -114,17 +116,17 @@ if __name__ == "__main__":
 	headerSGE = """
 #!/bin/bash
 
-	#$ -N blast
-	#$ -cwd
-	#$ -V
-	#$ -e """+outputTrashDir+"""
-	#$ -o """+outputTrashDir+"""
-	#$ -q long.q
-	#$ -t 1-"""+str(count)+"""
-	#$ -tc 100
-	#$ -S /bin/bash
+#$ -N blast
+#$ -cwd
+#$ -V
+#$ -e """+outputTrashDir+"""
+#$ -o """+outputTrashDir+"""
+#$ -q long.q
+#$ -t 1-"""+str(count)+"""
+#$ -tc """+str(args.nbJobValue)+"""
+#$ -S /bin/bash
 
-	/bin/bash """+outputSHDir+"""$SGE_TASK_ID_blast.sh"""
+/bin/bash """+outputSHDir+"""${SGE_TASK_ID}_blast.sh"""
 
 
 	with open(SGENameFile, "w") as SGEFile:
@@ -135,7 +137,7 @@ if __name__ == "__main__":
 	print("\n  You want run MutilblastX for %s fasta,\
  The script are created all fasta-MutilblastX.sh for all fasta into %s,\n\
  For run all sub-script in qsub, %s was created.\n\
- It lunch programm with job array and run 100 job max:\n\n" %(count,outputSHDir,SGENameFile))
+ It lunch programm with job array and run %s job max:\n" %(count,outputSHDir,SGENameFile, args.nbJobValue))
 	printCol.green("\tqsub %s" % SGENameFile)
 	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
