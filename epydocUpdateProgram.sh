@@ -17,3 +17,5 @@ epydoc --html ./local/*.py -o ./modules/DOC_Program/ -v --graph all --inheritanc
 git commit -m "update DOC for DOC_Program" ./modules/DOC_Program/*
 
 scp ./modules/DOC_Program/* admin@194.254.138.95:/volume1/web/DOC-PROGRAMME/
+
+rm ./local/*.pyc
