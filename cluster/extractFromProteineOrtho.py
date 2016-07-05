@@ -178,7 +178,7 @@ if __name__ == "__main__":
 	#print(dict2txt(dicoCountNB["ZERO-NB"]))
 
 	for key, value in sorted(dicoCountNB["ZERO-NB"].items(), key=lambda x: x[1], reverse=True):
-		print("%s\t%s" % (key, value))
+		print("%s\t%s\t%f.2" % (key, value, value/nbOrthoTotal))
 
 	print("\n\nNB orthologues with 1 strain mandatory:%s\n" % nbOrthoTotal)
 
