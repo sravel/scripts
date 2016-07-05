@@ -181,11 +181,11 @@ if __name__ == "__main__":
 		percent = (value/nbOrthoTotal)*100
 
 		if percent < 20:
-			printCol.PURPLE("%s\t%s\t%.2f" % (key, value, percent))
+			printCol.purple("%s\t%s\t%.2f" % (key, value, percent))
 		elif percent > 30:
-			printCol.RED("%s\t%s\t%.2f" % (key, value, percent))
+			printCol.red("%s\t%s\t%.2f" % (key, value, percent))
 		elif percent > 20:
-			printCol.YELLOW("%s\t%s\t%.2f" % (key, value, percent))
+			printCol.yellow("%s\t%s\t%.2f" % (key, value, percent))
 
 	print("\n\nNB orthologues with 1 strain mandatory:%s\n" % nbOrthoTotal)
 
