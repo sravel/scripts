@@ -174,8 +174,13 @@ if __name__ == "__main__":
 
 		tabFileOut.write(dictDict2txt(dicoCountNB,ref))
 
-	print(dict2txt(dicoCountNB["ZERO-NB"]))
-	print(nbOrthoTotal)
+
+	#print(dict2txt(dicoCountNB["ZERO-NB"]))
+
+	for key, value in sorted(dicoCountNB["ZERO-NB"].items(), key=lambda x: x[1], reverse=True):
+		print("%s\t%s" % (key, value))
+
+	print("\n\nNB orthologues with 1 strain mandatory:%s\n" % nbOrthoTotal)
 
 
 
@@ -184,7 +189,8 @@ if __name__ == "__main__":
 
 	print("  - Outputting \n\
 	- %s\n\
-	- %s\n\n" % (tabFileOut.name,correspondingCDSDir) )
+	- %s\n\
+	- %s\n\n" % (tabFileOut.name,listKeepFile.name,correspondingCDSDir) )
 
 	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")

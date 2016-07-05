@@ -90,19 +90,8 @@ if __name__ == "__main__":
 
 
 
-
-
-	if fastaFile[-1] != "/":
-		fastaFile += "/"
-	if outputfilePath[-1] != "/":
-		outputfilePath += "/"
-	if listFile[-1] != "/":
-		listFile += "/"
-
-	#os.system("rm "+outputfilePath+"*.fas")
-
 	#recupération de la liste des CDS complet
-	listCDSfiles = lsExtInDirToList(fastaFile,"fasta")
+	listCDSfiles = fastaFile.lsExtInDirToList("fasta")
 
 	#ouverture de la liste des MGG à garder
 	mggKeepall = loadInList(mggFileKeep)
