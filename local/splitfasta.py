@@ -1,6 +1,6 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package splitFasta.py.py
+# @package splitFasta.py.py
 # @author Sebastien Ravel
 
 ##################################################
