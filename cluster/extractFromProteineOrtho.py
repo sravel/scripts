@@ -140,10 +140,10 @@ if __name__ == "__main__":
 				namesouche2 = souche_contig2.split("_")[0]
 				correspondanceMGGContig = open(correspondingCDSDir+namesouche2+"_corespondingMGG-contig","a")
 				correspondanceMGGContig.write("%s\t%s\n"%(souche_contig1,souche_contig2))
-				nbOrtho1_1+=1
+			nbOrtho1_1+=1
 
 	with open(workingDir+"Orthologue_MGG_List_KEEP"+args.suffixParam+".txt","w") as listKeepFile:
-		txt = "\n".join(listKeep)
+		txt = "\n".join(sorted(listKeep, key=sort_human))
 		listKeepFile.write(txt)
 
 	print("\t - %i orthologues 1/1 found on the %s strains" % (nbOrtho1_1, len(listSouchessort)+1))
