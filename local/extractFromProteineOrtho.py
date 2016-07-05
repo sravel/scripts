@@ -178,7 +178,14 @@ if __name__ == "__main__":
 	#print(dict2txt(dicoCountNB["ZERO-NB"]))
 
 	for key, value in sorted(dicoCountNB["ZERO-NB"].items(), key=lambda x: x[1], reverse=True):
-		print("%s\t%s\t%f.2" % (key, value, value/nbOrthoTotal))
+		percent = (value/nbOrthoTotal)*100
+
+		if percent < 20:
+			printCol.PURPLE("%s\t%s\t%.2f" % (key, value, percent))
+		elif percent > 30:
+			printCol.RED("%s\t%s\t%.2f" % (key, value, percent))
+		elif percent > 20:
+			printCol.YELLOW("%s\t%s\t%.2f" % (key, value, percent))
 
 	print("\n\nNB orthologues with 1 strain mandatory:%s\n" % nbOrthoTotal)
 
