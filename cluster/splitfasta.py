@@ -1,6 +1,6 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package splitFasta.py.py
+# @package splitFasta.py.py
 # @author Sebastien Ravel
 
 ##################################################

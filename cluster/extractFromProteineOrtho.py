@@ -128,17 +128,23 @@ if __name__ == "__main__":
 
 	# ecriture des correspondence othologue 1/1:
 	nbOrtho1_1=0
+	listKeep = []
 	for souche_contig1 , listcorresp in dico_ortho.items():
 		namesouche1 = souche_contig1.split("_")[0]
 		tabsoucheFind = [souche.split("_")[0] for souche in listcorresp]
 
 		if len(listcorresp) == len(listSouchessort) and sorted(listSouchessort, key=sort_human) == sorted(tabsoucheFind, key=sort_human):
+			listKeep.append(souche_contig1)
 			for soucheFind in listcorresp:
 				souche_contig2 = soucheFind
 				namesouche2 = souche_contig2.split("_")[0]
 				correspondanceMGGContig = open(correspondingCDSDir+namesouche2+"_corespondingMGG-contig","a")
 				correspondanceMGGContig.write("%s\t%s\n"%(souche_contig1,souche_contig2))
-			nbOrtho1_1+=1
+				nbOrtho1_1+=1
+
+	with open(workingDir+"Orthologue_MGG_List_KEEP"+args.suffixParam+".txt","w") as listKeepFile:
+		txt = "\n".join(listKeep)
+		listKeepFile.write(txt)
 
 	print("\t - %i orthologues 1/1 found on the %s strains" % (nbOrtho1_1, len(listSouchessort)+1))
 
