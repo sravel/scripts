@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath, existant_file, extractListFromFasta2, loadInDict2, directory
+from MODULES_SEB import relativeToAbsolutePath, existant_file, extractListFromFasta, loadInDictCol, directory,dictDict2txt, nbSeqInFile2dict
 
 ## Python modules
 import argparse, os, subprocess
@@ -36,14 +36,23 @@ debug="False"
 
 ##################################################
 ## Functions
-def checkParameters (arg_list):
-	# Check input related options
-	if (not arg_list.fastaFile):
-		print ('Error: No input file defined via option -f/--fasta !' + "\n")
-		parser.print_help()
-		exit()
 
+def extractListFromFasta2(sequenceFile,FileList ):
+	dicoOutput = {}
+	# Ouverture des sequences fasta MGG et chargement dans dictionnaire
+	dictSequences = fasta2dict(sequenceFile)
 
+	# ouverture des identifiants a garder
+	listKeep = FileList
+	keep = 0
+	noKeep = 0
+	for ID, record in dictSequences.items():
+		if ID in listKeep:
+			keep +=1
+			dicoOutput[record] = record
+		else:
+			noKeep += 1
+	return dicoOutput
 
 ##################################################
 ## Main code
@@ -56,21 +65,20 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(prog='extractSeqFastaCorresponding.py', description='''This Programme extract Fasta Seq with liste keep''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display extractSeqFastaCorresponding.py version number and exit')
-	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
+	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesReq = parser.add_argument_group('Input mandatory infos for running')
-	filesReq.add_argument('-f', '--fasta', metavar="<path/to/fasta>", type = directory, required=True,, dest = 'fastaFile', help = 'fasta files')
-	filesReq.add_argument('-l', '--list', metavar="<path/to/files>", type = directory, required=True,v, dest = 'listFile', help = 'list files corresponding name')
-	filesReq.add_argument('-o', '--out', metavar="<path/to/out>", type = directory, required=True,, dest = 'paramoutfile', help = 'Name of output file')
+	filesReq.add_argument('-f', '--fasta', metavar="<path/to/fasta>", type = directory, required=True, dest = 'fastaFile', help = 'fasta files')
+	filesReq.add_argument('-l', '--list', metavar="<path/to/files>", type = directory, required=True, dest = 'listFile', help = 'list files corresponding name')
+	filesReq.add_argument('-o', '--out', metavar="<path/to/out>", type = directory, required=True, dest = 'paramoutfile', help = 'Name of output file')
 	filesReq.add_argument('-m', '--mgg', metavar="<filemane>", type=existant_file, required=True, dest = 'mggFileKeep', help = 'filename')
 
 	# Check parameters
 	args = parser.parse_args()
-	checkParameters(args)
 
 	#Welcome message
 	print("#################################################################")
-	print("#        Welcome in extractSeqFastaCorresponding (Version " + version + ")          #")
+	print("#     Welcome in extractSeqFastaCorresponding (Version " + version + ")     #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 
@@ -95,78 +103,81 @@ if __name__ == "__main__":
 
 	#ouverture de la liste des MGG à garder
 	mggKeepall = loadInList(mggFileKeep)
+
+
 	# trie de la list pour supprimer les T1 et T2 avec T0
-	MGGWithoutT = ["MGG_15255"]
-	mggKeep = []
-	count = 0
-	toRM = []
+	MGGWithoutT, mggKeep, toRM = [], [], []
+
 	for mgg in mggKeepall:
 		mggNoT = mgg.replace("T0","").replace("T1","").replace("T2","")
 		if mggNoT not in MGGWithoutT:
 			MGGWithoutT.append(mggNoT)
 			mggKeep.append(mgg)
 		else:
-			count+=1
 			toRM.append(mgg)
 
-	with open("toRM.txt","w") as toRMFile:
-		for rm in toRM:
-			toRMFile.write(rm+"\n")
-	with open("7037MGGothologue.txt","w") as mggKeepFile:
-		for kepp in mggKeep:
-			mggKeepFile.write(kepp+"\n")
-	print("count = %i" % count)
+	with open("List"+str(len(toRM))+"TranscriptAlternatifstoRM.txt","w") as toRMFile:
+		txt = "\n".join(toRM)
+		toRMFile.write(txt)
+
+	with open("List"+str(len(mggKeep))+"MGGothologuesKEEP.txt","w") as mggKeepFile:
+		txt = "\n".join(mggKeep)
+		mggKeepFile.write(txt)
+
+
+	print("count = %i" % len(toRM))
 	print("nbMGGkeep = %i" % len(mggKeep))
+
+
 
 	 ##ouverture des fichiers de correspondances dans un dico de dico
 	dicoCorrespondanceMGGTocontig = {}
 	dicoCorrespondancecontigToMGG = {}
-	listcorespFiles = lsExtInDirToList(listFile,"")
-	#print(listcorespFiles)
+
+	listcorespFiles = listFile.lsExtInDirToList("")
+
+	if args.debug == "True" : print("\n".join(listcorespFiles))
+
 	for file in listcorespFiles:
 		name = file.split("/")[-1].split("_")[0]
 		#print(name)
-		dicoCorrespondanceMGGTocontig[name] = loadInDict(file)
-		dicoCorrespondancecontigToMGG[name] = loadInDict2(file)
+		dicoCorrespondanceMGGTocontig[name] = loadInDictCol(file,0,1)
+		dicoCorrespondancecontigToMGG[name] = loadInDictCol(file,1,0)
 
 	# parcours des fichiers fasta
 	for fileCDS in listCDSfiles:
-		#try:
+
 		fileName = fileCDS.split("/")[-1].split(".")[0]
-		#print(fileName)
+
 		# ouverture du fichier de sortie
-		output_handle = open(outputfilePath+fileName+"_CDS_MGGorthologue.fas", "w")
+		with open(outputfilePath+fileName+"_CDS_MGGorthologue.fas", "w") as output_handle:
 
-		#construction de la liste à garder des mgg
-		listFileKeep = []
-		ctmp = 0
-		for MGG in mggKeep:
-			ctmp+=1
-			listFileKeep.append(dicoCorrespondanceMGGTocontig[fileName][MGG][0])
-		#print("listFileKeep = %i" % len(listFileKeep))
-		#print("\n")
-		#print(listFileKeep)
-		# ouverture des sequence completes est extraction des sequences d'intérets
-		dico_keep = extractListFromFasta2(fileCDS, listFileKeep)
-		nbKeep = len(dico_keep.keys())
-		print("il y a %i sequences dans le fichier %s" %(nbKeep,output_handle.name))
+			#construction de la liste à garder des mgg
+			listFileKeep = []
+			ctmp = 0
+			for MGG in mggKeep:
+				ctmp+=1
+				listFileKeep.append(dicoCorrespondanceMGGTocontig[fileName][MGG])
+
+			dico_keep = extractListFromFasta2(fileCDS, listFileKeep)
+			nbKeep = len(dico_keep.keys())
+			#print("il y a %i sequences dans le fichier %s" %(nbKeep,output_handle.name))
 
 
-		for geneId, record in dico_keep.items():
-			MGGName = dicoCorrespondancecontigToMGG[fileName][geneId.id]
-			oldNumID = record.id
-			new_record_name = MGGName+"_"+oldNumID
-			record.id = new_record_name
-			record.name = ""
-			seq = record.seq
-			SeqIO.write(record,output_handle, "fasta")
-		#except:
-			#print(fileName, MGG)
-		#exit()
-	output_handle.close()
+			for geneId, record in dico_keep.items():
+				MGGName = dicoCorrespondancecontigToMGG[fileName][geneId.id]
+				oldNumID = record.id
+				new_record_name = MGGName+"_"+oldNumID
+				record.id = new_record_name
+				record.name = ""
+				seq = record.seq
+				SeqIO.write(record.upper(),output_handle, "fasta")
+
 
 	######
+	os.makedirs(outputfilePath+"orthologue/", exist_ok=True)
 	os.system("rm "+outputfilePath+"orthologue/*.fasta")
+
 	#Concatenation des orthologues de Farman et Gemo
 	listFastaOut = lsFastaInDirToList(outputfilePath)
 	for fastaFile in listFastaOut:
@@ -187,28 +198,14 @@ if __name__ == "__main__":
 			record.id = new_record_name
 			record.name = ""
 			seq = record.seq
-			SeqIO.write(record,output_handle, "fasta")
+			SeqIO.write(record.upper(),output_handle, "fasta")
 			output_handle.close()
-	#listfastaDarren = lsFastaInDirToList("/media/sebastien/Bayer/hotespe/NO_FILTER/darren")
-	#for fastaFile in listfastaDarren:
-		#dictSequences = fasta2dict(fastaFile)
-		#for geneId, record in dictSequences.items():
-			#MGGName = geneId
-			#if MGGName in mggKeep:
-				#souche = fastaFile.split("/")[-1].split("_")[0]
-			## ouverture du fichier de sortie
-				#output_handle = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
-				#new_record_name = souche
-				#record.id = ""
-				#record.id = new_record_name
-				#record.name = ""
-				#seq = record.seq
-				#SeqIO.write(record,output_handle, "fasta")
+
 
 	dico1,dico2 = nbSeqInFile2dict(outputfilePath+"orthologue/")
 	print("check if NBsouche and sequences are correctly extract:\n")
 	print(dict2txt(dico2))
-	print("\n\nIf up are same below OK\n\n%i\t%i" % (count, len(mggKeep)))
+	#print("\n\nIf up are same below OK\n\n%i\t%i" % (count, len(mggKeep)))
 
 	#print("  - Outputting \n\
 	#Il y a au final %i Sequences garder\n\
