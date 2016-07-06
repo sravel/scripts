@@ -138,7 +138,7 @@ if __name__ == "__main__":
 			for soucheFind in listcorresp:
 				souche_contig2 = soucheFind
 				namesouche2 = souche_contig2.split("_")[0]
-				correspondanceMGGContig = open(correspondingCDSDir+namesouche2+"_corespondingMGG-contig","a")
+				correspondanceMGGContig = open(correspondingCDSDir+namesouche2+"_correspondingMGG-contig","a")
 				correspondanceMGGContig.write("%s\t%s\n"%(souche_contig1,souche_contig2))
 			nbOrtho1_1+=1
 
