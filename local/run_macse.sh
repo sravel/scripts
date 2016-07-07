@@ -67,7 +67,7 @@ fi
 if [ $fasta != "" ] ; then
 	#version
 	printf "\033[36m ####################################################################\n";
-	printf "\033[36m #        Welcome to Run macse directory ( Version $version )         #\n";
+	printf "\033[36m #           Welcome to Run macse directory ( Version $version )            #\n";
 	printf "\033[36m ####################################################################\n";
 
 	##################################################
@@ -78,7 +78,6 @@ if [ $fasta != "" ] ; then
 
 	NTPath=$pathAnalysis"NT_ALIGN"
 	AAPath=$pathAnalysis"AA_ALIGN"
-	InFastaPath=$pathAnalysis"fasta"
 	SHPath=$pathAnalysis"sh"
 	trashPath=$pathAnalysis"trash"
 
@@ -87,7 +86,6 @@ if [ $fasta != "" ] ; then
 
 	printf "\033[32m \n Output NT_ALIGN were in directory: "$NTPath
 	printf "\033[32m \n Output AA_ALIGN were in directory: "$AAPath
-	printf "\033[32m \n Output fasta IN were in directory: "$InFastaPath
 	printf "\033[32m \n Output sh were in directory: "$SHPath
 	printf "\033[32m \n Output trash were in directory: "$trashPath"\n\n"
 
@@ -115,12 +113,6 @@ if [ $fasta != "" ] ; then
 	else
 		mkdir $AAPath
 	fi
-	if [ -d $InFastaPath ]; then
-		rm -r $InFastaPath
-		mkdir $InFastaPath
-	else
-		mkdir $InFastaPath
-	fi
 
 	if [ ! -e $pathAnalysis"/submitQsub.sge" ]; then
 		touch $pathAnalysis"/submitQsub.sge";
@@ -139,7 +131,6 @@ if [ $fasta != "" ] ; then
 		echo "java -jar /homedir/sravel/programme/macse_v1.2.jar -prog alignSequences -seq "$f" -ext_gap_ratio 0.00001 -gap_ext 0.00001" >> $SHPath"/"$count"_macse.sh"
 		echo "mv "$fastaPath"/"$name"_macse_NT.fasta "$NTPath"/" >> $SHPath"/"$count"_macse.sh"
 		echo "mv "$fastaPath"/"$name"_macse_AA.fasta "$AAPath"/" >> $SHPath"/"$count"_macse.sh"
-		echo "mv "$f" "$InFastaPath"/" >> $SHPath"/"$count"_macse.sh"
 
 		let count+=1
 
