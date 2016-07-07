@@ -142,14 +142,14 @@ if [ $fasta != "" ] ; then
 #$ -N macse
 #$ -cwd
 #$ -V
-#$ -e $pathAnalysis/trash/
-#$ -o $pathAnalysis/trash/
+#$ -e '$trashPath'
+#$ -o '$trashPath'
 #$ -q long.q
-#$ -t 1-$count
+#$ -t 1-'$count'
 #$ -tc 400
 #$ -S /bin/bash
 
-/bin/bash $pathAnalysis/sh/${SGE_TASK_ID}_macse.sh
+/bin/bash '$pathAnalysis'/sh/${SGE_TASK_ID}_macse.sh
 
 	'>> $pathAnalysis"/submitQsub.sge"
 
