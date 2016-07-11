@@ -147,6 +147,7 @@ if __name__ == "__main__":
 #$ -e """+outputTrashDir+"""
 #$ -o """+outputTrashDir+"""
 #$ -q long.q
+#$ -pe parallel_smp """+str(nbThreads)+"""
 #$ -t 1-"""+str(count-1)+"""
 #$ -tc """+str(args.nbJobValue)+"""
 #$ -S /bin/bash
