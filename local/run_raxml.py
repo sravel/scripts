@@ -185,7 +185,7 @@ if __name__ == "__main__":
 	print("\n  You want run Mutilraxml for %s fasta,\
  The script are created all fasta-Mutilraxml.sh for all fasta into %s,\n\
  For run all sub-script in qsub, %s was created.\n\
- It lunch programm with job array and run %s job max:\n" %(count,outputSHDir,SGENameFile, args.nbJobValue))
+ It lunch programm with job array and run %s job max:\n" %(count-1,outputSHDir,SGENameFile, args.nbJobValue))
 	printCol.green("\tqsub %s" % SGENameFile)
 	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
