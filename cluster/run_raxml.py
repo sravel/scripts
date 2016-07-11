@@ -109,7 +109,7 @@ if __name__ == "__main__":
 		with open(outputSHDir+str(count)+"_raxml.sh", "w") as shScript:
 			shScript.write("module load mpi/openmpi/1.6.5 compiler/gcc/4.9.2 bioinfo/RAxML/8.1.17\n")
 			shScript.write('sed -i s/"\!"/"n"/g '+fasta+'\n')
-			raxmlcmd = "raxmlHPC-PTHREADS -T %s -#%s -n %s %s -s %s\n" % (nbThreads, nbBootstrap, outputraxmlResDir+basenameFasta, raxmlOptionValue, fasta)
+			raxmlcmd = "raxmlHPC-PTHREADS -T %s -#%s -n %s %s -s %s\n" % (nbThreads, nbBootstrap, basenameFasta, raxmlOptionValue, fasta)
 			if args.debug == "True" : print(raxmlcmd)
 			shScript.write(raxmlcmd)
 			shScript.write("mv "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels/\n")
