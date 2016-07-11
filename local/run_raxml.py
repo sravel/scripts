@@ -7,7 +7,7 @@
 ## Modules
 ##################################################
 #Import MODULES_SEB
-import sys, os
+import sys, os, shutil
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import relativeToAbsolutePath, existant_file, directory, printCol
@@ -102,22 +102,26 @@ if __name__ == "__main__":
 			while inp == None and inp != "y" and inp != "n" and inp != "yes" and inp != "no":
 				inp = input()
 				if inp == "y":
-					printCol.red("REMOVE")
-					os.popen('rm -rf '+outputraxmlResDir)
-					os.popen('rm -rf '+outputSHDir )
-					os.popen('rm -rf '+outputTrashDir )
+					#os.popen('rm -rf '+outputraxmlResDir+" && mkdir "+outputraxmlResDir)
+					#os.popen('rm -rf '+outputSHDir+" && mkdir "+outputSHDir)
+					#os.popen('rm -rf '+outputTrashDir+" && mkdir "+outputTrashDir)
+					shutil.rmtree(outputraxmlResDir)
+					shutil.rmtree(outputSHDir)
+					shutil.rmtree(outputTrashDir)
 
-	os.makedirs(outputraxmlResDir, exist_ok=True)
-	os.makedirs(outputraxmlResDir+"RAxML_bipartitionsBranchLabels", exist_ok=True)
-	os.makedirs(outputraxmlResDir+"RAxML_bipartitions", exist_ok=True)
-	os.makedirs(outputraxmlResDir+"RAxML_bestTree", exist_ok=True)
-	os.makedirs(outputraxmlResDir+"RAxML_bootstrap", exist_ok=True)
-	os.makedirs(outputraxmlResDir+"RAxML_info", exist_ok=True)
-	os.makedirs(outputraxmlResDir+"RAxML_reduced", exist_ok=True)
+	if not os.path.exists(outputraxmlResDir):
+		os.makedirs(outputraxmlResDir)
+		os.makedirs(outputraxmlResDir+"RAxML_bipartitionsBranchLabels")
+		os.makedirs(outputraxmlResDir+"RAxML_bipartitions")
+		os.makedirs(outputraxmlResDir+"RAxML_bestTree")
+		os.makedirs(outputraxmlResDir+"RAxML_bootstrap")
+		os.makedirs(outputraxmlResDir+"RAxML_info")
+		os.makedirs(outputraxmlResDir+"RAxML_reduced")
+
 	if not os.path.exists(outputSHDir):
-		os.makedirs(outputSHDir, exist_ok=True)								# création d'un dossier sh_scripts pour lancer les analyses structures
+		os.makedirs(outputSHDir)								# création d'un dossier sh_scripts pour lancer les analyses structures
 	if not os.path.exists(outputTrashDir):
-		os.makedirs(outputTrashDir, exist_ok=True)
+		os.makedirs(outputTrashDir)
 
 	count = 1
 	for fasta in pathFastaFile.lsExtInDirToList("fasta"):
