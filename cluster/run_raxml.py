@@ -94,27 +94,19 @@ if __name__ == "__main__":
 
 	# build directory out
 	if os.path.exists(outputraxmlResDir):
-
-			printCol.yellow("Warning , folder %s already exist !!!!" % outputraxmlResDir )
-			exist=1
+		printCol.yellow("  Warning , folder %s already exist !!!!" % outputraxmlResDir )
+		exist=1
 		if exist == 1:
-			printCol.yellow("Do you want to remove all analysis? (y/n)\n("+outputSHDir+" and "+outputTrashDir+" will be remove if yes)")
+			printCol.yellow("  Do you want to remove all analysis? (y/n)\n  ("+outputSHDir+" and "+outputTrashDir+" will be remove if yes)")
 			inp = None
 			while inp == None and inp != "y" and inp != "n" and inp != "yes" and inp != "no":
 				inp = input()
 				if inp == "y":
-					os.popen('rm -r '+outputraxmlResDir)
-					exist=0
-					if os.path.exists(outputSHDir):
-						os.popen('rm -r '+outputSHDir )
-					if os.path.exists(outputTrashDir):
-						os.popen('rm -r '+outputTrashDir )
+					printCol.red("REMOVE")
+					os.popen('rm -rf '+outputraxmlResDir)
+					os.popen('rm -rf '+outputSHDir )
+					os.popen('rm -rf '+outputTrashDir )
 
-
-
-
-	os.makedirs(outputSHDir, exist_ok=True)								# création d'un dossier sh_scripts pour lancer les analyses structures
-	os.makedirs(outputTrashDir, exist_ok=True)
 	os.makedirs(outputraxmlResDir, exist_ok=True)
 	os.makedirs(outputraxmlResDir+"RAxML_bipartitionsBranchLabels", exist_ok=True)
 	os.makedirs(outputraxmlResDir+"RAxML_bipartitions", exist_ok=True)
@@ -122,6 +114,10 @@ if __name__ == "__main__":
 	os.makedirs(outputraxmlResDir+"RAxML_bootstrap", exist_ok=True)
 	os.makedirs(outputraxmlResDir+"RAxML_info", exist_ok=True)
 	os.makedirs(outputraxmlResDir+"RAxML_reduced", exist_ok=True)
+	if not os.path.exists(outputSHDir):
+		os.makedirs(outputSHDir, exist_ok=True)								# création d'un dossier sh_scripts pour lancer les analyses structures
+	if not os.path.exists(outputTrashDir):
+		os.makedirs(outputTrashDir, exist_ok=True)
 
 	count = 1
 	for fasta in pathFastaFile.lsExtInDirToList("fasta"):
@@ -138,7 +134,7 @@ if __name__ == "__main__":
 			shScript.write("mv "+pathFileOut.pathDirectory+"RAxML_bestTree."+basenameFasta+" "+outputraxmlResDir+"RAxML_bestTree/\n")
 			shScript.write("mv "+pathFileOut.pathDirectory+"RAxML_bootstrap."+basenameFasta+" "+outputraxmlResDir+"RAxML_bootstrap/\n")
 			shScript.write("mv "+pathFileOut.pathDirectory+"RAxML_info."+basenameFasta+" "+outputraxmlResDir+"RAxML_info/\n")
-			shScript.write("mv "+fasta".reduced "+outputraxmlResDir+"RAxML_reduced/\n")
+			shScript.write("mv "+fasta+".reduced "+outputraxmlResDir+"RAxML_reduced/\n")
 
 
 
