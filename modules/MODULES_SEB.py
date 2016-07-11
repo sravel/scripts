@@ -950,7 +950,6 @@ class parseGFF():
 					"phase": None if parts[7] == "." else urllib.parse.unquote(parts[7]),
 					"seq": None,
 					"attributes": self.parseGFFAttributes(parts[8])
-
 				}
 				#Alternatively, you can emit the dictionary here, if you need mutability:
 				#	yield normalizedInfo
