@@ -112,11 +112,11 @@ if __name__ == "__main__":
 			raxmlcmd = "raxmlHPC-PTHREADS -T %s -#%s -n %s %s -s %s\n" % (nbThreads, nbBootstrap, basenameFasta, raxmlOptionValue, fasta)
 			if args.debug == "True" : print(raxmlcmd)
 			shScript.write(raxmlcmd)
-			shScript.write("mv "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels/\n")
-			shScript.write("mv "+outputraxmlResDir+"RAxML_bipartitions."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitions/\n")
-			shScript.write("mv "+outputraxmlResDir+"RAxML_bestTree."+basenameFasta+" "+outputraxmlResDir+"RAxML_bestTree/\n")
-			shScript.write("mv "+outputraxmlResDir+"RAxML_info."+basenameFasta+" "+outputraxmlResDir+"RAxML_info/\n")
-			shScript.write("mv "+outputraxmlResDir+basenameFasta+".reduced "+outputraxmlResDir+"RAxML_reduced/\n")
+			shScript.write("mv "+pathFileOut.pathDirectory+"RAxML_bipartitionsBranchLabels."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels/\n")
+			shScript.write("mv "+pathFileOut.pathDirectory+"RAxML_bipartitions."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitions/\n")
+			shScript.write("mv "+pathFileOut.pathDirectory+"RAxML_bestTree."+basenameFasta+" "+outputraxmlResDir+"RAxML_bestTree/\n")
+			shScript.write("mv "+pathFileOut.pathDirectory+"RAxML_info."+basenameFasta+" "+outputraxmlResDir+"RAxML_info/\n")
+			shScript.write("mv "+pathFastaFile.pathDirectory+basenameFasta+".reduced "+outputraxmlResDir+"RAxML_reduced/\n")
 
 
 
