@@ -100,6 +100,7 @@ if __name__ == "__main__":
 	os.makedirs(outputraxmlResDir+"RAxML_bipartitions", exist_ok=True)
 	os.makedirs(outputraxmlResDir+"RAxML_bestTree", exist_ok=True)
 	os.makedirs(outputraxmlResDir+"RAxML_info", exist_ok=True)
+	os.makedirs(outputraxmlResDir+"RAxML_reduced", exist_ok=True)
 
 	count = 1
 	for fasta in pathFastaFile.lsExtInDirToList("fasta"):
@@ -108,13 +109,14 @@ if __name__ == "__main__":
 		with open(outputSHDir+str(count)+"_raxml.sh", "w") as shScript:
 			shScript.write("module load mpi/openmpi/1.6.5 compiler/gcc/4.9.2 bioinfo/RAxML/8.1.17\n")
 			shScript.write('sed -i s/"\!"/"n"/g '+fasta+'\n')
-			raxmlcmd = "raxmlHPC-PTHREADS -T %s -#%s -n %s %s -s %s" % (nbThreads, nbBootstrap, outputraxmlResDir+basenameFasta, raxmlOptionValue, fasta)
+			raxmlcmd = "raxmlHPC-PTHREADS -T %s -#%s -n %s %s -s %s\n" % (nbThreads, nbBootstrap, outputraxmlResDir+basenameFasta, raxmlOptionValue, fasta)
 			if args.debug == "True" : print(raxmlcmd)
 			shScript.write(raxmlcmd)
 			shScript.write("mv "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels/\n")
 			shScript.write("mv "+outputraxmlResDir+"RAxML_bipartitions."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitions/\n")
 			shScript.write("mv "+outputraxmlResDir+"RAxML_bestTree."+basenameFasta+" "+outputraxmlResDir+"RAxML_bestTree/\n")
 			shScript.write("mv "+outputraxmlResDir+"RAxML_info."+basenameFasta+" "+outputraxmlResDir+"RAxML_info/\n")
+			shScript.write("mv "+outputraxmlResDir+basenameFasta+".reduced "+outputraxmlResDir+"RAxML_reduced/\n")
 
 
 
