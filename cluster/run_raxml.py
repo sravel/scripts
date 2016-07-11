@@ -107,10 +107,14 @@ if __name__ == "__main__":
 
 		with open(outputSHDir+str(count)+"_raxml.sh", "w") as shScript:
 			shScript.write("module load mpi/openmpi/1.6.5 compiler/gcc/4.9.2 bioinfo/RAxML/8.1.17\n")
-			raxmlcmd = "raxmlHPC-PTHREADS -T %s -#%s -n %s %s -s %s" % (nbThreads, nbBootstrap, basenameFasta, raxmlOptionValue, fasta)
+			shScript.write('sed -i s/"\!"/"n"/g '+fasta+'\n')
+			raxmlcmd = "raxmlHPC-PTHREADS -T %s -#%s -n %s %s -s %s" % (nbThreads, nbBootstrap, outputraxmlResDir+basenameFasta, raxmlOptionValue, fasta)
 			if args.debug == "True" : print(raxmlcmd)
 			shScript.write(raxmlcmd)
-			#shScript.write("mv RAxML_bipartitionsBranchLabels.M*\n")
+			shScript.write("mv "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitionsBranchLabels/\n")
+			shScript.write("mv "+outputraxmlResDir+"RAxML_bipartitions."+basenameFasta+" "+outputraxmlResDir+"RAxML_bipartitions/\n")
+			shScript.write("mv "+outputraxmlResDir+"RAxML_bestTree."+basenameFasta+" "+outputraxmlResDir+"RAxML_bestTree/\n")
+			shScript.write("mv "+outputraxmlResDir+"RAxML_info."+basenameFasta+" "+outputraxmlResDir+"RAxML_info/\n")
 
 
 
@@ -141,7 +145,7 @@ if __name__ == "__main__":
 #$ -e """+outputTrashDir+"""
 #$ -o """+outputTrashDir+"""
 #$ -q long.q
-#$ -t 1-"""+str(count)+"""
+#$ -t 1-"""+str(count-1)+"""
 #$ -tc """+str(args.nbJobValue)+"""
 #$ -S /bin/bash
 
