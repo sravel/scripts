@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
 	dicoOutput = {}
 	listFasta = pathFastaFile.lsExtInDirToList(["fasta","fas","fa","fna"])
-	listFasta = [string.decode("utf-8") for string in listFasta]
+	listFasta = [string.encode("utf-8") for string in listFasta]
 	print listFasta
 	for filein in listFasta:
 		name = filein.split("/")[-1]
