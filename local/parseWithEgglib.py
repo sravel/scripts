@@ -38,7 +38,7 @@ if __name__ == "__main__":
 											'display parseWithEgglib version number and exit')
 
 	filesReq = parser.add_argument_group('Input mandatory infos for running')
-	filesReq.add_argument('-f', '--fasta', metavar="<path/to/directory/fasta>", type=directory, required=True, dest = 'fastaFileDir', help = 'path to fasta files')
+	filesReq.add_argument('-f', '--fasta', metavar="<path/to/directory/fasta>", type = directory, required=True, dest = 'fastaFileDir', help = 'path to fasta files')
 	filesReq.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathOut', help = 'Name of output file directory')
 
 	files = parser.add_argument_group('Input infos for running with default values')
@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
 	#Welcome message
 	print("#################################################################")
-	print("#          Welcome in parseWithEgglib (Version " + version + ")           #")
+	print("#           Welcome in parseWithEgglib (Version " + version + ")            #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
 	dicoOutput = {}
 	for filein in pathFastaFile.lsExtInDirToList(["fasta","fas","fa","fna"]):
 		name = filein.split("/")[-1]
-		#print(name)
+		print(name)
 		align = Align(filein)
 
 		x = Align.polymorphism(align)
