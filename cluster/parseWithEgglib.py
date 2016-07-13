@@ -75,7 +75,9 @@ if __name__ == "__main__":
 
 
 	dicoOutput = {}
-	for filein in pathFastaFile.lsExtInDirToList(["fasta","fas","fa","fna"]):
+	listFasta = pathFastaFile.lsExtInDirToList(["fasta","fas","fa","fna"])
+	print listFasta
+	for filein in listFasta:
 		name = filein.split("/")[-1]
 		print(name)
 		align = Align(filein)
