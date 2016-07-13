@@ -1097,7 +1097,7 @@ listFiles=%s\n
 					extentionFichier = ""
 			except:
 				extentionFichier = "directory"
-			if extentionFichier == ext:
+			if extentionFichier in ext:
 				lsFilesFasta.append(fichier)
 		return sorted(lsFilesFasta, key=sort_human)
 
