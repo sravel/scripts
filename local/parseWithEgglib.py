@@ -76,11 +76,11 @@ if __name__ == "__main__":
 
 	dicoOutput = {}
 	listFasta = pathFastaFile.lsExtInDirToList(["fasta","fas","fa","fna"])
-	print listFasta
+	#print listFasta
 	for filein in listFasta:
 		name = filein.split("/")[-1]
 		print(name)
-		align = Align(filein)
+		align = Align(str(filein))
 
 		x = Align.polymorphism(align)
 
