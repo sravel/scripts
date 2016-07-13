@@ -30,6 +30,8 @@ def compare_intersect(x, y):
 ##################################################
 if __name__ == "__main__":
 
+	# Initializations
+	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
 	parser = argparse.ArgumentParser(prog='parseWithEgglib.py', description='''This Program takes fasta check if SNP info''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
