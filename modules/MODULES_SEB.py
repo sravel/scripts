@@ -1082,7 +1082,7 @@ listFiles=%s\n
 			self.pathDirectory += "/"
 		if self.pathDirectory[-1] != "*":
 			pathDirectoryList = self.pathDirectory+"*"
-		self.listPath=glob.glob(pathDirectoryList)
+		self.listPath=glob.iglob(pathDirectoryList)
 
 	def lsExtInDirToList(self, ext):
 		"""List specific extention file in directory"""
