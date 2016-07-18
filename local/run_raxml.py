@@ -11,7 +11,6 @@ import sys, os, shutil
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import relativeToAbsolutePath, existant_file, directory, printCol
-
 ## Python modules
 import argparse
 from time import localtime, strftime
