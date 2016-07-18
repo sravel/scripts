@@ -1,6 +1,6 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package MODULES_SEB.py
+# @package MODULES_SEB.py
 # @author Sebastien Ravel
 #__docformat__ = "restructuredtext en"
 """
