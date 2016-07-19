@@ -1,6 +1,6 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package run_raxml.py
+# @package run_raxml.py
 # @author Sebastien Ravel
 
 ##################################################
