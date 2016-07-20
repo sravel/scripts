@@ -203,8 +203,8 @@ if __name__ == "__main__":
 			souche = geneId.split("_")[2]
 			#print(souche)
 			# ouverture du fichier de sortie
-
-			dicoOpenFile[MGGName] = (dicoOpenFile.get(open(MGGName,outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")))
+			if MGGName not in dicoOpenFile.keys():
+				dicoOpenFile[MGGName] = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
 			#with open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a") as output_handle:
 			#output_handle = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
 			new_record_name = souche
