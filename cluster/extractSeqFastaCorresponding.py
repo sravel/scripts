@@ -181,8 +181,15 @@ if __name__ == "__main__":
 
 	#Concatenation des orthologues de Farman et Gemo
 	listFastaOut = lsFastaInDirToList(outputfilePath)
+	nblignetotal = len(listFastaOut)
 	for fastaFile in listFastaOut:
 		dictSequences = fasta2dict(fastaFile)
+
+		if ((ctr % 10000 == 0) and (ctr != 0)) or (float(ctr) == nblignetotal):
+			percent = (float(ctr)/float(nblignetotal))*100
+			sys.stdout.write("\rProcessed up to %0.2f %%..." % percent)
+			sys.stdout.flush()
+
 		for geneId, record in dictSequences.items():
 			#print(geneId)
 			MGGName = "_".join(geneId.split("_")[0:2])
@@ -192,7 +199,7 @@ if __name__ == "__main__":
 
 			souche = geneId.split("_")[2]
 			#print(souche)
-		# ouverture du fichier de sortie
+			# ouverture du fichier de sortie
 			#with open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a") as output_handle:
 			output_handle = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
 			new_record_name = souche
