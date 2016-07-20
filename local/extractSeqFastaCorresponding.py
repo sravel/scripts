@@ -207,12 +207,12 @@ if __name__ == "__main__":
 			dicoOpenFile[MGGName] = (dicoOpenFile.get(open(MGGName,outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")))
 			#with open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a") as output_handle:
 			#output_handle = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
-				new_record_name = souche
-				record.id = ""
-				record.id = new_record_name
-				record.name = ""
-				seq = record.seq
-				SeqIO.write(record.upper(),dicoOpenFile[MGGName], "fasta")
+			new_record_name = souche
+			record.id = ""
+			record.id = new_record_name
+			record.name = ""
+			seq = record.seq
+			SeqIO.write(record.upper(),dicoOpenFile[MGGName], "fasta")
 			#output_handle.close()
 		ctr+=1
 
