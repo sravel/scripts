@@ -182,6 +182,7 @@ if __name__ == "__main__":
 	#Concatenation des orthologues de Farman et Gemo
 	listFastaOut = lsFastaInDirToList(outputfilePath)
 	nblignetotal = len(listFastaOut)
+	print(listFastaOut)
 	ctr = 0
 	for fastaFile in listFastaOut:
 		dictSequences = fasta2dict(fastaFile)
