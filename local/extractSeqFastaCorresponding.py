@@ -193,18 +193,18 @@ if __name__ == "__main__":
 		sys.stdout.write("\rProcessed up to %0.2f %%...\t" % percent)
 		sys.stdout.flush()
 
+
 		for geneId, record in dictSequences.items():
 			#print(geneId)
 			MGGName = "_".join(geneId.split("_")[0:2])
 			if MGGName in toRM or "T1" in MGGName or "T2" in MGGName :
 				#print(MGGName)
 				MGGName = MGGName.replace("T0","T0").replace("T1","T0").replace("T2","T0")
-
+			#print(MGGName)
 			souche = geneId.split("_")[2]
 			#print(souche)
 			# ouverture du fichier de sortie
-			if MGGName not in dicoOpenFile.keys():
-				dicoOpenFile[MGGName] = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "w")
+			dicoOpenFile[MGGName] = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
 			#with open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a") as output_handle:
 			#output_handle = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
 			new_record_name = souche
@@ -213,6 +213,7 @@ if __name__ == "__main__":
 			record.name = ""
 			seq = record.seq
 			SeqIO.write(record.upper(),dicoOpenFile[MGGName], "fasta")
+			dicoOpenFile[MGGName].close()
 			#output_handle.close()
 		ctr+=1
 
