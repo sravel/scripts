@@ -158,7 +158,7 @@ if [ $fasta != "" ] ; then
 
 
 	# Print final infos
-	printf "\n\n You want run Macse for "$compteur" fasta,
+	printf "\n\n You want run Macse for "$count" fasta,
  The script are created .sh for all fasta into "$pathAnalysis"sh,\n
  For run all sub-script in qsub, a submitQsub.sge was created, It lunch programm make:\n"
 
