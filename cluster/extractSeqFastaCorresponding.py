@@ -204,7 +204,7 @@ if __name__ == "__main__":
 			#print(souche)
 			# ouverture du fichier de sortie
 			if MGGName not in dicoOpenFile.keys():
-				dicoOpenFile[MGGName] = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
+				dicoOpenFile[MGGName] = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "w")
 			#with open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a") as output_handle:
 			#output_handle = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
 			new_record_name = souche
