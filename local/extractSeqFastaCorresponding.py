@@ -146,33 +146,33 @@ if __name__ == "__main__":
 		dicoCorrespondancecontigToMGG[name] = loadInDictCol(file,1,0)
 
 	# parcours des fichiers fasta
-	#for fileCDS in listCDSfiles:
+	for fileCDS in listCDSfiles:
 
-		#fileName = fileCDS.split("/")[-1].split(".")[0]
+		fileName = fileCDS.split("/")[-1].split(".")[0]
 
-		## ouverture du fichier de sortie
-		#with open(outputfilePath+fileName+"_CDS_MGGorthologue.fas", "w") as output_handle:
+		# ouverture du fichier de sortie
+		with open(outputfilePath+fileName+"_CDS_MGGorthologue.fas", "w") as output_handle:
 
-			##construction de la liste à garder des mgg
-			#listFileKeep = []
-			#ctmp = 0
-			#for MGG in mggKeep:
-				#ctmp+=1
-				#listFileKeep.append(dicoCorrespondanceMGGTocontig[fileName][MGG])
+			#construction de la liste à garder des mgg
+			listFileKeep = []
+			ctmp = 0
+			for MGG in mggKeep:
+				ctmp+=1
+				listFileKeep.append(dicoCorrespondanceMGGTocontig[fileName][MGG])
 
-			#dico_keep = extractListFromFasta2(fileCDS, listFileKeep)
-			#nbKeep = len(dico_keep.keys())
-			##print("il y a %i sequences dans le fichier %s" %(nbKeep,output_handle.name))
+			dico_keep = extractListFromFasta2(fileCDS, listFileKeep)
+			nbKeep = len(dico_keep.keys())
+			#print("il y a %i sequences dans le fichier %s" %(nbKeep,output_handle.name))
 
 
-			#for geneId, record in dico_keep.items():
-				#MGGName = dicoCorrespondancecontigToMGG[fileName][geneId.id]
-				#oldNumID = record.id
-				#new_record_name = MGGName+"_"+oldNumID
-				#record.id = new_record_name
-				#record.name = ""
-				#seq = record.seq
-				#SeqIO.write(record.upper(),output_handle, "fasta")
+			for geneId, record in dico_keep.items():
+				MGGName = dicoCorrespondancecontigToMGG[fileName][geneId.id]
+				oldNumID = record.id
+				new_record_name = MGGName+"_"+oldNumID
+				record.id = new_record_name
+				record.name = ""
+				seq = record.seq
+				SeqIO.write(record.upper(),output_handle, "fasta")
 
 
 	######
