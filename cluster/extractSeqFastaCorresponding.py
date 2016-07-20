@@ -185,10 +185,11 @@ if __name__ == "__main__":
 	print(listFastaOut)
 	ctr = 0
 	for fastaFile in listFastaOut:
+		dictSequences = {}
 		dictSequences = fasta2dict(fastaFile)
 		print(fastaFile)
 		percent = (float(ctr)/float(nblignetotal))*100
-		sys.stdout.write("\rProcessed up to %0.2f %%..." % percent)
+		sys.stdout.write("\rProcessed up to %0.2f %%...\t" % percent)
 		sys.stdout.flush()
 
 		for geneId, record in dictSequences.items():
@@ -209,7 +210,7 @@ if __name__ == "__main__":
 			record.name = ""
 			seq = record.seq
 			SeqIO.write(record.upper(),output_handle, "fasta")
-			output_handle.close()
+			#output_handle.close()
 		ctr+=1
 
 	#dico1,dico2 = nbSeqInFile2dict(outputfilePath+"orthologue/")
