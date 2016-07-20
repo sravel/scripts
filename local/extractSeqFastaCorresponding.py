@@ -100,6 +100,7 @@ if __name__ == "__main__":
 
 	#recupération de la liste des CDS complet
 	listCDSfiles = fastaFile.lsExtInDirToList("fasta")
+	print("\n".join(listCDSfiles))
 
 	#ouverture de la liste des MGG à garder
 	mggKeepall = loadInList(mggFileKeep)
