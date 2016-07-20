@@ -1,6 +1,6 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package run_raxml.py
+# @package run_raxml.py
 # @author Sebastien Ravel
 
 ##################################################
@@ -11,7 +11,6 @@ import sys, os, shutil
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import relativeToAbsolutePath, existant_file, directory, printCol
-
 ## Python modules
 import argparse
 from time import localtime, strftime
@@ -129,7 +128,7 @@ if __name__ == "__main__":
 
 		with open(outputSHDir+str(count)+"_raxml.sh", "w") as shScript:
 			shScript.write("module load mpi/openmpi/1.6.5 compiler/gcc/4.9.2 bioinfo/RAxML/8.1.17\n")
-			shScript.write('sed -i s/"\!"/"n"/g '+fasta+'\n')
+			shScript.write('sed -i s/"\!"/"N"/g '+fasta+'\n')
 			raxmlcmd = "raxmlHPC-PTHREADS -T %s -#%s -n %s %s -s %s\n" % (nbThreads, nbBootstrap, basenameFasta, raxmlOptionValue, fasta)
 			if args.debug == "True" : print(raxmlcmd)
 			shScript.write(raxmlcmd)
