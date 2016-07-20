@@ -193,18 +193,19 @@ if __name__ == "__main__":
 			souche = geneId.split("_")[2]
 			#print(souche)
 		# ouverture du fichier de sortie
-			with open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a") as output_handle:
-				new_record_name = souche
-				record.id = ""
-				record.id = new_record_name
-				record.name = ""
-				seq = record.seq
-				SeqIO.write(record.upper(),output_handle, "fasta")
+			#with open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a") as output_handle:
+			output_handle = open(outputfilePath+"orthologue/"+MGGName+"_Orthologue.fasta", "a")
+			new_record_name = souche
+			record.id = ""
+			record.id = new_record_name
+			record.name = ""
+			seq = record.seq
+			SeqIO.write(record.upper(),output_handle, "fasta")
+			output_handle.close()
 
-
-	dico1,dico2 = nbSeqInFile2dict(outputfilePath+"orthologue/")
-	print("check if NBsouche and sequences are correctly extract:\n")
-	print(dict2txt(dico2))
+	#dico1,dico2 = nbSeqInFile2dict(outputfilePath+"orthologue/")
+	#print("check if NBsouche and sequences are correctly extract:\n")
+	#print(dict2txt(dico2))
 	#print("\n\nIf up are same below OK\n\n%i\t%i" % (count, len(mggKeep)))
 
 	#print("  - Outputting \n\
