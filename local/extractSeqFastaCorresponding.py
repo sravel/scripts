@@ -186,7 +186,7 @@ if __name__ == "__main__":
 	ctr = 0
 	for fastaFile in listFastaOut:
 		dictSequences = fasta2dict(fastaFile)
-
+		print(fastaFile)
 		percent = (float(ctr)/float(nblignetotal))*100
 		sys.stdout.write("\rProcessed up to %0.2f %%..." % percent)
 		sys.stdout.flush()
@@ -210,6 +210,7 @@ if __name__ == "__main__":
 			seq = record.seq
 			SeqIO.write(record.upper(),output_handle, "fasta")
 			output_handle.close()
+		ctr+=1
 
 	#dico1,dico2 = nbSeqInFile2dict(outputfilePath+"orthologue/")
 	#print("check if NBsouche and sequences are correctly extract:\n")
