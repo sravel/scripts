@@ -187,10 +187,9 @@ if __name__ == "__main__":
 	for fastaFile in listFastaOut:
 		dictSequences = fasta2dict(fastaFile)
 
-		if ((ctr % 1 == 0) and (ctr != 0)) or (float(ctr) == nblignetotal):
-			percent = (float(ctr)/float(nblignetotal))*100
-			sys.stdout.write("\rProcessed up to %0.2f %%..." % percent)
-			sys.stdout.flush()
+		percent = (float(ctr)/float(nblignetotal))*100
+		sys.stdout.write("\rProcessed up to %0.2f %%..." % percent)
+		sys.stdout.flush()
 
 		for geneId, record in dictSequences.items():
 			#print(geneId)
