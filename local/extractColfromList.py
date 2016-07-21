@@ -5,7 +5,7 @@
 
 """
 	The extractColfromList script
-	============================
+	=============================
 	:author: Sebastien Ravel, Lea Picard
 	:contact: sebastien.ravel@cirad.fr
 	:date: 08/07/2016
