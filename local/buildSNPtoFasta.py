@@ -20,6 +20,7 @@
 	-------
 
 	>>> buildSNPtoFasta.py -g Myfi.gff3 -l List3873MGGothologuesKEEP.txt -t 62souches_nofilter.tab -p orthologue -o out
+
 	Help Programm
 	-------------
 
