@@ -1,11 +1,11 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-## @package struc2runClumpak.py
+## @package plot_barplot_DAPC.py
 # @author Pierre Gladieux, Sebastien Ravel
 
 """
-	The struc2runClumpak script
-	===========================
+	The plot_barplot_DAPC script
+	============================
 	:author: Sebastien Ravel, Pierre Gladieux
 	:contact: sebastien.ravel@cirad.fr
 	:date: 08/07/2016
@@ -14,13 +14,12 @@
 	Script description
 	------------------
 
-	This Programme make arborescence of rep of programme structure\n
-	Use for haploide individus
+	This Programme Plot DAPC comboplot of csv file
 
 	Example
 	-------
 
-	>>> struc2runClumpak.py -i SNP_table.tab -pm 10 -nbi 624 -nbm 12
+	>>> plot_barplot_DAPC.py -i SNP_table.tab -pm 10 -nbi 624 -nbm 12
 
 	Help Programm
 	-------------
@@ -29,27 +28,15 @@
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display struc2runClumpak.py version number and exit
+						display plot_barplot_DAPC.py version number and exit
 
 	Input mandatory infos for running:
-		- \-pm <int>, --popm <int>
-						Number of pop Max
-		- \-i <fileName>, --infile <fileName>
-						input file matrice
-		- \-nbi <int>, --nbIndiv <int>
-						Number of individus un matrice
-		- \-nbm <int>, --nbMarker <int>
-						Number of markers un matrice
-
-	Input infos for running with default values:
-		- \-ri <int>, --repi <int>
-						Number of repetition min (default = 1)
-		- \-rm <int>, --repm <int>
-						Number of repetition max (default = 10)
-		- \-pi <int>, --popi <int>
-						Number of pop Min (default = 1)
-		- \-o <PrefixFileName>, --outfile <PrefixFileName>
-						output file Prefix (default = name of matrice file)
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path of result DAPC with csv file
+		- \-l <filename>, --label <filename>
+						File with LABEL, one per line
+		- \-o <filename>, --output <filename>
+						Name of output figure file
 
 """
 
@@ -86,15 +73,15 @@ if __name__ == "__main__":
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='plot_barplot_DAPC.py', description='''This Programme Plot DAPC comboplot''')
+	parser = argparse.ArgumentParser(prog='plot_barplot_DAPC.py', description='''This Programme Plot DAPC comboplot of csv file''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display plot_barplot_DAPC version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-d', '--directory', metavar="<path/to/directory>", required=True, dest = 'dirPath', help = 'path of result DAPC with csv file')
-	files.add_argument('-l', '--label', metavar="<filename>",type=existant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, one per line')
-	files.add_argument('-o', '--output', metavar="<filename>", required=True, dest = 'outputFileParam', help = 'Name of output figure file')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-d', '--directory', metavar="<path/to/directory>", required=True, dest = 'dirPath', help = 'path of result DAPC with csv file')
+	filesreq.add_argument('-l', '--label', metavar="<filename>",type=existant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, one per line')
+	filesreq.add_argument('-o', '--output', metavar="<filename>", required=True, dest = 'outputFileParam', help = 'Name of output figure file')
 
 
 
