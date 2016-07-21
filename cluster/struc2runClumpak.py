@@ -10,7 +10,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, existant_file, dict2txt, printCol
+from MODULES_SEB import directory, relativeToAbsolutePath, existant_file, printCol
 
 ## Python modules
 import argparse

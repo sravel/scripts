@@ -53,21 +53,14 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath, existant_file, extractListFromFasta, loadInDictCol, directory,dictDict2txt, nbSeqInFile2dict
+from MODULES_SEB import relativeToAbsolutePath, existant_file, loadInDictCol, directory,fasta2dict, nbSeqInFile2dict, loadInList, lsFastaInDirToList, dict2txt
 
 ## Python modules
-import argparse, os, subprocess
+import argparse, os
 from time import localtime, strftime
-import glob
 
 ## BIO Python modules
-from Bio import AlignIO
-from Bio.Align import AlignInfo
 from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
-from Bio.Alphabet import SingleLetterAlphabet
-from MODULES_SEB import *
 
 ##################################################
 ## Variables Globales
@@ -260,10 +253,10 @@ if __name__ == "__main__":
 			#output_handle.close()
 		ctr+=1
 
-	#dico1,dico2 = nbSeqInFile2dict(outputfilePath+"orthologue/")
-	#print("check if NBsouche and sequences are correctly extract:\n")
-	#print(dict2txt(dico2))
-	#print("\n\nIf up are same below OK\n\n%i\t%i" % (count, len(mggKeep)))
+	dico1,dico2 = nbSeqInFile2dict(outputfilePath+"orthologue/")
+	print("check if NBsouche and sequences are correctly extract:\n")
+	print(dict2txt(dico2))
+	print("\n\nIf up are same below OK\n\n%i\t%i" % (len(toRM), len(mggKeep)))
 
 	#print("  - Outputting \n\
 	#Il y a au final %i Sequences garder\n\

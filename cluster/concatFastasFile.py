@@ -7,10 +7,10 @@
 ## Modules
 ##################################################
 #Import MODULES_SEB
-import sys, os, shutil
+import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath, directory, printCol, concatFastasFiles
+from MODULES_SEB import relativeToAbsolutePath, directory, concatFastasFiles
 
 # Python modules
 import argparse

@@ -28,7 +28,8 @@ VERSION_DATE='04/01/2016'
 ##################################################
 if __name__ == "__main__":
 
-
+	# Initializations
+	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
 	parser = argparse.ArgumentParser(prog='extractColfromList.py', description='''This Program takes a list of IDs and extract the columns with corresponding IDs from a table''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\

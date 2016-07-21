@@ -3,6 +3,45 @@
 # @package buildSNPtoFasta.py
 # @author Sebastien Ravel
 
+"""
+	The buildSNPtoFasta script
+	==========================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme parse GFF, TAB to add SNP in sequences
+
+	Example
+	-------
+
+	>>> buildSNPtoFasta.py -s ./fasta/ -c tab.tab -pi ./fasta/ -po ./fastaOut/
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display addSample.py version number and exit
+
+	Input info for running:
+		- \-s <path/to/filein>, --samples <path/to/filein>
+						path to fasta sample files in
+		- \-c <filename>, --csv <filename>
+						Name of csv file with Orthologue infos
+		- \-pi <path/to/filein>, --pathin <path/to/filein>
+						path to fasta files in
+		- \-po <path/to/fileout>, --pathout <path/to/fileout>
+						path to fasta files Out
+
+"""
+
 ##################################################
 ## Modules
 ##################################################
@@ -10,7 +49,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath, existant_file, fasta2dict, directory, parseGFF, loadInList, dict2txt, AutoVivification, dictDict2txt
+from MODULES_SEB import relativeToAbsolutePath, existant_file, fasta2dict, directory, parseGFF, loadInList
 
 ## Python modules
 import argparse
@@ -46,12 +85,12 @@ if __name__ == "__main__":
 						'display buildSNPtoFasta.py version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-g', '--gff', metavar="<filename>", type=existant_file, required=True, dest = 'gffFile', help = 'gff files with annotation')
-	files.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=True, dest = 'listKeepFile', help = 'File with geneID to keep')
-	files.add_argument('-t', '--tab', metavar="<filename>", type=existant_file, required=True, dest = 'tabFile', help = 'File with SNP')
-	files.add_argument('-f', '--fasta', metavar="<path/to/directory>", type = directory, required=True, dest = 'fastaPath', help = 'Directory with fasta of 3 strains')
-	files.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathOut', help = 'Name of output file directory')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-g', '--gff', metavar="<filename>", type=existant_file, required=True, dest = 'gffFile', help = 'gff files with annotation')
+	filesreq.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=True, dest = 'listKeepFile', help = 'File with geneID to keep')
+	filesreq.add_argument('-t', '--tab', metavar="<filename>", type=existant_file, required=True, dest = 'tabFile', help = 'File with SNP')
+	filesreq.add_argument('-f', '--fasta', metavar="<path/to/directory>", type = directory, required=True, dest = 'fastaPath', help = 'Directory with fasta of 3 strains')
+	filesreq.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathOut', help = 'Name of output file directory')
 
 	# Check parameters
 	args = parser.parse_args()
@@ -187,21 +226,6 @@ if __name__ == "__main__":
 	with open("listToRMgene.txt", "w") as toRMFile:
 		txt = "\n".join(listSeqNFind)
 		toRMFile.write(txt)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
