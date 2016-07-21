@@ -21,7 +21,7 @@
 	Example
 	-------
 
-	>>> run_Assembly.py -d fastq/ -o assemblyFinal
+	>>> parseWithEgglib.py -f NT_ALIGN/ -o filterEgglib
 
 	Help Programm
 	-------------
