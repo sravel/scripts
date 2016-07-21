@@ -1,7 +1,57 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package run_multiblastX.py
+# @package run_multiblast.py
 # @author Sebastien Ravel
+
+"""
+	The run_multiblast script
+	===================================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme run 1 blast for file include in path.\n
+	If you want split multifasta into one seq/fasta use script splitMultiFasta.py
+
+	Example
+	-------
+
+	>>> run_multiblast.py -f fasta/ -of 5 -o XML/
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display run_multiblast.py version number and exit
+
+	Input mandatory infos for running:
+		- \-f <path/to/directory/fasta>, --fasta <path/to/directory/fasta>
+						path to fasta files
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Name of output file directory
+
+	Input infos for running with default values:
+		- \-t <sting>, --type <sting>
+						Type of blast (blastx, blastn, ...) (default = blastx)
+		- \-b <path/to/directory/bank>, --databank <path/to/directory/bank>
+						Path to bank fasta (default = /work/BANK/biomaj/nr/current/flat/nr)
+		- \-of <int/string>, --outfmt <int/string>
+						outfmt of blast (default = 6)
+		- \-bo [<string> [<string> ...]], --blastoption [<string> [<string> ...]]
+						Other blast options like -bo "-evalue 10-3" "-gapopen 5" (default = "")
+		- \-j <int>, --nbjob <int>
+						Number of job array lunch (default = 100)
+		- \-e <string>, --extention <string>
+						Extention of blast output file (default = ".txt")
+
+"""
 
 ##################################################
 ## Modules
@@ -38,9 +88,9 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='run_multiblastX.py', description='''This Programme extract Fasta Seq with liste keep''')
+	parser = argparse.ArgumentParser(prog='run_multiblast.py', description='''This Programme run 1 blast for file include in path. if you want split multifasta into one seq/fasta use script splitMultiFasta.py''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
-						'display run_multiblastX.py version number and exit')
+						'display run_multiblast.py version number and exit')
 	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesReq = parser.add_argument_group('Input mandatory infos for running')
@@ -49,7 +99,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-t', '--type', metavar="<sting>",type = str, default="blastx", required=False, dest = 'typeBlast', help = 'Type of blast (blastx, blastn, ...) (default = blastx)')
-	files.add_argument('-b', '--databank', metavar="<path/to/directory/bank>", default="/work/BANK/biomaj/nr/current/flat/nr",required=False, dest = 'dbPath', help = 'Path to bank fasta (default = /work/BANK/biomaj/nr/nr_2016-05-21/flat/nr)')
+	files.add_argument('-b', '--databank', metavar="<path/to/directory/bank>", default="/work/BANK/biomaj/nr/current/flat/nr",required=False, dest = 'dbPath', help = 'Path to bank fasta (default = /work/BANK/biomaj/nr/current/flat/nr')
 	files.add_argument('-of', '--outfmt', metavar="<int/string>",type = str, default="6",required=False, dest = 'outfmtValue', help = 'outfmt of blast (default = 6)')
 	files.add_argument('-bo', '--blastoption', metavar="<string>", nargs='*', default=[""],required=False, dest = 'blastOptionValue', help = 'Other blast options like -bo "-evalue 10-3" "-gapopen 5" (default = "")')
 	files.add_argument('-j', '--nbjob', metavar="<int>", type = int, default=100,required=False, dest = 'nbJobValue', help = 'Number of job array lunch (default = 100)')
@@ -60,7 +110,7 @@ if __name__ == "__main__":
 
 	#Welcome message
 	print("#################################################################")
-	print("#           Welcome in run_multiblastX (Version " + version + ")            #")
+	print("#           Welcome in run_multiblast (Version " + version + ")            #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 
