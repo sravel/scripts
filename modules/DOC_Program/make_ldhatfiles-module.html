@@ -52,7 +52,99 @@
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
 <h1 class="epydoc">Module make_ldhatfiles</h1><p class="nomargin-top"><span class="codelink"><a href="make_ldhatfiles-pysrc.html">source&nbsp;code</a></span></p>
-<!-- ==================== FUNCTIONS ==================== -->
+<div class="rst-section" id="rst-script-description">
+<h1 class="heading">Script description</h1>
+<p>This Program takes a tab file and returns LDhat .sites and .locs files</p>
+</div>
+<div class="rst-section" id="rst-example">
+<h1 class="heading">Example</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>make_ldhatfiles.py -wd outPath -t SNP_table.tab -st chomosomeSize.txt</pre>
+</div>
+<div class="rst-section" id="rst-help-programm">
+<h1 class="heading">Help Programm</h1>
+<dl class="rst-docutils">
+<dt>optional arguments:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-h, --help</dt>
+<dd><p class="rst-first rst-last">show this help message and exit</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-v, --version</dt>
+<dd><p class="rst-first rst-last">display make_ldhatfiles.py version number and exit</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Input mandatory infos for running:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-wd &lt;path&gt;, --workdir &lt;path&gt;</dt>
+<dd><p class="rst-first rst-last">Path of the directory where files will be created</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-t &lt;filename&gt;, --tab &lt;filename&gt;</dt>
+<dd><p class="rst-first rst-last">Name of tab file in (input whole path if file is not
+in the current working directory</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-st &lt;filename&gt;, --size_tab &lt;filename&gt;</dt>
+<dd><p class="rst-first rst-last">Name of a tab file containing the identifiers of the
+subunits of division (chromosome/scaffold/contig) and
+their total size. If some scaffolds are not wanted,
+comment the line.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Input infos for running with default values:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-dt &lt;int&gt;, --datatype &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">1 for haplotypic data (default), 2 for genotypic</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-m &lt;char&gt;, --methode &lt;char&gt;</dt>
+<dd><p class="rst-first rst-last">rhomap or interval (default)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-f &lt;char&gt;, --flag &lt;char&gt;</dt>
+<dd><p class="rst-first rst-last">L for CO (default), C pour gene conversion</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+
+<hr />
+<div class="fields">      <p><strong>Author:</strong>
+        Sebastien Ravel, Lea Picard
+      </p>
+      <p><strong>Contact:</strong>
+        <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
+      </p>
+      <p><strong>Date:</strong>
+        08/07/2016
+      </p>
+      <p><strong>Version:</strong>
+        0.1
+      </p>
+</div><!-- ==================== FUNCTIONS ==================== -->
 <a name="section-Functions"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
@@ -109,35 +201,42 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="current_dir"></a><span class="summary-name">current_dir</span> = <code title="os.path.dirname(os.path.abspath(__file__))+ &quot;/&quot;">os.path.dirname(os.path.abspath(__file__))+ &quot;/&quot;</code>
+        <a name="current_dir"></a><span class="summary-name">current_dir</span> = <code title="'/media/sebastien/Bayer/ScriptsSEB/scripts/local/'"><code class="variable-quote">'</code><code class="variable-string">/media/sebastien/Bayer/ScriptsSEB/scripts/local/</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="version"></a><span class="summary-name">version</span> = <code title="&quot;0.1&quot;">&quot;0.1&quot;</code>
+        <a name="version"></a><span class="summary-name">version</span> = <code title="'0.1'"><code class="variable-quote">'</code><code class="variable-string">0.1</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'15/03/2016'">'15/03/2016'</code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'15/03/2016'"><code class="variable-quote">'</code><code class="variable-string">15/03/2016</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="completeLDhatPATH"></a><span class="summary-name">completeLDhatPATH</span> = <code title="&quot;completeLDhat&quot;">&quot;completeLDhat&quot;</code>
+        <a name="completeLDhatPATH"></a><span class="summary-name">completeLDhatPATH</span> = <code title="'completeLDhat'"><code class="variable-quote">'</code><code class="variable-string">completeLDhat</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="statLDhatPATH"></a><span class="summary-name">statLDhatPATH</span> = <code title="&quot;statLDhat&quot;">&quot;statLDhat&quot;</code>
+        <a name="statLDhatPATH"></a><span class="summary-name">statLDhatPATH</span> = <code title="'statLDhat'"><code class="variable-quote">'</code><code class="variable-string">statLDhat</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="None">None</code>
     </td>
   </tr>
 </table>
@@ -165,7 +264,7 @@
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Thu Jul 21 09:50:41 2016
+    on Thu Jul 21 12:46:55 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
