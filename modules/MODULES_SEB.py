@@ -8,7 +8,7 @@
 	======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 07-06-2016
+	:date: 21-07-2016
 	:version: 0.2
 
 	Use it to import very handy functions.
@@ -60,7 +60,7 @@ import urllib
 ##################################################
 ## Variables Globales
 version="0.1"
-VERSION_DATE='07-06-2016'
+VERSION_DATE='21-07-2016'
 
 ##################################################
 ## Fonctions
@@ -74,28 +74,28 @@ def compareList(list1, list2):
 	:param list2: a python list
 	:type list2: list()
 	:return: list(), list(), list()
-	:rtype: three list, common, u1 u2
+	:rtype:common, u1, u2
+	:note: ens1 = set([1, 2, 3, 4, 5, 6])
+	:note: ens2 = set([2, 3, 4])
+	:note: ens3 = set([6, 7, 8, 9])
+	:note: print ens1 & ens2 set([2, 3, 4]) car ce sont les seuls à être en même temps dans ens1 et ens2
+	:note: print ens1 | ens3 set([1, 2, 3, 4, 5, 6, 7, 8, 9]), les deux réunis
+	:note: print ens1 & ens3 set([6]), même raison que deux lignes au dessus
+	:note: print ens1 ^ ens3 set([1, 2, 3, 4, 5, 7, 8, 9]), l'union moins les éléments communs
+	:note: print ens1 - ens2 set([1, 5, 6]), on enlève les éléments de ens2
 
-		Example:
-	>>>l1 = [1, 2, 3, 4, 5, 6]
-	>>>l2 = [6, 7, 8, 9]
-	>>>com, u1, u2 = compareList(l1, l2)
-	>>>print(com)
-	[6]
-	>>>print(u1)
-	[1, 2, 3, 4, 5]
-	>>>print(u2)
-	[7, 8, 9]
 
-	:note:
-		# ens1 = set([1, 2, 3, 4, 5, 6])
-		# ens2 = set([2, 3, 4])
-		# ens3 = set([6, 7, 8, 9])
-		print ens1 & ens2 # set([2, 3, 4]) car ce sont les seuls à être en même temps dans ens1 et ens2
-		print ens1 | ens3 # set([1, 2, 3, 4, 5, 6, 7, 8, 9]), les deux réunis
-		print ens1 & ens3 # set([6]), même raison que deux lignes au dessus
-		print ens1 ^ ens3 # set([1, 2, 3, 4, 5, 7, 8, 9]), l'union moins les éléments communs
-		print ens1 - ens2 # set([1, 5, 6]), on enlève les éléments de ens2
+	Example:
+		>>> l1 = [1, 2, 3, 4, 5, 6]
+		>>> l2 = [6, 7, 8, 9]
+		>>> com, u1, u2 = compareList(l1, l2)
+		>>> print(com)
+		[6]
+		>>> print(u1)
+		[1, 2, 3, 4, 5]
+		>>> print(u2)
+		[7, 8, 9]
+
 	"""
 
 	ens1 = set(list1)
@@ -282,10 +282,11 @@ def fasta2dict(filename):
 	:type filename: file in fasta format
 	:rtype: record_dict()
 	:return: dict() - dictionnary with keys are Id and value SeqRecord() fields
-	:requires: this function require ## BIO Python modules: (from Bio import SeqIO,\\n
-	from Bio.SeqRecord import SeqRecord \\n
-	from Bio.Seq import Seq \\n
-	from Bio.Alphabet import SingleLetterAlphabet)
+	:requires: this function require BIO Python modules:
+	:requires: from Bio import SeqIO
+	:requires: from Bio.SeqRecord import SeqRecord
+	:requires: from Bio.Seq import Seq
+	:requires: from Bio.Alphabet import SingleLetterAlphabet
 
 	Example:
 		>>> filename = "sequence.fasta"
@@ -999,7 +1000,7 @@ class parseGFF():
 class printCol():
 	"""
 	printCol() CLASS
-	===============
+	================
 
 	Classe qui ajoute des méthodes à print pour afficher de la couleur
 
