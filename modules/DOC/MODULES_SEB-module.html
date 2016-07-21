@@ -57,7 +57,7 @@
 <h1 class="epydoc">Module MODULES_SEB</h1><p class="nomargin-top"><span class="codelink"><a href="MODULES_SEB-pysrc.html">source&nbsp;code</a></span></p>
 <h1 class="heading">The MODULES_SEB module</h1>
     <p>:author: Sebastien Ravel :contact: sebastien.ravel@cirad.fr :date: 
-    07-06-2016 :version: 0.2</p>
+    21-07-2016 :version: 0.2</p>
     <p>Use it to import very handy functions.</p>
     <p>Example:</p>
 <pre class="py-doctest">
@@ -105,6 +105,25 @@
     </table>
   </td>
 </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="MODULES_SEB.parseGFF-class.html" class="summary-name">parseGFF</a><br />
+      [&quot;seqid&quot;, &quot;source&quot;, &quot;type&quot;, 
+        &quot;start&quot;, &quot;end&quot;, &quot;score&quot;, 
+        &quot;strand&quot;, &quot;phase&quot;, &quot;attributes&quot;, 
+        &quot;seq&quot;, &quot;len&quot;]
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="MODULES_SEB.printCol-class.html" class="summary-name">printCol</a><br />
+      Classe qui ajoute des m&#233;thodes &#224; print pour afficher de la couleur
+    </td>
+  </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
@@ -183,11 +202,29 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#extant_file" class="summary-sig-name">extant_file</a>(<span class="summary-sig-arg">x</span>)</span><br />
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#compareList" class="summary-sig-name">compareList</a>(<span class="summary-sig-arg">list1</span>,
+        <span class="summary-sig-arg">list2</span>)</span><br />
+      Function to compare two list and return common, uniq1 and uniq2</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="MODULES_SEB-pysrc.html#compareList">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#existant_file" class="summary-sig-name">existant_file</a>(<span class="summary-sig-arg">x</span>)</span><br />
       'Type' for argparse - checks that file exists but does not open by 
       default.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="MODULES_SEB-pysrc.html#extant_file">source&nbsp;code</a></span>
+            <span class="codelink"><a href="MODULES_SEB-pysrc.html#existant_file">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -693,7 +730,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'07-06-2016'"><code class="variable-quote">'</code><code class="variable-string">07-06-2016</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'21-07-2016'"><code class="variable-quote">'</code><code class="variable-string">21-07-2016</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -723,17 +760,51 @@
   </td>
 </tr>
 </table>
-<a name="extant_file"></a>
+<a name="compareList"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">extant_file</span>(<span class="sig-arg">x</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">compareList</span>(<span class="sig-arg">list1</span>,
+        <span class="sig-arg">list2</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#extant_file">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#compareList">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function to compare two list and return common, uniq1 and uniq2</p>
+  <p>:param list1: a python list :type list1: list() :param list2: a python
+  list :type list2: list() :return: list(), list(), list() :rtype: three 
+  list, common, u1 u2</p>
+  <p>Example:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>l1 = [1, 2, 3, 4, 5, 6]
+<span class="py-prompt">&gt;&gt;&gt; </span>l2 = [6, 7, 8, 9]
+<span class="py-prompt">&gt;&gt;&gt; </span>com, u1, u2 = compareList(l1, l2)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(com)
+<span class="py-output">[6]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(u1)
+<span class="py-output">[1, 2, 3, 4, 5]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(u2)
+<span class="py-output">[7, 8, 9]</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="existant_file"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">existant_file</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#existant_file">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -1568,7 +1639,7 @@
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Tue Jun  7 14:50:12 2016
+    on Thu Jul 21 07:02:48 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
