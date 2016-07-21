@@ -31,7 +31,7 @@
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display concatFastasFile.py version number and exit
+						display extractSeqFastaFromLen.py version number and exit
 
 	Input mandatory infos for running:
 		- \-f <filename>, --fasta <filename>
