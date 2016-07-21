@@ -5,7 +5,7 @@
 
 """
 	The run_multiblast script
-	===================================
+	=========================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
 	:date: 08/07/2016
