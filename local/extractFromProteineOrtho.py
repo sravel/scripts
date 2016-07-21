@@ -1,7 +1,46 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package extractFromProteineOrtho.py
+# @package extractFromProteineOrtho.py
 # @author Sebastien Ravel
+
+"""
+	The extractFromProteineOrtho script
+	===================================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme take proteineOrtho output and take file with Orthologue 1/1
+
+	Example
+	-------
+
+	>>> extractFromProteineOrtho.py -s _ALL -p phylogenomique_ALL.proteinortho-graph -r MGG
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display extractFromProteineOrtho.py version number and exit
+		- \-dd {False,True}, --debug {False,True}
+						enter verbose/debug mode
+
+	Input mandatory infos for running:
+		- \-s <string>, --suffix <string>
+						Suffix to output Name directory and tab
+		- \-p <filename>, --proteine <filename>
+						proteineOrthoFile
+		- \-r <string>, --ref <string>
+						Name of strain reference (ex: Mycfi)
+
+"""
 
 ##################################################
 ## Modules
@@ -42,10 +81,10 @@ if __name__ == "__main__":
 						'display extractFromProteineOrtho version number and exit')
 	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-s', '--suffix', metavar="<string>", required=True, dest = 'suffixParam', help = 'Suffix to output Name directory and tab')
-	files.add_argument('-p', '--proteine', metavar="<filename>",type=existant_file, required=True, dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
-	files.add_argument('-r', '--ref', metavar="<string>", required=True, dest = 'refName', help = 'Name of strain reference (ex: Mycfi) ')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-s', '--suffix', metavar="<string>", required=True, dest = 'suffixParam', help = 'Suffix to output Name directory and tab')
+	filesreq.add_argument('-p', '--proteine', metavar="<filename>",type=existant_file, required=True, dest = 'proteineOrthoFile', help = 'proteineOrthoFile')
+	filesreq.add_argument('-r', '--ref', metavar="<string>", required=True, dest = 'refName', help = 'Name of strain reference (ex: Mycfi) ')
 
 	# Check parameters
 	args = parser.parse_args()

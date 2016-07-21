@@ -8,18 +8,18 @@
 	====================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 2/05/2016
+	:date: 20/04/2016
 	:version: 0.1
 
 	Script description
 	------------------
 
-	This Programme run assembly of Jerome Gouzi pipeline for fastq file
+	This Programme find corresponding MGG and BR32 genes
 
 	Example
 	-------
 
-	>>> addSample.py -d fastq/ -o assemblyFinal
+	>>> addSample.py -s ./fasta/ -c tab.tab -pi ./fasta/ -po ./fastaOut/
 
 	Help Programm
 	-------------
@@ -28,15 +28,20 @@
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display run_Assembly version number and exit
+						display addSample.py version number and exit
 
-	Input mandatory infos for running:
-		- \-d <path/to/directory>, --directory <path/to/directory>
-						path with Fastq files
-		- \-o <path/to/directory>, --out <path/to/directory>
-						Output Path
+	Input info for running:
+		- \-s <path/to/filein>, --samples <path/to/filein>
+						path to fasta sample files in
+		- \-c <filename>, --csv <filename>
+						Name of csv file with Orthologue infos
+		- \-pi <path/to/filein>, --pathin <path/to/filein>
+						path to fasta files in
+		- \-po <path/to/fileout>, --pathout <path/to/fileout>
+						path to fasta files Out
 
 """
+
 
 ##################################################
 ## Modules

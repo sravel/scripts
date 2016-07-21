@@ -1,7 +1,43 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package renameFile.py
+# @package renameFile.py
 # @author Sebastien Ravel
+
+"""
+	The renameFile script
+	=====================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme rename files in and directory
+
+	Example
+	-------
+
+	>>> renameFile.py -s _ALL -p directory -r _toto:_TOTO,prefi_:newPrefix
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display renameFile.py version number and exit
+
+	Input mandatory infos for running:
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path with files to rename
+		- \-r <OLD:NEW,OLD:NEW>, --replace <OLD:NEW,OLD:NEW>
+						Expression replace must be OLD:NEW and if multiple
+						replace use comma to separate
+
+"""
 
 ##################################################
 ## Modules

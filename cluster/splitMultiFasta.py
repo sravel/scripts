@@ -1,7 +1,42 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-# @package splitFasta.py.py
+# @package splitMultiFasta.py
 # @author Sebastien Ravel
+
+"""
+	The splitMultiFasta script
+	==========================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme split multi-fasta to one file/sequences
+
+	Example
+	-------
+
+	>>> splitMultiFasta.py -f multiFasta.fasta -o PathOut
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display splitMultiFasta.py version number and exit
+
+	Input mandatory infos for running:
+		- \-f <filename>, --fasta <filename>
+						fasta files to split
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Name of output file directory
+
+"""
 
 ##################################################
 ## Modules
@@ -40,21 +75,21 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='splitFasta.py', description='''This Programme split multi-fasta to one file/sequences''')
+	parser = argparse.ArgumentParser(prog='splitMultiFasta.py', description='''This Programme split multi-fasta to one file/sequences''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
-						'display splitFasta.py version number and exit')
+						'display splitMultiFasta.py version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-f', '--fasta', metavar="<filename>", type=existant_file, required=True, dest = 'fastaFile', help = 'fasta files to split')
-	files.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathOut', help = 'Name of output file directory')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-f', '--fasta', metavar="<filename>", type=existant_file, required=True, dest = 'fastaFile', help = 'fasta files to split')
+	filesreq.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathOut', help = 'Name of output file directory')
 
 	# Check parameters
 	args = parser.parse_args()
 
 	#Welcome message
 	print("#################################################################")
-	print("#        Welcome in splitFasta (Version " + version + ")          #")
+	print("#        Welcome in splitMultiFasta (Version " + version + ")          #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 

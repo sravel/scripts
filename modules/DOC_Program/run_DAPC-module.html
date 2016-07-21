@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>extractFromProteineOrtho</title>
+  <title>run_DAPC</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;extractFromProteineOrtho
+        Module&nbsp;run_DAPC
       </span>
     </td>
     <td>
@@ -44,22 +44,22 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="extractFromProteineOrtho-module.html"
+            >]&nbsp;|&nbsp;<a href="run_DAPC-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module extractFromProteineOrtho</h1><p class="nomargin-top"><span class="codelink"><a href="extractFromProteineOrtho-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module run_DAPC</h1><p class="nomargin-top"><span class="codelink"><a href="run_DAPC-pysrc.html">source&nbsp;code</a></span></p>
 <div class="rst-section" id="rst-script-description">
 <h1 class="heading">Script description</h1>
-<p>This Programme take proteineOrtho output and take file with Orthologue 1/1</p>
+<p>This Programme run DAPC for k i to m</p>
 </div>
 <div class="rst-section" id="rst-example">
 <h1 class="heading">Example</h1>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>extractFromProteineOrtho.py -s _ALL -p phylogenomique_ALL.proteinortho-graph -r MGG</pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>run_DAPC.py -m asie_480mlg.txt -o asie_480mlg_DAPC.txt -pi 2 -pm 10 -pca 20</pre>
 </div>
 <div class="rst-section" id="rst-help-programm">
 <h1 class="heading">Help Programm</h1>
@@ -74,13 +74,7 @@
 </li>
 <li><dl class="rst-first rst-docutils">
 <dt>-v, --version</dt>
-<dd><p class="rst-first rst-last">display extractFromProteineOrtho.py version number and exit</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-dd {False,True}, --debug {False,True}</dt>
-<dd><p class="rst-first rst-last">enter verbose/debug mode</p>
+<dd><p class="rst-first rst-last">display run_DAPC.py version number and exit</p>
 </dd>
 </dl>
 </li>
@@ -89,20 +83,36 @@
 <dt>Input mandatory infos for running:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-s &lt;string&gt;, --suffix &lt;string&gt;</dt>
-<dd><p class="rst-first rst-last">Suffix to output Name directory and tab</p>
+<dt>-m &lt;filename&gt;, --mat &lt;filename&gt;</dt>
+<dd><p class="rst-first rst-last">matrice file path</p>
 </dd>
 </dl>
 </li>
 <li><dl class="rst-first rst-docutils">
-<dt>-p &lt;filename&gt;, --proteine &lt;filename&gt;</dt>
-<dd><p class="rst-first rst-last">proteineOrthoFile</p>
+<dt>-o &lt;filename&gt;, --order &lt;filename&gt;</dt>
+<dd><p class="rst-first rst-last">file with re-order name of matrice</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Input infos for running with default values:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-pca &lt;int&gt;, --pcanum &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">Number value of PCA retains (default = NULL)</p>
 </dd>
 </dl>
 </li>
 <li><dl class="rst-first rst-docutils">
-<dt>-r &lt;string&gt;, --ref &lt;string&gt;</dt>
-<dd><p class="rst-first rst-last">Name of strain reference (ex: Mycfi)</p>
+<dt>-pi &lt;int&gt;, --popi &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">Number of pop Min (default = 2)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-pm &lt;int&gt;, --popm &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">Number of pop Max (default = 10)</p>
 </dd>
 </dl>
 </li>
@@ -152,21 +162,44 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="version"></a><span class="summary-name">version</span> = <code title="'0.1'"><code class="variable-quote">'</code><code class="variable-string">0.1</code><code class="variable-quote">'</code></code>
+        <a name="version"></a><span class="summary-name">version</span> = <code title="'0.3'"><code class="variable-quote">'</code><code class="variable-string">0.3</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'06/06/2016'"><code class="variable-quote">'</code><code class="variable-string">06/06/2016</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'21/04/2016'"><code class="variable-quote">'</code><code class="variable-string">21/04/2016</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="debug"></a><span class="summary-name">debug</span> = <code title="'False'"><code class="variable-quote">'</code><code class="variable-string">False</code><code class="variable-quote">'</code></code>
+        <a href="run_DAPC-module.html#DAPCfix" class="summary-name">DAPCfix</a> = <code title="'''
+
+.libPaths(&quot;/home/sebastien/R/x86_64-pc-linux-gnu-library/3.1&quot;)
+
+library(ade4)
+library(adegenet)
+library(ggplot2)
+
+..."><code class="variable-quote">'</code><code class="variable-string">\n\n.libPaths(&quot;/home/sebastien/R/x86_64-pc-linux-gn</code><code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="run_DAPC-module.html#DAPCchange" class="summary-name">DAPCchange</a> = <code title="'''
+#Kmeans
+fcl.BIC &lt;- find.clusters(W, n.pca=**PCARETAIN**,n.clust=**pop**, stat=\
+&quot;BIC&quot;, n.iter=5000, n.start=30, scale=FALSE)
+dapc &lt;- dapc(W, pop=fcl.BIC$grp, n.pca=**PCARETAIN**,n.da=**PCARETAIN*\
+*, scale=FALSE, pca.select=&quot;nbEig&quot;)
+
+#graphique de la DAPC
+..."><code class="variable-quote">'</code><code class="variable-string">\n#Kmeans\nfcl.BIC &lt;- find.clusters(W, n.pca=**P</code><code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr>
@@ -177,6 +210,77 @@
     </td>
   </tr>
 </table>
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="DAPCfix"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">DAPCfix</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'''</code><code class="variable-string"></code>
+<code class="variable-string"></code>
+<code class="variable-string">.libPaths(&quot;/home/sebastien/R/x86_64-pc-linux-gnu-library/3.1&quot;)</code>
+<code class="variable-string"></code>
+<code class="variable-string">library(ade4)</code>
+<code class="variable-string">library(adegenet)</code>
+<code class="variable-string">library(ggplot2)</code>
+<code class="variable-string"></code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="DAPCchange"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">DAPCchange</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'''</code><code class="variable-string"></code>
+<code class="variable-string">#Kmeans</code>
+<code class="variable-string">fcl.BIC &lt;- find.clusters(W, n.pca=**PCARETAIN**,n.clust=**pop**, stat=</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string">&quot;BIC&quot;, n.iter=5000, n.start=30, scale=FALSE)</code>
+<code class="variable-string">dapc &lt;- dapc(W, pop=fcl.BIC$grp, n.pca=**PCARETAIN**,n.da=**PCARETAIN*</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+<code class="variable-string">*, scale=FALSE, pca.select=&quot;nbEig&quot;)</code>
+<code class="variable-string"></code>
+<code class="variable-string">#graphique de la DAPC</code>
+<code class="variable-ellipsis">...</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">

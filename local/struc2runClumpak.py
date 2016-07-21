@@ -1,7 +1,52 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package struc2runClumpak.py
+# @package struc2runClumpak.py
 # @author Sebastien Ravel
+
+"""
+	The struc2runClumpak script
+	===========================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme take directory with output of structure repository and make file to run Clumpak
+
+	Example
+	-------
+
+	>>> struc2runClumpak.py -d asie_2015_480mlg -c CLUMPAK/ -l asie_480mlg_STRUC.txt
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display struc2runClumpak.py version number and exit
+
+	Input mandatory infos for running:
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path of result structure
+		- \-c <path/to/directory/clumpak>, --clumpak <path/to/directory/clumpak>
+						path of clumpak directory
+		- \-l <filename>, --label <filename>
+						File with LABEL, first column name, second top label
+						info
+
+	Input infos for running with default values:
+		- \-dp <filename>, --drawparams <filename>
+						Check your own drawparams file
+		- \-co <filename>, --color <filename>
+						File with colors (default 15 color max)
+
+"""
+
 
 ##################################################
 ## Modules

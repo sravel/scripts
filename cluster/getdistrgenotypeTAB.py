@@ -1,7 +1,40 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package getdistrgenotypeTAB.py
+# @package getdistrgenotypeTAB.py
 # @author Sebastien Ravel
+
+"""
+	The getdistrgenotypeTAB script
+	==============================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme take proteineOrtho output and take file with Orthologue 1/1
+
+	Example
+	-------
+
+	>>> getdistrgenotypeTAB.py -i SNP_table.tab
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display getdistrgenotypeTAB.py version number and exit
+
+	Input mandatory infos for running:
+		- \-i <filename>, --input <filename>
+						tab file with SNP
+
+"""
 
 ##################################################
 ## Modules
@@ -38,8 +71,8 @@ if __name__ == "__main__":
 						'display getdistrgenotypeTAB version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-i', '--input', metavar="<filename>",type=existant_file, required=True, dest = 'paramfile', help = 'tab file')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-i', '--input', metavar="<filename>",type=existant_file, required=True, dest = 'paramfile', help = 'tab file with SNP')
 
 	# Check parameters
 	args = parser.parse_args()
