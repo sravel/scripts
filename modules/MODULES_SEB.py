@@ -946,7 +946,43 @@ def relativeToAbsolutePath(relative):
 #################################################
 
 class parseGFF():
-	"""["seqid", "source", "type", "start", "end", "score", "strand", "phase", "attributes", "seq", "len"]"""
+	"""
+	Parser of GFF3 file write in python.
+	return an object iterable containt GFFRecord()
+
+	line in GFF3 return:
+
+	Example:
+		>>> scaffold_44     prediction      gene    46      6942    0       +       .       ID=gene_1;Name=jgi.p|Mycfi2|180833;portal_id=Mycfi2;proteinId=180833;transcriptId=180833
+		>>> GFFRecord(seqid='scaffold_44', source='prediction', type='gene', start=46, end=6942, score=0.0, strand='+', phase=None,
+		>>> 		attributes={'portal_id': 'Mycfi2', 'transcriptId': '180833', 'proteinId': '180833', 'Name': 'jgi.p|Mycfi2|180833', 'ID': 'gene_1'}, seq=None, len=6896)
+
+	GFFRecord has attributes can acces with record.value (ex: record.seqid):
+
+	==========  ===========================================================
+	attribut    infos
+	==========  ===========================================================
+	seqid       first column of gff3
+	source      second column of gff3
+	type        third column of gff3 contain type
+	start       start position
+	end         end position
+	score       score
+	strand      DNA brin
+	phase       phase
+	attributes  dict() with key corresponding to GFFAttributes
+	seq         if fasta load can add sequence but by default = None
+	len         if fasta load can add length sequence but by default = None
+	==========  ===========================================================
+
+	Example:
+		>>> objGFF = parseGFF(gffFile)
+		>>> for record in objGFF.parseGFF3():
+		>>> 	print(record.seqid)
+		>>> 	if record.type == "mRNA" :
+		>>> 		transcriptID = record.attributes["transcriptId"]
+
+	"""
 
 	def __init__(self, filename):
 		#Initialized GeneInfo named tuple. Note: namedtuple is immutable
