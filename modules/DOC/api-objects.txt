@@ -1,6 +1,8 @@
 MODULES_SEB	MODULES_SEB-module.html
+MODULES_SEB.existant_file	MODULES_SEB-module.html#existant_file
 MODULES_SEB.convertFasta2Nexus	MODULES_SEB-module.html#convertFasta2Nexus
 MODULES_SEB.dictDict2txt	MODULES_SEB-module.html#dictDict2txt
+MODULES_SEB.compareList	MODULES_SEB-module.html#compareList
 MODULES_SEB.fasta2dict	MODULES_SEB-module.html#fasta2dict
 MODULES_SEB.printcolor	MODULES_SEB-module.html#printcolor
 MODULES_SEB._test	MODULES_SEB-module.html#_test
@@ -10,7 +12,6 @@ MODULES_SEB.dict2txt	MODULES_SEB-module.html#dict2txt
 MODULES_SEB.loadInDictCol	MODULES_SEB-module.html#loadInDictCol
 MODULES_SEB.loadInDict	MODULES_SEB-module.html#loadInDict
 MODULES_SEB.readable_dir	MODULES_SEB-module.html#readable_dir
-MODULES_SEB.extant_file	MODULES_SEB-module.html#extant_file
 MODULES_SEB.dict2fasta	MODULES_SEB-module.html#dict2fasta
 MODULES_SEB.lenSeq2dict	MODULES_SEB-module.html#lenSeq2dict
 MODULES_SEB.__package__	MODULES_SEB-module.html#__package__
@@ -58,3 +59,19 @@ MODULES_SEB.directory.lsExtInDirToList	MODULES_SEB.directory-class.html#lsExtInD
 MODULES_SEB.directory.testDirExist	MODULES_SEB.directory-class.html#testDirExist
 MODULES_SEB.directory.__repr__	MODULES_SEB.directory-class.html#__repr__
 MODULES_SEB.directory.splitFilesDir	MODULES_SEB.directory-class.html#splitFilesDir
+MODULES_SEB.parseGFF	MODULES_SEB.parseGFF-class.html
+MODULES_SEB.parseGFF.__init__	MODULES_SEB.parseGFF-class.html#__init__
+MODULES_SEB.parseGFF.parseGFF3	MODULES_SEB.parseGFF-class.html#parseGFF3
+MODULES_SEB.parseGFF.parseGFFAttributes	MODULES_SEB.parseGFF-class.html#parseGFFAttributes
+MODULES_SEB.printCol	MODULES_SEB.printCol-class.html
+MODULES_SEB.printCol.END	MODULES_SEB.printCol-class.html#END
+MODULES_SEB.printCol.PURPLE	MODULES_SEB.printCol-class.html#PURPLE
+MODULES_SEB.printCol.lightPurple	MODULES_SEB.printCol-class.html#lightPurple
+MODULES_SEB.printCol.LIGHT_PURPLE	MODULES_SEB.printCol-class.html#LIGHT_PURPLE
+MODULES_SEB.printCol.YELLOW	MODULES_SEB.printCol-class.html#YELLOW
+MODULES_SEB.printCol.purple	MODULES_SEB.printCol-class.html#purple
+MODULES_SEB.printCol.RED	MODULES_SEB.printCol-class.html#RED
+MODULES_SEB.printCol.GREEN	MODULES_SEB.printCol-class.html#GREEN
+MODULES_SEB.printCol.yellow	MODULES_SEB.printCol-class.html#yellow
+MODULES_SEB.printCol.green	MODULES_SEB.printCol-class.html#green
+MODULES_SEB.printCol.red	MODULES_SEB.printCol-class.html#red

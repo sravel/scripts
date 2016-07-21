@@ -10,7 +10,7 @@ sed -i -e "s|[0-9]\{,2\}-[0-9]\{,2\}-[0-9]\{4\}|${jour}|g" ./modules/MODULES_SEB
 
 cp ./modules/DOC/index.html ./
 
-epydoc --html ./modules/MODULES_SEB.py -o ./modules/DOC/ -v --graph all --inheritance grouped
+epydoc --html ./modules/MODULES_SEB.py -o ./modules/DOC/ -v --graph all --inheritance grouped --docformat="restructuredtext"
 
 mv ./index.html ./modules/DOC/
 
