@@ -1,7 +1,57 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package make_structure_dir.py
+# @package make_structure_dir.py
 # @author Sebastien Ravel
+
+"""
+	The make_structure_dir script
+	=============================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme make arborescence of rep of programme structure\n
+	Use for haploide individus
+
+	Example
+	-------
+
+	>>> make_structure_dir.py -i SNP_table.tab -pm 10 -nbi 624 -nbm 12
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display make_structure_dir.py version number and exit
+
+	Input mandatory infos for running:
+		- \-pm <int>, --popm <int>
+						Number of pop Max
+		- \-i <fileName>, --infile <fileName>
+						input file matrice
+		- \-nbi <int>, --nbIndiv <int>
+						Number of individus un matrice
+		- \-nbm <int>, --nbMarker <int>
+						Number of markers un matrice
+
+	Input infos for running with default values:
+		- \-ri <int>, --repi <int>
+						Number of repetition min (default = 1)
+		- \-rm <int>, --repm <int>
+						Number of repetition max (default = 10)
+		- \-pi <int>, --popi <int>
+						Number of pop Min (default = 1)
+		- \-o <PrefixFileName>, --outfile <PrefixFileName>
+						output file Prefix (default = name of matrice file)
+
+"""
 
 ##################################################
 ## Modules
