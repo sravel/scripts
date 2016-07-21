@@ -1,8 +1,56 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-## @package make_ldhatfiles.py
+# @package make_ldhatfiles.py
 # @author Lea Picard, Sebastien RAVEL
-##/usr/bin/env python
+
+"""
+	The make_ldhatfiles script
+	==========================
+	:author: Sebastien Ravel, Lea Picard
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Program takes a tab file and returns LDhat .sites and .locs files
+
+	Example
+	-------
+
+	>>> make_ldhatfiles.py -wd outPath -t SNP_table.tab -st chomosomeSize.txt
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display make_ldhatfiles.py version number and exit
+
+	Input mandatory infos for running:
+		- \-wd <path>, --workdir <path>
+						Path of the directory where files will be created
+		- \-t <filename>, --tab <filename>
+						Name of tab file in (input whole path if file is not
+						in the current working directory
+		- \-st <filename>, --size_tab <filename>
+						Name of a tab file containing the identifiers of the
+						subunits of division (chromosome/scaffold/contig) and
+						their total size. If some scaffolds are not wanted,
+						comment the line.
+
+	Input infos for running with default values:
+		- \-dt <int>, --datatype <int>
+						1 for haplotypic data (default), 2 for genotypic
+		- \-m <char>, --methode <char>
+						rhomap or interval (default)
+		- \-f <char>, --flag <char>
+						L for CO (default), C pour gene conversion
+
+"""
 
 ##################################################
 ## Modules
@@ -25,7 +73,15 @@ from MODULES_SEB import directory, relativeToAbsolutePath, dictDict2txt, existan
 
 import argparse
 
-import egglib # USE EGGLIB_3
+
+try:
+	import egglib # USE EGGLIB_3
+	if int(egglib.version.split(".")[0]) != 3 :
+		print("You are using not use egglib V3!\n" )
+		exit(1)
+except ImportError:
+	print("You are not able to load egglib V3!\n" )
+
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
@@ -169,6 +225,13 @@ if __name__ == "__main__":
 
 	# check parameters
 	args = parser.parse_args()
+
+
+	#Welcome message
+	print("#################################################################")
+	print("#          Welcome in make_ldhatfiles (Version " + version + ")            #")
+	print("#################################################################")
+	print('Start time: ', start_time,'\n')
 
 	# get arguments
 	workingObjDir = args.workdir
@@ -373,3 +436,16 @@ if __name__ == "__main__":
 	cmdQsub = "qsub -V -q long.q -N "+basename+" -b Y -pe parallel_smp 4 "+workingObjDir.pathDirectory+basename+"/runLDhat_"+basename+".sh"
 
 	print(cmdQsub)
+
+
+	#print("\n\nExecution summary:")
+
+	#print("  - Outputting \n\
+	#- %s\n\
+	#- %s\n\
+	#- %s\n\n" % (tabFileOut.name,listKeepFile.name,correspondingCDSDir) )
+
+	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
+	print("#################################################################")
+	print("#                        End of execution                       #")
+	print("#################################################################")

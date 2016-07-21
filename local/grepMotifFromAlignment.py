@@ -29,16 +29,12 @@
 						show this help message and exit
 		- \-v, --version
 						display grepMotifFromAlignment.py version number and exit
-		- \-dd {False,True}, --debug {False,True}
-						enter verbose/debug mode
 
 	Input mandatory infos for running:
-		- \-s <string>, --suffix <string>
-						Suffix to output Name directory and tab
-		- \-p <filename>, --proteine <filename>
-						proteineOrthoFile
-		- \-r <string>, --ref <string>
-						Name of strain reference (ex: Mycfi)
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path to directory fasta files
+		- \-o <filename>, --out <filename>
+						Name of output file
 
 """
 

@@ -1,7 +1,49 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package make_hapmapfile.py
-# @author Lea Picard
+# @package make_hapmapfile.py
+# @author Lea Picard Sebastien Ravel
+
+"""
+	The make_hapmapfile script
+	==========================
+	:author: Sebastien Ravel, Lea Picard
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This program takes a SNP matrix with no missing data and returns a hapmap file.\n
+	Files will be written in same directory as original file
+
+	Example
+	-------
+
+	>>> make_hapmapfile.py -f SNP_table.tab
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display make_hapmapfile.py version number and exit
+
+	Input mandatory infos for running:
+		- \-f <filename>, --fileIn <filename>
+						Table of SNPs without FU
+
+	Input infos for running with default values:
+		- \-o <filename>, --out <filename>
+						Name of hapmap file (default outfile.hapmap)
+		- \-w <int>, --window <int>
+						Minimal window by which SNPs have to be separated, in bp (default = 1 - keep everything)
+		- \-c, --chrom
+						If used, hapmap files will be produced by chromosomes
+
+"""
 
 ##################################################
 ## Modules
@@ -29,10 +71,12 @@ if __name__ == "__main__":
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version,
 						help='display make_hapmapfile.py version number and exit')
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-f', '--fileIn', metavar="<filename>", type = existant_file, required = True,  dest = 'fileIn', help = 'Table of SNPs without FU')
-	files.add_argument('-o', '--out', metavar="<filename>", default="outfile.hapmap", dest = 'fileOut', help = 'Name of hapmap file (default outfile.hapmap)')
-	files.add_argument('-w', '--window', metavar="<int>", type = int, default=1, dest = 'window', help = 'Minimal window by which SNPs have to be separated, in bp (default = 1 - keep everything)')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-f', '--fileIn', metavar="<filename>", type = existant_file, required = True,  dest = 'fileIn', help = 'Table of SNPs without FU')
+
+	files = parser.add_argument_group('Input infos for running with default values')
+	files.add_argument('-o', '--out', metavar="<filename>", default="outfile.hapmap", required = False, dest = 'fileOut', help = 'Name of hapmap file (default outfile.hapmap)')
+	files.add_argument('-w', '--window', metavar="<int>", type = int, default=1, required = False, dest = 'window', help = 'Minimal window by which SNPs have to be separated, in bp (default = 1 - keep everything)')
 	files.add_argument('-c', '--chrom', action='store_true', dest = 'chrom', help = 'If used, hapmap files will be produced by chromosomes')
 
 	# Check parameters
