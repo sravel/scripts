@@ -1132,7 +1132,7 @@ listFiles=%s\n
 			try:
 				if "." in fichier.split("/")[-1]:
 					nameFichier = fichier.split("/")[-1].split(".")[0]
-					extentionFichier = fichier.split("/")[-1].split(".")[1]
+					extentionFichier = fichier.split("/")[-1].split(".")[-1]
 				else:
 					nameFichier = fichier.split("/")[-1]
 					extentionFichier = ""

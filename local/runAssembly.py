@@ -11,6 +11,9 @@
 	:date: 18/05/2015
 	:version: 2.0
 
+	Script description
+	------------------
+
 	Use it to transform tabular matrice of SNP on fasta file
 
 	Example:
