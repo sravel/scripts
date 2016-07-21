@@ -5,7 +5,7 @@
 
 """
 	The extractSeqFasta script
-	===================================
+	==========================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
 	:date: 08/07/2016
@@ -31,7 +31,7 @@
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display concatFastasFile.py version number and exit
+						display extractSeqFasta.py version number and exit
 
 	Input mandatory infos for running:
 		- \-f <filename>, --fasta <filename>
