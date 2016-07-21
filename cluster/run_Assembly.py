@@ -6,10 +6,10 @@
 
 """
 	The run_Assembly script
-	======================
+	=======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 5/07/2016
+	:date: 03/05/2016
 	:version: 0.1
 
 	Script description
@@ -20,30 +20,22 @@
 	Example
 	-------
 
-	>>> run_Assembly.py -f CDS/ -l correspondingCDS-contig_ALL/ -o 2241OrthoOut_ALL/ -m Orthologue_MGG_List_KEEP_ALL.txt
+	>>> run_Assembly.py -d fastq/ -o assemblyFinal
 
 	Help Programm
 	-------------
 
 	optional arguments:
-
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display extractSeqFastaCorresponding.py version number and exit
-		- \-dd {False,True}, --debug {False,True}
-						enter verbose/debug mode
+						display run_Assembly version number and exit
 
 	Input mandatory infos for running:
-
-		- \-f <path/to/fasta>, --fasta <path/to/fasta>
-						fasta files
-		- \-l <path/to/files>, --list <path/to/files>
-						list files corresponding name
-		- \-o <path/to/out>, --out <path/to/out>
-						Name of output file
-		- \-m <filemane>, --mgg <filemane>
-						output filename
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path with Fastq files
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Output Path
 
 """
 

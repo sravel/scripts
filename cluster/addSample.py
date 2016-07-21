@@ -1,7 +1,47 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package addSample.py
+# @package addSample.py
 # @author Sebastien Ravel
+
+"""
+	The addSample script
+	====================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 20/04/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme find corresponding MGG and BR32 genes
+
+	Example
+	-------
+
+	>>> addSample.py -s ./fasta/ -c tab.tab -pi ./fasta/ -po ./fastaOut/
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display addSample.py version number and exit
+
+	Input info for running:
+		- \-s <path/to/filein>, --samples <path/to/filein>
+						path to fasta sample files in
+		- \-c <filename>, --csv <filename>
+						Name of csv file with Orthologue infos
+		- \-pi <path/to/filein>, --pathin <path/to/filein>
+						path to fasta files in
+		- \-po <path/to/fileout>, --pathout <path/to/fileout>
+						path to fasta files Out
+
+"""
+
 
 ##################################################
 ## Modules
@@ -10,7 +50,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, nbSeqInFile2dict, dict2txt,fasta2dict
+from MODULES_SEB import directory, nbSeqInFile2dict, dict2txt,fasta2dict
 
 ## Python modules
 import argparse

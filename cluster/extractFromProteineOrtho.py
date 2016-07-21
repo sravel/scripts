@@ -11,16 +11,11 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, existant_file, dict2txt, sort_human, dictDict2txt, AutoVivification,printCol,relativeToAbsolutePath
+from MODULES_SEB import existant_file, dict2txt, sort_human, dictDict2txt, AutoVivification,printCol,relativeToAbsolutePath
 
 ## Python modules
-import argparse, re
+import argparse
 from time import localtime, strftime
-
-## BIO Python modules
-from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
 
 ##################################################
 ## Variables Globales
