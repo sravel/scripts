@@ -65,6 +65,46 @@ VERSION_DATE='07-06-2016'
 ##################################################
 ## Fonctions
 
+def compareList(list1, list2):
+	"""
+	Function to compare two list and return common, uniq1 and uniq2
+
+	:param list1: a python list
+	:type list1: list()
+	:param list2: a python list
+	:type list2: list()
+	:return: list(), list(), list()
+	:rtype: three list, common, u1 u2
+
+		Example:
+	>>>l1 = [1, 2, 3, 4, 5, 6]
+	>>>l2 = [6, 7, 8, 9]
+	>>>com, u1, u2 = compareList(l1, l2)
+	>>>print(com)
+	[6]
+	>>>print(u1)
+	[1, 2, 3, 4, 5]
+	>>>print(u2)
+	[7, 8, 9]
+
+	:note:
+		# ens1 = set([1, 2, 3, 4, 5, 6])
+		# ens2 = set([2, 3, 4])
+		# ens3 = set([6, 7, 8, 9])
+		print ens1 & ens2 # set([2, 3, 4]) car ce sont les seuls à être en même temps dans ens1 et ens2
+		print ens1 | ens3 # set([1, 2, 3, 4, 5, 6, 7, 8, 9]), les deux réunis
+		print ens1 & ens3 # set([6]), même raison que deux lignes au dessus
+		print ens1 ^ ens3 # set([1, 2, 3, 4, 5, 7, 8, 9]), l'union moins les éléments communs
+		print ens1 - ens2 # set([1, 5, 6]), on enlève les éléments de ens2
+	"""
+
+	ens1 = set(list1)
+	ens2 = set(list2)
+	common = list(ens1 & ens2)
+	uniq1 = list(ens1 - ens2)
+	uniq2 = list(ens2 - ens1)
+	return sorted(common, key=sort_human), sorted(uniq1, key=sort_human), sorted(uniq2, key=sort_human)
+
 def existant_file(x):
 	"""
 	'Type' for argparse - checks that file exists but does not open by default.
