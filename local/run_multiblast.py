@@ -1,4 +1,4 @@
-#!/usr/local/bioinfo/python/3.4.3_build2/bin/python
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 ## @package run_multiblastX.py
 # @author Sebastien Ravel
