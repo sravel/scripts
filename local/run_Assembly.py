@@ -1,37 +1,43 @@
-#!/usr/local/bioinfo/python/3.4.3_build2/bin/python
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package runAssembly.py
+# @package run_Assembly.py
 # @author Sebastien Ravel
 #__docformat__ = "restructuredtext en"
+
 """
-	The runAssembly script
-	======================
+	The run_Assembly script
+	=======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 18/05/2015
-	:version: 2.0
+	:date: 03/05/2016
+	:version: 0.1
 
-	Use it to transform tabular matrice of SNP on fasta file
+	Script description
+	------------------
 
-	Example:
+	This Programme run assembly of Jerome Gouzi pipeline for fastq file
 
-	>>> python runAssembly.py -t
+	Example
+	-------
 
-	Input require
+	>>> run_Assembly.py -d fastq/ -o assemblyFinal
+
+	Help Programm
 	-------------
 
-	- Name of tab file
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display run_Assembly version number and exit
 
-	Required Module install
-	-----------------------
-
-	This module run with Python 3.x and not Python 2.x
-
-	** Include module of python:
-		- argparse, time
+	Input mandatory infos for running:
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path with Fastq files
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Output Path
 
 """
-
 
 ##################################################
 ## Modules
@@ -61,9 +67,9 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='runAssembly.py', description='''This Programme rename files in and directory''')
+	parser = argparse.ArgumentParser(prog='run_Assembly.py', description='''This Programme run assembly of Jerome Gouzi pipeline for fastq file''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
-						'display runAssembly version number and exit')
+						'display run_Assembly version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
@@ -74,7 +80,7 @@ if __name__ == "__main__":
 
 	#Welcome message
 	print("#################################################################")
-	print("#             Welcome in runAssembly (Version " + version + ")              #")
+	print("#            Welcome in run_Assembly (Version " + version + ")              #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 

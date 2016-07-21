@@ -1,7 +1,52 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-## @package parseWithEgglib.py
+# @package parseWithEgglib.py
 # @author Sebastien Ravel
+
+"""
+	The parseWithEgglib script
+	==========================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 13/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Program takes fasta alignement and check SNP info\n
+	Le script regarde avec Egglib la liste des sites polymorphes et les singletons:\n
+	si la liste des sites polymorphes == 0 ou les 2 listes (singletons et sites polymorphes) sont identiques ajout dans le liste des CDS à remove
+
+	Example
+	-------
+
+	>>> parseWithEgglib.py -f NT_ALIGN/ -o filterEgglib
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display parseWithEgglib version number and exit
+
+	Input mandatory infos for running:
+		- \-f <path/to/directory/fasta>, --fasta <path/to/directory/fasta>
+						path to fasta files
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Name of output file directory
+
+	Input infos for running with default values:
+		- \-i <filename>, --info <filename>
+						output file with info results (default = sitesInformation.tab)
+		- \-n <filename>, --noinfo <filename>
+						output file list with gene with no info (default = outputListNoInfo.txt)
+
+"""
+
+
 
 ##################################################
 ## Modules
@@ -10,10 +55,10 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath, existant_file, dictDict2txt, directory, lsFastaInDirToList
+from MODULES_SEB import  dictDict2txt, directory
 
 ## Python modules
-import argparse, glob
+import argparse
 from time import localtime, strftime
 from egglib import Align
 

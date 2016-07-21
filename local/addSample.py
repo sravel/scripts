@@ -1,7 +1,42 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package addSample.py
+# @package addSample.py
 # @author Sebastien Ravel
+
+"""
+	The addSample script
+	====================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 2/05/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme run assembly of Jerome Gouzi pipeline for fastq file
+
+	Example
+	-------
+
+	>>> addSample.py -d fastq/ -o assemblyFinal
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display run_Assembly version number and exit
+
+	Input mandatory infos for running:
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path with Fastq files
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Output Path
+
+"""
 
 ##################################################
 ## Modules
@@ -10,7 +45,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, nbSeqInFile2dict, dict2txt,fasta2dict
+from MODULES_SEB import directory, nbSeqInFile2dict, dict2txt,fasta2dict
 
 ## Python modules
 import argparse
