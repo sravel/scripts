@@ -3,6 +3,52 @@
 # @package run_raxml.py
 # @author Sebastien Ravel
 
+"""
+	The run_raxml script
+	===================================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme run job array to lunch raxml
+
+	Example
+	-------
+
+	>>> run_raxml.py -f NT_ALIGN/ -o ./
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display run_raxml.py version number and exit
+
+	Input mandatory infos for running:
+		- \-f <path/to/directory/fasta>, --fasta <path/to/directory/fasta>
+						path to fasta files
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Name of output file directory
+
+	Input infos for running with default values:
+		- \-t <int>, --thread <int>
+						number of threads for raxml (default = 4)
+		- \-b <int>, --bootstrap <int>
+						number of nbBootstrap for raxml (default = 100)
+		- \-ro [<string> [<string> ...]], --raxmloption [<string> [<string> ...]]
+						Other raxml options (default = "-f a -m GTRGAMMA -x 2 -p 2")
+		- \-j <int>, --nbjob <int>
+						Number of job array lunch (default = 100)
+
+"""
+
+
 ##################################################
 ## Modules
 ##################################################
@@ -40,7 +86,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(prog='run_raxml.py', description='''This Programme run job array to lunch raxml''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display run_raxml.py version number and exit')
-	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
+	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesReq = parser.add_argument_group('Input mandatory infos for running')
 	filesReq.add_argument('-f', '--fasta', metavar="<path/to/directory/fasta>", type=directory, required=True, dest = 'fastaFileDir', help = 'path to fasta files')
