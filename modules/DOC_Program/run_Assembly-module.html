@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>addSample</title>
+  <title>run_Assembly</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;addSample
+        Module&nbsp;run_Assembly
       </span>
     </td>
     <td>
@@ -44,22 +44,22 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="addSample-module.html"
+            >]&nbsp;|&nbsp;<a href="run_Assembly-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module addSample</h1><p class="nomargin-top"><span class="codelink"><a href="addSample-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module run_Assembly</h1><p class="nomargin-top"><span class="codelink"><a href="run_Assembly-pysrc.html">source&nbsp;code</a></span></p>
 <div class="rst-section" id="rst-script-description">
 <h1 class="heading">Script description</h1>
-<p>This Programme find corresponding MGG and BR32 genes</p>
+<p>This Programme run assembly of Jerome Gouzi pipeline for fastq file</p>
 </div>
 <div class="rst-section" id="rst-example">
 <h1 class="heading">Example</h1>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>addSample.py -s ./fasta/ -c tab.tab -pi ./fasta/ -po ./fastaOut/</pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>run_Assembly.py -d fastq/ -o assemblyFinal</pre>
 </div>
 <div class="rst-section" id="rst-help-programm">
 <h1 class="heading">Help Programm</h1>
@@ -74,35 +74,23 @@
 </li>
 <li><dl class="rst-first rst-docutils">
 <dt>-v, --version</dt>
-<dd><p class="rst-first rst-last">display addSample.py version number and exit</p>
+<dd><p class="rst-first rst-last">display run_Assembly version number and exit</p>
 </dd>
 </dl>
 </li>
 </ul>
 </dd>
-<dt>Input info for running:</dt>
+<dt>Input mandatory infos for running:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-s &lt;path/to/filein&gt;, --samples &lt;path/to/filein&gt;</dt>
-<dd><p class="rst-first rst-last">path to fasta sample files in</p>
+<dt>-d &lt;path/to/directory&gt;, --directory &lt;path/to/directory&gt;</dt>
+<dd><p class="rst-first rst-last">path with Fastq files</p>
 </dd>
 </dl>
 </li>
 <li><dl class="rst-first rst-docutils">
-<dt>-c &lt;filename&gt;, --csv &lt;filename&gt;</dt>
-<dd><p class="rst-first rst-last">Name of csv file with Orthologue infos</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-pi &lt;path/to/filein&gt;, --pathin &lt;path/to/filein&gt;</dt>
-<dd><p class="rst-first rst-last">path to fasta files in</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-po &lt;path/to/fileout&gt;, --pathout &lt;path/to/fileout&gt;</dt>
-<dd><p class="rst-first rst-last">path to fasta files Out</p>
+<dt>-o &lt;path/to/directory&gt;, --out &lt;path/to/directory&gt;</dt>
+<dd><p class="rst-first rst-last">Output Path</p>
 </dd>
 </dl>
 </li>
@@ -119,7 +107,7 @@
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        20/04/2016
+        03/05/2016
       </p>
       <p><strong>Version:</strong>
         0.1
@@ -159,14 +147,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'20/04/2016'"><code class="variable-quote">'</code><code class="variable-string">20/04/2016</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="debug"></a><span class="summary-name">debug</span> = <code title="'False'"><code class="variable-quote">'</code><code class="variable-string">False</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'03/05/2016'"><code class="variable-quote">'</code><code class="variable-string">03/05/2016</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
