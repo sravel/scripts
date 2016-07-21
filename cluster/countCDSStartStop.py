@@ -1,7 +1,44 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package countCDSStartStop.py
+# @package countCDSStartStop.py
 # @author Sebastien Ravel
+
+"""
+	The countCDSStartStop script
+	============================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme count CDS with Start AND/OR Stop or NONE Both, in fasta files
+
+	Example
+	-------
+
+	>>> countCDSStartStop.py -pi NT_ALIGN/
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display countCDSStartStop.py version number and exit
+
+	Input mandatory infos for running:
+		- \-pi <path/to/filein>, --pathin <path/to/filein>
+						path to fasta files in
+
+	Input infos for running with default values:
+		- \-f <yes/y/no/n>, --fasta <yes/y/no/n>
+						choice make (y/yes) or not (n/no) real fasta file (default=no)
+
+"""
 
 ##################################################
 ## Modules

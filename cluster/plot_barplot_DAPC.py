@@ -1,8 +1,44 @@
 #!/usr/local/bioinfo/python/2.7.9_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package struc2runClumpak.py
+## @package plot_barplot_DAPC.py
 # @author Pierre Gladieux, Sebastien Ravel
 
+"""
+	The plot_barplot_DAPC script
+	============================
+	:author: Sebastien Ravel, Pierre Gladieux
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme Plot DAPC comboplot of csv file
+
+	Example
+	-------
+
+	>>> plot_barplot_DAPC.py -i SNP_table.tab -pm 10 -nbi 624 -nbm 12
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display plot_barplot_DAPC.py version number and exit
+
+	Input mandatory infos for running:
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path of result DAPC with csv file
+		- \-l <filename>, --label <filename>
+						File with LABEL, one per line
+		- \-o <filename>, --output <filename>
+						Name of output figure file
+
+"""
 
 ##################################################
 ## Modules
@@ -37,15 +73,15 @@ if __name__ == "__main__":
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='plot_barplot_DAPC.py', description='''This Programme Plot DAPC comboplot''')
+	parser = argparse.ArgumentParser(prog='plot_barplot_DAPC.py', description='''This Programme Plot DAPC comboplot of csv file''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display plot_barplot_DAPC version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-d', '--directory', metavar="<path/to/directory>", required=True, dest = 'dirPath', help = 'path of result DAPC with csv file')
-	files.add_argument('-l', '--label', metavar="<filename>",type=existant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, one per line')
-	files.add_argument('-o', '--output', metavar="<filename>", required=True, dest = 'outputFileParam', help = 'Name of output figure file')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-d', '--directory', metavar="<path/to/directory>", required=True, dest = 'dirPath', help = 'path of result DAPC with csv file')
+	filesreq.add_argument('-l', '--label', metavar="<filename>",type=existant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, one per line')
+	filesreq.add_argument('-o', '--output', metavar="<filename>", required=True, dest = 'outputFileParam', help = 'Name of output figure file')
 
 
 

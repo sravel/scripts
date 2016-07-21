@@ -19,7 +19,7 @@
 	Example
 	-------
 
-	>>> buildSNPtoFasta.py -s ./fasta/ -c tab.tab -pi ./fasta/ -po ./fastaOut/
+	>>> buildSNPtoFasta.py -g Myfi.gff3 -l List3873MGGothologuesKEEP.txt -t 62souches_nofilter.tab -p orthologue -o out
 
 	Help Programm
 	-------------
@@ -28,19 +28,22 @@
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display addSample.py version number and exit
+						display buildSNPtoFasta.py version number and exit
 
-	Input info for running:
-		- \-s <path/to/filein>, --samples <path/to/filein>
-						path to fasta sample files in
-		- \-c <filename>, --csv <filename>
-						Name of csv file with Orthologue infos
-		- \-pi <path/to/filein>, --pathin <path/to/filein>
-						path to fasta files in
-		- \-po <path/to/fileout>, --pathout <path/to/fileout>
-						path to fasta files Out
+	Input mandatory infos for running:
+		- \-g <filename>, --gff <filename>
+						gff files with annotation
+		- \-l <filename>, --list <filename>
+						File with geneID to keep
+		- \-t <filename>, --tab <filename>
+						File with SNP
+		- \-f <path/to/directory>, --fasta <path/to/directory>
+						Directory with fasta of 3 strains
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Name of output file directory
 
 """
+
 
 ##################################################
 ## Modules

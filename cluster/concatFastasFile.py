@@ -3,6 +3,43 @@
 # @package concatFastasFile.py
 # @author Sebastien Ravel
 
+"""
+	The concatFastasFile script
+	===========================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 11/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme concat multiple fasta files with same sequences name's into uniq file
+
+	Example
+	-------
+
+	>>> concatFastasFile.py -d NT_ALIGN/ -o 2241Ortho-82souches.fasta
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display concatFastasFile.py version number and exit
+
+	Input mandatory infos for running:
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path to directory fasta files (fasta","fas","fa","fna")
+		- \-o <filename>, --out <filename>
+						Name of output file
+
+"""
+
+
+
 ##################################################
 ## Modules
 ##################################################
@@ -35,7 +72,7 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='concatFastasFile.py', description='''This Programme concat fasta files''')
+	parser = argparse.ArgumentParser(prog='concatFastasFile.py', description='''This Programme concat multiple fasta files with same sequences name's into uniq file''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display concatFastasFile.py version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")

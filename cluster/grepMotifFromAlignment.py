@@ -1,7 +1,42 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package grepMotifFromAlignment.py
+# @package grepMotifFromAlignment.py
 # @author Sebastien Ravel
+
+"""
+	The grepMotifFromAlignment script
+	=================================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme parse Aligment info to build motif table of SNP in gene's
+
+	Example
+	-------
+
+	>>> grepMotifFromAlignment.py -d path/to/fasta -o
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display grepMotifFromAlignment.py version number and exit
+
+	Input mandatory infos for running:
+		- \-d <path/to/directory>, --directory <path/to/directory>
+						path to directory fasta files
+		- \-o <filename>, --out <filename>
+						Name of output file
+
+"""
 
 ##################################################
 ## Modules
@@ -28,16 +63,6 @@ debug="False"
 
 ##################################################
 ## Functions
-def checkParameters (arg_list):
-	# Check input related options
-	if (not arg_list.pathDirectory):
-		#print ('Error: No input file defined via option -i/--input !' + "\n")
-		parser.print_help()
-		parser.print_usage()
-		parser.format_usage()
-		parser.format_help()
-		exit()
-
 
 ##################################################
 ## Main code
@@ -47,18 +72,17 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='grepMotifFromAlignment.py', description='''This Programme parse Aligment info''')
+	parser = argparse.ArgumentParser(prog='grepMotifFromAlignment.py', description='''This Programme parse Aligment info to build motif table of SNP in gene's''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display grepMotifFromAlignment.py version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-d', '--directory', metavar="<path/to/directory>",type=directory, required=True, dest = 'pathDirectory', help = 'path to directory fasta files')
-	files.add_argument('-o', '--out', metavar="<filename>", required=True, dest = 'paramoutfile', help = 'Name of output file')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-d', '--directory', metavar="<path/to/directory>",type=directory, required=True, dest = 'pathDirectory', help = 'path to directory fasta files')
+	filesreq.add_argument('-o', '--out', metavar="<filename>", required=True, dest = 'paramoutfile', help = 'Name of output file')
 
 	# Check parameters
 	args = parser.parse_args()
-	checkParameters(args)
 
 	#Welcome message
 	print("#################################################################")
