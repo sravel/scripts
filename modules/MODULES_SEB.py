@@ -74,7 +74,7 @@ def compareList(list1, list2):
 	:param list2: a python list
 	:type list2: list()
 	:return: list(), list(), list()
-	:rtype:common, u1, u2
+	:rtype: common, u1, u2
 	:note: ens1 = set([1, 2, 3, 4, 5, 6])
 	:note: ens2 = set([2, 3, 4])
 	:note: ens3 = set([6, 7, 8, 9])
