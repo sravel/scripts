@@ -3,6 +3,47 @@
 # @package buildSNPtoFasta.py
 # @author Sebastien Ravel
 
+"""
+	The buildSNPtoFasta script
+	==========================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme parse GFF, TAB to add SNP in sequences
+
+	Example
+	-------
+
+	>>> buildSNPtoFasta.py -g Myfi.gff3 -l List3873MGGothologuesKEEP.txt -t 62souches_nofilter.tab -p orthologue -o out
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display buildSNPtoFasta.py version number and exit
+
+	Input mandatory infos for running:
+		- \-g <filename>, --gff <filename>
+						gff files with annotation
+		- \-l <filename>, --list <filename>
+						File with geneID to keep
+		- \-t <filename>, --tab <filename>
+						File with SNP
+		- \-f <path/to/directory>, --fasta <path/to/directory>
+						Directory with fasta of 3 strains
+		- \-o <path/to/directory>, --out <path/to/directory>
+						Name of output file directory
+
+"""
+
+
 ##################################################
 ## Modules
 ##################################################
@@ -46,12 +87,12 @@ if __name__ == "__main__":
 						'display buildSNPtoFasta.py version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-g', '--gff', metavar="<filename>", type=existant_file, required=True, dest = 'gffFile', help = 'gff files with annotation')
-	files.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=True, dest = 'listKeepFile', help = 'File with geneID to keep')
-	files.add_argument('-t', '--tab', metavar="<filename>", type=existant_file, required=True, dest = 'tabFile', help = 'File with SNP')
-	files.add_argument('-f', '--fasta', metavar="<path/to/directory>", type = directory, required=True, dest = 'fastaPath', help = 'Directory with fasta of 3 strains')
-	files.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathOut', help = 'Name of output file directory')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-g', '--gff', metavar="<filename>", type=existant_file, required=True, dest = 'gffFile', help = 'gff files with annotation')
+	filesreq.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=True, dest = 'listKeepFile', help = 'File with geneID to keep')
+	filesreq.add_argument('-t', '--tab', metavar="<filename>", type=existant_file, required=True, dest = 'tabFile', help = 'File with SNP')
+	filesreq.add_argument('-f', '--fasta', metavar="<path/to/directory>", type = directory, required=True, dest = 'fastaPath', help = 'Directory with fasta of 3 strains')
+	filesreq.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'pathOut', help = 'Name of output file directory')
 
 	# Check parameters
 	args = parser.parse_args()
