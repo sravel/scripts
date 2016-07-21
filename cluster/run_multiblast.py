@@ -101,7 +101,7 @@ if __name__ == "__main__":
 	os.makedirs(outputBlastResDir, exist_ok=True)
 
 	count = 1
-	for fasta in pathFastaFile.lsExtInDirToList("fasta"):
+	for fasta in pathFastaFile.lsExtInDirToList(["fasta"]):
 		basenameFasta = fasta.split("/")[-1].split(".")[0]
 
 		with open(outputSHDir+str(count)+"_blast.sh", "w") as shScript:
