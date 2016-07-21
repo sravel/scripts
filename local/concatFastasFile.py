@@ -8,7 +8,7 @@
 	===========================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 08/07/2016
+	:date: 11/07/2016
 	:version: 0.1
 
 	Script description
