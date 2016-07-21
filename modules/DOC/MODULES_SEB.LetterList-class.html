@@ -58,11 +58,11 @@
 <h1 class="epydoc">Class LetterList</h1><p class="nomargin-top"><span class="codelink"><a href="MODULES_SEB-pysrc.html#LetterList">source&nbsp;code</a></span></p>
 <center>
 <center>  <map id="uml_class_diagram_for_modules__2" name="uml_class_diagram_for_modules__2">
-<area shape="rect" id="node1_19" href="MODULES_SEB.LetterList-class.html#__init__" title=":rtype: list() :return: list check if not value of past list" alt="" coords="17,410,297,430"/>
+<area shape="rect" id="node1_19" href="MODULES_SEB.LetterList-class.html#__init__" title="Returns: &#160;list check if not value of past list" alt="" coords="17,410,297,430"/>
 <area shape="rect" id="node1_20" href="MODULES_SEB.LetterList-class.html#append" title="append object to end after do testItem" alt="" coords="17,430,297,450"/>
 <area shape="rect" id="node1_21" href="MODULES_SEB.LetterList-class.html#insert" title="insert object before index" alt="" coords="17,450,297,470"/>
 <area shape="rect" id="node1_22" href="MODULES_SEB.LetterList-class.html#testItem" title="M&#233;thode qui test la valeur a ajouter" alt="" coords="17,470,297,490"/>
-<area shape="rect" id="node1" href="MODULES_SEB.LetterList-class.html" title="Class which derives from list." alt="" coords="5,377,309,496"/>
+<area shape="rect" id="node1" href="MODULES_SEB.LetterList-class.html" title="Class which derives from list. Checks that the string added to the object (list) contains only the letters from the list &quot;Letters&quot; Returns list" alt="" coords="5,377,309,496"/>
 <area shape="rect" id="node2_23" href="javascript:void(0);" title="hash(x)" alt="" coords="20,30,295,50"/>
 <area shape="rect" id="node2_24" href="javascript:void(0);" title="x+y" alt="" coords="20,53,295,73"/>
 <area shape="rect" id="node2_25" href="javascript:void(0);" title="y in x" alt="" coords="20,73,295,93"/>
@@ -77,17 +77,16 @@
 <area shape="rect" id="node2_34" href="javascript:void(0);" title="x+=y" alt="" coords="20,253,295,273"/>
 <area shape="rect" id="node2_35" href="javascript:void(0);" title="x*=y" alt="" coords="20,273,295,293"/>
 <area shape="rect" id="node2_36" href="javascript:void(0);" title="iter(x)" alt="" coords="20,293,295,313"/>
-<area shape="rect" id="node2_37" href="javascript:void(0);" title="stable sort *IN PLACE*; cmp(x, y) &#45;&gt; &#45;1, 0, 1" alt="" coords="20,333,295,353"/>
+<area shape="rect" id="node2_37" href="javascript:void(0);" title="stable sort IN PLACE; cmp(x, y) &#45;&gt; &#45;1, 0, 1" alt="" coords="20,333,295,353"/>
 <area shape="rect" id="node2" href="javascript:void(0);" title="list() &#45;&gt; new empty list list(iterable) &#45;&gt; new list initialized from iterable&#39;s items" alt="" coords="8,5,307,359"/>
 </map>
   <img src="uml_class_diagram_for_modules__2.gif" alt='' usemap="#uml_class_diagram_for_modules__2" ismap="ismap" class="graph-without-title" />
 </center>
 </center>
 <hr />
-<p>Class which derives from list. Checks that the string added to the 
-  object (list) contains only the letters from the list &quot;Letters&quot;
-  Returns list</p>
-  <p>Example:</p>
+<p>Class which derives from list. Checks that the string added to the object (list) contains only the letters from the list &quot;Letters&quot;
+Returns list</p>
+<p>Example:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x=LetterList(letters=[<span class="py-string">'A'</span>, <span class="py-string">'C'</span>, <span class="py-string">'T'</span>, <span class="py-string">'G'</span>])
 <span class="py-prompt">&gt;&gt;&gt; </span>x.append(<span class="py-string">&quot;cagtcgatgcatgctagctagtcagtcat&quot;</span>)
@@ -120,14 +119,15 @@
 </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">new empty list</span>
+      <span class="summary-type">list()</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB.LetterList-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">letters</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">defaultvalue</span>=<span class="summary-sig-default">None</span>)</span><br />
-      :rtype: list() :return: list check if not value of past list</td>
+      Returns:
+list check if not value of past list</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#LetterList.__init__">source&nbsp;code</a></span>
             
@@ -325,9 +325,10 @@
     </td>
   </tr></table>
   
-  <p>:rtype: list() :return: list check if not value of past list</p>
+  x.__init__(...) initializes x; see help(type(x)) for signature
   <dl class="fields">
-    <dt>Returns: new empty list</dt>
+    <dt>Returns: list()</dt>
+        <dd>list check if not value of past list</dd>
     <dt>Overrides:
         object.__init__
     </dt>
@@ -349,7 +350,7 @@
     </td>
   </tr></table>
   
-  <p>append object to end after do testItem</p>
+  append object to end after do testItem
   <dl class="fields">
     <dt>Overrides:
         list.append
@@ -373,7 +374,7 @@
     </td>
   </tr></table>
   
-  <p>insert object before index</p>
+  insert object before index
   <dl class="fields">
     <dt>Overrides:
         list.insert
@@ -410,7 +411,7 @@
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Thu Jul 21 07:29:37 2016
+    on Thu Jul 21 07:31:26 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

@@ -59,12 +59,12 @@
 <center>
 <center>  <map id="uml_class_diagram_for_modules__6" name="uml_class_diagram_for_modules__6">
 <area shape="rect" id="node1_20" href="MODULES_SEB.directory-class.html#__init__" title="Initialise variable" alt="" coords="17,458,223,478"/>
-<area shape="rect" id="node1_21" href="MODULES_SEB.directory-class.html#__repr__" title="Fonction qui permet de formater le text de sortie lors du print du &#160;dictionnaire" alt="" coords="17,478,223,498"/>
+<area shape="rect" id="node1_21" href="MODULES_SEB.directory-class.html#__repr__" title="Fonction qui permet de formater le text de sortie lors du print du dictionnaire" alt="" coords="17,478,223,498"/>
 <area shape="rect" id="node1_22" href="MODULES_SEB.directory-class.html#testDirExist" title="Test l&#39;existance du r&#233;pertoire" alt="" coords="17,498,223,518"/>
 <area shape="rect" id="node1_23" href="MODULES_SEB.directory-class.html#lsInDir" title="List all in directory" alt="" coords="17,518,223,538"/>
 <area shape="rect" id="node1_24" href="MODULES_SEB.directory-class.html#lsExtInDirToList" title="List specific extention file in directory" alt="" coords="17,538,223,558"/>
 <area shape="rect" id="node1_25" href="MODULES_SEB.directory-class.html#splitFilesDir" title="list files and list directory" alt="" coords="17,558,223,578"/>
-<area shape="rect" id="node1" href="MODULES_SEB.directory-class.html" title="Class which derives from string." alt="" coords="5,425,235,584"/>
+<area shape="rect" id="node1" href="MODULES_SEB.directory-class.html" title="Class which derives from string. Checks that the string is and path to valid directory and not empty" alt="" coords="5,425,235,584"/>
 <area shape="rect" id="node2_26" href="javascript:void(0);" title="x+y" alt="" coords="36,100,204,120"/>
 <area shape="rect" id="node2_27" href="javascript:void(0);" title="y in x" alt="" coords="36,120,204,140"/>
 <area shape="rect" id="node2_28" href="javascript:void(0);" title="x==y" alt="" coords="36,140,204,160"/>
@@ -78,7 +78,7 @@
 <area shape="rect" id="node2_36" href="javascript:void(0);" title="hash(x)" alt="" coords="36,300,204,320"/>
 <area shape="rect" id="node2_37" href="javascript:void(0);" title="x&lt;=y" alt="" coords="36,320,204,340"/>
 <area shape="rect" id="node2_38" href="javascript:void(0);" title="len(x)" alt="" coords="36,340,204,360"/>
-<area shape="rect" id="node2_39" href="javascript:void(0);" title="Pad a numeric string S with zeros on the left, to fill a field of the &#160;specified width." alt="" coords="36,380,204,400"/>
+<area shape="rect" id="node2_39" href="javascript:void(0);" title="Pad a numeric string S with zeros on the left, to fill a field of the specified width. &#160;The string S is never truncated." alt="" coords="36,380,204,400"/>
 <area shape="rect" id="node2" href="javascript:void(0);" title="str(object=&#39;&#39;) &#45;&gt; string" alt="" coords="24,68,216,407"/>
 <area shape="rect" id="node3" href="javascript:void(0);" title="Type basestring cannot be instantiated; it is the base for str and unicode." alt="" coords="77,5,163,49"/>
 </map>
@@ -86,12 +86,10 @@
 </center>
 </center>
 <hr />
-<h1 class="heading">directory() CLASS</h1>
-    <p>Class which derives from string. Checks that the string is and path 
-    to valid directory and not empty</p>
-    <p>Returns object which able to return basename and list file (with an 
-    extention, else consider as folder)</p>
-    <p>Example:</p>
+<p>Class which derives from string.
+Checks that the string is and path to valid directory and not empty</p>
+<p>Returns object which able to return basename and list file (with an extention, else consider as folder)</p>
+<p>Example:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>inDirectory=directory(<span class="py-string">&quot;/home/sravel/Documents&quot;</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(inDirectory.pathDirectory())
@@ -142,8 +140,7 @@
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB.directory-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Fonction qui permet de formater le text de sortie lors du print du 
-      dictionnaire</td>
+      Fonction qui permet de formater le text de sortie lors du print du dictionnaire</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#directory.__repr__">source&nbsp;code</a></span>
             
@@ -359,7 +356,7 @@
     </td>
   </tr></table>
   
-  <p>Initialise variable</p>
+  Initialise variable
   <dl class="fields">
     <dt>Overrides:
         object.__init__
@@ -382,8 +379,7 @@
     </td>
   </tr></table>
   
-  <p>Fonction qui permet de formater le text de sortie lors du print du 
-  dictionnaire</p>
+  Fonction qui permet de formater le text de sortie lors du print du dictionnaire
   <dl class="fields">
     <dt>Overrides:
         object.__repr__
@@ -419,7 +415,7 @@
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Thu Jul 21 07:29:37 2016
+    on Thu Jul 21 07:31:26 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
