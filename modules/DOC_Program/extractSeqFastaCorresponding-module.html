@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>struc2runClumpak</title>
+  <title>extractSeqFastaCorresponding</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;struc2runClumpak
+        Module&nbsp;extractSeqFastaCorresponding
       </span>
     </td>
     <td>
@@ -44,14 +44,14 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="struc2runClumpak-module.html"
+            >]&nbsp;|&nbsp;<a href="extractSeqFastaCorresponding-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module struc2runClumpak</h1><p class="nomargin-top"><span class="codelink"><a href="struc2runClumpak-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module extractSeqFastaCorresponding</h1><p class="nomargin-top"><span class="codelink"><a href="extractSeqFastaCorresponding-pysrc.html">source&nbsp;code</a></span></p>
 <!-- ==================== FUNCTIONS ==================== -->
 <a name="section-Functions"></a>
 <table class="summary" border="1" cellpadding="3"
@@ -75,11 +75,10 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="buildLabelFile"></a><span class="summary-sig-name">buildLabelFile</span>(<span class="summary-sig-arg">labelFile</span>,
-        <span class="summary-sig-arg">pathDir</span>)</span><br />
-      Build label file and labelAtop file</td>
+          <td><span class="summary-sig"><a name="extractListFromFasta2"></a><span class="summary-sig-name">extractListFromFasta2</span>(<span class="summary-sig-arg">sequenceFile</span>,
+        <span class="summary-sig-arg">FileList</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="struc2runClumpak-pysrc.html#buildLabelFile">source&nbsp;code</a></span>
+            <span class="codelink"><a href="extractSeqFastaCorresponding-pysrc.html#extractListFromFasta2">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -123,44 +122,14 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'20/05/2015'"><code class="variable-quote">'</code><code class="variable-string">20/05/2015</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'05/07/2016'"><code class="variable-quote">'</code><code class="variable-string">05/07/2016</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="PathPerl5libSeb"></a><span class="summary-name">PathPerl5libSeb</span> = <code title="'/homedir/sravel/perl5/lib/perl5'"><code class="variable-quote">'</code><code class="variable-string">/homedir/sravel/perl5/lib/perl5</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="struc2runClumpak-module.html#drawparams" class="summary-name">drawparams</a> = <code title="'''
-FICHIER MODIF SEB dans Racine
-PARAMETERS FOR THE PROGRAM distruct.  YOU WILL NEED TO SET THESE
-IN ORDER TO RUN THE PROGRAM.
-
-&quot;(int)&quot; means that this takes an integer value.
-&quot;(B)&quot;   means that this variable is Boolean
-        (1 for True, and 0 for False)
-..."><code class="variable-quote">'</code><code class="variable-string">\nFICHIER MODIF SEB dans Racine\nPARAMETERS FOR </code><code class="variable-ellipsis">...</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="struc2runClumpak-module.html#color" class="summary-name">color</a> = <code title="'''
-1 blue_purple
-2 dark_green
-3 dark_orange
-4 blue
-5 light_green
-6 light_purple
-7 red2
-..."><code class="variable-quote">'</code><code class="variable-string">\n1 blue_purple\n2 dark_green\n3 dark_orange\n4 blue\</code><code class="variable-ellipsis">...</code></code>
+        <a name="debug"></a><span class="summary-name">debug</span> = <code title="'False'"><code class="variable-quote">'</code><code class="variable-string">False</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -171,77 +140,6 @@ IN ORDER TO RUN THE PROGRAM.
     </td>
   </tr>
 </table>
-<!-- ==================== VARIABLES DETAILS ==================== -->
-<a name="section-VariablesDetails"></a>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Variables Details</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-VariablesDetails"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-</table>
-<a name="drawparams"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">drawparams</h3>
-  
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
-      <dd><table><tr><td><pre class="variable">
-<code class="variable-quote">'''</code><code class="variable-string"></code>
-<code class="variable-string">FICHIER MODIF SEB dans Racine</code>
-<code class="variable-string">PARAMETERS FOR THE PROGRAM distruct.  YOU WILL NEED TO SET THESE</code>
-<code class="variable-string">IN ORDER TO RUN THE PROGRAM.</code>
-<code class="variable-string"></code>
-<code class="variable-string">&quot;(int)&quot; means that this takes an integer value.</code>
-<code class="variable-string">&quot;(B)&quot;   means that this variable is Boolean</code>
-<code class="variable-string">        (1 for True, and 0 for False)</code>
-<code class="variable-ellipsis">...</code>
-</pre></td></tr></table>
-</dd>
-  </dl>
-</td></tr></table>
-</div>
-<a name="color"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">color</h3>
-  
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
-      <dd><table><tr><td><pre class="variable">
-<code class="variable-quote">'''</code><code class="variable-string"></code>
-<code class="variable-string">1 blue_purple</code>
-<code class="variable-string">2 dark_green</code>
-<code class="variable-string">3 dark_orange</code>
-<code class="variable-string">4 blue</code>
-<code class="variable-string">5 light_green</code>
-<code class="variable-string">6 light_purple</code>
-<code class="variable-string">7 red2</code>
-<code class="variable-ellipsis">...</code>
-</pre></td></tr></table>
-</dd>
-  </dl>
-</td></tr></table>
-</div>
-<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
