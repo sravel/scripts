@@ -28,7 +28,7 @@
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display concatFastasFile.py version number and exit
+						display extractFromProteineOrtho.py version number and exit
 		- \-dd {False,True}, --debug {False,True}
 						enter verbose/debug mode
 
