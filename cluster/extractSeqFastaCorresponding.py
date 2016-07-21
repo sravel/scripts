@@ -11,33 +11,38 @@
 	:date: 5/07/2016
 	:version: .1
 
+	Script description
+	------------------
+
 	This Programme extract Fasta Seq with liste keep
 
-	Example:
+	Example
+	-------
 
 	>>> extractSeqFastaCorresponding.py -f CDS/ -l correspondingCDS-contig_ALL/ -o 2241OrthoOut_ALL/ -m Orthologue_MGG_List_KEEP_ALL.txt
-
 
 	Help Programm
 	-------------
 
 	optional arguments:
-	  -h, --help            show this help message and exit
-	  -v, --version         display extractSeqFastaCorresponding.py version number
-							and exit
-	  -dd {False,True}, --debug {False,True}
-							enter verbose/debug mode
+
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display extractSeqFastaCorresponding.py version number and exit
+		- \-dd {False,True}, --debug {False,True}
+						enter verbose/debug mode
 
 	Input mandatory infos for running:
-	  -f <path/to/fasta>, --fasta <path/to/fasta>
-							fasta files
-	  -l <path/to/files>, --list <path/to/files>
-							list files corresponding name
-	  -o <path/to/out>, --out <path/to/out>
-							Name of output file
-	  -m <filemane>, --mgg <filemane>
-							filename
 
+		- \-f <path/to/fasta>, --fasta <path/to/fasta>
+						fasta files
+		- \-l <path/to/files>, --list <path/to/files>
+						list files corresponding name
+		- \-o <path/to/out>, --out <path/to/out>
+						Name of output file
+		- \-m <filemane>, --mgg <filemane>
+						output filename
 
 """
 
