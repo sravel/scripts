@@ -98,11 +98,11 @@ renameFile.__package__	renameFile-module.html#__package__
 renameFile.version	renameFile-module.html#version
 renameFile.VERSION_DATE	renameFile-module.html#VERSION_DATE
 renameFile.current_dir	renameFile-module.html#current_dir
-runAssembly	runAssembly-module.html
-runAssembly.__package__	runAssembly-module.html#__package__
-runAssembly.version	runAssembly-module.html#version
-runAssembly.VERSION_DATE	runAssembly-module.html#VERSION_DATE
-runAssembly.current_dir	runAssembly-module.html#current_dir
+run_Assembly	run_Assembly-module.html
+run_Assembly.__package__	run_Assembly-module.html#__package__
+run_Assembly.version	run_Assembly-module.html#version
+run_Assembly.VERSION_DATE	run_Assembly-module.html#VERSION_DATE
+run_Assembly.current_dir	run_Assembly-module.html#current_dir
 run_DAPCV2	run_DAPCV2-module.html
 run_DAPCV2.DAPCfix	run_DAPCV2-module.html#DAPCfix
 run_DAPCV2.__package__	run_DAPCV2-module.html#__package__
