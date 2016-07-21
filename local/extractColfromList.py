@@ -1,7 +1,47 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package extractColfromList.py
-# @author Lea Picard
+# @package extractColfromList.py
+# @author Sebastien Ravel Lea Picard
+
+"""
+	The extractColfromList script
+	============================
+	:author: Sebastien Ravel, Lea Picard
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Program takes a list of IDs and extract the columns with corresponding IDs from a table
+
+	Example
+	-------
+
+	>>> extractColfromList.py -pi NT_ALIGN/
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display concatFastasFile.py version number and exit
+
+	Input mandatory infos for running:
+		- \-ti <filename>, --tablein <filename>
+						Name of table file in
+		- \-l <filename>, --listID <filename>
+						File with IDs to be kept
+
+	Input infos for running with default values:
+		- \-to <filename>, --tableout <filename>
+						Name of table file out (default = "tablein"_extractedIDs.tab)
+
+"""
+
 
 ##################################################
 ## Modules
@@ -36,10 +76,12 @@ if __name__ == "__main__":
 						'display extractColfromList version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	files = parser.add_argument_group('Input info for running')
-	files.add_argument('-ti', '--tablein', metavar="<filename>", type=existant_file, required=True, dest = 'tableFile', help = 'Name of table file in')
-	files.add_argument('-l', '--listID', metavar="<filename>", type=existant_file, required=True, dest = 'IDlist', help = 'File with IDs to be kept')
-	files.add_argument('-to', '--tableout', metavar="<filename>", required=True, dest = 'tableFileOut', help = 'Name of table file out (default tablein_extractedIDs.tab)')
+	filesreq = parser.add_argument_group('Input mandatory infos for running')
+	filesreq.add_argument('-ti', '--tablein', metavar="<filename>", type=existant_file, required=True, dest = 'tableFile', help = 'Name of table file in')
+	filesreq.add_argument('-l', '--listID', metavar="<filename>", type=existant_file, required=True, dest = 'IDlist', help = 'File with IDs to be kept')
+
+	files = parser.add_argument_group('Input infos for running with default values')
+	files.add_argument('-to', '--tableout', metavar="<filename>",default="", required=False, dest = 'tableFileOut', help = 'Name of table file out (default tablein_extractedIDs.tab)')
 
 	# Check parameters
 	args = parser.parse_args()
