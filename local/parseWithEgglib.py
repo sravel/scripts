@@ -14,8 +14,8 @@
 	Script description
 	------------------
 
-	This Program takes fasta alignement and check SNP info
-	Le script regarde avec Egglib la liste des sites polymorphes et les singletons:
+	This Program takes fasta alignement and check SNP info\n
+	Le script regarde avec Egglib la liste des sites polymorphes et les singletons:\n
 	si la liste des sites polymorphes == 0 ou les 2 listes (singletons et sites polymorphes) sont identiques ajout dans le liste des CDS à remove
 
 	Example
@@ -55,10 +55,10 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath, existant_file, dictDict2txt, directory, lsFastaInDirToList
+from MODULES_SEB import  dictDict2txt, directory
 
 ## Python modules
-import argparse, glob
+import argparse
 from time import localtime, strftime
 from egglib import Align
 

@@ -13,13 +13,11 @@ sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import directory, sort_human, fasta2dict
 
 ## Python modules
-import argparse, re
+import argparse
 from time import localtime, strftime
 
 ## BIO Python modules
 from Bio import SeqIO
-from Bio.SeqRecord import SeqRecord
-from Bio.Seq import Seq
 
 ##################################################
 ## Variables Globales
