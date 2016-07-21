@@ -56,43 +56,56 @@
 </table>
 <!-- ==================== CLASS DESCRIPTION ==================== -->
 <h1 class="epydoc">Class parseGFF</h1><p class="nomargin-top"><span class="codelink"><a href="MODULES_SEB-pysrc.html#parseGFF">source&nbsp;code</a></span></p>
-<p>Parser of GFF3 file write in python.
-return an object iterable containt GFFRecord()</p>
-<p>line in GFF3 return:</p>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>scaffold_44     prediction      gene    46      6942    0       +       .       ID=gene_1;Name=jgi.p|Mycfi2|180833;portal_id=Mycfi2;proteinId=180833;transcriptId=180833
-<span class="py-prompt">&gt;&gt;&gt; </span>GFFRecord(seqid=<span class="py-string">'scaffold_44'</span>, source=<span class="py-string">'prediction'</span>, type=<span class="py-string">'gene'</span>, start=46, end=6942, score=0.0, strand=<span class="py-string">'+'</span>, phase=None,
-<span class="py-prompt">&gt;&gt;&gt; </span>                    attributes={<span class="py-string">'portal_id'</span>: <span class="py-string">'Mycfi2'</span>, <span class="py-string">'transcriptId'</span>: <span class="py-string">'180833'</span>, <span class="py-string">'proteinId'</span>: <span class="py-string">'180833'</span>, <span class="py-string">'Name'</span>: <span class="py-string">'jgi.p|Mycfi2|180833'</span>, <span class="py-string">'ID'</span>: <span class="py-string">'gene_1'</span>}, seq=None, len=6896)</pre>
-</dd>
-</dl>
-<p>GFFRecord has attributes can acces with record.value (ex: record.seqid):</p>
-<blockquote>
-<ul class="rst-simple">
-<li>&quot;seqid       S{larr} first column of gff3</li>
-<li>&quot;source&quot;     S{larr} second column of gff3</li>
-<li>&quot;type&quot;       S{larr} third column of gff3 contain type</li>
-<li>&quot;start&quot;      S{larr} start position</li>
-<li>&quot;end&quot;        S{larr} end position</li>
-<li>&quot;score&quot;      S{larr} score</li>
-<li>&quot;strand&quot;     S{larr} DNA brin</li>
-<li>&quot;phase&quot;      S{larr} phase</li>
-<li>&quot;attributes&quot; S{larr} dict() with key corresponding to GFFAttributes</li>
-<li>&quot;seq&quot;        S{larr} if fasta load can add sequence but by default = None</li>
-<li>&quot;len&quot;        S{larr} if fasta load can add length sequence but by default = None</li>
-</ul>
-</blockquote>
-<dl class="rst-docutils">
-<dt>Example:</dt>
-<dd><pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>objGFF = parseGFF(gffFile)
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> record <span class="py-keyword">in</span> objGFF.parseGFF3():
-<span class="py-prompt">&gt;&gt;&gt; </span>    <span class="py-keyword">print</span>(record.seqid)
-<span class="py-prompt">&gt;&gt;&gt; </span>    <span class="py-keyword">if</span> record.type == <span class="py-string">&quot;mRNA&quot;</span> :
-<span class="py-prompt">&gt;&gt;&gt; </span>            transcriptID = record.attributes[<span class="py-string">&quot;transcriptId&quot;</span>]</pre>
-</dd>
-</dl>
+<pre class="literalblock">
+
+Parser of GFF3 file write in python.
+return an object iterable containt GFFRecord()
+
+line in GFF3 return:
+
+Example:
+        &gt;&gt;&gt; scaffold_44     prediction      gene    46      6942    0       +       .       ID=gene_1;Name=jgi.p|Mycfi2|180833;portal_id=Mycfi2;proteinId=180833;transcriptId=180833
+        &gt;&gt;&gt; GFFRecord(seqid='scaffold_44', source='prediction', type='gene', start=46, end=6942, score=0.0, strand='+', phase=None,
+        &gt;&gt;&gt;                     attributes={'portal_id': 'Mycfi2', 'transcriptId': '180833', 'proteinId': '180833', 'Name': 'jgi.p|Mycfi2|180833', 'ID': 'gene_1'}, seq=None, len=6896)
+
+GFFRecord has attributes can acces with record.value (ex: record.seqid):
+
+         - &quot;seqid&quot;              first column of gff3
+         - &quot;source&quot;             second column of gff3
+         - &quot;type&quot;               third column of gff3 contain type
+         - &quot;start&quot;              start position
+         - &quot;end&quot;                end position
+         - &quot;score&quot;              score
+         - &quot;strand&quot;             DNA brin
+         - &quot;phase&quot;              phase
+         - &quot;attributes&quot;         dict() with key corresponding to GFFAttributes
+         - &quot;seq&quot;                if fasta load can add sequence but by default = None
+         - &quot;len&quot;                if fasta load can add length sequence but by default = None
+
+==========  ===========================================================
+attribut    infos
+==========  ===========================================================
+seqid       first column of gff3
+source      second column of gff3
+type        third column of gff3 contain type
+start       start position
+end     end     position
+score       score
+strand      DNA brin
+phase       phase
+attributes  dict() with key corresponding to GFFAttributes
+seq         if fasta load can add sequence but by default = None
+len         if fasta load can add length sequence but by default = None
+==========  ===========================================================
+
+Example:
+        &gt;&gt;&gt; objGFF = parseGFF(gffFile)
+        &gt;&gt;&gt; for record in objGFF.parseGFF3():
+        &gt;&gt;&gt;     print(record.seqid)
+        &gt;&gt;&gt;     if record.type == &quot;mRNA&quot; :
+        &gt;&gt;&gt;             transcriptID = record.attributes[&quot;transcriptId&quot;]
+
+</pre>
 
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
@@ -232,7 +245,7 @@ Yields objects that contain info about a single GFF3 feature.</p>
   <tr>
     <td align="left" class="footer">
     Generated by Epydoc 3.0.1
-    on Thu Jul 21 14:08:41 2016
+    on Thu Jul 21 14:16:06 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
