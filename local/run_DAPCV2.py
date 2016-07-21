@@ -1,7 +1,50 @@
 #!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
-## @package run_DAPC..py
+# @package run_DAPC.py
 # @author Sebastien Ravel
+
+"""
+	The run_DAPC script
+	===================
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 08/07/2016
+	:version: 0.1
+
+	Script description
+	------------------
+
+	This Programme run DAPC for k i to m
+
+	Example
+	-------
+
+	>>> run_DAPC.py -m asie_480mlg.txt -o asie_480mlg_DAPC.txt -pi 2 -pm 10 -pca 20
+
+	Help Programm
+	-------------
+
+	optional arguments:
+		- \-h, --help
+						show this help message and exit
+		- \-v, --version
+						display run_DAPC.py version number and exit
+
+	Input mandatory infos for running:
+		- \-m <filename>, --mat <filename>
+						matrice file path
+		- \-o <filename>, --order <filename>
+						file with re-order name of matrice
+
+	Input infos for running with default values:
+		- \-pca <int>, --pcanum <int>
+						Number value of PCA retains (default = NULL)
+		- \-pi <int>, --popi <int>
+						Number of pop Min (default = 2)
+		- \-pm <int>, --popm <int>
+						Number of pop Max (default = 10)
+
+"""
 
 ##################################################
 ## Modules
@@ -102,9 +145,9 @@ if __name__ == "__main__":
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 #	start=time.clock()
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='run_DAPC..py', description='''This Programme run DAPC for k i to m''')
+	parser = argparse.ArgumentParser(prog='run_DAPC.py', description='''This Programme run DAPC for k i to m''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
-						'display run_DAPC. version number and exit')
+						'display run_DAPC version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
@@ -123,7 +166,7 @@ if __name__ == "__main__":
 
 	#Welcome message
 	print("#################################################################")
-	print("#         Welcome in run_DAPC. (Version " + version + ")           #")
+	print("#         Welcome in run_DAPC (Version " + version + ")           #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 
