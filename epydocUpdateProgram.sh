@@ -10,7 +10,7 @@ jour=$(date +%d-%m-%Y)
 
 #cp ./modules/DOC/index.html ./
 
-epydoc --html ./local/*.py -o ./modules/DOC_Program/ -v --graph all --inheritance grouped
+epydoc --html ./local/*.py -o ./modules/DOC_Program/ -v --graph all --inheritance grouped --docformat="restructuredtext"
 
 #mv ./index.html ./modules/DOC/
 
