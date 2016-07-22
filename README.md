@@ -32,5 +32,3 @@ Use doc to know function implemented on MODULE_SEB:
 
 * http://nas-bgpi.myds.me/DOC/index.html
 * http://nas-bgpi.myds.me/DOC-PROGRAMME/index.html
-
-<span style="color: green"> Some green text </span>
