@@ -49,7 +49,6 @@ from Bio.Seq import Seq
 from Bio.Alphabet import SingleLetterAlphabet, IUPAC, Gapped
 from Bio import AlignIO
 from Bio.Nexus import Nexus
-from Bio import AlignIO
 
 ##ParseGFF modules
 from collections import namedtuple
