@@ -17,10 +17,10 @@ For bug tracking purpose you can use the GitHub or questions about Scrips, you c
 > sebastien.ravel@cirad.fr
 
 * Adress:
-> CIRAD-BIOS
-> UMR BGPI - TA A-54 / K
-> Campus International de Baillarguet
-> 34398 Montpellier Cedex 5
+> CIRAD-BIOS<br/>
+> UMR BGPI - TA A-54 / K<br/>
+> Campus International de Baillarguet<br/>
+> 34398 Montpellier Cedex 5<br/>
 > Batiment K, bureau 118
 
 * Phone:
@@ -29,5 +29,6 @@ For bug tracking purpose you can use the GitHub or questions about Scrips, you c
 ## About MODULE_SEB
 
 Use doc to know function implemented on MODULE_SEB:
+
 * http://nas-bgpi.myds.me/DOC/index.html
 * http://nas-bgpi.myds.me/DOC-PROGRAMME/index.html
