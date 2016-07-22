@@ -972,7 +972,7 @@ class parseGFF():
 	phase       phase
 	attributes  dict() with key corresponding to GFFAttributes
 	seq         if fasta load can add sequence but by default = None
-	len         if fasta load can add length sequence but by default = None
+	len         size of sequence
 	==========  ===========================================================
 
 	Example:
