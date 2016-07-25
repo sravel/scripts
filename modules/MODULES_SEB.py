@@ -817,8 +817,8 @@ def concatFastasFiles(pathDirectory):
 					outputDicoSeqs[name]+=seq
 	except:
 		print(fasta)
-		print(name)
-		print(outputDicoSeqs[name])
+		#print(name)
+		#print(outputDicoSeqs[name])
 	return outputDicoSeqs
 
 
