@@ -792,7 +792,7 @@ def concatFastasFiles(pathDirectory):
 	for fichier in directoryFiles:
 		try:
 			nameFichier = fichier.split("/")[-1].split(".")[0]
-			extentionFichier = fichier.split("/")[-1].split(".")[1]
+			extentionFichier = fichier.split("/")[-1].split(".")[-1]
 		except:
 			extentionFichier = "directory"
 		if extentionFichier in ["fasta", "fa", "fas"]:
