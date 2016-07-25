@@ -86,7 +86,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(prog='run_raxml.py', description='''This Programme run job array to lunch raxml''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display run_raxml.py version number and exit')
-	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
+	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesReq = parser.add_argument_group('Input mandatory infos for running')
 	filesReq.add_argument('-f', '--fasta', metavar="<path/to/directory/fasta>", type=directory, required=True, dest = 'fastaFileDir', help = 'path to fasta files')
