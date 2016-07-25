@@ -18,12 +18,9 @@ import os, sys,shutil
 import re  # Regular expression library
 import urllib
 
-from subprocess import Popen
-
 from Bio import SeqIO
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import  *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QObject, SIGNAL
+from PyQt4.QtGui import QFileDialog, QApplication
 from PyQt4 import uic
 
 
@@ -186,7 +183,7 @@ class Download( formDownload, baseDownload ):
 
 	def loadFile(self):
 		"""Méthode qui permet de charger un fichier et afficher dans le plainText"""
-		filename = QtGui.QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text file *.txt")
+		filename = QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text file *.txt")
 		if filename == "":
 
 			self.displayErrorLoad(error = "\"%s\" is not a valid file \n" % (filename))
@@ -256,7 +253,6 @@ class Download( formDownload, baseDownload ):
 			data = urllib.urlopen(url).read()
 			return data
 		except Exception as erreurs:
-			print erreurs
 			raise IDError("\"%s\" is not a valid accession (error:%s) \n" % (query, erreurs))
 
 	def removeGB(self):
@@ -342,7 +338,7 @@ class Download( formDownload, baseDownload ):
 				# parcours la fiche genbank
 				for record in gbfiche :
 					val+=1
-					seq = record.seq
+					#seq = record.seq
 					type = record.seq.alphabet
 
 					if self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
@@ -364,7 +360,7 @@ class Download( formDownload, baseDownload ):
 							if "coded_by"  in features[t].qualifiers.keys():
 								coded_by=features[t].qualifiers["coded_by"][0].split(":")[0].replace("complement(","").replace("join(","")
 								if coded_by == "":
-									coded_by=feature.qualifiers["coded_by"][0]
+									coded_by=features.qualifiers["coded_by"][0]
 								genbankFicheIDNucl = self.get_accession(coded_by, "nucleotide", "gb").decode("utf-8")		# Récupère la fiche genbank assicier à l'ID en txt
 								gbnucle = self.txtToGenbankObject(coded_by,genbankFicheIDNucl)							# convertie le txt en objet genebank
 								for record in gbnucle:
@@ -401,7 +397,6 @@ class Download( formDownload, baseDownload ):
 				self.printToFiles()
 
 		except IDError as e:
-			print e
 			self.displayError(error = e)
 
 	def printToFiles(self):
@@ -528,7 +523,7 @@ def cmd():
 if __name__ == '__main__':
 
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='concatFastasFile.py', description='''This Programme open GUI to download genbank file with list of accession.\n
+	parser = argparse.ArgumentParser(prog='GUI_download', description='''This Programme open GUI to download genbank file with list of accession.\n
 																				You can both build a taxonomy tab with ID.\n
 																				If use on cluster you can run in cammande line with option -c and args''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
@@ -548,8 +543,11 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if args.cmdMode:
-		cmd()
+		if args.listFile is None or args.paramOutPath is None:
+			parser.error("concatFastasFile.py: error: argument -l/--list is required\n    AND/OR\nconcatFastasFile.py: error: argument -o/--out is required")
+			exit()
+		else:
+			cmd()
 	else:
 		# run interface
 		main()
-
