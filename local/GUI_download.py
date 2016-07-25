@@ -523,7 +523,7 @@ def cmd():
 if __name__ == '__main__':
 
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='GUI_download', description='''This Programme open GUI to download genbank file with list of accession.\n
+	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme open GUI to download genbank file with list of accession.\n
 																				You can both build a taxonomy tab with ID.\n
 																				If use on cluster you can run in cammande line with option -c and args''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
