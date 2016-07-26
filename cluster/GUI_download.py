@@ -1,6 +1,6 @@
 #!/usr/local/bioinfo/python/2.7.9_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package buildTableauResume.py
+# @package GUI_download.py
 # @author Sebastien Ravel
 
 ##################################################
@@ -18,12 +18,9 @@ import os, sys,shutil
 import re  # Regular expression library
 import urllib
 
-from subprocess import Popen
-
 from Bio import SeqIO
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import  *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QObject, SIGNAL
+from PyQt4.QtGui import QFileDialog, QApplication
 from PyQt4 import uic
 
 
@@ -186,9 +183,8 @@ class Download( formDownload, baseDownload ):
 
 	def loadFile(self):
 		"""Méthode qui permet de charger un fichier et afficher dans le plainText"""
-		filename = QtGui.QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text file *.txt")
+		filename = QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text file *.txt")
 		if filename == "":
-
 			self.displayErrorLoad(error = "\"%s\" is not a valid file \n" % (filename))
 		else:
 			list = open(filename,"r").readlines()
@@ -256,7 +252,6 @@ class Download( formDownload, baseDownload ):
 			data = urllib.urlopen(url).read()
 			return data
 		except Exception as erreurs:
-			print erreurs
 			raise IDError("\"%s\" is not a valid accession (error:%s) \n" % (query, erreurs))
 
 	def removeGB(self):
@@ -330,8 +325,17 @@ class Download( formDownload, baseDownload ):
 
 				#self.ui.statusbar.showMessage(str("running programm with %i ID" % len(self.listID)-1),7200)
 
+			nblignetotal = len(self.listID)-1
 			# parcours de la liste des ID à chercher:
 			for gbId in self.listID:
+
+				# Print l'avancement pour le mode cmd
+				if args.cmdMode:
+					if ((val % 10 == 0) and (val != 0)) or (float(val) == nblignetotal):
+						percent = (float(val)/float(nblignetotal))*100
+						sys.stdout.write("\rProcessed up to %0.2f %%..." % percent)
+						sys.stdout.flush()
+
 				genbankFicheID = self.get_accession(gbId, "nucleotide", "gb").decode("utf-8")		# Récupère la fiche genbank assicier à l'ID en txt
 				if "empty" in genbankFicheID:
 					#self.displayError(error = "\"%s\" is not a valid accession \n" % (gbId))
@@ -342,7 +346,7 @@ class Download( formDownload, baseDownload ):
 				# parcours la fiche genbank
 				for record in gbfiche :
 					val+=1
-					seq = record.seq
+					#seq = record.seq
 					type = record.seq.alphabet
 
 					if self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
@@ -364,7 +368,7 @@ class Download( formDownload, baseDownload ):
 							if "coded_by"  in features[t].qualifiers.keys():
 								coded_by=features[t].qualifiers["coded_by"][0].split(":")[0].replace("complement(","").replace("join(","")
 								if coded_by == "":
-									coded_by=feature.qualifiers["coded_by"][0]
+									coded_by=features.qualifiers["coded_by"][0]
 								genbankFicheIDNucl = self.get_accession(coded_by, "nucleotide", "gb").decode("utf-8")		# Récupère la fiche genbank assicier à l'ID en txt
 								gbnucle = self.txtToGenbankObject(coded_by,genbankFicheIDNucl)							# convertie le txt en objet genebank
 								for record in gbnucle:
@@ -392,16 +396,14 @@ class Download( formDownload, baseDownload ):
 					self.progressbar.setValue(val)
 					self.listIDextract.append(gbId)
 				gbfiche.close()
-							# si des erreurs:
+				# si des erreurs:
 				if len(warning)>0:
 					self.displayErrorLoad(error = warning)
-			if self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
+			if self.buildCheck == "True" or self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
 				self.buildTabfile()
-			else:
-				self.printToFiles()
+			self.printToFiles()
 
 		except IDError as e:
-			print e
 			self.displayError(error = e)
 
 	def printToFiles(self):
@@ -437,7 +439,7 @@ class Download( formDownload, baseDownload ):
 
 	def buildTabfile(self):
 		"""build tab file if checkbox"""
-		if self.buildCheck == "True":
+		if self.buildCheck == "True" or self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
 			output_tabFile = open(self.pathFileOut+"tabTaxonomybuild.tab", "w")
 			txtOut = "\n".join(self.tableau)
 			output_tabFile.write(txtOut)
@@ -447,27 +449,35 @@ class Download( formDownload, baseDownload ):
 
 	def displayErrorLoad(self, error):
 		""" affiche les erreurs dans la zone de text"""
-		self.ui.displayErrorEdit.show()
-		self.ui.displayErrorEdit.setPlainText(error)
+		if args.cmdMode:
+			print error
+		else:
+			self.ui.displayErrorEdit.show()
+			self.ui.displayErrorEdit.setPlainText(error)
 
 	def displayError(self, error):
 		""" affiche les erreurs dans la zone de text"""
 		self.printToFiles()
-		# Grise les cases pour ne pas relancer dessus et faire un reset
-		self.ui.runPushButton.setDisabled(True)
-		self.ui.IDplainTextEdit.setDisabled(True)
-		self.ui.nuclOutLineEdit.setDisabled(True)
-		self.ui.protOutLineEdit.setDisabled(True)
-		self.ui.pathOutlineEdit.setDisabled(True)
-		self.ui.choiceComboBox.setDisabled(True)
-		self.ui.loadFilePushButton.setDisabled(True)
-		self.ui.keepGBcheckBox.setDisabled(True)
-		self.ui.buildTabcheckBox.setDisabled(True)
-
-		self.ui.displayErrorEdit.show()
+		if self.buildCheck == "True" or self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
+			self.buildTabfile()
 		txtIDPass = "Only this accession was download:\n%s" % "\n".join(self.listIDextract)
 		txtError = error.value +"\n"+txtIDPass
-		self.ui.displayErrorEdit.setPlainText(txtError)
+		if args.cmdMode:
+			print txtIDPass
+			print txtError
+		else:
+			# Grise les cases pour ne pas relancer dessus et faire un reset
+			self.ui.runPushButton.setDisabled(True)
+			self.ui.IDplainTextEdit.setDisabled(True)
+			self.ui.nuclOutLineEdit.setDisabled(True)
+			self.ui.protOutLineEdit.setDisabled(True)
+			self.ui.pathOutlineEdit.setDisabled(True)
+			self.ui.choiceComboBox.setDisabled(True)
+			self.ui.loadFilePushButton.setDisabled(True)
+			self.ui.keepGBcheckBox.setDisabled(True)
+			self.ui.buildTabcheckBox.setDisabled(True)
+			self.ui.displayErrorEdit.show()
+			self.ui.displayErrorEdit.setPlainText(txtError)
 
 
 
@@ -528,12 +538,14 @@ def cmd():
 if __name__ == '__main__':
 
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='concatFastasFile.py', description='''This Programme concat multiple fasta files with same sequences name's into uniq file''')
+	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme open GUI to download genbank file with list of accession.\n
+																				You can both build a taxonomy tab with ID.\n
+																				If use on cluster you can run in cammande line with option -c and args''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display concatFastasFile.py version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
-	filesReq = parser.add_argument_group('Input mandatory infos for running')
+	filesReq = parser.add_argument_group('Input mandatory infos for running if -c use')
 	filesReq.add_argument('-c', '--cmd', action='store_true', dest = 'cmdMode', help = 'If used, programme run in CMD without interface')
 	filesReq.add_argument('-l', '--list', metavar="<filename>",type=existant_file, required=False, dest = 'listFile', help = 'List of ID')
 	filesReq.add_argument('-o', '--out', metavar="<path/to/directory>",type=directory, required=False, dest = 'paramOutPath', help = 'Name of output directory')
@@ -546,7 +558,11 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if args.cmdMode:
-		cmd()
+		if args.listFile is None or args.paramOutPath is None:
+			parser.error("concatFastasFile.py: error: argument -l/--list is required\n    AND/OR\nconcatFastasFile.py: error: argument -o/--out is required")
+			exit()
+		else:
+			cmd()
 	else:
 		# run interface
 		main()
