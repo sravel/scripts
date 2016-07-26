@@ -133,6 +133,9 @@ if __name__ == "__main__":
 	outputTrashDir = pathFileOut.pathDirectory+"trash/"
 	SGENameFile = outputSHDir+"submitQsubBLAST.sge"
 
+	if len(outfmtValue) > 1:
+		outfmtValue = "'"+outfmtValue+"'"
+
 	# resume value to user
 	print(" - Intput Info:")
 	print("\t - Working in directory: %s" % pathFileOut.pathDirectory)
