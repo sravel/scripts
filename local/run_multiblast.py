@@ -50,7 +50,8 @@
 						Number of job array lunch (default = 100)
 		- \-e <string>, --extention <string>
 						Extention of blast output file (default = ".txt")
-
+		- \-th <int>, --thread <int>
+						number of threads for blast (default = 4)
 """
 
 ##################################################
@@ -104,6 +105,8 @@ if __name__ == "__main__":
 	files.add_argument('-bo', '--blastoption', metavar="<string>", nargs='*', default=[""],required=False, dest = 'blastOptionValue', help = 'Other blast options like -bo "-evalue 10-3" "-gapopen 5" (default = "")')
 	files.add_argument('-j', '--nbjob', metavar="<int>", type = int, default=100,required=False, dest = 'nbJobValue', help = 'Number of job array lunch (default = 100)')
 	files.add_argument('-e', '--extention', metavar="<string>", type = str, default=".txt",required=False, dest = 'extValue', help = 'Extention of blast output file (default = ".txt")')
+	files.add_argument('-th', '--thread', metavar="<int>",type = int, default=4, required=False, dest = 'nbThreads', help = 'number of threads for blast (default = 4)')
+
 
 	# Check parameters
 	args = parser.parse_args()
@@ -123,6 +126,7 @@ if __name__ == "__main__":
 	dbPath=relativeToAbsolutePath(args.dbPath)
 	outfmtValue=args.outfmtValue
 	blastOptionValue=" ".join(args.blastOptionValue)
+	nbThreads=args.nbThreads
 
 	outputBlastResDir = pathFileOut.pathDirectory+"blastRes/"
 	outputSHDir = pathFileOut.pathDirectory+"sh/"
@@ -137,6 +141,7 @@ if __name__ == "__main__":
 	print("\t - dataBase is: %s" % dbPath)
 	print("\t - outfmtValue is: %s" % outfmtValue)
 	print("\t - Other options are: %s" % blastOptionValue)
+	print("\t - Number of threads are: %s" % nbThreads)
 
 	print(" - Output Info:")
 	print("\t - Output with result Blast were in directory: %s" % outputBlastResDir)
@@ -155,7 +160,7 @@ if __name__ == "__main__":
 
 		with open(outputSHDir+str(count)+"_blast.sh", "w") as shScript:
 			shScript.write("module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30\n")
-			blastcmd = "%s -query %s -db %s -outfmt %s %s -out %s" % (typeBlast, fasta, dbPath, outfmtValue, blastOptionValue, outputBlastResDir+basenameFasta+args.extValue)
+			blastcmd = "%s -query %s -db %s -outfmt %s %s -out %s -num_threads %s" % (typeBlast, fasta, dbPath, outfmtValue, blastOptionValue, outputBlastResDir+basenameFasta+args.extValue, nbThreads)
 			if args.debug == "True" : print(blastcmd)
 			shScript.write(blastcmd)
 		count+=1
@@ -171,6 +176,7 @@ if __name__ == "__main__":
 #$ -e """+outputTrashDir+"""
 #$ -o """+outputTrashDir+"""
 #$ -q long.q
+#$ -pe parallel_smp """+str(nbThreads)+"""
 #$ -t 1-"""+str(count-1)+"""
 #$ -tc """+str(args.nbJobValue)+"""
 #$ -S /bin/bash

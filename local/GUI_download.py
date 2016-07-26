@@ -1,6 +1,6 @@
 #!/usr/bin/python2.7
 # -*- coding: utf-8 -*-
-## @package buildTableauResume.py
+# @package GUI_download.py
 # @author Sebastien Ravel
 
 ##################################################
@@ -185,7 +185,6 @@ class Download( formDownload, baseDownload ):
 		"""Méthode qui permet de charger un fichier et afficher dans le plainText"""
 		filename = QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text file *.txt")
 		if filename == "":
-
 			self.displayErrorLoad(error = "\"%s\" is not a valid file \n" % (filename))
 		else:
 			list = open(filename,"r").readlines()
@@ -326,8 +325,17 @@ class Download( formDownload, baseDownload ):
 
 				#self.ui.statusbar.showMessage(str("running programm with %i ID" % len(self.listID)-1),7200)
 
+			nblignetotal = len(self.listID)-1
 			# parcours de la liste des ID à chercher:
 			for gbId in self.listID:
+
+				# Print l'avancement pour le mode cmd
+				if args.cmdMode:
+					if ((val % 10 == 0) and (val != 0)) or (float(val) == nblignetotal):
+						percent = (float(val)/float(nblignetotal))*100
+						sys.stdout.write("\rProcessed up to %0.2f %%..." % percent)
+						sys.stdout.flush()
+
 				genbankFicheID = self.get_accession(gbId, "nucleotide", "gb").decode("utf-8")		# Récupère la fiche genbank assicier à l'ID en txt
 				if "empty" in genbankFicheID:
 					#self.displayError(error = "\"%s\" is not a valid accession \n" % (gbId))
@@ -388,13 +396,12 @@ class Download( formDownload, baseDownload ):
 					self.progressbar.setValue(val)
 					self.listIDextract.append(gbId)
 				gbfiche.close()
-							# si des erreurs:
+				# si des erreurs:
 				if len(warning)>0:
 					self.displayErrorLoad(error = warning)
-			if self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
+			if self.buildCheck == "True" or self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
 				self.buildTabfile()
-			else:
-				self.printToFiles()
+			self.printToFiles()
 
 		except IDError as e:
 			self.displayError(error = e)
@@ -432,7 +439,7 @@ class Download( formDownload, baseDownload ):
 
 	def buildTabfile(self):
 		"""build tab file if checkbox"""
-		if self.buildCheck == "True":
+		if self.buildCheck == "True" or self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
 			output_tabFile = open(self.pathFileOut+"tabTaxonomybuild.tab", "w")
 			txtOut = "\n".join(self.tableau)
 			output_tabFile.write(txtOut)
@@ -442,27 +449,35 @@ class Download( formDownload, baseDownload ):
 
 	def displayErrorLoad(self, error):
 		""" affiche les erreurs dans la zone de text"""
-		self.ui.displayErrorEdit.show()
-		self.ui.displayErrorEdit.setPlainText(error)
+		if args.cmdMode:
+			print error
+		else:
+			self.ui.displayErrorEdit.show()
+			self.ui.displayErrorEdit.setPlainText(error)
 
 	def displayError(self, error):
 		""" affiche les erreurs dans la zone de text"""
 		self.printToFiles()
-		# Grise les cases pour ne pas relancer dessus et faire un reset
-		self.ui.runPushButton.setDisabled(True)
-		self.ui.IDplainTextEdit.setDisabled(True)
-		self.ui.nuclOutLineEdit.setDisabled(True)
-		self.ui.protOutLineEdit.setDisabled(True)
-		self.ui.pathOutlineEdit.setDisabled(True)
-		self.ui.choiceComboBox.setDisabled(True)
-		self.ui.loadFilePushButton.setDisabled(True)
-		self.ui.keepGBcheckBox.setDisabled(True)
-		self.ui.buildTabcheckBox.setDisabled(True)
-
-		self.ui.displayErrorEdit.show()
+		if self.buildCheck == "True" or self.ui.buildTabcheckBox.isChecked() or args.paramtaxafile:
+			self.buildTabfile()
 		txtIDPass = "Only this accession was download:\n%s" % "\n".join(self.listIDextract)
 		txtError = error.value +"\n"+txtIDPass
-		self.ui.displayErrorEdit.setPlainText(txtError)
+		if args.cmdMode:
+			print txtIDPass
+			print txtError
+		else:
+			# Grise les cases pour ne pas relancer dessus et faire un reset
+			self.ui.runPushButton.setDisabled(True)
+			self.ui.IDplainTextEdit.setDisabled(True)
+			self.ui.nuclOutLineEdit.setDisabled(True)
+			self.ui.protOutLineEdit.setDisabled(True)
+			self.ui.pathOutlineEdit.setDisabled(True)
+			self.ui.choiceComboBox.setDisabled(True)
+			self.ui.loadFilePushButton.setDisabled(True)
+			self.ui.keepGBcheckBox.setDisabled(True)
+			self.ui.buildTabcheckBox.setDisabled(True)
+			self.ui.displayErrorEdit.show()
+			self.ui.displayErrorEdit.setPlainText(txtError)
 
 
 
