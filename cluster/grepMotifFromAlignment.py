@@ -84,7 +84,7 @@ if __name__ == "__main__":
 	filesreq.add_argument('-o', '--out', metavar="<filename>", required=True, dest = 'paramoutfile', help = 'Name of output file')
 
 	files = parser.add_argument_group('Input infos for running with default values')
-	files.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=False, default="ALL", dest = 'listKeepFile', help = 'File with Strain to keep (one per row)')
+	files.add_argument('-l', '--list', metavar="<filename>", default="ALL", dest = 'listKeepFile', help = 'File with Strain to keep (one per row)')
 
 	# Check parameters
 	args = parser.parse_args()
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 	outputfilename = relativeToAbsolutePath(args.paramoutfile)
 
 	if args.listKeepFile not in ["ALL"]:
-		listKeepFile = loadInList(args.listKeepFile)
+		listKeepFile = loadInList(existant_file(args.listKeepFile))
 	else:
 		listKeepFile = "ALL"
 
