@@ -19,7 +19,7 @@
 	Example
 	-------
 
-	>>> grepMotifFromAlignment.py -d path/to/fasta -o
+	>>> grepMotifFromAlignment.py -d path/to/fasta -o filenameout
 
 	Help Programm
 	-------------
