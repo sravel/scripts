@@ -147,7 +147,7 @@ if __name__ == "__main__":
 			nbGap = tab.count("-")
 			sommeACTG = nbA + nbC + nbT + nbG
 			allcount = sommeACTG + nbN + nbGap
-			if int(allcount) != 46:
+			if int(allcount) != len(tableauSoucheName):
 				print( sommeACTG, nbA , nbC , nbT, nbG,nbN, nbGap)
 				print( tab)
 				exit()
