@@ -35,6 +35,8 @@
 						path to directory fasta files
 		- \-o <filename>, --out <filename>
 						Name of output file
+	Input infos for running with default values:
+
 
 """
 
@@ -45,7 +47,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, dictList2txt, dictDict2txt, dict2txt
+from MODULES_SEB import directory, dictList2txt, dictDict2txt, dict2txt, relativeToAbsolutePath
 
 ## Python modules
 import argparse
@@ -81,6 +83,9 @@ if __name__ == "__main__":
 	filesreq.add_argument('-d', '--directory', metavar="<path/to/directory>",type=directory, required=True, dest = 'pathDirectory', help = 'path to directory fasta files')
 	filesreq.add_argument('-o', '--out', metavar="<filename>", required=True, dest = 'paramoutfile', help = 'Name of output file')
 
+	files = parser.add_argument_group('Input infos for running with default values')
+	files.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=False, default="ALL" dest = 'listKeepFile', help = 'File with Strain to keep (one per row)')
+
 	# Check parameters
 	args = parser.parse_args()
 
@@ -92,11 +97,18 @@ if __name__ == "__main__":
 
 	# Récupère le fichier de conf passer en argument
 	pathDirectory = args.pathDirectory
+	outputfilename = relativeToAbsolutePath(args.paramoutfile)
 
-	outputfilename = args.paramoutfile
+	if args.listKeepFile not in ["ALL"]:
+		listKeepFile = loadInList(args.listKeepFile)
+	else:
+		listKeepFile = "ALL"
 
-	# ouverture de la taille des MGG dans dico
-	#dicoLenMGG = loadInDict("len_6878MGG.txt")
+
+	print("\t - Input pathDirectory is: %s" % pathDirectory)
+	print("\t - Output file name is: %s" % outputfilename)
+	print("\t - You want to keep strain:\n%s" % "\n".join(listKeepFile))
+
 
 	dicoOutputTxt = {}
 	dicoSeqSNP = {}
