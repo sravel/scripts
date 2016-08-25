@@ -103,7 +103,7 @@ if __name__ == "__main__":
 	if args.listKeepFile not in ["ALL"]:
 		listKeepSouche = loadInList(existant_file(args.listKeepFile))
 	else:
-		listKeepSouche = ["ALL"]
+		listKeepSouche = []
 
 
 	print("\t - Input pathDirectory is: %s" % pathDirectory)
@@ -139,7 +139,7 @@ if __name__ == "__main__":
 		keepListRecord = []
 
 		for record in alignmentStart:
-			if record.id not in listKeepSouche and "ALL" in listKeepSouche:
+			if record.id not in listKeepSouche and args.listKeepFile == "ALL" :
 				listKeepSouche.append(record.id)
 			#print(record.id)
 			if record.id in listKeepSouche:
