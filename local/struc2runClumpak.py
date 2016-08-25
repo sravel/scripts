@@ -400,7 +400,7 @@ if __name__ == "__main__":
 
 	# run clumpak
 	cmd = "cd "+clumpakObjDir.pathDirectory+"; perl CLUMPAK.pl \
---id "+nameZip+" \
+--id "+nameZip.replace("_","")+" \
 --dir "+outputClumpak+" \
 --file "+zipFile+" \
 --colors "+colorParamFile+" \
