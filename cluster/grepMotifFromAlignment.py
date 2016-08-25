@@ -102,7 +102,7 @@ if __name__ == "__main__":
 	if args.listKeepFile not in ["ALL"]:
 		listKeepSouche = loadInList(existant_file(args.listKeepFile))
 	else:
-		listKeepSouche = "ALL"
+		listKeepSouche = ["ALL"]
 
 
 	print("\t - Input pathDirectory is: %s" % pathDirectory)
