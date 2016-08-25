@@ -100,15 +100,17 @@ if __name__ == "__main__":
 	pathDirectory = args.pathDirectory
 	outputfilename = relativeToAbsolutePath(args.paramoutfile)
 
-	if args.listKeepFile not in ["ALL"]:
-		listKeepSouche = loadInList(existant_file(args.listKeepFile))
-	else:
-		listKeepSouche = []
-
-
 	print("\t - Input pathDirectory is: %s" % pathDirectory)
 	print("\t - Output file name is: %s" % outputfilename)
-	print("\t - You want to keep strain:\n%s" % "\n".join(listKeepSouche))
+
+	if args.listKeepFile not in ["ALL"]:
+		listKeepSouche = loadInList(existant_file(args.listKeepFile))
+		print("\t - You want to keep strain:\n%s" % "\n".join(listKeepSouche))
+		basename = paramlistKeep.split(".")[0]
+	else:
+		listKeepSouche = []
+		print("\t - You want to keep all strain \n")
+		basename = "All"
 
 
 	dicoOutputTxt = {}
