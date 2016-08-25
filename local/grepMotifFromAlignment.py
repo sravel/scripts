@@ -54,6 +54,7 @@ import argparse
 from time import localtime, strftime
 ## BIO Python modules
 from Bio import AlignIO
+from Bio.Align import AlignInfo, MultipleSeqAlignment
 
 ##################################################
 ## Variables Globales
