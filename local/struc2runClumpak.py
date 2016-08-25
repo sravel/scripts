@@ -348,7 +348,7 @@ if __name__ == "__main__":
 	nameZip = str(workingObjDir.pathDirectory).split("/")[-2]
 	zipFile = workingObjDir.pathDirectory+nameZip+".zip"
 	if os.path.exists(zipFile):
-		printCol.yellow("\nWARNNING struc2runClumpak : path '%s' already contain file %s.zip\nIt will be remove and rebuild\n" %(workingObjDir.pathDirectory, zipFile))
+		printCol.yellow("\nWARNNING struc2runClumpak : path '%s' already contain file %s\nIt will be remove and rebuild\n" %(workingObjDir.pathDirectory, zipFile))
 		os.remove(zipFile)
 	cmd = "cd "+workingObjDir.pathDirectory+";zip -r "+zipFile+" repetition_*"
 	print("Zip directory repetition into %s with file name: %s.zip with command:\n\t%s\n" %(workingObjDir.pathDirectory, zipFile, cmd))
@@ -375,7 +375,7 @@ if __name__ == "__main__":
 	stream = check_output(cmd, shell=True).decode("utf-8")
 
 	# ADD CLUMPAK to perl5lib
-	print("LOAD Environment PATH and PERL5LIB:\n\n")
+	print("LOAD Environment PATH and PERL5LIB:\n")
 	oldPERL5LIB = check_output("echo $PERL5LIB", shell=True).decode("utf-8").rstrip()
 	os.environ['PERL5LIB'] += ":"+clumpakObjDir.pathDirectory				# add Clumpak to PERL5LIB
 	os.environ['PERL5LIB'] += ":"+PathPerl5libSeb							# add module perl for CLUMPAK to PERL5LIB
@@ -400,7 +400,7 @@ if __name__ == "__main__":
 
 	# run clumpak
 	cmd = "cd "+clumpakObjDir.pathDirectory+"; perl CLUMPAK.pl \
---id "+nameZip.replace("_","")+" \
+--id structure \
 --dir "+outputClumpak+" \
 --file "+zipFile+" \
 --colors "+colorParamFile+" \
