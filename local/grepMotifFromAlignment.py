@@ -47,7 +47,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, dictList2txt, dictDict2txt, dict2txt, relativeToAbsolutePath, existant_file
+from MODULES_SEB import directory, dictList2txt, dictDict2txt, dict2txt, relativeToAbsolutePath, existant_file, sort_human
 
 ## Python modules
 import argparse
@@ -225,7 +225,7 @@ if __name__ == "__main__":
 	#print(dictList2txt(dicoOutputTxt))
 	outputTxt = ""
 	#for key in sorted(dicoOutputTxt.keys()):
-	for key in listKeepSouche:
+	for key in sorted(listKeepSouche, key=sort_human):
 		value = "\t".join(dicoOutputTxt[key])
 		outputTxt += "%s\t%s\n" % (str(key),str(value))
 	output_handle.write(outputTxt)
