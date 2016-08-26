@@ -62,6 +62,8 @@ from time import localtime, strftime
 from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 from Bio.Seq import Seq
+from Bio import pairwise2
+
 
 ##################################################
 ## Variables Globales
@@ -203,6 +205,16 @@ if __name__ == "__main__":
 	countOnlyN=0
 	listSeqNFind = []
 	for geneID, dico in dicoSeqBuild.items():
+		if "T86" in dico.keys():
+			seqT86 = dico["T86"].replace("N","")
+			seqMycFi = dico["Mycfi"]
+
+			alignments = pairwise2.align.globalxx(seqT86, seqMycFi)
+			print(alignments)
+			exit()
+
+
+
 		with open("/work/carlier.j/globalPopGenomicMF/buildSeq62/test/"+geneID+".fasta", "w") as output_handle:
 			seqNfind = False
 			for souche, txtseq in dico.items():
