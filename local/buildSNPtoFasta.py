@@ -52,7 +52,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import relativeToAbsolutePath, existant_file, fasta2dict, directory, parseGFF, loadInList
+from MODULES_SEB import relativeToAbsolutePath, existant_file, fasta2dict, directory, parseGFF, loadInList, dict2txt
 
 ## Python modules
 import argparse
@@ -153,7 +153,7 @@ if __name__ == "__main__":
 
 	print("\nTotal records: %d" % recordCount)
 
-	#print(dict2txt(dicoGenesKeepPosOnScaff))
+	print(dict2txt(geneIDsens))
 
 
 
