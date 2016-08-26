@@ -19,7 +19,7 @@
 	Example
 	-------
 
-	>>> buildSNPtoFasta.py -g Myfi.gff3 -l List3873MGGothologuesKEEP.txt -t 62souches_nofilter.tab -p orthologue -o out
+	>>> buildSNPtoFasta.py -g Myfi.gff3 -l List3873MGGothologuesKEEP.txt -t 62souches_nofilter.tab -f orthologue -o out
 
 	Help Programm
 	-------------
@@ -199,7 +199,8 @@ if __name__ == "__main__":
 	for files in fastaPath.lsExtInDirToList("fasta"):
 		geneID = files.split("_")[1].replace("gene","gene_")
 		dico = fasta2dict(files)
-		dicoSeqBuild[geneID].update(dico)
+		if geneID in dicoSeqBuild.keys():
+			dicoSeqBuild[geneID].update(dico)
 
 
 	countOnlyN=0
