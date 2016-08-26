@@ -219,7 +219,7 @@ if __name__ == "__main__":
 					if len(txtseqNdel) == 0:
 						countOnlyN += 1
 						seqNfind=True
-					sensDNA = geneIDsens[souche]
+					sensDNA = geneIDsens[geneID]
 					if sensDNA == "+":
 						record = SeqRecord(Seq(txtseq),id=souche,name=souche, description="MicFi_"+geneID)
 					elif sensDNA == "-":
