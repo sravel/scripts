@@ -182,7 +182,7 @@ if __name__ == "__main__":
 					dicoSeqBuild[geneID] = {}
 
 
-				correctSNP = [snp.replace("R",ref).replace("U","N").replace("F","N") for snp in tabLine[3:]]
+				correctSNP = [snp.replace("DEL","N").replace("R",ref).replace("U","N").replace("F","N") for snp in tabLine[3:]]
 				i=0
 				for SNP in correctSNP:
 					souche = soucheIndice[i]
