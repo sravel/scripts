@@ -133,7 +133,6 @@ if __name__ == "__main__":
 	#membership proportions
 	Ks={}
 	for K in range(minK,maxK+1):
-		#print K
 		Ks[K]={}
 		for k in range(K):
 			Ks[K][k]=[]
@@ -173,7 +172,7 @@ if __name__ == "__main__":
 
 	#lists -> stacked barplot
 	#fig = plt.figure(figsize=(18, 15),dpi=1200,facecolor='w', edgecolor='w')
-	fig = plt.figure(figsize=(40, 8),dpi=1200,facecolor='w', edgecolor='w')
+	fig = plt.figure(figsize=(40, 8),dpi=500,facecolor='w', edgecolor='w')
 	gs = gridspec.GridSpec(maxK-1,1)#, width_ratios=[ratios[0]/ratios[6],ratios[1]/ratios[6],ratios[2]/ratios[6],ratios[3]/ratios[6],ratios[4]/ratios[6],ratios[5]/ratios[6],1])
 	#y ticks labels
 	y = [0,0.5,1]
@@ -181,6 +180,7 @@ if __name__ == "__main__":
 	c=-1
 	for K in range(maxK,1,-1):#loop in reverse order
 		c+=1
+		print K
 		ax = plt.subplot(gs[c])
 		bottom = np.zeros(len(IDs))
 		for k in range(K):
@@ -194,11 +194,11 @@ if __name__ == "__main__":
 				ax.set_ylabel('K='+str(K))
 				#outside y axis ticks
 				plt.tick_params(
-					axis='y',          # changes apply to y axis
-					which='both',      # both major and minor ticks are affected
+					axis='y',			# changes apply to y axis
+					which='both',		# both major and minor ticks are affected
 					left='on',
 					direction='out',
-					right='off'#right ticks are off
+					right='off'			#right ticks are off
 					)
 			else:
 				#ax.xaxis.set_visible(False)
@@ -209,11 +209,11 @@ if __name__ == "__main__":
 				plt.xticks(ind+0.8, IDs, rotation='vertical')
 				#outside y axis ticks
 				plt.tick_params(
-					axis='y',          # changes apply to y axis
-					which='both',      # both major and minor ticks are affected
+					axis='y',			# changes apply to y axis
+					which='both',		# both major and minor ticks are affected
 					left='on',
 					direction='out',
-					right='off'#right ticks are off
+					right='off'			#right ticks are off
 					)
 
 	#remove ticks x axis
