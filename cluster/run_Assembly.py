@@ -128,6 +128,7 @@ qsub -N denovo -q long.q -e trash -o trash -l mem_free=100G -cwd """+outObjDir.p
 	listFiles = []
 	for fileIn in workingObjDir.listFiles:
 		fileName = fileIn.split("/")[-1]
+		baseDir = "/".join(fileIn.split("/")[:-1])
 		#basename = fileIn.split("/")[-1].split(".")[0].split("_")[0]
 		basename = fileIn.split("/")[-1].split(".")[0]
 		rValue = "_"+fileIn.split("/")[-1].split(".")[0].split("_")[-1]
@@ -144,7 +145,7 @@ qsub -N denovo -q long.q -e trash -o trash -l mem_free=100G -cwd """+outObjDir.p
 		if basename not in listFiles:
 			listFiles.append(basename)
 
-			txt = """gzip """+fileIn+"""\n/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+outObjDir.pathDirectory+basename+""" --outdir """+outObjDir.pathDirectory+basename+""" --outprefix """+basename+""" --log """+outObjDir.pathDirectory+basename+"""/log.txt --mink 50 --minlen 200\n"""
+			txt = """gzip """+baseDir+"""/*\n/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+outObjDir.pathDirectory+basename+""" --outdir """+outObjDir.pathDirectory+basename+""" --outprefix """+basename+""" --log """+outObjDir.pathDirectory+basename+"""/log.txt --mink 50 --minlen 200\n"""
 			with open(outObjDir.pathDirectory+"sh"+"/"+str(count)+"-assembly.sh","w") as shScript:
 				shScript.write(txt)
 			count+=1
