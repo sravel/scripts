@@ -92,11 +92,11 @@ if __name__ == "__main__":
 
 	# création d'un output assembly dans le out et trash
 	try:
-		os.mkdir(outObjDir.pathDirectory+"trash")
+		os.mkdir(outObjDir.pathDirectory+"/trash")
 	except FileExistsError:
 		pass
 	try:
-		os.mkdir(outObjDir.pathDirectory+"sh")
+		os.mkdir(outObjDir.pathDirectory+"/sh")
 	except FileExistsError:
 		pass
 
@@ -110,11 +110,11 @@ if __name__ == "__main__":
 #$ -N ASSEMBLY
 #$ -cwd
 #$ -V
-#$ -e """+outObjDir.pathDirectory+"trash"+"""
-#$ -o """+outObjDir.pathDirectory+"trash"+"""
+#$ -e """+outObjDir.pathDirectory+"/trash"+"""
+#$ -o """+outObjDir.pathDirectory+"/trash"+"""
 #$ -q long.q
 #$ -t 1-"""+nbJob+"""
-#$ -tc 5
+#$ -tc 10
 #$ -S /bin/bash
 
 qsub -N denovo -q long.q -e trash -o trash -l mem_free=100G -cwd """+outObjDir.pathDirectory+"sh"+"""/$SGE_TASK_ID-assembly.sh
@@ -144,7 +144,7 @@ qsub -N denovo -q long.q -e trash -o trash -l mem_free=100G -cwd """+outObjDir.p
 		if basename not in listFiles:
 			listFiles.append(basename)
 
-			txt = """/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+outObjDir.pathDirectory+basename+""" --outdir """+outObjDir.pathDirectory+basename+""" --outprefix """+basename+""" --log """+outObjDir.pathDirectory+basename+"""/log.txt --mink 50 --minlen 200\n"""
+			txt = """gzip """+fileIn+"""\n/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+outObjDir.pathDirectory+basename+""" --outdir """+outObjDir.pathDirectory+basename+""" --outprefix """+basename+""" --log """+outObjDir.pathDirectory+basename+"""/log.txt --mink 50 --minlen 200\n"""
 			with open(outObjDir.pathDirectory+"sh"+"/"+str(count)+"-assembly.sh","w") as shScript:
 				shScript.write(txt)
 			count+=1
