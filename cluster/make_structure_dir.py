@@ -198,6 +198,10 @@ if __name__ == "__main__":
 
 	workingDir = "/".join(inputFile.split("/")[:-1])+"/"+outputFile+"/"
 
+	outputSHDir = workingDir+"sh/"
+	outputTrashDir = workingDir+"trash/"
+	SGENameFile = outputSHDir+"submitQsubraxml.sge"
+
 	print("\t - Input matrice is: %s" % inputFile)
 	print("\t - Output prefix name is: %s" % outputFile)
 	print("\t - You want %s < K < %s and %s < Repetition < %s" % (nbpopiParam, nbpopmParam, nbRepiParam, nbRepmParam))
@@ -230,18 +234,18 @@ if __name__ == "__main__":
 				if inp == "y":
 					os.popen('rm -r '+workingDir+"/repetition_"+str(rep) )
 					exist=0
-					if os.path.exists(workingDir+"/sh_scripts"):
-						os.popen('rm -r '+workingDir+"/sh_scripts" )
-					if os.path.exists(workingDir+"/trash"):
-						os.popen('rm -r '+workingDir+"/trash" )
+					if os.path.exists(outputSHDir):
+						os.popen('rm -r '+outputSHDir )
+					if os.path.exists(outputTrashDir):
+						os.popen('rm -r '+outputTrashDir )
 
 
 	# création des répertoires et fichier mainparams
 	os.makedirs(workingDir+"/sh_scripts", exist_ok=True)															# création d'un dossier sh_scripts pour lancer les analyses structures
 	os.makedirs(workingDir+"/trash", exist_ok=True)
 
-	shqsub=open(workingDir+"sh_scripts/Qsub_all_structure.sh","w")												# création d'un script qsub pour lancer les sous-scripts
 
+	count=1
 	for rep in range(nbRepiParam,nbRepmParam+1):																	# boucle sur le nombre de répétition
 		os.makedirs(workingDir+"/repetition_"+str(rep), exist_ok=True)												# Création du répertoire correspondant
 		for pop in range(nbpopiParam,nbpopmParam+1):																# boucle sur la variation du K (np pop)
@@ -266,17 +270,38 @@ if __name__ == "__main__":
 			mainparamsOut.close()
 			extraparamsOut.close()
 			#  écriture des scripts pour lancer les annalyses
-			shOut=open(workingDir+"/sh_scripts/repetition_"+str(rep)+"_population_"+str(pop)+".sh","w")
+			shOut=open(workingDir+"/sh_scripts/"+str(count)+"_structure.sh","w")
 			shOut.write("cd "+workingDir+"/repetition_"+str(rep)+"/population_"+str(pop)+"/\n")
 			shOut.write("structure")
 			shOut.close()
+			count+=1
 			#  écriture du scripts qsub
+
+
+
+	shqsub=open(workingDir+"sh_scripts/Qsub_all_structure.sh","w")												# création d'un script qsub pour lancer les sous-scripts
 			shqsub.write(qsubtxt+workingDir+"/sh_scripts/repetition_"+str(rep)+"_population_"+str(pop)+".sh\n")
 	shqsub.close()
 
+	headerSGE = """
+#!/bin/bash
+
+#$ -N structure
+#$ -cwd
+#$ -V
+#$ -e """+outputTrashDir+"""
+#$ -o """+outputTrashDir+"""
+#$ -q long.q
+#$ -pe parallel_smp """+str(nbThreads)+"""
+#$ -t 1-"""+str(count-1)+"""
+#$ -tc """+str(args.nbJobValue)+"""
+#$ -S /bin/bash
+
+/bin/bash """+outputSHDir+"""${SGE_TASK_ID}_raxml.sh"""
 
 
-
+	with open(SGENameFile, "w") as SGEFile:
+		SGEFile.write(headerSGE)
 
 
 		## Display a summary of the execution

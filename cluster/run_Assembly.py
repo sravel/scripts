@@ -128,7 +128,8 @@ qsub -N denovo -q long.q -e trash -o trash -l mem_free=100G -cwd """+outObjDir.p
 	listFiles = []
 	for fileIn in workingObjDir.listFiles:
 		fileName = fileIn.split("/")[-1]
-		basename = fileIn.split("/")[-1].split(".")[0].split("_")[0]
+		#basename = fileIn.split("/")[-1].split(".")[0].split("_")[0]
+		basename = fileIn.split("/")[-1].split(".")[0]
 		rValue = "_"+fileIn.split("/")[-1].split(".")[0].split("_")[-1]
 		extention = "."+".".join(fileIn.split("/")[-1].split(".")[1:])
 
