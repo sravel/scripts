@@ -126,7 +126,9 @@ qsub -N denovo -q long.q -e trash -o trash -l mem_free=100G -cwd """+outObjDir.p
 	# Parcours des fichiers
 	count=1
 	listFiles = []
+
 	for fileIn in workingObjDir.listFiles:
+		txt = ""
 		fileName = fileIn.split("/")[-1]
 		baseDir = "/".join(fileIn.split("/")[:-1])
 		#basename = fileIn.split("/")[-1].split(".")[0].split("_")[0]
@@ -139,13 +141,14 @@ qsub -N denovo -q long.q -e trash -o trash -l mem_free=100G -cwd """+outObjDir.p
 			os.mkdir(outObjDir.pathDirectory+basename)
 		except FileExistsError:
 			pass
-		cmd = "ln -s "+workingObjDir.pathDirectory+fileName+" "+outObjDir.pathDirectory+basename+"/"+fileName
+		cmd = "ln -s "+workingObjDir.pathDirectory+fileName+".gz "+outObjDir.pathDirectory+basename+"/"+fileName+".gz"
 		os.system(cmd)
 
 		if basename not in listFiles:
 			listFiles.append(basename)
 
-			txt = """gzip """+baseDir+"""/*\n/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+outObjDir.pathDirectory+basename+""" --outdir """+outObjDir.pathDirectory+basename+""" --outprefix """+basename+""" --log """+outObjDir.pathDirectory+basename+"""/log.txt --mink 50 --minlen 200\n"""
+			#txt += """gzip """+baseDir+"""/*\n"""
+			txt += """/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+outObjDir.pathDirectory+basename+""" --outdir """+outObjDir.pathDirectory+basename+""" --outprefix """+basename+""" --log """+outObjDir.pathDirectory+basename+"""/log.txt --mink 50 --minlen 200\n"""
 			with open(outObjDir.pathDirectory+"sh"+"/"+str(count)+"-assembly.sh","w") as shScript:
 				shScript.write(txt)
 			count+=1
