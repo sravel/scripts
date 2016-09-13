@@ -232,15 +232,17 @@ if __name__ == "__main__":
 		if exist == 1:
 			printCol.yellow("Do you want to remove all analysis? (y/n)\n("+outputSHDir+" and /trash will be remove if yes)")
 			inp = None
-			while inp == None and inp != "y" and inp != "n" and inp != "yes" and inp != "no":
+			while inp == None or inp not in ["y", "n", "yes", "no"]:
 				inp = input()
-				if inp == "y":
+				if inp in ["y", "yes"]:
 					os.popen('rm -r '+workingDir+"/repetition_"+str(rep) )
 					exist=0
 					if os.path.exists(outputSHDir):
 						os.popen('rm -r '+outputSHDir )
 					if os.path.exists(outputTrashDir):
 						os.popen('rm -r '+outputTrashDir )
+				elif  inp in ["n", "no"]
+					next
 
 
 	# création des répertoires et fichier mainparams
@@ -308,17 +310,13 @@ if __name__ == "__main__":
 
 
 		## Display a summary of the execution
-	print("\n\nExecution summary:")
-
-
-
-	print("  - Outputting \n\
-\t- %i directories have been created corresponding to the number repeats, each with %i subdirectories corresponding to the variation number of populations (K).\n\n" % (nbRepmParam, nbpopmParam))
+	print("\n Execution summary:")
+	print("  - %i directories have been created corresponding to the number repeats,\n   each with %i subdirectories corresponding to the variation number of populations (K).\n" % (nbRepmParam, nbpopmParam))
 
 	printCol.purple("  - To launch Structure execute: \n\
 \tqsub %s\n" % (SGEFile.name))
 
-	print("on the cluster.")
+	print(" on the cluster.")
 
 	print("\033[0m\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
