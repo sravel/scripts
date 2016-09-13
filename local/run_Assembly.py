@@ -141,7 +141,7 @@ qsub -N denovo -q long.q -e trash -o trash -l mem_free=100G -cwd """+outObjDir.p
 			os.mkdir(outObjDir.pathDirectory+basename)
 		except FileExistsError:
 			pass
-		cmd = "ln -s "+workingObjDir.pathDirectory+fileName+".gz "+outObjDir.pathDirectory+basename+"/"+fileName+".gz"
+		cmd = "ln -s "+workingObjDir.pathDirectory+fileName+" "+outObjDir.pathDirectory+basename+"/"+fileName
 		os.system(cmd)
 
 		if basename not in listFiles:
