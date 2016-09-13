@@ -205,7 +205,7 @@ if __name__ == "__main__":
 	print("\t - Input matrice is: %s" % inputFile)
 	print("\t - Output prefix name is: %s" % outputFile)
 	print("\t - You want %s < K < %s and %s < Repetition < %s" % (nbpopiParam, nbpopmParam, nbRepiParam, nbRepmParam))
-	print("\t - Working directory is: %s" % workingDir)
+	print("\t - Working directory is: %s\n\n" % workingDir)
 
 	# ajoute à la variable current_dir le chemin ou est executer le script
 	current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -224,10 +224,10 @@ if __name__ == "__main__":
 	exist=0
 	for rep in range(nbRepiParam,nbRepmParam+1):																				# boucle sur le nombre de répétition
 		if os.path.exists(workingDir+"/repetition_"+str(rep)):
-			print("Warning , folder "+workingDir+"/repetition_"+str(rep)+" already exist !!!!" )
+			printCol.yellow("Warning , folder "+workingDir+"/repetition_"+str(rep)+" already exist !!!!" )
 			exist=1
 		if exist == 1:
-			print("Do you want to remove all analysis? (y/n)\n("+outputSHDir+" and /trash will be remove if yes)")
+			printCol.yellow("Do you want to remove all analysis? (y/n)\n("+outputSHDir+" and /trash will be remove if yes)")
 			inp = None
 			while inp == None and inp != "y" and inp != "n" and inp != "yes" and inp != "no":
 				inp = input()
@@ -309,11 +309,13 @@ if __name__ == "__main__":
 
 
 	print("  - Outputting \n\
-\t- %i directories have been created corresponding to the number repeats, each with %i subdirectories corresponding to the variation number of populations (K).\n\n\
-\033[31m  - To launch Structure execute: \n\
+\t- %i directories have been created corresponding to the number repeats, each with %i subdirectories corresponding to the variation number of populations (K).\n\n" % (nbRepmParam, nbpopmParam))
+
+	printCol.purple("  - To launch Structure execute: \n\
 \tmodule load bioinfo/structure/2.3.4\n\
-\tcd %strash; sge %s\n\
-\033[0mon the cluster." %(nbRepmParam, nbpopmParam ,workingDir, SGEFile.name))
+\tcd %strash; qsub %s\n" % (workingDir, SGEFile.name))
+
+	print("on the cluster.")
 
 	print("\033[0m\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
