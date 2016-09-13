@@ -227,7 +227,7 @@ if __name__ == "__main__":
 			print("Warning , folder "+workingDir+"/repetition_"+str(rep)+" already exist !!!!" )
 			exist=1
 		if exist == 1:
-			print("Do you want to remove all analysis? (y/n)\n("+workingDir+"/sh_scripts and /trash will be remove if yes)")
+			print("Do you want to remove all analysis? (y/n)\n("+outputSHDir+" and /trash will be remove if yes)")
 			inp = None
 			while inp == None and inp != "y" and inp != "n" and inp != "yes" and inp != "no":
 				inp = input()
@@ -241,8 +241,8 @@ if __name__ == "__main__":
 
 
 	# création des répertoires et fichier mainparams
-	os.makedirs(workingDir+"/sh_scripts", exist_ok=True)															# création d'un dossier sh_scripts pour lancer les analyses structures
-	os.makedirs(workingDir+"/trash", exist_ok=True)
+	os.makedirs(outputSHDir, exist_ok=True)															# création d'un dossier sh_scripts pour lancer les analyses structures
+	os.makedirs(outputTrashDir, exist_ok=True)
 
 
 	count=1
@@ -270,7 +270,7 @@ if __name__ == "__main__":
 			mainparamsOut.close()
 			extraparamsOut.close()
 			#  écriture des scripts pour lancer les annalyses
-			shOut=open(workingDir+"/sh_scripts/"+str(count)+"_structure.sh","w")
+			shOut=open(outputSHDir+"/"+str(count)+"_structure.sh","w")
 			shOut.write("cd "+workingDir+"/repetition_"+str(rep)+"/population_"+str(pop)+"/\n")
 			shOut.write("structure")
 			shOut.close()
