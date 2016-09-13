@@ -200,7 +200,7 @@ if __name__ == "__main__":
 
 	outputSHDir = workingDir+"sh/"
 	outputTrashDir = workingDir+"trash/"
-	SGENameFile = outputSHDir+"submitQsubraxml.sge"
+	SGENameFile = outputSHDir+"submitQsubstructure.sge"
 
 	print("\t - Input matrice is: %s" % inputFile)
 	print("\t - Output prefix name is: %s" % outputFile)
@@ -279,9 +279,9 @@ if __name__ == "__main__":
 
 
 
-	shqsub=open(workingDir+"sh_scripts/Qsub_all_structure.sh","w")												# création d'un script qsub pour lancer les sous-scripts
-			shqsub.write(qsubtxt+workingDir+"/sh_scripts/repetition_"+str(rep)+"_population_"+str(pop)+".sh\n")
-	shqsub.close()
+	#shqsub=open(workingDir+"sh_scripts/Qsub_all_structure.sh","w")												# création d'un script qsub pour lancer les sous-scripts
+			#shqsub.write(qsubtxt+workingDir+"/sh_scripts/repetition_"+str(rep)+"_population_"+str(pop)+".sh\n")
+	#shqsub.close()
 
 	headerSGE = """
 #!/bin/bash
@@ -292,9 +292,8 @@ if __name__ == "__main__":
 #$ -e """+outputTrashDir+"""
 #$ -o """+outputTrashDir+"""
 #$ -q long.q
-#$ -pe parallel_smp """+str(nbThreads)+"""
 #$ -t 1-"""+str(count-1)+"""
-#$ -tc """+str(args.nbJobValue)+"""
+#$ -tc 100
 #$ -S /bin/bash
 
 /bin/bash """+outputSHDir+"""${SGE_TASK_ID}_raxml.sh"""
@@ -313,8 +312,8 @@ if __name__ == "__main__":
 \t- %i directories have been created corresponding to the number repeats, each with %i subdirectories corresponding to the variation number of populations (K).\n\n\
 \033[31m  - To launch Structure execute: \n\
 \tmodule load bioinfo/structure/2.3.4\n\
-\tcd %strash; sh %s\n\
-\033[0mon the cluster." %(nbRepmParam, nbpopmParam ,workingDir, shqsub.name))
+\tcd %strash; sge %s\n\
+\033[0mon the cluster." %(nbRepmParam, nbpopmParam ,workingDir, SGENameFile.name))
 
 	print("\033[0m\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
