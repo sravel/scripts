@@ -241,7 +241,7 @@ if __name__ == "__main__":
 						os.popen('rm -r '+outputSHDir )
 					if os.path.exists(outputTrashDir):
 						os.popen('rm -r '+outputTrashDir )
-				elif  inp in ["n", "no"]
+				elif  inp in ["n", "no"]:
 					next
 
 
