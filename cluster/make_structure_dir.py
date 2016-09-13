@@ -202,9 +202,12 @@ if __name__ == "__main__":
 	outputTrashDir = workingDir+"trash/"
 	SGENameFile = outputSHDir+"submitQsubstructure.sge"
 
+	print(" - Intput Info:")
 	print("\t - Input matrice is: %s" % inputFile)
 	print("\t - Output prefix name is: %s" % outputFile)
 	print("\t - You want %s < K < %s and %s < Repetition < %s" % (nbpopiParam, nbpopmParam, nbRepiParam, nbRepmParam))
+
+	print(" - Output Info:")
 	print("\t - Working directory is: %s\n\n" % workingDir)
 
 	# ajoute à la variable current_dir le chemin ou est executer le script
@@ -271,6 +274,7 @@ if __name__ == "__main__":
 			extraparamsOut.close()
 			#  écriture des scripts pour lancer les annalyses
 			shOut=open(outputSHDir+"/"+str(count)+"_structure.sh","w")
+			shOut.write("module load bioinfo/structure/2.3.4\n")
 			shOut.write("cd "+workingDir+"/repetition_"+str(rep)+"/population_"+str(pop)+"/\n")
 			shOut.write("structure")
 			shOut.close()
@@ -312,8 +316,7 @@ if __name__ == "__main__":
 \t- %i directories have been created corresponding to the number repeats, each with %i subdirectories corresponding to the variation number of populations (K).\n\n" % (nbRepmParam, nbpopmParam))
 
 	printCol.purple("  - To launch Structure execute: \n\
-\tmodule load bioinfo/structure/2.3.4\n\
-\tcd %strash; qsub %s\n" % (workingDir, SGEFile.name))
+\tqsub %s\n" % (SGEFile.name))
 
 	print("on the cluster.")
 
