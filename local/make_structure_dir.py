@@ -313,7 +313,7 @@ if __name__ == "__main__":
 \033[31m  - To launch Structure execute: \n\
 \tmodule load bioinfo/structure/2.3.4\n\
 \tcd %strash; sge %s\n\
-\033[0mon the cluster." %(nbRepmParam, nbpopmParam ,workingDir, SGENameFile.name))
+\033[0mon the cluster." %(nbRepmParam, nbpopmParam ,workingDir, SGEFile.name))
 
 	print("\033[0m\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
