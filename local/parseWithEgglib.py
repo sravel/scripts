@@ -125,6 +125,25 @@ if __name__ == "__main__":
 	#print listFasta
 	for filein in listFasta:
 		name = filein.split("/")[-1]
+
+		#namefile = filein.split("/")[-1]
+		#align = Align(filein)
+		#listIndexRM = []
+		##print len(align.names())
+		#count=0
+		#for name in align.names():
+			#nameS =  name.split(" ")[0]
+			#if  "T86" not in nameS and "Mycfi" not in nameS:
+				#count+=1
+				#index = align.find(name)
+				#del align[index]
+		#x = Align.polymorphism(align)
+		##print dict2txt(x)
+		#dicoOutput[namefile] = {	"singletons":x['singletons'],
+								#"siteIndices": x['siteIndices'],
+								#"nbSNP": len(x['siteIndices'])
+								#}
+
 		#print(name)
 		align = Align(filein)
 
