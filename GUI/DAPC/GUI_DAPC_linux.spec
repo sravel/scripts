@@ -6,7 +6,7 @@ block_cipher = None
 added_files = [ ('includes/*', 'includes'), ]
 
 a = Analysis(['GUI_DAPC.py'],
-             pathex=['/homedir/sravel/programme/ScriptsSEB/scripts/GUI/DAPC/'],
+             pathex=['/media/sebastien/Bayer/ScriptsSEB/scripts/GUI/DAPC/'],
              binaries=None,
              datas=added_files,
              hiddenimports=[],
