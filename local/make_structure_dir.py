@@ -302,7 +302,7 @@ if __name__ == "__main__":
 #$ -tc 100
 #$ -S /bin/bash
 
-/bin/bash """+outputSHDir+"""${SGE_TASK_ID}_raxml.sh"""
+/bin/bash """+outputSHDir+"""${SGE_TASK_ID}_structure.sh"""
 
 
 	with open(SGENameFile, "w") as SGEFile:
