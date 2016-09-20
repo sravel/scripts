@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>910</width>
-    <height>817</height>
+    <height>855</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -247,9 +247,8 @@ p, li { white-space: pre-wrap; }
                  <widget class="QLineEdit" name="indivLineEdit">
                   <property name="toolTip">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of PCA retain's for DAPC&lt;br/&gt;
-Must be integer,  indicating the number of axes retained in the Principal Component Analysis (PCA) step.&lt;br/&gt;
-If NULL, interactive selection is triggered.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+Number of individus in matrice file&lt;br/&gt;
+Must be integer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="text">
                    <string>NULL</string>
@@ -273,9 +272,8 @@ If NULL, interactive selection is triggered.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                  <widget class="QLineEdit" name="markerLineEdit">
                   <property name="toolTip">
                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of PCA retain's for DAPC&lt;br/&gt;
-Must be integer,  indicating the number of axes retained in the Principal Component Analysis (PCA) step.&lt;br/&gt;
-If NULL, interactive selection is triggered.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+Number of markers in matrice file&lt;br/&gt;
+Must be integer.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="text">
                    <string>NULL</string>
@@ -502,10 +500,8 @@ If NULL, interactive selection is triggered.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                      </property>
                      <property name="toolTip">
                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of population minimal to run DAPC (must by between 2 and maxPopValue)&lt;br/&gt;
-An optinal integer indicating the number of clusters to be sought.&lt;br/&gt;
-If provided, the function will only run K-means once, for this number of clusters.&lt;br/&gt;
-If left as NULL, several K-means are run for a range of k (number of clusters) values.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+Number of population minimal to run Structure (must by between 1 and maxPopValue)&lt;br/&gt;
+An integer indicating the number of clusters to be sought.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                      <property name="text">
                       <string>1</string>
@@ -563,10 +559,8 @@ If left as NULL, several K-means are run for a range of k (number of clusters) v
                      </property>
                      <property name="toolTip">
                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of population maximum for DAPC. (Warning: R script colours contain only 10 values increase numbre if you select more than 10.)&lt;br/&gt;
-An optinal integer indicating the number of clusters to be sought.&lt;br/&gt;
-If provided, the function will only run K-means once, for this number of clusters.&lt;br/&gt;
-If left as NULL, several K-means are run for a range of k (number of clusters) values.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+Number of population maximum for structure&lt;br/&gt;
+An integer indicating the number of clusters to be sought.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                      <property name="text">
                       <string>10</string>
@@ -653,10 +647,8 @@ If left as NULL, several K-means are run for a range of k (number of clusters) v
                      </property>
                      <property name="toolTip">
                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of population maximum for DAPC. (Warning: R script colours contain only 10 values increase numbre if you select more than 10.)&lt;br/&gt;
-An optinal integer indicating the number of clusters to be sought.&lt;br/&gt;
-If provided, the function will only run K-means once, for this number of clusters.&lt;br/&gt;
-If left as NULL, several K-means are run for a range of k (number of clusters) values.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+Number of repetition maximal to run structure (must by greater than minRepValue)&lt;br/&gt;
+An  integer indicating the stop number directory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                      <property name="text">
                       <string>10</string>
@@ -682,10 +674,8 @@ If left as NULL, several K-means are run for a range of k (number of clusters) v
                      </property>
                      <property name="toolTip">
                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of population minimal to run DAPC (must by between 2 and maxPopValue)&lt;br/&gt;
-An optinal integer indicating the number of clusters to be sought.&lt;br/&gt;
-If provided, the function will only run K-means once, for this number of clusters.&lt;br/&gt;
-If left as NULL, several K-means are run for a range of k (number of clusters) values.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+Number of repetition minimal to run structure (must by between 1 and maxRepValue)&lt;br/&gt;
+An  integer indicating the start number directory.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                      </property>
                      <property name="text">
                       <string>1</string>
@@ -795,7 +785,12 @@ If left as NULL, several K-means are run for a range of k (number of clusters) v
           <enum>Qt::ClickFocus</enum>
          </property>
          <property name="toolTip">
-          <string>Code contain DAPC header to load librairy,  load data and do PCA</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h3&gt;Mainparams use to run structure.&lt;/h3&gt;
+&lt;\br&gt;
+&lt;p&gt;You can change default mainparams but can't modifie: **word**  &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::WinPanel</enum>
@@ -814,6 +809,9 @@ If left as NULL, several K-means are run for a range of k (number of clusters) v
        </item>
        <item row="5" column="1" colspan="2">
         <widget class="QPushButton" name="updateColorPushButton">
+         <property name="toolTip">
+          <string>Use to update colors syntax of mainparams and extraparams</string>
+         </property>
          <property name="text">
           <string>update color</string>
          </property>
@@ -832,7 +830,12 @@ If left as NULL, several K-means are run for a range of k (number of clusters) v
           <enum>Qt::ClickFocus</enum>
          </property>
          <property name="toolTip">
-          <string>R code use in loop to build all graph/tab between popMin popMax</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h3&gt;Extraparam use to run structure.&lt;/h3&gt;
+&lt;\br&gt;
+&lt;p&gt;You can change default empty extraparams  &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
+
+
+</string>
          </property>
          <property name="frameShape">
           <enum>QFrame::WinPanel</enum>
