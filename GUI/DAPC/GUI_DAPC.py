@@ -559,28 +559,17 @@ class DAPC( formDAPC, baseDAPC ):
 				self.DAPCfix = str(self.ui.DAPCfixPlainTextEdit.toPlainText().toUtf8())
 				self.DAPCchange = str(self.ui.DAPCchangePlainTextEdit.toPlainText().toUtf8())
 
-			if args.cmdMode:
-				if os.path.isdir(self.pathFileOut):
-					if args.rmOldParam == "True":
-						shutil.rmtree(str(self.pathFileOut))
-						os.mkdir(self.pathFileOut)
-					else:
-						warning += "Warnnig folder "+self.pathFileOut+" already exist,\nPlease remove/rename before run new analysis or use checkbox"
-						raise Exception(warning)
-				else:
+			"""to run programme"""
+			# création du pathout
+			if os.path.isdir(self.pathFileOut):
+				if self.rmOld == "True":
+					shutil.rmtree(str(self.pathFileOut))
 					os.mkdir(self.pathFileOut)
+				else:
+					warning += "Warnnig folder "+self.pathFileOut+" already exist,\nPlease remove/rename before run new analysis or use checkbox"
+					raise Exception(warning)
 			else:
-				"""to run programme"""
-				# création du pathout
-				if os.path.isdir(self.pathFileOut):
-					if self.rmOld == "True":
-						shutil.rmtree(str(self.pathFileOut))
-						os.mkdir(self.pathFileOut)
-					else:
-						warning += "Warnnig folder "+self.pathFileOut+" already exist,\nPlease remove/rename before run new analysis or use checkbox"
-						raise Exception(warning)
-				else:
-					os.mkdir(self.pathFileOut)
+				os.mkdir(self.pathFileOut)
 
 			###############################################
 			# code commun mode graphique ou interface
@@ -677,9 +666,6 @@ class DAPC( formDAPC, baseDAPC ):
 			# Grise les cases pour ne pas relancer dessus et faire un reset
 			self.ui.runPushButton.setDisabled(True)
 			txtError = str(error)
-			#self.ui.runningPlainTextEdit.show()
-			#self.ui.runningPlainTextEdit.setStyleSheet("color: rgb(255, 107, 8);")
-			#self.ui.runningPlainTextEdit.setPlainText(txtError)
 			self.ui.statusbar.showMessage(txtError,7200)
 
 
@@ -736,6 +722,10 @@ def cmd():
 	# pathFileOut dir path
 	pathFileOut = workingDir+basename+"/"
 	myapp.pathFileOut = pathFileOut.encode("utf-8")
+
+	# rm old folder
+	myapp.rmOld = args.rmOldParam
+
 
 	# Run programme
 	myapp.run()
