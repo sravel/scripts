@@ -33,6 +33,7 @@ STYLES = {
     'self': format('black', 'italic'),
     'numbers': format('brown'),
     'perso': format('darkRed'),
+    'replace': format('red'),
 }
 
 
@@ -48,7 +49,8 @@ class PythonHighlighter (QSyntaxHighlighter):
         'for', 'from', 'global', 'if', 'import', 'in',
         'is', 'lambda', 'not', 'or', 'pass', 'print',
         'raise', 'return', 'try', 'while', 'yield',
-        'None', 'True', 'False',
+        'NONE', 'TRUE', 'FALSE','NULL',
+        'None', 'True', 'False','Null',
         'library', 'function'
     ]
 
@@ -108,7 +110,7 @@ class PythonHighlighter (QSyntaxHighlighter):
             (r'#[^\n]*', 0, STYLES['comment']),
 
             # From perso
-            (r'\*{2}\w+_?\w++\*{0}\*{2}', 0, STYLES['perso']),
+            (r'\*\*\w+\*\*', 0, STYLES['replace']),
 
             # Numeric literals
             (r'\b[+-]?[0-9]+[lL]?\b', 0, STYLES['numbers']),
