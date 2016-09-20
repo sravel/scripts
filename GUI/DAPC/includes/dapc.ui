@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>933</width>
-    <height>680</height>
+    <width>958</width>
+    <height>807</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -24,7 +24,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>icon.ico</normaloff>icon.ico</iconset>
+    <normaloff>../../../../../../../../run/user/1000/gvfs/sftp:host=cc2-login.cirad.fr,user=sravel/homedir/sravel/programme/ScriptsSEB/scripts/GUI/DAPC/includes/icon.ico</normaloff>../../../../../../../../run/user/1000/gvfs/sftp:host=cc2-login.cirad.fr,user=sravel/homedir/sravel/programme/ScriptsSEB/scripts/GUI/DAPC/includes/icon.ico</iconset>
   </property>
   <property name="accessibleName">
    <string>GUI Run_DAPC</string>
@@ -43,559 +43,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_5">
-    <item row="0" column="1">
-     <widget class="QFrame" name="frameDefault">
-      <property name="minimumSize">
-       <size>
-        <width>640</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>370</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::WinPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="1">
-        <widget class="QFrame" name="expertFrame_2">
-         <property name="minimumSize">
-          <size>
-           <width>40</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>40</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="1" column="0">
-           <widget class="QCheckBox" name="expertCheckBox">
-            <property name="minimumSize">
-             <size>
-              <width>282</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>282</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Enter in expert mode to change R code. Be careful R script can not run if you remove important code !!!&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Expert Mode</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QFrame" name="valueDefaultFrame">
-         <property name="minimumSize">
-          <size>
-           <width>310</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>310</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
-           <widget class="QLabel" name="PCALabel">
-            <property name="maximumSize">
-             <size>
-              <width>136</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>PCA value</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="popMaxLabel">
-            <property name="maximumSize">
-             <size>
-              <width>136</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Number of pop Max</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0">
-           <widget class="QCheckBox" name="rmOldCheckBox">
-            <property name="acceptDrops">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the directory already exist, use checkbox to remove it. &lt;\br&gt;Be careful it will be definitively remove !!!!&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="layoutDirection">
-             <enum>Qt::RightToLeft</enum>
-            </property>
-            <property name="text">
-             <string>Remove older analyse</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QLabel" name="popMinLabel">
-            <property name="maximumSize">
-             <size>
-              <width>142</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Number of pop Min</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="DALabel">
-            <property name="maximumSize">
-             <size>
-              <width>136</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>DA value</string>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0">
-           <widget class="QLabel" name="graphLabel">
-            <property name="maximumSize">
-             <size>
-              <width>136</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Graphique type</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="PCAlineEdit">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of PCA retain's for DAPC&lt;br/&gt;
-Must be integer,  indicating the number of axes retained in the Principal Component Analysis (PCA) step.&lt;br/&gt;
-If NULL, interactive selection is triggered.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>NULL</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="DAlineEdit">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of DA retain's for DAPC&lt;br/&gt;
-must be integer,  indicating the number of axes retained in the Discriminant Analysis step.&lt;br/&gt;
-If NULL, interactive selection is triggered.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>NULL</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1">
-           <widget class="QLineEdit" name="popMinLineEdit">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of population minimal to run DAPC (must by between 2 and maxPopValue)&lt;br/&gt;
-An optinal integer indicating the number of clusters to be sought.&lt;br/&gt;
-If provided, the function will only run K-means once, for this number of clusters.&lt;br/&gt;
-If left as NULL, several K-means are run for a range of k (number of clusters) values.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>2</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QLineEdit" name="popMaxLineEdit">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Number of population maximum for DAPC. (Warning: R script colours contain only 10 values increase numbre if you select more than 10.)&lt;br/&gt;
-An optinal integer indicating the number of clusters to be sought.&lt;br/&gt;
-If provided, the function will only run K-means once, for this number of clusters.&lt;br/&gt;
-If left as NULL, several K-means are run for a range of k (number of clusters) values.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>10</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="1">
-           <widget class="QComboBox" name="graphTypeComboBox">
-            <property name="maximumSize">
-             <size>
-              <width>60</width>
-              <height>25</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
-Modifie the graph build by R script. See below to select value&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <property name="currentIndex">
-             <number>0</number>
-            </property>
-            <property name="maxCount">
-             <number>10</number>
-            </property>
-            <item>
-             <property name="text">
-              <string>1</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>2</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>3</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QFrame" name="imageGraphFrame">
-         <property name="minimumSize">
-          <size>
-           <width>300</width>
-           <height>300</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>300</width>
-           <height>300</height>
-          </size>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::WinPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_9">
-          <property name="leftMargin">
-           <number>1</number>
-          </property>
-          <property name="topMargin">
-           <number>1</number>
-          </property>
-          <property name="rightMargin">
-           <number>1</number>
-          </property>
-          <property name="bottomMargin">
-           <number>1</number>
-          </property>
-          <property name="spacing">
-           <number>0</number>
-          </property>
-          <item row="0" column="0">
-           <widget class="QLabel" name="imgLabel">
-            <property name="minimumSize">
-             <size>
-              <width>298</width>
-              <height>298</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>298</width>
-              <height>298</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Graphic previous&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-            <property name="pixmap">
-             <pixmap>graph1.png</pixmap>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-            <property name="indent">
-             <number>0</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="defaultLabel">
-         <property name="maximumSize">
-          <size>
-           <width>310</width>
-           <height>17</height>
-          </size>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Input infos for running with default values&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QFrame" name="frameMandatory">
-      <property name="maximumSize">
-       <size>
-        <width>500</width>
-        <height>370</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <layout class="QFormLayout" name="formLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelMandatory">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Input mandatory infos for running&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::RichText</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" colspan="2">
-        <widget class="QFrame" name="loadFrame">
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QPushButton" name="loadMatriceFilePushButton">
-            <property name="toolTip">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open file dialog to load matrice file (tabular)&lt;\br&gt;EXEMPLE&lt;\br&gt;:&lt;/p&gt;
-&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt; &lt;/th&gt;&lt;th&gt;Pyrms37&lt;/th&gt;&lt;th&gt;Pyrms47&lt;/th&gt;&lt;th&gt;Pyrms63&lt;/th&gt;&lt;th&gt;Pyrms77B&lt;/th&gt;&lt;th&gt;Pyrms83B&lt;/th&gt;&lt;th&gt;Pyrms233&lt;/th&gt;&lt;th&gt;Pyrms319&lt;/th&gt;&lt;th&gt;Pyrms427&lt;/th&gt;&lt;th&gt;Pyrms607&lt;/th&gt;&lt;th&gt;Pyrms657&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;199&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;167&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;124&lt;/td&gt;&lt;td&gt;259&lt;/td&gt;&lt;td&gt;281&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;278&lt;/td&gt;&lt;td&gt;166&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;115&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;211&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;103&lt;/td&gt;&lt;td&gt;250&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;210&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;103&lt;/td&gt;&lt;td&gt;250&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;211&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;112&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;196&lt;/td&gt;&lt;td&gt;112&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;\br&gt;
-&lt;\br&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Empty data must be encode with '999'&lt;/p&gt;
-&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Load Matrice file</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPlainTextEdit" name="matricePlainTextEdit">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="acceptDrops">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load or Add list of NCBI Accession&lt;/p&gt;&lt;p&gt;of nucleotide and or proteique database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="accessibleName">
-             <string>plainTxtAccession</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::WinPanel</enum>
-            </property>
-            <property name="plainText">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="loadOrderFilePushButton">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load tabular order keep file (with 2 columns serapte by tabular)&lt;/p&gt;
-&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0035&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0036&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="text">
-             <string>Load Order file</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPlainTextEdit" name="orderPlainTextEdit">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="acceptDrops">
-             <bool>false</bool>
-            </property>
-            <property name="toolTip">
-             <string/>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load or Add list of NCBI Accession&lt;/p&gt;&lt;p&gt;of nucleotide and or proteique database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="accessibleName">
-             <string>plainTxtAccession</string>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::WinPanel</enum>
-            </property>
-            <property name="plainText">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="runPushButton">
-            <property name="toolTip">
-             <string>Run making R script</string>
-            </property>
-            <property name="text">
-             <string>Run</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="resetPushButton">
-            <property name="toolTip">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset to default value all  programm's options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="whatsThis">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;reset the programm&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-            </property>
-            <property name="accessibleName">
-             <string>buttonReset</string>
-            </property>
-            <property name="text">
-             <string>Reset</string>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
+    <item row="1" column="1" colspan="2">
      <widget class="QFrame" name="frameRun">
       <property name="maximumSize">
        <size>
@@ -657,7 +105,7 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
     </item>
-    <item row="2" column="0" colspan="2">
+    <item row="2" column="1" colspan="2">
      <widget class="QFrame" name="expertFrame">
       <property name="frameShape">
        <enum>QFrame::WinPanel</enum>
@@ -722,6 +170,623 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
     </item>
+    <item row="0" column="1" colspan="2">
+     <widget class="QFrame" name="frame">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>370</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="frameMandatory">
+         <property name="maximumSize">
+          <size>
+           <width>500</width>
+           <height>370</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Panel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelMandatory">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Input mandatory infos for running&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QFrame" name="loadFrame">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout">
+             <item>
+              <widget class="QPushButton" name="loadMatriceFilePushButton">
+               <property name="toolTip">
+                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open file dialog to load matrice file (tabular)&lt;\br&gt;EXEMPLE&lt;\br&gt;:&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt; &lt;/th&gt;&lt;th&gt;Pyrms37&lt;/th&gt;&lt;th&gt;Pyrms47&lt;/th&gt;&lt;th&gt;Pyrms63&lt;/th&gt;&lt;th&gt;Pyrms77B&lt;/th&gt;&lt;th&gt;Pyrms83B&lt;/th&gt;&lt;th&gt;Pyrms233&lt;/th&gt;&lt;th&gt;Pyrms319&lt;/th&gt;&lt;th&gt;Pyrms427&lt;/th&gt;&lt;th&gt;Pyrms607&lt;/th&gt;&lt;th&gt;Pyrms657&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;199&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;167&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;124&lt;/td&gt;&lt;td&gt;259&lt;/td&gt;&lt;td&gt;281&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;278&lt;/td&gt;&lt;td&gt;166&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;115&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;211&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;103&lt;/td&gt;&lt;td&gt;250&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;210&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;103&lt;/td&gt;&lt;td&gt;250&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;211&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;112&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;196&lt;/td&gt;&lt;td&gt;112&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;\br&gt;
+&lt;\br&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Empty data must be encode with '999'&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Load Matrice file</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPlainTextEdit" name="matricePlainTextEdit">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="acceptDrops">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string/>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load or Add list of NCBI Accession&lt;/p&gt;&lt;p&gt;of nucleotide and or proteique database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="accessibleName">
+                <string>plainTxtAccession</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::WinPanel</enum>
+               </property>
+               <property name="plainText">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="loadOrderFilePushButton">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load tabular order keep file (with 2 columns serapte by tabular)&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0035&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0036&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Load Order file</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPlainTextEdit" name="orderPlainTextEdit">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="acceptDrops">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string/>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load or Add list of NCBI Accession&lt;/p&gt;&lt;p&gt;of nucleotide and or proteique database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="accessibleName">
+                <string>plainTxtAccession</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::WinPanel</enum>
+               </property>
+               <property name="plainText">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="runPushButton">
+               <property name="toolTip">
+                <string>Run making R script</string>
+               </property>
+               <property name="text">
+                <string>Run</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="resetPushButton">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset to default value all  programm's options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;reset the programm&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="accessibleName">
+                <string>buttonReset</string>
+               </property>
+               <property name="text">
+                <string>Reset</string>
+               </property>
+               <property name="checkable">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QFrame" name="frameDefault">
+         <property name="minimumSize">
+          <size>
+           <width>640</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>370</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::WinPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="1" column="1">
+           <widget class="QFrame" name="imageGraphFrame">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>300</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>300</width>
+              <height>300</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::WinPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <property name="leftMargin">
+              <number>1</number>
+             </property>
+             <property name="topMargin">
+              <number>1</number>
+             </property>
+             <property name="rightMargin">
+              <number>1</number>
+             </property>
+             <property name="bottomMargin">
+              <number>1</number>
+             </property>
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item row="0" column="0">
+              <widget class="QLabel" name="imgLabel">
+               <property name="minimumSize">
+                <size>
+                 <width>298</width>
+                 <height>298</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>298</width>
+                 <height>298</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Graphic previous&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+               <property name="pixmap">
+                <pixmap>../../../../../../../../run/user/1000/gvfs/sftp:host=cc2-login.cirad.fr,user=sravel/homedir/sravel/programme/ScriptsSEB/scripts/GUI/DAPC/includes/graph1.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+               <property name="indent">
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QFrame" name="expertFrame_2">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="expertCheckBox">
+               <property name="minimumSize">
+                <size>
+                 <width>282</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>282</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
+Enter in expert mode to change R code. Be careful R script can not run if you remove important code !!!&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Expert Mode</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QFrame" name="valueDefaultFrame">
+            <property name="minimumSize">
+             <size>
+              <width>310</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>310</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="PCALabel">
+               <property name="maximumSize">
+                <size>
+                 <width>136</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>PCA value</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="popMaxLabel">
+               <property name="maximumSize">
+                <size>
+                 <width>136</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Number of pop Max</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QCheckBox" name="rmOldCheckBox">
+               <property name="acceptDrops">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the directory already exist, use checkbox to remove it. &lt;\br&gt;Be careful it will be definitively remove !!!!&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>Remove older analyse</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="popMinLabel">
+               <property name="maximumSize">
+                <size>
+                 <width>142</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Number of pop Min</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="DALabel">
+               <property name="maximumSize">
+                <size>
+                 <width>136</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>DA value</string>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="0">
+              <widget class="QLabel" name="graphLabel">
+               <property name="maximumSize">
+                <size>
+                 <width>136</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Graphique type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="PCAlineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
+Number of PCA retain's for DAPC&lt;br/&gt;
+Must be integer,  indicating the number of axes retained in the Principal Component Analysis (PCA) step.&lt;br/&gt;
+If NULL, interactive selection is triggered.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>NULL</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="DAlineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
+Number of DA retain's for DAPC&lt;br/&gt;
+must be integer,  indicating the number of axes retained in the Discriminant Analysis step.&lt;br/&gt;
+If NULL, interactive selection is triggered.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>NULL</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLineEdit" name="popMinLineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
+Number of population minimal to run DAPC (must by between 2 and maxPopValue)&lt;br/&gt;
+An optinal integer indicating the number of clusters to be sought.&lt;br/&gt;
+If provided, the function will only run K-means once, for this number of clusters.&lt;br/&gt;
+If left as NULL, several K-means are run for a range of k (number of clusters) values.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>2</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QLineEdit" name="popMaxLineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
+Number of population maximum for DAPC. (Warning: R script colours contain only 10 values increase numbre if you select more than 10.)&lt;br/&gt;
+An optinal integer indicating the number of clusters to be sought.&lt;br/&gt;
+If provided, the function will only run K-means once, for this number of clusters.&lt;br/&gt;
+If left as NULL, several K-means are run for a range of k (number of clusters) values.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>10</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="1">
+              <widget class="QComboBox" name="graphTypeComboBox">
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;
+Modifie the graph build by R script. See below to select value&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="editable">
+                <bool>false</bool>
+               </property>
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <property name="maxCount">
+                <number>10</number>
+               </property>
+               <item>
+                <property name="text">
+                 <string>1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>2</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>3</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="defaultLabel">
+            <property name="maximumSize">
+             <size>
+              <width>310</width>
+              <height>17</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Input infos for running with default values&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -729,8 +794,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>933</width>
-     <height>25</height>
+     <width>958</width>
+     <height>19</height>
     </rect>
    </property>
   </widget>
