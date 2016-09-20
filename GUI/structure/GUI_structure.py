@@ -499,7 +499,6 @@ class STRUCTURE( formSTRUCTURE, baseSTRUCTURE ):
 			self.ui.mainparamsPlainTextEdit.setDisabled(True)
 			self.ui.extraparamsPlainTextEdit.setDisabled(True)
 
-
 			self.mainparams = str(self.ui.mainparamsPlainTextEdit.toPlainText().toUtf8())
 			self.extraparams = str(self.ui.extraparamsPlainTextEdit.toPlainText().toUtf8())
 
@@ -560,10 +559,9 @@ class STRUCTURE( formSTRUCTURE, baseSTRUCTURE ):
 					mainparamsr = replace_all(dictToReplace, self.mainparams)
 
 					mainparamsOut.write(mainparamsr)																			# Ecrit le mainparams
-
 					mainparamsOut.close()
 
-					extraparamsOut.write(self.extraparams)																			# Ecrit le mainparams
+					extraparamsOut.write(self.extraparams)																			# Ecrit le extraparams
 					extraparamsOut.close()
 					#  écriture des scripts pour lancer les annalyses
 					shOut=open(outputSHDir+"/"+str(count)+"_structure.sh","w")
@@ -732,8 +730,6 @@ if __name__ == '__main__':
 	files.add_argument('-pm', '--popm', metavar="<int>",type = int, default=10, required=False, dest = 'nbpopmParam', help = 'Number of pop Max  (default = 10)')
 	files.add_argument('-o', '--outfile', metavar="<PrefixFileName>", required=False, dest = 'outputFile', help = 'output file Prefix (default = name of matrice file)')
 	files.add_argument('-r', '--rm', metavar="<True/False>", choices=("True","False"), default="False", required=False, dest = 'rmOldParam', help = 'if directory exist remove (default = False)')	## Check parameters
-
-
 
 	args = parser.parse_args()
 
