@@ -23,6 +23,8 @@ from PyQt4.QtCore import QObject, SIGNAL
 from PyQt4.QtGui import QFileDialog, QApplication, QIcon, QPixmap, QPlainTextEdit
 from PyQt4 import uic
 import syntax
+from random import randint
+
 
 ##################################################
 ## Variables Globales
@@ -567,6 +569,8 @@ class STRUCTURE( formSTRUCTURE, baseSTRUCTURE ):
 					shOut=open(outputSHDir+"/"+str(count)+"_structure.sh","w")
 					shOut.write("module load bioinfo/structure/2.3.4\n")
 					shOut.write("cd "+self.pathFileOut+"/repetition_"+str(rep)+"/population_"+str(pop)+"/\n")
+
+					shOut.write("sleep %i\n" % randint(0,360))
 					shOut.write("structure")
 					shOut.close()
 					count+=1
