@@ -637,7 +637,7 @@ class DAPC( formDAPC, baseDAPC ):
 			for pop in range(int(self.popMinValue),int(self.popMaxValue)+1):
 				#print(pop)
 				popstr=str(pop)
-				DAPCchange2 = self.DAPCchange.replace("**pop**",popstr).replace("**current_dir**",str(self.pathFileOut)).replace("**PCARETAIN**",str(self.PCAvalue).replace("**DARETAIN**",str(self.DAvalue)))
+				DAPCchange2 = self.DAPCchange.replace("**pop**",popstr).replace("**current_dir**",str(self.pathFileOut)).replace("**PCARETAIN**",str(self.PCAvalue)).replace("**DARETAIN**",str(self.DAvalue))
 				#print(DAPCchange2)
 				Rscript.write(DAPCchange2)
 
