@@ -124,7 +124,9 @@ if __name__ == "__main__":
 		basename = fileIn.split("/")[-1].split(".")[0].split("_R")[0]
 		rValue = "_"+fileIn.split("/")[-1].split(".")[0].split("_R")[-1]
 		extention = "."+".".join(fileIn.split("/")[-1].split(".")[1:])
-		print(basename+rValue+extention)
+
+
+		print(basename)
 
 		if "z" not in extention:
 			cmd = """function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }\n\n"""
@@ -134,8 +136,6 @@ if __name__ == "__main__":
 
 		os.mkdir(pathFileOut.pathDirectory+basename)
 
-		cmd = "ln -s "+pathFastqFile.pathDirectory+fileName+" "+pathFileOut.pathDirectory+basename+"/"+fileName
-		os.system(cmd)
 		cmd = "ln -s "+pathFastqFile.pathDirectory+fileName+" "+pathFileOut.pathDirectory+basename+"/"+fileName
 		os.system(cmd)
 
