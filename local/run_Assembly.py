@@ -116,6 +116,7 @@ if __name__ == "__main__":
 
 	for fileIn in pathFastqFile.listFiles:
 		cmd = ""
+		txt = ""
 		fileName = fileIn.split("/")[-1]
 		extention = fileName.split(".")[-1]
 		baseDir = "/".join(fileIn.split("/")[:-1])
