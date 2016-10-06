@@ -130,21 +130,20 @@ if __name__ == "__main__":
 			cmd += "maketar %s*\n\n" % pathFileOut.pathDirectory+basename+"/"+fileName[:-1]
 			#print("Warning, file %s must be fastq.?z format" % fileIn)
 			#exit()
-		else:
 
-			os.mkdir(pathFileOut.pathDirectory+basename, exist_ok=True)
+		os.mkdir(pathFileOut.pathDirectory+basename, exist_ok=True)
 
-			cmd = "ln -s "+pathFastqFile.pathDirectory+fileName+" "+pathFileOut.pathDirectory+basename+"/"+fileName
-			os.system(cmd)
+		cmd = "ln -s "+pathFastqFile.pathDirectory+fileName+" "+pathFileOut.pathDirectory+basename+"/"+fileName
+		os.system(cmd)
 
-			if basename not in listFiles:
-				listFiles.append(basename)
+		if basename not in listFiles:
+			listFiles.append(basename)
 
-				txt += cmd
-				txt += """/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+pathFileOut.pathDirectory+basename+""" --outdir """+pathFileOut.pathDirectory+basename+""" --outprefix """+basename+""" --log """+pathFileOut.pathDirectory+basename+"""/log.txt\n"""
-				with open(outputSHDir+"/"+str(count)+"-assembly.sh","w") as shScript:
-					shScript.write(txt)
-				count+=1
+			txt += cmd
+			txt += """/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+pathFileOut.pathDirectory+basename+""" --outdir """+pathFileOut.pathDirectory+basename+""" --outprefix """+basename+""" --log """+pathFileOut.pathDirectory+basename+"""/log.txt\n"""
+			with open(outputSHDir+"/"+str(count)+"-assembly.sh","w") as shScript:
+				shScript.write(txt)
+			count+=1
 
 	# création d'un script de qsub array
 	headerJoB = """
