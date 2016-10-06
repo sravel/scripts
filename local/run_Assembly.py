@@ -131,7 +131,7 @@ if __name__ == "__main__":
 			#print("Warning, file %s must be fastq.?z format" % fileIn)
 			#exit()
 
-		os.mkdir(pathFileOut.pathDirectory+basename, exist_ok=True)
+		os.mkdir(pathFileOut.pathDirectory+basename)
 
 		cmd = "ln -s "+pathFastqFile.pathDirectory+fileName+" "+pathFileOut.pathDirectory+basename+"/"+fileName
 		os.system(cmd)
