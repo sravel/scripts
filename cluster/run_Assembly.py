@@ -127,7 +127,7 @@ if __name__ == "__main__":
 
 		if "z" not in extention:
 			cmd = """function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }\n\n"""
-			cmd += "maketar %s*\n\n" % pathFileOut.pathDirectory+basename[:-1]
+			cmd += "maketar %s*\n\n" % pathFileOut.pathDirectory+basename+"/"+fileName[:-1]
 			print("Warning, file %s must be fastq.?z format\nPlease run commande\n\n%s" % (fileIn, cmd))
 			exit()
 		else:
