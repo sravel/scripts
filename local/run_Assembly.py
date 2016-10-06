@@ -121,7 +121,7 @@ if __name__ == "__main__":
 		extention = fileName.split(".")[-1]
 		baseDir = "/".join(fileIn.split("/")[:-1])
 		#basename = fileIn.split("/")[-1].split(".")[0].split("_")[0]
-		basename = fileIn.split("/")[-1].split(".")[0]
+		basename = fileIn.split("/")[-1].split(".")[0].split("_")[0]
 		rValue = "_"+fileIn.split("/")[-1].split(".")[0].split("_")[-1]
 		extention = "."+".".join(fileIn.split("/")[-1].split(".")[1:])
 		print(basename+rValue+extention)
@@ -134,6 +134,8 @@ if __name__ == "__main__":
 
 		os.mkdir(pathFileOut.pathDirectory+basename)
 
+		cmd = "ln -s "+pathFastqFile.pathDirectory+fileName+" "+pathFileOut.pathDirectory+basename+"/"+fileName
+		os.system(cmd)
 		cmd = "ln -s "+pathFastqFile.pathDirectory+fileName+" "+pathFileOut.pathDirectory+basename+"/"+fileName
 		os.system(cmd)
 
