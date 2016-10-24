@@ -6,7 +6,7 @@
 """
 	The plot_barplot_DAPC script
 	============================
-	:author: Sebastien Ravel,Pierre Gladieux;
+	:author: Sebastien Ravel,Pierre Gladieux
 	:contact: sebastien.ravel@cirad.fr
 	:date: 08/07/2016
 	:version: 0.1
@@ -150,9 +150,7 @@ if __name__ == "__main__":
 			#6:{0:'deepskyblue',1:'goldenrod',2:'blueviolet',3:'forestgreen',4:'orchid',5:'firebrick'},
 			#7:{0:'blueviolet',1:'seagreen',2:'orchid',3:'deepskyblue',4:'goldenrod',5:'forestgreen',6:'firebrick'},
 			#8:{0:'blueviolet',1:'forestgreen',2:'seagreen',3:'lightsteelblue',4:'orchid',5:'goldenrod',6:'firebrick',7:'deepskyblue'},
-			#9:{0:'seagreen',1:'goldenrod',2:'forestgreen',3:'blueviolet',4:'deepskyblue',5:'lightsteelblue',6:'lightgreen',7:'orchid',8:'firebrick'},
-			#10:{0:'goldenrod',1:'seagreen',2:'lightgreen',3:'orchid',4:'forestgreen',5:'firebrick',6:'blueviolet',7:'deepskyblue',9:'lightsteelblue',8:'darkred'}
-			#}
+			#9:{0:'seagreen',1:'goldenrod',2:'forestgreen',3:'blueviolet',4:'deepskyblue',5:'lightsteelblue',6:'lightgreen',7:'orchid',8:'firebrick'},}
 	colors={2:{0:'goldenrod',1:'seagreen'},
 			3:{0:'goldenrod',1:'seagreen',2:'lightgreen'},
 			4:{0:'goldenrod',1:'seagreen',2:'lightgreen',3:'orchid'},
