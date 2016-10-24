@@ -6,7 +6,7 @@
 """
 	The plot_barplot_DAPC script
 	============================
-	:author: Sebastien Ravel, Pierre Gladieux
+	:author: Sebastien Ravel,Pierre Gladieux;
 	:contact: sebastien.ravel@cirad.fr
 	:date: 08/07/2016
 	:version: 0.1
