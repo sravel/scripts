@@ -78,6 +78,7 @@ make_hapmapfile2.VERSION_DATE	make_hapmapfile2-module.html#VERSION_DATE
 make_ldhatfiles	make_ldhatfiles-module.html
 make_ldhatfiles.completeLDhatPATH	make_ldhatfiles-module.html#completeLDhatPATH
 make_ldhatfiles.statLDhatPATH	make_ldhatfiles-module.html#statLDhatPATH
+make_ldhatfiles.__package__	make_ldhatfiles-module.html#__package__
 make_ldhatfiles.version	make_ldhatfiles-module.html#version
 make_ldhatfiles.VERSION_DATE	make_ldhatfiles-module.html#VERSION_DATE
 make_ldhatfiles.current_dir	make_ldhatfiles-module.html#current_dir
