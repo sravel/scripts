@@ -15,7 +15,7 @@
 	Script description
 	------------------
 
-	This Programme compressextetion in directory with job array
+	This Programme compress all file with pass extention in directory with job array
 
 	Example
 	-------
@@ -78,7 +78,7 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme ....''')
+	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme compress all file with pass extention in directory with job array''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display '+__file__+' version number and exit')
 	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
