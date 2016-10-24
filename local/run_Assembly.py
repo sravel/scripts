@@ -115,7 +115,7 @@ if __name__ == "__main__":
 	listFiles = []
 
 	for fileIn in pathFastqFile.listFiles:
-		cmd = ""
+		cmd2 = ""
 		txt = ""
 		fileName = fileIn.split("/")[-1]
 		extention = fileName.split(".")[-1]
@@ -126,23 +126,23 @@ if __name__ == "__main__":
 		extention = "."+".".join(fileIn.split("/")[-1].split(".")[1:])
 
 
-		print(basename)
+		#print(basename)
 
 		if "z" not in extention:
-			cmd = """function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }\n\n"""
-			cmd += "maketar %s*\n\n" % pathFileOut.pathDirectory+basename+"/"+fileName[:-1]
-			#print("Warning, file %s must be fastq.?z format" % fileIn)
+			cmd2 = """function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }\n"""
+			cmd2 += "maketar %s*\n\n" % (baseDir+"/"+basename)
+			#print(cmd2)
 			#exit()
 
-		os.mkdir(pathFileOut.pathDirectory+basename)
+		if not os.path.exists(pathFileOut.pathDirectory+basename):
+			os.mkdir(pathFileOut.pathDirectory+basename)
 
 		cmd = "ln -s "+pathFastqFile.pathDirectory+fileName+" "+pathFileOut.pathDirectory+basename+"/"+fileName
 		os.system(cmd)
 
 		if basename not in listFiles:
 			listFiles.append(basename)
-
-			txt += cmd
+			txt = cmd2
 			txt += """/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+pathFileOut.pathDirectory+basename+""" --outdir """+pathFileOut.pathDirectory+basename+""" --outprefix """+basename+""" --log """+pathFileOut.pathDirectory+basename+"""/log.txt\n"""
 			with open(outputSHDir+"/"+str(count)+"-assembly.sh","w") as shScript:
 				shScript.write(txt)
