@@ -52,52 +52,90 @@
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
 <h1 class="epydoc">Module run_pyinstaller</h1><p class="nomargin-top"><span class="codelink"><a href="run_pyinstaller-pysrc.html">source&nbsp;code</a></span></p>
-<pre class="literalblock">
+<div class="rst-section" id="rst-script-description">
+<h1 class="heading">Script description</h1>
+<p>This run pyinstaller to build file on OS</p>
+</div>
+<div class="rst-section" id="rst-example">
+<h1 class="heading">Example</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>run_pyinstaller.py -p GUI_DAPC.py -u ./includes/dapc.ui -a includes/ -i includes/icon.ico</pre>
+</div>
+<div class="rst-section" id="rst-help-programm">
+<h1 class="heading">Help Programm</h1>
+<dl class="rst-docutils">
+<dt>optional arguments:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-h, --help</dt>
+<dd><p class="rst-first rst-last">show this help message and exit</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-v, --version</dt>
+<dd><p class="rst-first rst-last">display run_raxml.py version number and exit</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Input mandatory infos for running:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-p &lt;filename&gt;, --python &lt;filename&gt;</dt>
+<dd><p class="rst-first rst-last">Main programm script</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-u &lt;filename&gt;, --ui &lt;filename&gt;</dt>
+<dd><p class="rst-first rst-last">UI file associated to python</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-a &lt;path/to/directory&gt;, --addIncludes &lt;path/to/directory&gt;</dt>
+<dd><p class="rst-first rst-last">Name of directory with includes file (must be name
+includes)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-i &lt;filename&gt;, --icon &lt;filename&gt;</dt>
+<dd><p class="rst-first rst-last">icon.ico file</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Input infos for running with default values:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-o &lt;path/to/directory&gt;, --out &lt;path/to/directory&gt;</dt>
+<dd><p class="rst-first rst-last">Name of output file directory</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
 
-The run_pyinstaller script
-====================
-:author: Sebastien Ravel
-:contact: sebastien.ravel@cirad.fr
-:date: 15/09/2016
-:version: 0.1
-
-Script description
-------------------
-
-This run pyinstaller to build file on OS
-
-Example
--------
-
-&gt;&gt;&gt; run_pyinstaller.py -p GUI_DAPC.py -u ./includes/dapc.ui -a includes/ -i includes/icon.ico
-
-Help Programm
--------------
-
-optional arguments:
-        - \-h, --help
-                                        show this help message and exit
-        - \-v, --version
-                                        display run_raxml.py version number and exit
-
-Input mandatory infos for running:
-        - \-p &lt;filename&gt;, --python &lt;filename&gt;
-                                        Main programm script
-        - \-u &lt;filename&gt;, --ui &lt;filename&gt;
-                                        UI file associated to python
-        - \-a &lt;path/to/directory&gt;, --addIncludes &lt;path/to/directory&gt;
-                                        Name of directory with includes file (must be name
-                                        includes)
-        - \-i &lt;filename&gt;, --icon &lt;filename&gt;
-                                        icon.ico file
-
-Input infos for running with default values:
-        - \-o &lt;path/to/directory&gt;, --out &lt;path/to/directory&gt;
-                                        Name of output file directory
-
-</pre>
-
-<!-- ==================== CLASSES ==================== -->
+<hr />
+<div class="fields">      <p><strong>Author:</strong>
+        Sebastien Ravel
+      </p>
+      <p><strong>Contact:</strong>
+        <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
+      </p>
+      <p><strong>Date:</strong>
+        15/09/2016
+      </p>
+      <p><strong>Version:</strong>
+        0.1
+      </p>
+</div><!-- ==================== CLASSES ==================== -->
 <a name="section-Classes"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
@@ -119,8 +157,7 @@ Input infos for running with default values:
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="run_pyinstaller.directory-class.html" class="summary-name">directory</a><br />
-      directory() CLASS
-=================
+      Class which derives from string.
     </td>
   </tr>
 <tr>
@@ -128,8 +165,7 @@ Input infos for running with default values:
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="run_pyinstaller.printCol-class.html" class="summary-name">printCol</a><br />
-      printCol() CLASS
-================
+      Classe qui ajoute des m&#233;thodes &#224; print pour afficher de la couleur
     </td>
   </tr>
 </table>
@@ -152,7 +188,7 @@ Input infos for running with default values:
 </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
+      <span class="summary-type">string</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -173,8 +209,8 @@ Input infos for running with default values:
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="run_pyinstaller-module.html#relativeToAbsolutePath" class="summary-sig-name">relativeToAbsolutePath</a>(<span class="summary-sig-arg">relative</span>)</span><br />
-      Return the absolutPath...</td>
+          <td><span class="summary-sig"><a name="relativeToAbsolutePath"></a><span class="summary-sig-name">relativeToAbsolutePath</span>(<span class="summary-sig-arg">relative</span>)</span><br />
+      Return the absolutPath</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="run_pyinstaller-pysrc.html#relativeToAbsolutePath">source&nbsp;code</a></span>
             
@@ -186,7 +222,7 @@ Input infos for running with default values:
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
+      <span class="summary-type">str()</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -296,40 +332,14 @@ a = Analysis([\'**PYTHON**\'],
     </td>
   </tr></table>
   
-  <pre class="literalblock">
-
-'Type' for argparse - checks that file exists but does not open by default.
-
-:param x: a file path
-:type x: str()
-:rtype: string
-:return: string
-
-</pre>
+  'Type' for argparse - checks that file exists but does not open by default.
   <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="relativeToAbsolutePath"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">relativeToAbsolutePath</span>(<span class="sig-arg">relative</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="run_pyinstaller-pysrc.html#relativeToAbsolutePath">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-Return the absolutPath
-        
-
-</pre>
-  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>x</code></strong> (str()) - a file path</li>
+    </ul></dd>
+    <dt>Returns: string</dt>
+        <dd>string</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -348,24 +358,25 @@ Return the absolutPath
     </td>
   </tr></table>
   
-  <pre class="literalblock">
-
-Function that take a dictionnary and text variable and return text variable with replace 'Key' from dictionnary with 'Value'.
-
-:param repls: a python dictionary
-:type repls: dict()
-:param str: a string where remplace some words
-:type str: str()
-:rtype: str()
-:return: - txt with replace 'Key' of dictionnary with 'Value' in the input txt
-
-Example:
-        &gt;&gt;&gt; text =  &quot;i like apples, but pears scare me&quot;
-        &gt;&gt;&gt; print(replace_all({&quot;apple&quot;: &quot;pear&quot;, &quot;pear&quot;: &quot;apple&quot;}, text))
-        i like pears, but apples scare me
-
-</pre>
+  <p>Function that take a dictionnary and text variable and return text variable with replace 'Key' from dictionnary with 'Value'.</p>
+<dl class="rst-docutils">
+<dt>Example:</dt>
+<dd><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>text =  <span class="py-string">&quot;i like apples, but pears scare me&quot;</span>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(replace_all({<span class="py-string">&quot;apple&quot;</span>: <span class="py-string">&quot;pear&quot;</span>, <span class="py-string">&quot;pear&quot;</span>: <span class="py-string">&quot;apple&quot;</span>}, text))
+<span class="py-output">i like pears, but apples scare me</span></pre>
+</dd>
+</dl>
   <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>repls</code></strong> (dict()) - a python dictionary</li>
+        <li><strong class="pname"><code>str</code></strong> (str()) - a string where remplace some words</li>
+    </ul></dd>
+    <dt>Returns: str()</dt>
+        <dd><ul class="rst-simple">
+<li>txt with replace 'Key' of dictionnary with 'Value' in the input txt</li>
+</ul></dd>
   </dl>
 </td></tr></table>
 </div>
@@ -438,7 +449,7 @@ Example:
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Mon Oct 24 14:42:51 2016
+    Generated by Epydoc 3.0.1 on Mon Oct 24 14:57:45 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

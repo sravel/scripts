@@ -6,7 +6,7 @@
 
 """
 	The run_pyinstaller script
-	====================
+	==========================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
 	:date: 15/09/2016

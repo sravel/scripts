@@ -6,6 +6,7 @@
 """
 	The compress script
 	=========================
+
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
 	:date: 21/10/2016

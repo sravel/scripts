@@ -75,7 +75,7 @@ import argparse
 
 
 try:
-	import egglib3 # USE EGGLIB_3
+	import egglib3 as egglib # USE EGGLIB_3
 	if int(egglib.version.split(".")[0]) != 3 :
 		print("You are using not use egglib V3!\n" )
 		exit(1)
