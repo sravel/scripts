@@ -52,108 +52,59 @@
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
 <h1 class="epydoc">Module make_structure_dir</h1><p class="nomargin-top"><span class="codelink"><a href="make_structure_dir-pysrc.html">source&nbsp;code</a></span></p>
-<div class="rst-section" id="rst-script-description">
-<h1 class="heading">Script description</h1>
-<p>This Programme make arborescence of rep of programme structure</p>
-<p>Use for haploide individus</p>
-</div>
-<div class="rst-section" id="rst-example">
-<h1 class="heading">Example</h1>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>make_structure_dir.py -i SNP_table.tab -pm 10 -nbi 624 -nbm 12</pre>
-</div>
-<div class="rst-section" id="rst-help-programm">
-<h1 class="heading">Help Programm</h1>
-<dl class="rst-docutils">
-<dt>optional arguments:</dt>
-<dd><ul class="rst-first rst-last">
-<li><dl class="rst-first rst-docutils">
-<dt>-h, --help</dt>
-<dd><p class="rst-first rst-last">show this help message and exit</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-v, --version</dt>
-<dd><p class="rst-first rst-last">display make_structure_dir.py version number and exit</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-<dt>Input mandatory infos for running:</dt>
-<dd><ul class="rst-first rst-last">
-<li><dl class="rst-first rst-docutils">
-<dt>-pm &lt;int&gt;, --popm &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">Number of pop Max</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-i &lt;fileName&gt;, --infile &lt;fileName&gt;</dt>
-<dd><p class="rst-first rst-last">input file matrice</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-nbi &lt;int&gt;, --nbIndiv &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">Number of individus un matrice</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-nbm &lt;int&gt;, --nbMarker &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">Number of markers un matrice</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-<dt>Input infos for running with default values:</dt>
-<dd><ul class="rst-first rst-last">
-<li><dl class="rst-first rst-docutils">
-<dt>-ri &lt;int&gt;, --repi &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">Number of repetition min (default = 1)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-rm &lt;int&gt;, --repm &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">Number of repetition max (default = 10)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-pi &lt;int&gt;, --popi &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">Number of pop Min (default = 1)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-o &lt;PrefixFileName&gt;, --outfile &lt;PrefixFileName&gt;</dt>
-<dd><p class="rst-first rst-last">output file Prefix (default = name of matrice file)</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</div>
+<pre class="literalblock">
 
-<hr />
-<div class="fields">      <p><strong>Author:</strong>
-        Sebastien Ravel
-      </p>
-      <p><strong>Contact:</strong>
-        <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
-      </p>
-      <p><strong>Date:</strong>
-        08/07/2016
-      </p>
-      <p><strong>Version:</strong>
-        0.1
-      </p>
-</div><!-- ==================== VARIABLES ==================== -->
+The make_structure_dir script
+=============================
+:author: Sebastien Ravel
+:contact: sebastien.ravel@cirad.fr
+:date: 08/07/2016
+:version: 0.1
+
+Script description
+------------------
+
+This Programme make arborescence of rep of programme structure
+
+Use for haploide individus
+
+Example
+-------
+
+&gt;&gt;&gt; make_structure_dir.py -i SNP_table.tab -pm 10 -nbi 624 -nbm 12
+
+Help Programm
+-------------
+
+optional arguments:
+        - \-h, --help
+                                        show this help message and exit
+        - \-v, --version
+                                        display make_structure_dir.py version number and exit
+
+Input mandatory infos for running:
+        - \-pm &lt;int&gt;, --popm &lt;int&gt;
+                                        Number of pop Max
+        - \-i &lt;fileName&gt;, --infile &lt;fileName&gt;
+                                        input file matrice
+        - \-nbi &lt;int&gt;, --nbIndiv &lt;int&gt;
+                                        Number of individus un matrice
+        - \-nbm &lt;int&gt;, --nbMarker &lt;int&gt;
+                                        Number of markers un matrice
+
+Input infos for running with default values:
+        - \-ri &lt;int&gt;, --repi &lt;int&gt;
+                                        Number of repetition min (default = 1)
+        - \-rm &lt;int&gt;, --repm &lt;int&gt;
+                                        Number of repetition max (default = 10)
+        - \-pi &lt;int&gt;, --popi &lt;int&gt;
+                                        Number of pop Min (default = 1)
+        - \-o &lt;PrefixFileName&gt;, --outfile &lt;PrefixFileName&gt;
+                                        output file Prefix (default = name of matrice file)
+
+</pre>
+
+<!-- ==================== VARIABLES ==================== -->
 <a name="section-Variables"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
@@ -289,8 +240,7 @@ FILE extraparams.
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1
-    on Thu Jul 21 13:21:28 2016
+    Generated by Epydoc 3.0.1 on Mon Oct 24 14:36:00 2016
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

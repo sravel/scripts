@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>run_pyinstaller</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;run_pyinstaller
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="run_pyinstaller-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="run_pyinstaller-module.html">Module run_pyinstaller</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/python3.5</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># @package run_pyinstaller.py</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># @author Sebastien Ravel</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">        The run_pyinstaller script</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">        ====================</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">        :author: Sebastien Ravel</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">        :contact: sebastien.ravel@cirad.fr</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">        :date: 15/09/2016</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">        :version: 0.1</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">        Script description</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">        ------------------</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">        This run pyinstaller to build file on OS</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">        Example</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">        -------</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; run_pyinstaller.py -p GUI_DAPC.py -u ./includes/dapc.ui -a includes/ -i includes/icon.ico</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        Help Programm</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        -------------</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        optional arguments:</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">                - \-h, --help</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">                                                show this help message and exit</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">                - \-v, --version</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">                                                display run_raxml.py version number and exit</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">        Input mandatory infos for running:</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">                - \-p &lt;filename&gt;, --python &lt;filename&gt;</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">                                                Main programm script</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">                - \-u &lt;filename&gt;, --ui &lt;filename&gt;</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">                                                UI file associated to python</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">                - \-a &lt;path/to/directory&gt;, --addIncludes &lt;path/to/directory&gt;</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">                                                Name of directory with includes file (must be name</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">                                                includes)</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">                - \-i &lt;filename&gt;, --icon &lt;filename&gt;</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">                                                icon.ico file</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-docstring">        Input infos for running with default values:</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-docstring">                - \-o &lt;path/to/directory&gt;, --out &lt;path/to/directory&gt;</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">                                                Name of output file directory</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-comment">## Modules</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-comment">## Python modules</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">argparse</tt><tt class="py-op">,</tt> <tt class="py-name">glob</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">time</tt> <tt class="py-keyword">import</tt> <tt class="py-name">localtime</tt><tt class="py-op">,</tt> <tt class="py-name">strftime</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt><tt class="py-op">,</tt> <tt class="py-name">shutil</tt><tt class="py-op">,</tt> <tt class="py-name">re</tt> </tt>
+<a name="directory"></a><div id="directory-def"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt> <a class="py-toggle" href="#" id="directory-toggle" onclick="return toggle('directory');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="run_pyinstaller.directory-class.html">directory</a><tt class="py-op">(</tt><tt class="py-base-class">str</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="directory-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="directory-expanded"><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        directory() CLASS</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-docstring">        =================</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">        Class which derives from string.</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        Checks that the string is and path to valid directory and not empty</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        Returns object which able to return basename and list file (with an extention, else consider as folder)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        Example:</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; inDirectory=directory("/home/sravel/Documents")</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; print(inDirectory.pathDirectory())</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; /home/sravel/Documents/</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; print(inDirectory.listFiles())</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; ["File1.txt","File2.pl","file.toto"]</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="directory.__init__"></a><div id="directory.__init__-def"><a name="L80"></a><tt class="py-lineno"> 80</tt> <a class="py-toggle" href="#" id="directory.__init__-toggle" onclick="return toggle('directory.__init__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.directory-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">pathDirectory</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="directory.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="directory.__init__-expanded"><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">                        Initialise variable</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listPath</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>                      <tt class="py-comment"># all in the path</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listDir</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>                       <tt class="py-comment"># only directory in path</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listFiles</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>                     <tt class="py-comment"># only files in path</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Variable addSample.current_dir=addSample-module.html#current_dir,Variable buildSNPtoFasta.current_dir=buildSNPtoFasta-module.html#current_dir,Variable compress.current_dir=compress-module.html#current_dir,Variable concatFastasFile.current_dir=concatFastasFile-module.html#current_dir,Variable countCDSStartStop.current_dir=countCDSStartStop-module.html#current_dir,Variable extractColfromList.current_dir=extractColfromList-module.html#current_dir,Variable extractFromProteineOrtho.current_dir=extractFromProteineOrtho-module.html#current_dir,Variable extractSeqFasta.current_dir=extractSeqFasta-module.html#current_dir,Variable extractSeqFastaCorresponding.current_dir=extractSeqFastaCorresponding-module.html#current_dir,Variable extractSeqFastaFromLen.current_dir=extractSeqFastaFromLen-module.html#current_dir,Variable getdistrgenotypeTAB.current_dir=getdistrgenotypeTAB-module.html#current_dir,Variable grepMotifFromAlignment.current_dir=grepMotifFromAlignment-module.html#current_dir,Variable make_ldhatfiles.current_dir=make_ldhatfiles-module.html#current_dir,Variable make_structure_dir.current_dir=make_structure_dir-module.html#current_dir,Variable parseWithEgglib.current_dir=parseWithEgglib-module.html#current_dir,Variable plot_barplot_DAPC.current_dir=plot_barplot_DAPC-module.html#current_dir,Variable renameFile.current_dir=renameFile-module.html#current_dir,Variable run_Assembly.current_dir=run_Assembly-module.html#current_dir,Variable run_multiblast.current_dir=run_multiblast-module.html#current_dir,Variable run_raxml.current_dir=run_raxml-module.html#current_dir,Variable splitMultiFasta.current_dir=splitMultiFasta-module.html#current_dir,Variable struc2runClumpak.current_dir=struc2runClumpak-module.html#current_dir"><a title="addSample.current_dir
+buildSNPtoFasta.current_dir
+compress.current_dir
+concatFastasFile.current_dir
+countCDSStartStop.current_dir
+extractColfromList.current_dir
+extractFromProteineOrtho.current_dir
+extractSeqFasta.current_dir
+extractSeqFastaCorresponding.current_dir
+extractSeqFastaFromLen.current_dir
+getdistrgenotypeTAB.current_dir
+grepMotifFromAlignment.current_dir
+make_ldhatfiles.current_dir
+make_structure_dir.current_dir
+parseWithEgglib.current_dir
+plot_barplot_DAPC.current_dir
+renameFile.current_dir
+run_Assembly.current_dir
+run_multiblast.current_dir
+run_raxml.current_dir
+splitMultiFasta.current_dir
+struc2runClumpak.current_dir" class="py-name" href="#" onclick="return doclink('link-0', 'current_dir', 'link-0');">current_dir</a></tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">abspath</tt><tt class="py-op">(</tt><tt class="py-name">__file__</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                <tt class="py-comment">#Change relative path to absolute path</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt> <tt class="py-op">=</tt> <tt id="link-1" class="py-name" targets="Function run_pyinstaller.relativeToAbsolutePath()=run_pyinstaller-module.html#relativeToAbsolutePath"><a title="run_pyinstaller.relativeToAbsolutePath" class="py-name" href="#" onclick="return doclink('link-1', 'relativeToAbsolutePath', 'link-1');">relativeToAbsolutePath</a></tt><tt class="py-op">(</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">)</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">                <tt class="py-comment"># appel les fonctions</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Method run_pyinstaller.directory.testDirExist()=run_pyinstaller.directory-class.html#testDirExist"><a title="run_pyinstaller.directory.testDirExist" class="py-name" href="#" onclick="return doclink('link-2', 'testDirExist', 'link-2');">testDirExist</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Method run_pyinstaller.directory.lsInDir()=run_pyinstaller.directory-class.html#lsInDir"><a title="run_pyinstaller.directory.lsInDir" class="py-name" href="#" onclick="return doclink('link-3', 'lsInDir', 'link-3');">lsInDir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method run_pyinstaller.directory.splitFilesDir()=run_pyinstaller.directory-class.html#splitFilesDir"><a title="run_pyinstaller.directory.splitFilesDir" class="py-name" href="#" onclick="return doclink('link-4', 'splitFilesDir', 'link-4');">splitFilesDir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="directory.__repr__"></a><div id="directory.__repr__-def"><a name="L98"></a><tt class="py-lineno"> 98</tt> <a class="py-toggle" href="#" id="directory.__repr__-toggle" onclick="return toggle('directory.__repr__');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.directory-class.html#__repr__">__repr__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="directory.__repr__-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="directory.__repr__-expanded"><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">                <tt class="py-docstring">"""Fonction qui permet de formater le text de sortie lors du print du dictionnaire"""</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt class="py-name">txtOut</tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-string">pathDirectory=%s\n</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-string">listPath=%s\n</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-string">listDir=%s\n</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"><tt class="py-string">listFiles=%s\n</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"><tt class="py-string">"""</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listPath</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listDir</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listFiles</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">txtOut</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="directory.testDirExist"></a><div id="directory.testDirExist-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="directory.testDirExist-toggle" onclick="return toggle('directory.testDirExist');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.directory-class.html#testDirExist">testDirExist</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="directory.testDirExist-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="directory.testDirExist-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">                <tt class="py-docstring">"""Test l'existance du r&#233;pertoire"""</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">isdir</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">)</tt> <tt class="py-op">!=</tt> <tt class="py-name">True</tt> <tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"ERROR MODULES_SEB::Class-directory : path '%s' is not valide path"</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt> <tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                        <tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line"> </tt>
+<a name="directory.lsInDir"></a><div id="directory.lsInDir-def"><a name="L114"></a><tt class="py-lineno">114</tt> <a class="py-toggle" href="#" id="directory.lsInDir-toggle" onclick="return toggle('directory.lsInDir');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.directory-class.html#lsInDir">lsInDir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="directory.lsInDir-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="directory.lsInDir-expanded"><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">                <tt class="py-docstring">"""List all in directory"""</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="run_pyinstaller.directory.testDirExist" class="py-name" href="#" onclick="return doclink('link-5', 'testDirExist', 'link-2');">testDirExist</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">"/"</tt><tt class="py-op">:</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt> <tt class="py-op">+=</tt> <tt class="py-string">"/"</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">"*"</tt><tt class="py-op">:</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">                        <tt class="py-name">pathDirectoryList</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">+</tt><tt class="py-string">"*"</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listPath</tt><tt class="py-op">=</tt><tt class="py-name">glob</tt><tt class="py-op">.</tt><tt class="py-name">glob</tt><tt class="py-op">(</tt><tt class="py-name">pathDirectoryList</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt>
+<a name="directory.lsExtInDirToList"></a><div id="directory.lsExtInDirToList-def"><a name="L123"></a><tt class="py-lineno">123</tt> <a class="py-toggle" href="#" id="directory.lsExtInDirToList-toggle" onclick="return toggle('directory.lsExtInDirToList');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.directory-class.html#lsExtInDirToList">lsExtInDirToList</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">ext</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="directory.lsExtInDirToList-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="directory.lsExtInDirToList-expanded"><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                <tt class="py-docstring">"""List specific extention file in directory"""</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">                <tt class="py-name">lsFilesFasta</tt> <tt class="py-op">=</tt><tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">fichier</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listPath</tt><tt class="py-op">:</tt> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                                <tt class="py-keyword">if</tt> <tt class="py-string">"."</tt> <tt class="py-keyword">in</tt> <tt class="py-name">fichier</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"/"</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                                        <tt class="py-name">nameFichier</tt> <tt class="py-op">=</tt> <tt class="py-name">fichier</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"/"</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"."</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">                                        <tt class="py-name">extentionFichier</tt> <tt class="py-op">=</tt> <tt class="py-name">fichier</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"/"</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"."</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                                <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                                        <tt class="py-name">nameFichier</tt> <tt class="py-op">=</tt> <tt class="py-name">fichier</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"/"</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">                                        <tt class="py-name">extentionFichier</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">                        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                                <tt class="py-name">extentionFichier</tt> <tt class="py-op">=</tt> <tt class="py-string">"directory"</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">extentionFichier</tt> <tt class="py-keyword">in</tt> <tt class="py-name">ext</tt><tt class="py-op">:</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">                                <tt class="py-name">lsFilesFasta</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">fichier</tt><tt class="py-op">)</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">sorted</tt><tt class="py-op">(</tt><tt class="py-name">lsFilesFasta</tt><tt class="py-op">,</tt> <tt class="py-name">key</tt><tt class="py-op">=</tt><tt class="py-name">sort_human</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="directory.splitFilesDir"></a><div id="directory.splitFilesDir-def"><a name="L140"></a><tt class="py-lineno">140</tt> <a class="py-toggle" href="#" id="directory.splitFilesDir-toggle" onclick="return toggle('directory.splitFilesDir');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.directory-class.html#splitFilesDir">splitFilesDir</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="directory.splitFilesDir-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="directory.splitFilesDir-expanded"><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">                <tt class="py-docstring">"""list files and list directory"""</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="run_pyinstaller.directory.lsInDir" class="py-name" href="#" onclick="return doclink('link-6', 'lsInDir', 'link-3');">lsInDir</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listDir</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>               <tt class="py-comment"># only directory in path</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listFiles</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt>             <tt class="py-comment"># only files in path</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">                <tt class="py-comment"># Ouverture des fichiers du repertoire</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">fichier</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listPath</tt><tt class="py-op">:</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">                        <tt class="py-keyword">try</tt><tt class="py-op">:</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line">                                <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">isdir</tt><tt class="py-op">(</tt><tt class="py-name">fichier</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">True</tt> <tt class="py-op">:</tt>             <tt class="py-comment"># C'est un dossier</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line">                                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listDir</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">fichier</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">                                <tt class="py-keyword">elif</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">fichier</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-name">True</tt> <tt class="py-op">:</tt>  <tt class="py-comment"># C'est un fichier</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">                                        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">listFiles</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">fichier</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">                        <tt class="py-keyword">except</tt><tt class="py-op">:</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">                                <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"ERROR MODULES_SEB::Class-directory : path '%s' is not valide path contain other type (not files or directory)"</tt> <tt class="py-op">%</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">pathDirectory</tt><tt class="py-op">)</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">                                <tt class="py-name">exit</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="existant_file"></a><div id="existant_file-def"><a name="L156"></a><tt class="py-lineno">156</tt> <a class="py-toggle" href="#" id="existant_file-toggle" onclick="return toggle('existant_file');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller-module.html#existant_file">existant_file</a><tt class="py-op">(</tt><tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="existant_file-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="existant_file-expanded"><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line"><tt class="py-docstring">        'Type' for argparse - checks that file exists but does not open by default.</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-docstring">        :param x: a file path</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-docstring">        :type x: str()</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"><tt class="py-docstring">        :rtype: string</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"><tt class="py-docstring">        :return: string</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">                <tt class="py-comment"># Argparse uses the ArgumentTypeError to give a rejection message like:</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">                <tt class="py-comment"># error: argument input: x does not exist</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">                <tt class="py-keyword">raise</tt> <tt class="py-name">argparse</tt><tt class="py-op">.</tt><tt class="py-name">ArgumentTypeError</tt><tt class="py-op">(</tt><tt class="py-string">"{0} does not exist"</tt><tt class="py-op">.</tt><tt class="py-name">format</tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">x</tt> </tt>
+</div><a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line"> </tt>
+<a name="relativeToAbsolutePath"></a><div id="relativeToAbsolutePath-def"><a name="L173"></a><tt class="py-lineno">173</tt> <a class="py-toggle" href="#" id="relativeToAbsolutePath-toggle" onclick="return toggle('relativeToAbsolutePath');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller-module.html#relativeToAbsolutePath">relativeToAbsolutePath</a><tt class="py-op">(</tt><tt class="py-param">relative</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="relativeToAbsolutePath-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="relativeToAbsolutePath-expanded"><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">        <tt class="py-docstring">"""     Return the absolutPath</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">relative</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> <tt class="py-op">!=</tt> <tt class="py-string">"/"</tt><tt class="py-op">:</tt>                  <tt class="py-comment"># The relative path is a relative path, ie do not starts with /</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line">                <tt class="py-name">absolutePath</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">realpath</tt><tt class="py-op">(</tt><tt class="py-name">relative</tt><tt class="py-op">)</tt> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">absolutePath</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt>                                           <tt class="py-comment"># Relative is in fact an absolute path, send a warning</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">                <tt class="py-name">absolutePath</tt> <tt class="py-op">=</tt> <tt class="py-name">relative</tt><tt class="py-op">;</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">absolutePath</tt> </tt>
+</div><a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"> </tt>
+<a name="replace_all"></a><div id="replace_all-def"><a name="L183"></a><tt class="py-lineno">183</tt> <a class="py-toggle" href="#" id="replace_all-toggle" onclick="return toggle('replace_all');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller-module.html#replace_all">replace_all</a><tt class="py-op">(</tt><tt class="py-param">repls</tt><tt class="py-op">,</tt> <tt class="py-param">str</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="replace_all-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="replace_all-expanded"><a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line"><tt class="py-docstring">        Function that take a dictionnary and text variable and return text variable with replace 'Key' from dictionnary with 'Value'.</tt> </tt>
+<a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L187"></a><tt class="py-lineno">187</tt>  <tt class="py-line"><tt class="py-docstring">        :param repls: a python dictionary</tt> </tt>
+<a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line"><tt class="py-docstring">        :type repls: dict()</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt class="py-docstring">        :param str: a string where remplace some words</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt class="py-docstring">        :type str: str()</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"><tt class="py-docstring">        :rtype: str()</tt> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line"><tt class="py-docstring">        :return: - txt with replace 'Key' of dictionnary with 'Value' in the input txt</tt> </tt>
+<a name="L193"></a><tt class="py-lineno">193</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line"><tt class="py-docstring">        Example:</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line"><tt class="py-docstring">                &gt;&gt;&gt; text =  "i like apples, but pears scare me"</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"><tt class="py-docstring">                &gt;&gt;&gt; print(replace_all({"apple": "pear", "pear": "apple"}, text))</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"><tt class="py-docstring">                i like pears, but apples scare me</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">sub</tt><tt class="py-op">(</tt><tt class="py-string">'|'</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">re</tt><tt class="py-op">.</tt><tt class="py-name">escape</tt><tt class="py-op">(</tt><tt class="py-name">key</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">key</tt> <tt class="py-keyword">in</tt> <tt class="py-name">repls</tt><tt class="py-op">.</tt><tt class="py-name">keys</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt><tt class="py-keyword">lambda</tt> <tt class="py-name">k</tt><tt class="py-op">:</tt> <tt class="py-name">repls</tt><tt class="py-op">[</tt><tt class="py-name">k</tt><tt class="py-op">.</tt><tt class="py-name">group</tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">str</tt><tt class="py-op">)</tt> </tt>
+</div><a name="printCol"></a><div id="printCol-def"><a name="L201"></a><tt class="py-lineno">201</tt> <a class="py-toggle" href="#" id="printCol-toggle" onclick="return toggle('printCol');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="run_pyinstaller.printCol-class.html">printCol</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="printCol-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="printCol-expanded"><a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line"><tt class="py-docstring">        printCol() CLASS</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line"><tt class="py-docstring">        ================</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line"><tt class="py-docstring">        Classe qui ajoute des m&#233;thodes &#224; print pour afficher de la couleur</tt> </tt>
+<a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L208"></a><tt class="py-lineno">208</tt>  <tt class="py-line"><tt class="py-docstring">        Example:</tt> </tt>
+<a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; printCol.red("j'affiche en rouge")</tt> </tt>
+<a name="L211"></a><tt class="py-lineno">211</tt>  <tt class="py-line"><tt class="py-docstring">        j'affiche en rouge</tt> </tt>
+<a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L214"></a><tt class="py-lineno">214</tt>  <tt class="py-line"> </tt>
+<a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">        <tt id="link-7" class="py-name" targets="Variable run_pyinstaller.printCol.RED=run_pyinstaller.printCol-class.html#RED"><a title="run_pyinstaller.printCol.RED" class="py-name" href="#" onclick="return doclink('link-7', 'RED', 'link-7');">RED</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[91m'</tt> </tt>
+<a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line">        <tt id="link-8" class="py-name" targets="Variable run_pyinstaller.printCol.GREEN=run_pyinstaller.printCol-class.html#GREEN"><a title="run_pyinstaller.printCol.GREEN" class="py-name" href="#" onclick="return doclink('link-8', 'GREEN', 'link-8');">GREEN</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[92m'</tt> </tt>
+<a name="L217"></a><tt class="py-lineno">217</tt>  <tt class="py-line">        <tt id="link-9" class="py-name" targets="Variable run_pyinstaller.printCol.YELLOW=run_pyinstaller.printCol-class.html#YELLOW"><a title="run_pyinstaller.printCol.YELLOW" class="py-name" href="#" onclick="return doclink('link-9', 'YELLOW', 'link-9');">YELLOW</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[93m'</tt> </tt>
+<a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">        <tt id="link-10" class="py-name" targets="Variable run_pyinstaller.printCol.LIGHT_PURPLE=run_pyinstaller.printCol-class.html#LIGHT_PURPLE"><a title="run_pyinstaller.printCol.LIGHT_PURPLE" class="py-name" href="#" onclick="return doclink('link-10', 'LIGHT_PURPLE', 'link-10');">LIGHT_PURPLE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[94m'</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">        <tt id="link-11" class="py-name" targets="Variable run_pyinstaller.printCol.PURPLE=run_pyinstaller.printCol-class.html#PURPLE"><a title="run_pyinstaller.printCol.PURPLE" class="py-name" href="#" onclick="return doclink('link-11', 'PURPLE', 'link-11');">PURPLE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[95m'</tt> </tt>
+<a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line">        <tt id="link-12" class="py-name" targets="Variable run_pyinstaller.printCol.END=run_pyinstaller.printCol-class.html#END"><a title="run_pyinstaller.printCol.END" class="py-name" href="#" onclick="return doclink('link-12', 'END', 'link-12');">END</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'\033[0m'</tt> </tt>
+<a name="L221"></a><tt class="py-lineno">221</tt>  <tt class="py-line"> </tt>
+<a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">        <tt class="py-decorator">@</tt><tt class="py-decorator">classmethod</tt> </tt>
+<a name="printCol.red"></a><div id="printCol.red-def"><a name="L223"></a><tt class="py-lineno">223</tt> <a class="py-toggle" href="#" id="printCol.red-toggle" onclick="return toggle('printCol.red');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.printCol-class.html#red">red</a><tt class="py-op">(</tt><tt class="py-param">cls</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="printCol.red-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="printCol.red-expanded"><a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="run_pyinstaller.printCol.RED" class="py-name" href="#" onclick="return doclink('link-13', 'RED', 'link-7');">RED</a></tt> <tt class="py-op">+</tt> <tt class="py-name">s</tt> <tt class="py-op">+</tt> <tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="run_pyinstaller.printCol.END" class="py-name" href="#" onclick="return doclink('link-14', 'END', 'link-12');">END</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line"> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">        <tt class="py-decorator">@</tt><tt class="py-decorator">classmethod</tt> </tt>
+<a name="printCol.green"></a><div id="printCol.green-def"><a name="L227"></a><tt class="py-lineno">227</tt> <a class="py-toggle" href="#" id="printCol.green-toggle" onclick="return toggle('printCol.green');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.printCol-class.html#green">green</a><tt class="py-op">(</tt><tt class="py-param">cls</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="printCol.green-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="printCol.green-expanded"><a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name"><a title="run_pyinstaller.printCol.GREEN" class="py-name" href="#" onclick="return doclink('link-15', 'GREEN', 'link-8');">GREEN</a></tt> <tt class="py-op">+</tt> <tt class="py-name">s</tt> <tt class="py-op">+</tt> <tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="run_pyinstaller.printCol.END" class="py-name" href="#" onclick="return doclink('link-16', 'END', 'link-12');">END</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line"> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line">        <tt class="py-decorator">@</tt><tt class="py-decorator">classmethod</tt> </tt>
+<a name="printCol.yellow"></a><div id="printCol.yellow-def"><a name="L231"></a><tt class="py-lineno">231</tt> <a class="py-toggle" href="#" id="printCol.yellow-toggle" onclick="return toggle('printCol.yellow');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.printCol-class.html#yellow">yellow</a><tt class="py-op">(</tt><tt class="py-param">cls</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="printCol.yellow-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="printCol.yellow-expanded"><a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="run_pyinstaller.printCol.YELLOW" class="py-name" href="#" onclick="return doclink('link-17', 'YELLOW', 'link-9');">YELLOW</a></tt> <tt class="py-op">+</tt> <tt class="py-name">s</tt> <tt class="py-op">+</tt> <tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="run_pyinstaller.printCol.END" class="py-name" href="#" onclick="return doclink('link-18', 'END', 'link-12');">END</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line"> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">        <tt class="py-decorator">@</tt><tt class="py-decorator">classmethod</tt> </tt>
+<a name="printCol.lightPurple"></a><div id="printCol.lightPurple-def"><a name="L235"></a><tt class="py-lineno">235</tt> <a class="py-toggle" href="#" id="printCol.lightPurple-toggle" onclick="return toggle('printCol.lightPurple');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.printCol-class.html#lightPurple">lightPurple</a><tt class="py-op">(</tt><tt class="py-param">cls</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="printCol.lightPurple-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="printCol.lightPurple-expanded"><a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-19" class="py-name"><a title="run_pyinstaller.printCol.LIGHT_PURPLE" class="py-name" href="#" onclick="return doclink('link-19', 'LIGHT_PURPLE', 'link-10');">LIGHT_PURPLE</a></tt> <tt class="py-op">+</tt> <tt class="py-name">s</tt> <tt class="py-op">+</tt> <tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="run_pyinstaller.printCol.END" class="py-name" href="#" onclick="return doclink('link-20', 'END', 'link-12');">END</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line"> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">        <tt class="py-decorator">@</tt><tt class="py-decorator">classmethod</tt> </tt>
+<a name="printCol.purple"></a><div id="printCol.purple-def"><a name="L239"></a><tt class="py-lineno">239</tt> <a class="py-toggle" href="#" id="printCol.purple-toggle" onclick="return toggle('printCol.purple');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="run_pyinstaller.printCol-class.html#purple">purple</a><tt class="py-op">(</tt><tt class="py-param">cls</tt><tt class="py-op">,</tt> <tt class="py-param">s</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="printCol.purple-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="printCol.purple-expanded"><a name="L240"></a><tt class="py-lineno">240</tt>  <tt class="py-line">                <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="run_pyinstaller.printCol.PURPLE" class="py-name" href="#" onclick="return doclink('link-21', 'PURPLE', 'link-11');">PURPLE</a></tt> <tt class="py-op">+</tt> <tt class="py-name">s</tt> <tt class="py-op">+</tt> <tt class="py-name">cls</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="run_pyinstaller.printCol.END" class="py-name" href="#" onclick="return doclink('link-22', 'END', 'link-12');">END</a></tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line"> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line"><tt class="py-comment">## Variables Globales</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line"><tt id="link-23" class="py-name" targets="Variable addSample.version=addSample-module.html#version,Variable buildSNPtoFasta.version=buildSNPtoFasta-module.html#version,Variable compress.version=compress-module.html#version,Variable concatFastasFile.version=concatFastasFile-module.html#version,Variable countCDSStartStop.version=countCDSStartStop-module.html#version,Variable extractColfromList.version=extractColfromList-module.html#version,Variable extractFromProteineOrtho.version=extractFromProteineOrtho-module.html#version,Variable extractSeqFasta.version=extractSeqFasta-module.html#version,Variable extractSeqFastaCorresponding.version=extractSeqFastaCorresponding-module.html#version,Variable extractSeqFastaFromLen.version=extractSeqFastaFromLen-module.html#version,Variable getdistrgenotypeTAB.version=getdistrgenotypeTAB-module.html#version,Variable grepMotifFromAlignment.version=grepMotifFromAlignment-module.html#version,Variable make_hapmapfile2.version=make_hapmapfile2-module.html#version,Variable make_ldhatfiles.version=make_ldhatfiles-module.html#version,Variable make_structure_dir.version=make_structure_dir-module.html#version,Variable parseWithEgglib.version=parseWithEgglib-module.html#version,Variable plot_barplot_DAPC.version=plot_barplot_DAPC-module.html#version,Variable renameFile.version=renameFile-module.html#version,Variable run_Assembly.version=run_Assembly-module.html#version,Variable run_multiblast.version=run_multiblast-module.html#version,Variable run_pyinstaller.version=run_pyinstaller-module.html#version,Variable run_raxml.version=run_raxml-module.html#version,Variable splitMultiFasta.version=splitMultiFasta-module.html#version,Variable struc2runClumpak.version=struc2runClumpak-module.html#version"><a title="addSample.version
+buildSNPtoFasta.version
+compress.version
+concatFastasFile.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaCorresponding.version
+extractSeqFastaFromLen.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+parseWithEgglib.version
+plot_barplot_DAPC.version
+renameFile.version
+run_Assembly.version
+run_multiblast.version
+run_pyinstaller.version
+run_raxml.version
+splitMultiFasta.version
+struc2runClumpak.version" class="py-name" href="#" onclick="return doclink('link-23', 'version', 'link-23');">version</a></tt><tt class="py-op">=</tt><tt class="py-string">"0.1"</tt> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line"><tt id="link-24" class="py-name" targets="Variable addSample.VERSION_DATE=addSample-module.html#VERSION_DATE,Variable buildSNPtoFasta.VERSION_DATE=buildSNPtoFasta-module.html#VERSION_DATE,Variable compress.VERSION_DATE=compress-module.html#VERSION_DATE,Variable concatFastasFile.VERSION_DATE=concatFastasFile-module.html#VERSION_DATE,Variable countCDSStartStop.VERSION_DATE=countCDSStartStop-module.html#VERSION_DATE,Variable extractColfromList.VERSION_DATE=extractColfromList-module.html#VERSION_DATE,Variable extractFromProteineOrtho.VERSION_DATE=extractFromProteineOrtho-module.html#VERSION_DATE,Variable extractSeqFasta.VERSION_DATE=extractSeqFasta-module.html#VERSION_DATE,Variable extractSeqFastaCorresponding.VERSION_DATE=extractSeqFastaCorresponding-module.html#VERSION_DATE,Variable extractSeqFastaFromLen.VERSION_DATE=extractSeqFastaFromLen-module.html#VERSION_DATE,Variable getdistrgenotypeTAB.VERSION_DATE=getdistrgenotypeTAB-module.html#VERSION_DATE,Variable grepMotifFromAlignment.VERSION_DATE=grepMotifFromAlignment-module.html#VERSION_DATE,Variable make_hapmapfile2.VERSION_DATE=make_hapmapfile2-module.html#VERSION_DATE,Variable make_ldhatfiles.VERSION_DATE=make_ldhatfiles-module.html#VERSION_DATE,Variable make_structure_dir.VERSION_DATE=make_structure_dir-module.html#VERSION_DATE,Variable parseWithEgglib.VERSION_DATE=parseWithEgglib-module.html#VERSION_DATE,Variable plot_barplot_DAPC.VERSION_DATE=plot_barplot_DAPC-module.html#VERSION_DATE,Variable renameFile.VERSION_DATE=renameFile-module.html#VERSION_DATE,Variable run_Assembly.VERSION_DATE=run_Assembly-module.html#VERSION_DATE,Variable run_multiblast.VERSION_DATE=run_multiblast-module.html#VERSION_DATE,Variable run_pyinstaller.VERSION_DATE=run_pyinstaller-module.html#VERSION_DATE,Variable run_raxml.VERSION_DATE=run_raxml-module.html#VERSION_DATE,Variable splitMultiFasta.VERSION_DATE=splitMultiFasta-module.html#VERSION_DATE,Variable struc2runClumpak.VERSION_DATE=struc2runClumpak-module.html#VERSION_DATE"><a title="addSample.VERSION_DATE
+buildSNPtoFasta.VERSION_DATE
+compress.VERSION_DATE
+concatFastasFile.VERSION_DATE
+countCDSStartStop.VERSION_DATE
+extractColfromList.VERSION_DATE
+extractFromProteineOrtho.VERSION_DATE
+extractSeqFasta.VERSION_DATE
+extractSeqFastaCorresponding.VERSION_DATE
+extractSeqFastaFromLen.VERSION_DATE
+getdistrgenotypeTAB.VERSION_DATE
+grepMotifFromAlignment.VERSION_DATE
+make_hapmapfile2.VERSION_DATE
+make_ldhatfiles.VERSION_DATE
+make_structure_dir.VERSION_DATE
+parseWithEgglib.VERSION_DATE
+plot_barplot_DAPC.VERSION_DATE
+renameFile.VERSION_DATE
+run_Assembly.VERSION_DATE
+run_multiblast.VERSION_DATE
+run_pyinstaller.VERSION_DATE
+run_raxml.VERSION_DATE
+splitMultiFasta.VERSION_DATE
+struc2runClumpak.VERSION_DATE" class="py-name" href="#" onclick="return doclink('link-24', 'VERSION_DATE', 'link-24');">VERSION_DATE</a></tt><tt class="py-op">=</tt><tt class="py-string">'16/06/2016'</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line"><tt id="link-25" class="py-name" targets="Variable addSample.debug=addSample-module.html#debug,Variable buildSNPtoFasta.debug=buildSNPtoFasta-module.html#debug,Variable compress.debug=compress-module.html#debug,Variable concatFastasFile.debug=concatFastasFile-module.html#debug,Variable countCDSStartStop.debug=countCDSStartStop-module.html#debug,Variable extractFromProteineOrtho.debug=extractFromProteineOrtho-module.html#debug,Variable extractSeqFasta.debug=extractSeqFasta-module.html#debug,Variable extractSeqFastaCorresponding.debug=extractSeqFastaCorresponding-module.html#debug,Variable extractSeqFastaFromLen.debug=extractSeqFastaFromLen-module.html#debug,Variable getdistrgenotypeTAB.debug=getdistrgenotypeTAB-module.html#debug,Variable grepMotifFromAlignment.debug=grepMotifFromAlignment-module.html#debug,Variable run_multiblast.debug=run_multiblast-module.html#debug,Variable run_pyinstaller.debug=run_pyinstaller-module.html#debug,Variable run_raxml.debug=run_raxml-module.html#debug,Variable splitMultiFasta.debug=splitMultiFasta-module.html#debug"><a title="addSample.debug
+buildSNPtoFasta.debug
+compress.debug
+concatFastasFile.debug
+countCDSStartStop.debug
+extractFromProteineOrtho.debug
+extractSeqFasta.debug
+extractSeqFastaCorresponding.debug
+extractSeqFastaFromLen.debug
+getdistrgenotypeTAB.debug
+grepMotifFromAlignment.debug
+run_multiblast.debug
+run_pyinstaller.debug
+run_raxml.debug
+splitMultiFasta.debug" class="py-name" href="#" onclick="return doclink('link-25', 'debug', 'link-25');">debug</a></tt><tt class="py-op">=</tt><tt class="py-string">"False"</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line"><tt class="py-comment">#debug="True"</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line"> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line"><tt id="link-26" class="py-name" targets="Variable run_pyinstaller.specFile=run_pyinstaller-module.html#specFile"><a title="run_pyinstaller.specFile" class="py-name" href="#" onclick="return doclink('link-26', 'specFile', 'link-26');">specFile</a></tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
+<a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line"><tt class="py-string"># -*- mode: python -*-</tt> </tt>
+<a name="L251"></a><tt class="py-lineno">251</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line"><tt class="py-string">block_cipher = None</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line"><tt class="py-string">added_files = [ **ADD** ]</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line"><tt class="py-string">a = Analysis(['**PYTHON**'],</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line"><tt class="py-string">             pathex=['**workingDir**'],</tt> </tt>
+<a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line"><tt class="py-string">             binaries=None,</tt> </tt>
+<a name="L259"></a><tt class="py-lineno">259</tt>  <tt class="py-line"><tt class="py-string">             datas=added_files,</tt> </tt>
+<a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line"><tt class="py-string">             hiddenimports=[],</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line"><tt class="py-string">             hookspath=[],</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"><tt class="py-string">             runtime_hooks=[],</tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line"><tt class="py-string">             excludes=[],</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"><tt class="py-string">             win_no_prefer_redirects=False,</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line"><tt class="py-string">             win_private_assemblies=False,</tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line"><tt class="py-string">             cipher=block_cipher)</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line"><tt class="py-string">pyz = PYZ(a.pure, a.zipped_data,</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line"><tt class="py-string">             cipher=block_cipher)</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line"><tt class="py-string">exe = EXE(pyz,</tt> </tt>
+<a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line"><tt class="py-string">          a.scripts,</tt> </tt>
+<a name="L271"></a><tt class="py-lineno">271</tt>  <tt class="py-line"><tt class="py-string">          a.binaries,</tt> </tt>
+<a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line"><tt class="py-string">          a.zipfiles,</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line"><tt class="py-string">          a.datas,</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line"><tt class="py-string">          name='**NAME**',</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line"><tt class="py-string">          debug=False,</tt> </tt>
+<a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line"><tt class="py-string">          strip=False,</tt> </tt>
+<a name="L277"></a><tt class="py-lineno">277</tt>  <tt class="py-line"><tt class="py-string">          upx=True,</tt> </tt>
+<a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line"><tt class="py-string">          console=False , icon='**ICON**', resources=['**UI**'])</tt> </tt>
+<a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line"> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line"> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line"><tt class="py-comment">## Functions</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line"> </tt>
+<a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line"><tt class="py-comment">###################################################</tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line"><tt class="py-comment">## Main code</tt> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">"__main__"</tt><tt class="py-op">:</tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line"> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line">        <tt class="py-comment"># Initializations</tt> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line">        <tt class="py-name">start_time</tt> <tt class="py-op">=</tt> <tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d-%m-%Y_%H:%M:%S"</tt><tt class="py-op">,</tt> <tt class="py-name">localtime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line">        <tt class="py-comment"># Parameters recovery</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line">        <tt class="py-name">parser</tt> <tt class="py-op">=</tt> <tt class="py-name">argparse</tt><tt class="py-op">.</tt><tt class="py-name">ArgumentParser</tt><tt class="py-op">(</tt><tt class="py-name">prog</tt><tt class="py-op">=</tt><tt class="py-string">'run_pyinstaller.py'</tt><tt class="py-op">,</tt> <tt class="py-name">description</tt><tt class="py-op">=</tt><tt class="py-string">'''This run pyinstaller to build file on OS'''</tt><tt class="py-op">)</tt> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line">        <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-v'</tt><tt class="py-op">,</tt> <tt class="py-string">'--version'</tt><tt class="py-op">,</tt> <tt class="py-name">action</tt><tt class="py-op">=</tt><tt class="py-string">'version'</tt><tt class="py-op">,</tt> <tt id="link-27" class="py-name"><a title="addSample.version
+buildSNPtoFasta.version
+compress.version
+concatFastasFile.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaCorresponding.version
+extractSeqFastaFromLen.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+parseWithEgglib.version
+plot_barplot_DAPC.version
+renameFile.version
+run_Assembly.version
+run_multiblast.version
+run_pyinstaller.version
+run_raxml.version
+splitMultiFasta.version
+struc2runClumpak.version" class="py-name" href="#" onclick="return doclink('link-27', 'version', 'link-23');">version</a></tt><tt class="py-op">=</tt><tt class="py-string">'You are using %(prog)s version: '</tt> <tt class="py-op">+</tt> <tt id="link-28" class="py-name"><a title="addSample.version
+buildSNPtoFasta.version
+compress.version
+concatFastasFile.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaCorresponding.version
+extractSeqFastaFromLen.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+parseWithEgglib.version
+plot_barplot_DAPC.version
+renameFile.version
+run_Assembly.version
+run_multiblast.version
+run_pyinstaller.version
+run_raxml.version
+splitMultiFasta.version
+struc2runClumpak.version" class="py-name" href="#" onclick="return doclink('link-28', 'version', 'link-23');">version</a></tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt>\ </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line">                                                <tt class="py-string">'display run_pyinstaller.py version number and exit'</tt><tt class="py-op">)</tt> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line">        <tt class="py-comment">#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line"> </tt>
+<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line">        <tt class="py-name">filesReq</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument_group</tt><tt class="py-op">(</tt><tt class="py-string">'Input mandatory infos for running'</tt><tt class="py-op">)</tt> </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line">        <tt class="py-name">filesReq</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-p'</tt><tt class="py-op">,</tt> <tt class="py-string">'--python'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;filename&gt;"</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt><tt class="py-op">=</tt><tt id="link-29" class="py-name" targets="Function run_pyinstaller.existant_file()=run_pyinstaller-module.html#existant_file"><a title="run_pyinstaller.existant_file" class="py-name" href="#" onclick="return doclink('link-29', 'existant_file', 'link-29');">existant_file</a></tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'pythonFile'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'Main programm script'</tt><tt class="py-op">)</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line">        <tt class="py-name">filesReq</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-u'</tt><tt class="py-op">,</tt> <tt class="py-string">'--ui'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;filename&gt;"</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt><tt class="py-op">=</tt><tt id="link-30" class="py-name"><a title="run_pyinstaller.existant_file" class="py-name" href="#" onclick="return doclink('link-30', 'existant_file', 'link-29');">existant_file</a></tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'uiFile'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'UI file associated to python'</tt><tt class="py-op">)</tt> </tt>
+<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line">        <tt class="py-name">filesReq</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-a'</tt><tt class="py-op">,</tt> <tt class="py-string">'--addIncludes'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;path/to/directory&gt;"</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt> <tt class="py-op">=</tt> <tt id="link-31" class="py-name" targets="Class run_pyinstaller.directory=run_pyinstaller.directory-class.html"><a title="run_pyinstaller.directory" class="py-name" href="#" onclick="return doclink('link-31', 'directory', 'link-31');">directory</a></tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'includePath'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'Name of directory with includes file (must be name includes)'</tt><tt class="py-op">)</tt> </tt>
+<a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line">        <tt class="py-name">filesReq</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-i'</tt><tt class="py-op">,</tt> <tt class="py-string">'--icon'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;filename&gt;"</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt><tt class="py-op">=</tt><tt id="link-32" class="py-name"><a title="run_pyinstaller.existant_file" class="py-name" href="#" onclick="return doclink('link-32', 'existant_file', 'link-29');">existant_file</a></tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'iconFile'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'icon.ico file'</tt><tt class="py-op">)</tt> </tt>
+<a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line"> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line"> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line">        <tt class="py-name">files</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument_group</tt><tt class="py-op">(</tt><tt class="py-string">'Input infos for running with default values'</tt><tt class="py-op">)</tt> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line">        <tt class="py-name">files</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-o'</tt><tt class="py-op">,</tt> <tt class="py-string">'--out'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;path/to/directory&gt;"</tt><tt class="py-op">,</tt> <tt class="py-name">type</tt> <tt class="py-op">=</tt> <tt id="link-33" class="py-name"><a title="run_pyinstaller.directory" class="py-name" href="#" onclick="return doclink('link-33', 'directory', 'link-31');">directory</a></tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'pathOut'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'Name of output file directory'</tt><tt class="py-op">)</tt> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line"> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line"> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line">        <tt class="py-comment"># Check parameters</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line">        <tt class="py-name">args</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">parse_args</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line"> </tt>
+<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line">        <tt class="py-comment">#Welcome message</tt> </tt>
+<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#              Welcome in run_pyinstaller (Version "</tt> <tt class="py-op">+</tt> <tt id="link-34" class="py-name"><a title="addSample.version
+buildSNPtoFasta.version
+compress.version
+concatFastasFile.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaCorresponding.version
+extractSeqFastaFromLen.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+parseWithEgglib.version
+plot_barplot_DAPC.version
+renameFile.version
+run_Assembly.version
+run_multiblast.version
+run_pyinstaller.version
+run_raxml.version
+splitMultiFasta.version
+struc2runClumpak.version" class="py-name" href="#" onclick="return doclink('link-34', 'version', 'link-23');">version</a></tt> <tt class="py-op">+</tt> <tt class="py-string">")               #"</tt><tt class="py-op">)</tt> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">'Start time: '</tt><tt class="py-op">,</tt> <tt class="py-name">start_time</tt><tt class="py-op">,</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line"> </tt>
+<a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line">        <tt class="py-comment">## defaults option</tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pathOut</tt> <tt class="py-op">!=</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line">                <tt class="py-name">pathOut</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pathOut</tt> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line"> </tt>
+<a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line">        <tt class="py-comment"># R&#233;cup&#232;re les arguments</tt> </tt>
+<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-string">"win"</tt> <tt class="py-keyword">in</tt> <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">platform</tt> <tt class="py-op">:</tt> </tt>
+<a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line">                <tt class="py-name">workingDir</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">realpath</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pythonFile</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"\\"</tt> </tt>
+<a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line">                <tt class="py-name">distPath</tt> <tt class="py-op">=</tt> <tt class="py-name">workingDir</tt><tt class="py-op">+</tt><tt class="py-string">"dist\\"</tt> </tt>
+<a name="L328"></a><tt class="py-lineno">328</tt>  <tt class="py-line">                <tt class="py-name">buildPath</tt> <tt class="py-op">=</tt> <tt class="py-name">workingDir</tt><tt class="py-op">+</tt><tt class="py-string">"build\\"</tt> </tt>
+<a name="L329"></a><tt class="py-lineno">329</tt>  <tt class="py-line">                <tt class="py-name">txtADD</tt> <tt class="py-op">=</tt> <tt class="py-string">"('%s\\\*', 'includes'),"</tt> <tt class="py-op">%</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">includePath</tt> </tt>
+<a name="L330"></a><tt class="py-lineno">330</tt>  <tt class="py-line">                <tt class="py-name">os_run</tt> <tt class="py-op">=</tt> <tt class="py-string">"windows"</tt> </tt>
+<a name="L331"></a><tt class="py-lineno">331</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pathOut</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L332"></a><tt class="py-lineno">332</tt>  <tt class="py-line">                        <tt class="py-name">pathOut</tt> <tt class="py-op">=</tt> <tt class="py-name">workingDir</tt><tt class="py-op">+</tt><tt class="py-string">"\windows\\"</tt> </tt>
+<a name="L333"></a><tt class="py-lineno">333</tt>  <tt class="py-line">                        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt> </tt>
+<a name="L334"></a><tt class="py-lineno">334</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L335"></a><tt class="py-lineno">335</tt>  <tt class="py-line">                                <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">mkdir</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt> </tt>
+<a name="L336"></a><tt class="py-lineno">336</tt>  <tt class="py-line">                        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L337"></a><tt class="py-lineno">337</tt>  <tt class="py-line">                                <tt class="py-name">shutil</tt><tt class="py-op">.</tt><tt class="py-name">rmtree</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt> </tt>
+<a name="L338"></a><tt class="py-lineno">338</tt>  <tt class="py-line">                                <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">mkdir</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt> </tt>
+<a name="L339"></a><tt class="py-lineno">339</tt>  <tt class="py-line"> </tt>
+<a name="L340"></a><tt class="py-lineno">340</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-string">"linux"</tt> <tt class="py-keyword">in</tt> <tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">platform</tt> <tt class="py-op">:</tt> </tt>
+<a name="L341"></a><tt class="py-lineno">341</tt>  <tt class="py-line">                <tt class="py-name">workingDir</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">realpath</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pythonFile</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"/"</tt> </tt>
+<a name="L342"></a><tt class="py-lineno">342</tt>  <tt class="py-line">                <tt class="py-name">distPath</tt> <tt class="py-op">=</tt> <tt class="py-name">workingDir</tt><tt class="py-op">+</tt><tt class="py-string">"dist/"</tt> </tt>
+<a name="L343"></a><tt class="py-lineno">343</tt>  <tt class="py-line">                <tt class="py-name">buildPath</tt> <tt class="py-op">=</tt> <tt class="py-name">workingDir</tt><tt class="py-op">+</tt><tt class="py-string">"build/"</tt> </tt>
+<a name="L344"></a><tt class="py-lineno">344</tt>  <tt class="py-line">                <tt class="py-name">txtADD</tt> <tt class="py-op">=</tt> <tt class="py-string">"('%s*', 'includes'),"</tt> <tt class="py-op">%</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">includePath</tt> </tt>
+<a name="L345"></a><tt class="py-lineno">345</tt>  <tt class="py-line">                <tt class="py-name">os_run</tt> <tt class="py-op">=</tt> <tt class="py-string">"linux"</tt> </tt>
+<a name="L346"></a><tt class="py-lineno">346</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pathOut</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L347"></a><tt class="py-lineno">347</tt>  <tt class="py-line">                        <tt class="py-name">pathOut</tt> <tt class="py-op">=</tt> <tt class="py-name">workingDir</tt><tt class="py-op">+</tt><tt class="py-string">"/linux/"</tt> </tt>
+<a name="L348"></a><tt class="py-lineno">348</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L349"></a><tt class="py-lineno">349</tt>  <tt class="py-line">                                <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">mkdir</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt> </tt>
+<a name="L350"></a><tt class="py-lineno">350</tt>  <tt class="py-line">                        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L351"></a><tt class="py-lineno">351</tt>  <tt class="py-line">                                <tt class="py-name">shutil</tt><tt class="py-op">.</tt><tt class="py-name">rmtree</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt> </tt>
+<a name="L352"></a><tt class="py-lineno">352</tt>  <tt class="py-line">                                <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">mkdir</tt><tt class="py-op">(</tt><tt class="py-name">pathOut</tt><tt class="py-op">)</tt> </tt>
+<a name="L353"></a><tt class="py-lineno">353</tt>  <tt class="py-line"> </tt>
+<a name="L354"></a><tt class="py-lineno">354</tt>  <tt class="py-line">        <tt class="py-comment"># resume value to user</tt> </tt>
+<a name="L355"></a><tt class="py-lineno">355</tt>  <tt class="py-line">        <tt id="link-35" class="py-name" targets="Class run_pyinstaller.printCol=run_pyinstaller.printCol-class.html"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-35', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-36" class="py-name" targets="Class Method run_pyinstaller.printCol.purple()=run_pyinstaller.printCol-class.html#purple"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-36', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">" - Intput Info:"</tt><tt class="py-op">)</tt> </tt>
+<a name="L356"></a><tt class="py-lineno">356</tt>  <tt class="py-line">        <tt id="link-37" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-37', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-38', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"\t - Python main script is: %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pythonFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L357"></a><tt class="py-lineno">357</tt>  <tt class="py-line">        <tt id="link-39" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-39', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-40', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"\t - UI file is: %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">uiFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L358"></a><tt class="py-lineno">358</tt>  <tt class="py-line">        <tt id="link-41" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-41', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-42', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"\t - icon file is: %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">iconFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L359"></a><tt class="py-lineno">359</tt>  <tt class="py-line">        <tt id="link-43" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-43', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-44', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"\t - all file in directory '%s' were use"</tt> <tt class="py-op">%</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">includePath</tt><tt class="py-op">)</tt> </tt>
+<a name="L360"></a><tt class="py-lineno">360</tt>  <tt class="py-line"> </tt>
+<a name="L361"></a><tt class="py-lineno">361</tt>  <tt class="py-line">        <tt id="link-45" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-45', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-46', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">" - Output Info:"</tt><tt class="py-op">)</tt> </tt>
+<a name="L362"></a><tt class="py-lineno">362</tt>  <tt class="py-line">        <tt id="link-47" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-47', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-48', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"\t - Working directory: %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">workingDir</tt><tt class="py-op">)</tt> </tt>
+<a name="L363"></a><tt class="py-lineno">363</tt>  <tt class="py-line">        <tt id="link-49" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-49', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-50" class="py-name"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-50', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"\t - Output executable were in directory: %s\n\n"</tt> <tt class="py-op">%</tt> <tt class="py-name">pathOut</tt><tt class="py-op">)</tt> </tt>
+<a name="L364"></a><tt class="py-lineno">364</tt>  <tt class="py-line"> </tt>
+<a name="L365"></a><tt class="py-lineno">365</tt>  <tt class="py-line">        <tt class="py-name">icon</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">basename</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">iconFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L366"></a><tt class="py-lineno">366</tt>  <tt class="py-line">        <tt class="py-name">ui</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">basename</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">uiFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L367"></a><tt class="py-lineno">367</tt>  <tt class="py-line">        <tt class="py-name">pythonFileBase</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">basename</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">pythonFile</tt><tt class="py-op">)</tt> </tt>
+<a name="L368"></a><tt class="py-lineno">368</tt>  <tt class="py-line">        <tt class="py-name">nameGUI</tt> <tt class="py-op">=</tt> <tt class="py-string">"%s_%s"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">pythonFileBase</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"."</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">os_run</tt> <tt class="py-op">)</tt> </tt>
+<a name="L369"></a><tt class="py-lineno">369</tt>  <tt class="py-line"> </tt>
+<a name="L370"></a><tt class="py-lineno">370</tt>  <tt class="py-line">        <tt class="py-name">dictToReplace</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L371"></a><tt class="py-lineno">371</tt>  <tt class="py-line">        <tt class="py-string">"**ADD**"</tt>               <tt class="py-op">:</tt>       <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">txtADD</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L372"></a><tt class="py-lineno">372</tt>  <tt class="py-line">        <tt class="py-string">"**ICON**"</tt>      <tt class="py-op">:</tt>       <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">iconFile</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L373"></a><tt class="py-lineno">373</tt>  <tt class="py-line">        <tt class="py-string">"**UI**"</tt>                <tt class="py-op">:</tt>       <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">ui</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L374"></a><tt class="py-lineno">374</tt>  <tt class="py-line">        <tt class="py-string">"**PYTHON**"</tt>            <tt class="py-op">:</tt>       <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">pythonFileBase</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L375"></a><tt class="py-lineno">375</tt>  <tt class="py-line">        <tt class="py-string">"**NAME**"</tt>              <tt class="py-op">:</tt>       <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">nameGUI</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L376"></a><tt class="py-lineno">376</tt>  <tt class="py-line">        <tt class="py-string">"**workingDir**"</tt>                <tt class="py-op">:</tt>       <tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">workingDir</tt><tt class="py-op">.</tt><tt class="py-name">replace</tt><tt class="py-op">(</tt><tt class="py-string">"\\"</tt><tt class="py-op">,</tt><tt class="py-string">"\\\\"</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L377"></a><tt class="py-lineno">377</tt>  <tt class="py-line">        <tt class="py-op">}</tt> </tt>
+<a name="L378"></a><tt class="py-lineno">378</tt>  <tt class="py-line"> </tt>
+<a name="L379"></a><tt class="py-lineno">379</tt>  <tt class="py-line">        <tt class="py-name">specFileReplace</tt> <tt class="py-op">=</tt> <tt id="link-51" class="py-name" targets="Function run_pyinstaller.replace_all()=run_pyinstaller-module.html#replace_all"><a title="run_pyinstaller.replace_all" class="py-name" href="#" onclick="return doclink('link-51', 'replace_all', 'link-51');">replace_all</a></tt><tt class="py-op">(</tt><tt class="py-name">dictToReplace</tt><tt class="py-op">,</tt> <tt id="link-52" class="py-name"><a title="run_pyinstaller.specFile" class="py-name" href="#" onclick="return doclink('link-52', 'specFile', 'link-26');">specFile</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L380"></a><tt class="py-lineno">380</tt>  <tt class="py-line"> </tt>
+<a name="L381"></a><tt class="py-lineno">381</tt>  <tt class="py-line"> </tt>
+<a name="L382"></a><tt class="py-lineno">382</tt>  <tt class="py-line">        <tt class="py-comment"># build file spec</tt> </tt>
+<a name="L383"></a><tt class="py-lineno">383</tt>  <tt class="py-line">        <tt class="py-name">specFileName</tt> <tt class="py-op">=</tt> <tt class="py-name">workingDir</tt><tt class="py-op">+</tt><tt class="py-name">nameGUI</tt><tt class="py-op">+</tt><tt class="py-string">".spec"</tt> </tt>
+<a name="L384"></a><tt class="py-lineno">384</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">specFileName</tt><tt class="py-op">,</tt> <tt class="py-string">"w"</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt id="link-53" class="py-name"><a title="run_pyinstaller.specFile" class="py-name" href="#" onclick="return doclink('link-53', 'specFile', 'link-26');">specFile</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L385"></a><tt class="py-lineno">385</tt>  <tt class="py-line">                <tt id="link-54" class="py-name"><a title="run_pyinstaller.specFile" class="py-name" href="#" onclick="return doclink('link-54', 'specFile', 'link-26');">specFile</a></tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">specFileReplace</tt><tt class="py-op">)</tt> </tt>
+<a name="L386"></a><tt class="py-lineno">386</tt>  <tt class="py-line"> </tt>
+<a name="L387"></a><tt class="py-lineno">387</tt>  <tt class="py-line"> </tt>
+<a name="L388"></a><tt class="py-lineno">388</tt>  <tt class="py-line">        <tt class="py-comment"># Test if already run to remove old compilation</tt> </tt>
+<a name="L389"></a><tt class="py-lineno">389</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">isdir</tt><tt class="py-op">(</tt><tt class="py-name">distPath</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L390"></a><tt class="py-lineno">390</tt>  <tt class="py-line">                <tt class="py-name">shutil</tt><tt class="py-op">.</tt><tt class="py-name">rmtree</tt><tt class="py-op">(</tt><tt class="py-name">distPath</tt><tt class="py-op">)</tt> </tt>
+<a name="L391"></a><tt class="py-lineno">391</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">isdir</tt><tt class="py-op">(</tt><tt class="py-name">buildPath</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L392"></a><tt class="py-lineno">392</tt>  <tt class="py-line">                <tt class="py-name">shutil</tt><tt class="py-op">.</tt><tt class="py-name">rmtree</tt><tt class="py-op">(</tt><tt class="py-name">buildPath</tt><tt class="py-op">)</tt> </tt>
+<a name="L393"></a><tt class="py-lineno">393</tt>  <tt class="py-line"> </tt>
+<a name="L394"></a><tt class="py-lineno">394</tt>  <tt class="py-line">        <tt class="py-comment"># run PyInstaller</tt> </tt>
+<a name="L395"></a><tt class="py-lineno">395</tt>  <tt class="py-line">        <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">system</tt><tt class="py-op">(</tt><tt class="py-string">"python -m PyInstaller %s"</tt> <tt class="py-op">%</tt><tt id="link-55" class="py-name"><a title="run_pyinstaller.specFile" class="py-name" href="#" onclick="return doclink('link-55', 'specFile', 'link-26');">specFile</a></tt><tt class="py-op">.</tt><tt class="py-name">name</tt><tt class="py-op">)</tt> </tt>
+<a name="L396"></a><tt class="py-lineno">396</tt>  <tt class="py-line"> </tt>
+<a name="L397"></a><tt class="py-lineno">397</tt>  <tt class="py-line">        <tt class="py-comment"># if PyInstaller run correctly</tt> </tt>
+<a name="L398"></a><tt class="py-lineno">398</tt>  <tt class="py-line">        <tt class="py-name">buildFile</tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">listdir</tt><tt class="py-op">(</tt><tt class="py-name">distPath</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt>                     <tt class="py-comment"># list dist file</tt> </tt>
+<a name="L399"></a><tt class="py-lineno">399</tt>  <tt class="py-line">        <tt class="py-name">shutil</tt><tt class="py-op">.</tt><tt class="py-name">move</tt><tt class="py-op">(</tt><tt class="py-name">distPath</tt><tt class="py-op">+</tt><tt class="py-name">buildFile</tt><tt class="py-op">,</tt> <tt class="py-name">pathOut</tt><tt class="py-op">)</tt>        <tt class="py-comment"># move to destOut</tt> </tt>
+<a name="L400"></a><tt class="py-lineno">400</tt>  <tt class="py-line">        <tt class="py-name">shutil</tt><tt class="py-op">.</tt><tt class="py-name">rmtree</tt><tt class="py-op">(</tt><tt class="py-name">distPath</tt><tt class="py-op">)</tt>                                         <tt class="py-comment"># remove compilation</tt> </tt>
+<a name="L401"></a><tt class="py-lineno">401</tt>  <tt class="py-line">        <tt class="py-name">shutil</tt><tt class="py-op">.</tt><tt class="py-name">rmtree</tt><tt class="py-op">(</tt><tt class="py-name">buildPath</tt><tt class="py-op">)</tt>                                        <tt class="py-comment"># remove dist</tt> </tt>
+<a name="L402"></a><tt class="py-lineno">402</tt>  <tt class="py-line"> </tt>
+<a name="L403"></a><tt class="py-lineno">403</tt>  <tt class="py-line">        <tt id="link-56" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-56', 'printCol', 'link-35');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-57', 'purple', 'link-36');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"\n\nexecutable product on %s"</tt> <tt class="py-op">%</tt><tt class="py-name">pathOut</tt><tt class="py-op">+</tt><tt class="py-name">buildFile</tt> <tt class="py-op">)</tt> </tt>
+<a name="L404"></a><tt class="py-lineno">404</tt>  <tt class="py-line"> </tt>
+<a name="L405"></a><tt class="py-lineno">405</tt>  <tt class="py-line"> </tt>
+<a name="L406"></a><tt class="py-lineno">406</tt>  <tt class="py-line"> </tt>
+<a name="L407"></a><tt class="py-lineno">407</tt>  <tt class="py-line"> </tt>
+<a name="L408"></a><tt class="py-lineno">408</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\nStop time: "</tt><tt class="py-op">,</tt> <tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d-%m-%Y_%H:%M:%S"</tt><tt class="py-op">,</tt> <tt class="py-name">localtime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L409"></a><tt class="py-lineno">409</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L410"></a><tt class="py-lineno">410</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#                        End of execution                       #"</tt><tt class="py-op">)</tt> </tt>
+<a name="L411"></a><tt class="py-lineno">411</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L412"></a><tt class="py-lineno">412</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Oct 24 14:36:00 2016
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
