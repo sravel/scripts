@@ -87,6 +87,12 @@ png("**current_dir**PCA.png",width = 1500, height = 1000, res=200)
 s.class(pca1$li, W$pop, sub = "PCA 1-2", csub = 2) #graphique de la PCA
 add.scatter.eig(pca1$eig[1:5], nf = 3, xax = 1, yax = 2, posi = "top") #ajout des valeurs propres en cartouche sur le graphique précédent
 dev.off()
+
+# For the first time, if you keep PCA value to NULL, change n.clust=2 to n.clust=NULL, then run line
+# this use intercative mode to help choose the PCA retains value with graphic.
+# then produce BIC graphic to choose number of pop optimal.
+# When you are choose the PCA value, go to GUI_DAPC to rebuild script and then run with source()
+
 """
 
 DAPCchange = """
@@ -101,7 +107,7 @@ dapc <- dapc(W, pop=fcl.BIC$grp, n.pca=**PCARETAIN**,n.da=**DARETAIN**, scale=FA
 png("**current_dir**DAPC_K**pop**.png",width = 1500, height = 1000, res=200)
 if (graphique == 1)
 {
-	scatter(dapc, xax=1, yax=2,col=rainbow(length(levels(dapc$grp))), posi="topleft", bg="white",ratio=0.3, csub=1.2)
+	scatter(dapc, xax=1, yax=2,col=rainbow(length(levels(dapc$grp))))#, posi="topleft", bg="white",ratio=0.3, csub=1.2)
 }
 if (graphique == 2)
 {
