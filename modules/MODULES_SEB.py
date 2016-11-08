@@ -119,7 +119,7 @@ def existant_file(x):
 		# error: argument input: x does not exist
 		raise argparse.ArgumentTypeError("{0} does not exist".format(x))
 
-	return x
+	return relativeToAbsolutePath(x)
 
 
 def _test():
