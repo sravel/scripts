@@ -86,7 +86,7 @@ if __name__ == "__main__":
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-k', '--key', metavar="<string>", type = str, default="",required=False, dest = 'keyInfo', help = 'name of track')
 	files.add_argument('-c', '--category', metavar="<string>",type = str, default="Mapping", required=False, dest = 'catInfo', help = 'name of category of tracks')
-	files.add_argument('-o', '--output', metavar="<path/to/file>",type = existant_file, default="trackFile", required=False, dest = 'trackFile', help = 'name of output file with tracks')
+	files.add_argument('-o', '--output', metavar="<path/to/file>", default="trackFile", required=False, dest = 'trackFile', help = 'name of output file with tracks')
 
 	# Check parameters
 	args = parser.parse_args()
