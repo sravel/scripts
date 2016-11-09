@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
 	count = 1
 	for fasta in pathFileFile.lsExtInDirToList(args.extentionList):
-		print(fasta)
+		print("FASTAFILE:",fasta)
 		basenameFasta = fasta.split("/")[-1]
 		basedir = "/".join(fasta.split("/")[:-1])
 
