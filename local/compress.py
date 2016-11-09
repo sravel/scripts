@@ -136,8 +136,9 @@ if __name__ == "__main__":
 
 		with open(outputSHDir+str(count)+"_tar.sh", "w") as shScript:
 
-			shScript.write("""# Creates an archive (*.tar.gz) from given directory.\nfunction maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }\n\n""")
-			shScript.write("cd %s\nmaketar %s\n" % (basedir,basenameFasta))
+			#shScript.write("""# Creates an archive (*.tar.gz) from given directory.\nfunction maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }\n\n""")
+			#shScript.write("cd %s\nmaketar %s\n" % (basedir,basenameFasta))
+			shScript.write("cd %s\ngzip %s\n" % (basedir,basenameFasta))
 		count+=1
 
 
