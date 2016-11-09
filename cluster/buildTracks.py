@@ -131,9 +131,9 @@ if __name__ == "__main__":
 storeClass     = JBrowse/Store/SeqFeature/BAM
 urlTemplate    = {1}/{0}.{1}
 baiUrlTemplate = {1}/{0}.bai
-category = {4}
+category = {3}
 type = JBrowse/View/Track/Alignments2
-key  = {3}{0}
+key  = {2}{0}
 """.format(basenameDir, extentionFile, keyInfo, catInfo)
 
 				trackFile.write(strTrack)
@@ -144,9 +144,9 @@ key  = {3}{0}
 storeClass     = JBrowse/Store/SeqFeature/VCFTabix
 urlTemplate    = {1}/{0}.vcf.gz
 tbiUrlTemplate = {1}/{0}.vcf.gz.tbi
-category = {4}
+category = {3}
 type = JBrowse/View/Track/CanvasVariants
-key  = {3}{0}
+key  = {2}{0}
 """.format(basenameDir, extentionFile, keyInfo, catInfo)
 
 				trackFile.write(strTrack)
