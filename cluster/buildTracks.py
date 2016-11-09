@@ -116,14 +116,11 @@ if __name__ == "__main__":
 	print("\t - catInfo file is: %s" % catInfo)
 	print("\t - keyInfo file is: %s" % keyInfo)
 
-
-
-	pathFastaFile = directory("/work/carlier.j/assemblyFastq0615/")
-
+	count=0
 	with open(trackFileName,"w") as trackFile:
 		for fasta in pathFastaFile.lsExtInDirToList(extentionFile):
 			basenameDir = fasta.split("/")[-1].split(".")[0]
-			print(basenameDir)
+			#print(basenameDir)
 
 			if extentionFile == "bam":
 				strTrack = """
@@ -150,24 +147,15 @@ key  = {2}{0}
 """.format(basenameDir, extentionFile, keyInfo, catInfo)
 
 				trackFile.write(strTrack)
+			count+=1
 
 
 
 
 
+	print("\n - Execution summary:")
 
-
-
-
-
-
-
-
-
-
-
-
-
+	print("\n  You build Tracks for %s file" % count)
 
 	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
 	print("#################################################################")
