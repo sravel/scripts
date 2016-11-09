@@ -141,8 +141,7 @@ if __name__ == "__main__":
 		##print dict2txt(x)
 		#dicoOutput[namefile] = {	"singletons":x['singletons'],
 								#"siteIndices": x['siteIndices'],
-								#"nbSNP": len(x['siteIndices'])
-								#}
+								#"nbSNP": len(x['siteIndices'])}
 
 		#print(name)
 		align = Align(filein)

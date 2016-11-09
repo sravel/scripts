@@ -36,7 +36,8 @@
 		- \-o <filename>, --out <filename>
 						Name of output file
 	Input infos for running with default values:
-
+		- \-l <filename>, --list <filename>
+						File with Strain to keep (one per row), default keep all strains
 
 """
 
@@ -85,7 +86,7 @@ if __name__ == "__main__":
 	filesreq.add_argument('-o', '--out', metavar="<filename>", required=True, dest = 'paramoutfile', help = 'Name of output file')
 
 	files = parser.add_argument_group('Input infos for running with default values')
-	files.add_argument('-l', '--list', metavar="<filename>", default="ALL", dest = 'listKeepFile', help = 'File with Strain to keep (one per row)')
+	files.add_argument('-l', '--list', metavar="<filename>", default="ALL", dest = 'listKeepFile', help = 'File with Strain to keep (one per row), default keep all strains')
 
 	# Check parameters
 	args = parser.parse_args()
@@ -105,11 +106,11 @@ if __name__ == "__main__":
 
 	if args.listKeepFile not in ["ALL"]:
 		listKeepSouche = loadInList(existant_file(args.listKeepFile))
-		print("\t - You want to keep strain:\n%s" % "\n".join(listKeepSouche))
+		print("\t - You want to keep strains:\n%s" % "\n".join(listKeepSouche))
 		basename = paramlistKeep.split(".")[0]
 	else:
 		listKeepSouche = []
-		print("\t - You want to keep all strain \n")
+		print("\t - You want to keep all strains \n")
 		basename = "All"
 
 

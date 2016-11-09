@@ -6,6 +6,7 @@
 """
 	The compress script
 	=========================
+
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
 	:date: 21/10/2016
@@ -14,7 +15,7 @@
 	Script description
 	------------------
 
-	This Programme compressextetion in directory with job array
+	This Programme compress all file with pass extention in directory with job array
 
 	Example
 	-------
@@ -77,7 +78,7 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme ....''')
+	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme compress all file with pass extention in directory with job array''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display '+__file__+' version number and exit')
 	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
@@ -135,8 +136,9 @@ if __name__ == "__main__":
 
 		with open(outputSHDir+str(count)+"_tar.sh", "w") as shScript:
 
-			shScript.write("""# Creates an archive (*.tar.gz) from given directory.\nfunction maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }\n\n""")
-			shScript.write("cd %s\nmaketar %s\n" % (basedir,basenameFasta))
+			#shScript.write("""# Creates an archive (*.tar.gz) from given directory.\nfunction maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }\n\n""")
+			#shScript.write("cd %s\nmaketar %s\n" % (basedir,basenameFasta))
+			shScript.write("cd %s\ngzip %s\n" % (basedir,basenameFasta))
 		count+=1
 
 
