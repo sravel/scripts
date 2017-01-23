@@ -436,19 +436,21 @@ def loadInList(filename):
 		>>> rows
 		["i like pears, but apples scare me","i like apples, but pears scare me","End of file"]
 	"""
-
-	list = open(filename,"r").readlines()
+	with open(filename,"r") as fileIn:
+		list = fileIn.readlines()
 	listgood=[line.rstrip() for line in list]
 	return listgood
 
 def loadInListCol(filename, col):
 	"""
-	Load file in list() and then remove \\n at end of line
+	Load a column of file in list() and remove \\n at end of line
 
 	:param filename: a file
 	:type filename: file
+	:param col: a int of keep column
+	:type col: int
 	:rtype: list()
-	:return: - list of row's file without \\n
+	:return: - list of row's file from column without \\n if end column
 	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
 
 	Example:
@@ -457,19 +459,20 @@ def loadInListCol(filename, col):
 		["i like pears, but apples scare me","i like apples, but pears scare me","End of file"]
 	"""
 
-	list = open(filename,"r").readlines()
+	with open(filename,"r") as fileIn:
+		list = fileIn.readlines()
 	listgood=[line.rstrip().split("\t")[col] for line in list]
 	return listgood
 
 def loadInListWithHeader(filename):
 	"""
-	Load file in list() and then remove \\n at end of line
+	Load file in two list(): return header list and rows list
 
 	:param filename: a file
 	:type filename: file
 	:rtype: str(), list()
 	:return: - header liste\n
-			 - list of row's file without
+			 - list of row's file
 	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
 
 	Example:
@@ -480,7 +483,8 @@ def loadInListWithHeader(filename):
 		["i like pears, but apples scare me","i like apples, but pears scare me","End of file"]
 	"""
 
-	list = open(filename,"r").readlines()
+	with open(filename,"r") as fileIn:
+		list = fileIn.readlines()
 	header = list[0]
 	listgood=[line.rstrip() for line in list[1:]]
 	return header, listgood
