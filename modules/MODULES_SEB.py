@@ -294,10 +294,8 @@ def fasta2dict(filename):
 	"""
 
 	# chargement du fasta des MGG en mémoire
-	handle = open(filename, "rU")
-	record_dict = SeqIO.to_dict(SeqIO.parse(handle, "fasta"))
-	handle.close()
-	return record_dict
+	with open(filename, "rU") as handle:
+		return SeqIO.to_dict(SeqIO.parse(handle, "fasta"))
 
 def lenSeq2dict(filename):
 	"""
@@ -470,22 +468,22 @@ def loadInListWithHeader(filename):
 
 	:param filename: a file
 	:type filename: file
-	:rtype: str(), list()
+	:rtype: list(), list()
 	:return: - header liste\n
-			 - list of row's file
+			 - list of list of row's file
 	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
 
 	Example:
 		>>> header, rows = loadInListWithHeader(filename)
 		>>> header
-		"head1\thead2\thead3"
+		"['head1','head2','head3']
 		>>> rows
-		["i like pears, but apples scare me","i like apples, but pears scare me","End of file"]
+		[["line1col1","line1col2","line1col3"],["line2col1","line2col2","line2col3"]]
 	"""
 
 	with open(filename,"r") as fileIn:
 		list = fileIn.readlines()
-	header = list[0]
+	header = list[0].rstrip().split("\t")
 	listgood=[line.rstrip() for line in list[1:]]
 	return header, listgood
 
@@ -1140,19 +1138,21 @@ class directory(str):
 		self.splitFilesDir()
 
 	def __repr__(self):
+		return "%s(%r)" % (self.__class__, self.__dict__)
+
+	def __str__(self):
 		"""Fonction qui permet de formater le text de sortie lors du print du dictionnaire"""
-		txtOut = """
+		return """
 pathDirectory=%s\n
 listPath=%s\n
 listDir=%s\n
 listFiles=%s\n
 """ % (self.pathDirectory, str(self.listPath), str(self.listDir), str(self.listFiles))
-		return txtOut
 
 	def testDirExist(self):
 		"""Test l'existance du répertoire"""
 		if os.path.isdir(self.pathDirectory) != True :
-			print("ERROR MODULES_SEB::Class-directory : path '%s' is not valide path" % self.pathDirectory )
+			print("ERROR MODULES_SEB::Class-directory : path '%s' is not valid path" % self.pathDirectory )
 			exit()
 
 	def lsInDir(self):
