@@ -77,6 +77,7 @@ grepMotifFromAlignment.debug	grepMotifFromAlignment-module.html#debug
 grepMotifFromAlignment.VERSION_DATE	grepMotifFromAlignment-module.html#VERSION_DATE
 grepMotifFromAlignment.current_dir	grepMotifFromAlignment-module.html#current_dir
 grepUTRgene	grepUTRgene-module.html
+grepUTRgene.__package__	grepUTRgene-module.html#__package__
 grepUTRgene.version	grepUTRgene-module.html#version
 grepUTRgene.VERSION_DATE	grepUTRgene-module.html#VERSION_DATE
 grepUTRgene.current_dir	grepUTRgene-module.html#current_dir
