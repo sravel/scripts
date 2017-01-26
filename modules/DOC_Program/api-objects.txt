@@ -10,6 +10,11 @@ buildSNPtoFasta.debug	buildSNPtoFasta-module.html#debug
 buildSNPtoFasta.version	buildSNPtoFasta-module.html#version
 buildSNPtoFasta.VERSION_DATE	buildSNPtoFasta-module.html#VERSION_DATE
 buildSNPtoFasta.current_dir	buildSNPtoFasta-module.html#current_dir
+buildTracks	buildTracks-module.html
+buildTracks.__package__	buildTracks-module.html#__package__
+buildTracks.version	buildTracks-module.html#version
+buildTracks.VERSION_DATE	buildTracks-module.html#VERSION_DATE
+buildTracks.current_dir	buildTracks-module.html#current_dir
 compress	compress-module.html
 compress.__package__	compress-module.html#__package__
 compress.version	compress-module.html#version
@@ -71,6 +76,10 @@ grepMotifFromAlignment.version	grepMotifFromAlignment-module.html#version
 grepMotifFromAlignment.debug	grepMotifFromAlignment-module.html#debug
 grepMotifFromAlignment.VERSION_DATE	grepMotifFromAlignment-module.html#VERSION_DATE
 grepMotifFromAlignment.current_dir	grepMotifFromAlignment-module.html#current_dir
+grepUTRgene	grepUTRgene-module.html
+grepUTRgene.version	grepUTRgene-module.html#version
+grepUTRgene.VERSION_DATE	grepUTRgene-module.html#VERSION_DATE
+grepUTRgene.current_dir	grepUTRgene-module.html#current_dir
 make_hapmapfile2	make_hapmapfile2-module.html
 make_hapmapfile2.__package__	make_hapmapfile2-module.html#__package__
 make_hapmapfile2.version	make_hapmapfile2-module.html#version
@@ -90,6 +99,12 @@ make_structure_dir.mainparams	make_structure_dir-module.html#mainparams
 make_structure_dir.qsubtxt	make_structure_dir-module.html#qsubtxt
 make_structure_dir.VERSION_DATE	make_structure_dir-module.html#VERSION_DATE
 make_structure_dir.current_dir	make_structure_dir-module.html#current_dir
+mappingOnRef	mappingOnRef-module.html
+mappingOnRef.__package__	mappingOnRef-module.html#__package__
+mappingOnRef.version	mappingOnRef-module.html#version
+mappingOnRef.debug	mappingOnRef-module.html#debug
+mappingOnRef.VERSION_DATE	mappingOnRef-module.html#VERSION_DATE
+mappingOnRef.current_dir	mappingOnRef-module.html#current_dir
 parseWithEgglib	parseWithEgglib-module.html
 parseWithEgglib.__package__	parseWithEgglib-module.html#__package__
 parseWithEgglib.version	parseWithEgglib-module.html#version

@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>splitMultiFasta</title>
+  <title>grepUTRgene</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;splitMultiFasta
+        Module&nbsp;grepUTRgene
       </span>
     </td>
     <td>
@@ -44,53 +44,73 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="splitMultiFasta-module.html"
+            >]&nbsp;|&nbsp;<a href="grepUTRgene-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module splitMultiFasta</h1><p class="nomargin-top"><span class="codelink"><a href="splitMultiFasta-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module grepUTRgene</h1><p class="nomargin-top"><span class="codelink"><a href="grepUTRgene-pysrc.html">source&nbsp;code</a></span></p>
 <div class="rst-section" id="rst-script-description">
 <h1 class="heading">Script description</h1>
-<p>This Programme split multi-fasta to one file/sequences</p>
+<p>This Programme build fasta of listed genes with UTR size</p>
 </div>
 <div class="rst-section" id="rst-example">
 <h1 class="heading">Example</h1>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>splitMultiFasta.py -f multiFasta.fasta -o PathOut</pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>grepUTRgene.py -c chromosome.fasta -r listGenesID.txt -g gffFile.gff -o genesUTR.fasta -i ID [-u 3000]</pre>
 </div>
 <div class="rst-section" id="rst-help-programm">
 <h1 class="heading">Help Programm</h1>
 <dl class="rst-docutils">
 <dt>optional arguments:</dt>
-<dd><ul class="rst-first rst-last">
-<li><dl class="rst-first rst-docutils">
-<dt>-h, --help</dt>
-<dd><p class="rst-first rst-last">show this help message and exit</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-v, --version</dt>
-<dd><p class="rst-first rst-last">display splitMultiFasta.py version number and exit</p>
-</dd>
-</dl>
-</li>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>-h, --help            show this help message and exit</li>
+<li>-v, --version         display ./grepUTRgene.py version number and exit</li>
+<li>-dd, --debug          enter verbose/debug mode</li>
 </ul>
 </dd>
 <dt>Input mandatory infos for running:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-f &lt;filename&gt;, --fasta &lt;filename&gt;</dt>
-<dd><p class="rst-first rst-last">fasta files to split</p>
+<dt>-c &lt;path/to/chromosomeFile&gt;, --chro &lt;path/to/chromosomeFile&gt;</dt>
+<dd><p class="rst-first rst-last">path to chromosomeFile files</p>
 </dd>
 </dl>
 </li>
 <li><dl class="rst-first rst-docutils">
-<dt>-o &lt;path/to/directory&gt;, --out &lt;path/to/directory&gt;</dt>
-<dd><p class="rst-first rst-last">Name of output file directory</p>
+<dt>-l &lt;path/to/listGene&gt;, --listgene &lt;path/to/listGene&gt;</dt>
+<dd><p class="rst-first rst-last">path to list of gene to extract</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-g &lt;path/to/gff&gt;, --gff &lt;path/to/gff&gt;</dt>
+<dd><p class="rst-first rst-last">path to gff file</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-o &lt;path/to/outputName&gt;, --out &lt;path/to/outputName&gt;</dt>
+<dd><p class="rst-first rst-last">Name of output file</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-i &lt;string&gt;, --id &lt;string&gt;</dt>
+<dd><p class="rst-first rst-last">String of you id tag in gff (like &quot;proteinId&quot;,
+ID&quot;,...)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Input infos for running with default values:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-u &lt;int&gt;, --utr &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">len of UTR keep (default = 3000)</p>
 </dd>
 </dl>
 </li>
@@ -107,7 +127,7 @@
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        08/07/2016
+        08/11/2016
       </p>
       <p><strong>Version:</strong>
         0.1
@@ -133,35 +153,21 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="current_dir"></a><span class="summary-name">current_dir</span> = <code title="'/media/sebastien/Bayer/ScriptsSEB/scripts/local/'"><code class="variable-quote">'</code><code class="variable-string">/media/sebastien/Bayer/ScriptsSEB/scripts/local/</code><code class="variable-quote">'</code></code>
+        <a name="current_dir"></a><span class="summary-name">current_dir</span> = <code title="os.path.dirname(os.path.abspath(__file__))+ &quot;/&quot;">os.path.dirname(os.path.abspath(__file__))+ &quot;/&quot;</code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="version"></a><span class="summary-name">version</span> = <code title="'0.1'"><code class="variable-quote">'</code><code class="variable-string">0.1</code><code class="variable-quote">'</code></code>
+        <a name="version"></a><span class="summary-name">version</span> = <code title="&quot;0.1&quot;">&quot;0.1&quot;</code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'16/06/2016'"><code class="variable-quote">'</code><code class="variable-string">16/06/2016</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="debug"></a><span class="summary-name">debug</span> = <code title="'False'"><code class="variable-quote">'</code><code class="variable-string">False</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="None">None</code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'10/11/2016'">'10/11/2016'</code>
     </td>
   </tr>
 </table>

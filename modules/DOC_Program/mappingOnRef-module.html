@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>splitMultiFasta</title>
+  <title>mappingOnRef</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;splitMultiFasta
+        Module&nbsp;mappingOnRef
       </span>
     </td>
     <td>
@@ -44,53 +44,66 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="splitMultiFasta-module.html"
+            >]&nbsp;|&nbsp;<a href="mappingOnRef-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module splitMultiFasta</h1><p class="nomargin-top"><span class="codelink"><a href="splitMultiFasta-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module mappingOnRef</h1><p class="nomargin-top"><span class="codelink"><a href="mappingOnRef-pysrc.html">source&nbsp;code</a></span></p>
 <div class="rst-section" id="rst-script-description">
 <h1 class="heading">Script description</h1>
-<p>This Programme split multi-fasta to one file/sequences</p>
+<p>This Programme map fasta with bwa mem on reference file</p>
 </div>
 <div class="rst-section" id="rst-example">
 <h1 class="heading">Example</h1>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>splitMultiFasta.py -f multiFasta.fasta -o PathOut</pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>mappingOnRef.py -f fasta/ -r referance.fasta -o output/</pre>
 </div>
 <div class="rst-section" id="rst-help-programm">
 <h1 class="heading">Help Programm</h1>
 <dl class="rst-docutils">
 <dt>optional arguments:</dt>
-<dd><ul class="rst-first rst-last">
-<li><dl class="rst-first rst-docutils">
-<dt>-h, --help</dt>
-<dd><p class="rst-first rst-last">show this help message and exit</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-v, --version</dt>
-<dd><p class="rst-first rst-last">display splitMultiFasta.py version number and exit</p>
-</dd>
-</dl>
-</li>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>-h, --help            show this help message and exit</li>
+<li>-v, --version         display ./mappingOnRef.py version number and exit</li>
+<li>-dd, --debug          enter verbose/debug mode</li>
 </ul>
 </dd>
 <dt>Input mandatory infos for running:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-f &lt;filename&gt;, --fasta &lt;filename&gt;</dt>
-<dd><p class="rst-first rst-last">fasta files to split</p>
+<dt>-f &lt;path/to/directory/fasta&gt;, --fasta &lt;path/to/directory/fasta&gt;</dt>
+<dd><p class="rst-first rst-last">path to fasta files</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-r &lt;path/to/dreference&gt;, --ref &lt;path/to/dreference&gt;</dt>
+<dd><p class="rst-first rst-last">path to reference fasta files</p>
 </dd>
 </dl>
 </li>
 <li><dl class="rst-first rst-docutils">
 <dt>-o &lt;path/to/directory&gt;, --out &lt;path/to/directory&gt;</dt>
 <dd><p class="rst-first rst-last">Name of output file directory</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Input infos for running with default values:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-j &lt;int&gt;, --nbjob &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">Number of job array lunch (default = 100)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-th &lt;int&gt;, --thread &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">number of threads for mapping (default = 4)</p>
 </dd>
 </dl>
 </li>
@@ -107,7 +120,7 @@
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        08/07/2016
+        08/11/2016
       </p>
       <p><strong>Version:</strong>
         0.1
