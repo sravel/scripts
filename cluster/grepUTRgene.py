@@ -14,12 +14,12 @@
 	Script description
 	------------------
 
-	This Programme map fasta with bwa mem on reference file
+	This Programme build fasta of listed genes with UTR size
 
 	Example
 	-------
 
-	>>> grepUTRgene.py -f fasta/ -r referance.fasta -o output/
+	>>> grepUTRgene.py -c chromosome.fasta -r listGenesID.txt -g gffFile.gff -o genesUTR.fasta -i ID [-u 3000]
 
 	Help Programm
 	-------------
@@ -30,18 +30,22 @@
 		- \-dd, --debug          enter verbose/debug mode
 
 	Input mandatory infos for running:
-		- \-f <path/to/directory/fasta>, --fasta <path/to/directory/fasta>
-						path to fasta files
-		- \-r <path/to/dreference>, --ref <path/to/dreference>
-						path to reference fasta files
-		- \-o <path/to/directory>, --out <path/to/directory>
-						Name of output file directory
+		- \-c <path/to/chromosomeFile>, --chro <path/to/chromosomeFile>
+						path to chromosomeFile files
+		- \-l <path/to/listGene>, --listgene <path/to/listGene>
+						path to list of gene to extract
+		- \-g <path/to/gff>, --gff <path/to/gff>
+						path to gff file
+		- \-o <path/to/outputName>, --out <path/to/outputName>
+						Name of output file
+		- \-i <string>, --id <string>
+						String of you id tag in gff (like "proteinId",
+						ID",...)
 
 	Input infos for running with default values:
-		- \-j <int>, --nbjob <int>
-						Number of job array lunch (default = 100)
-		- \-th <int>, --thread <int>
-						number of threads for mapping (default = 4)
+		- \-u <int>, --utr <int>
+						len of UTR keep (default = 3000)
+
 """
 
 ##################################################
@@ -82,7 +86,7 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme grep UTR from gene list''')
+	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme build fasta of listed genes with UTR size''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display '+__file__+' version number and exit')
 	parser.add_argument('-dd', '--debug',action='store_true', help='enter verbose/debug mode', default = "False")
