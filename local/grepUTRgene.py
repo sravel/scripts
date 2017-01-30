@@ -145,7 +145,7 @@ if __name__ == "__main__":
 		# parse GFF pour avoir les positions
 		objGFF = parseGFF(gffFile)
 		for record in objGFF.parseGFF3():
-			chromosome = record.seqid.lower()
+			chromosome = record.seqid
 			if record.type == "gene":
 				try:
 					geneName = record.attributes[args.idTag]
@@ -156,13 +156,18 @@ if __name__ == "__main__":
 				if geneName in keepGeneList:
 					start, stop = record.start, record.end
 					UTRstart, UTRstop = int(record.start)-UTRlen, int(record.end)+UTRlen
+					#print("%s\t%s\t%s" %(geneName,UTRstart, UTRstop))
+
+					if UTRstart <= 0:
+						UTRstart = 1
 
 					if start != 0:
 						seq = sequencesChrom[chromosome][int(UTRstart)-1:int(UTRstop)].seq
 					elif start == 0:
 						seq = sequencesChrom[chromosome][int(UTRstart):int(UTRstop)].seq
+					lenSeq = len(seq)
+					des = "%s:%s..%s UTR-%s lenght=%s" % (chromosome,UTRstart,UTRstop, UTRlen, lenSeq)
 
-					des = "%s:%s..%s UTR-%s" % (chromosome,UTRstart,UTRstop, UTRlen)
 					record = SeqRecord(Seq(seq),id=geneName,name=geneName, description=des)
 					SeqIO.write(record,outputFile, "fasta")
 
