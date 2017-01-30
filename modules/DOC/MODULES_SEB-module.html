@@ -91,7 +91,7 @@
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        21-07-2016
+        30-01-2017
       </p>
       <p><strong>Version:</strong>
         0.2
@@ -119,7 +119,6 @@
     </td><td class="summary">
         <a href="MODULES_SEB.parseGFF-class.html" class="summary-name">parseGFF</a><br />
       Parser of GFF3 file write in python.
-return an object iterable containt GFFRecord()
     </td>
   </tr>
 <tr>
@@ -144,7 +143,6 @@ return an object iterable containt GFFRecord()
     </td><td class="summary">
         <a href="MODULES_SEB.directory-class.html" class="summary-name">directory</a><br />
       Class which derives from string.
-Checks that the string is and path to valid directory and not empty
     </td>
   </tr>
 <tr>
@@ -170,8 +168,7 @@ Returns list
     </td><td class="summary">
         <a href="MODULES_SEB.StrSpaceList-class.html" class="summary-name">StrSpaceList</a><br />
       &quot;Classe qui d&#233;rive de list et qui v&#233;rifie que la variable ajouter dans l'objet (list) est bien du type d&#233;fini dans &quot;dataType&quot;
-pour une chaine de plusieurs valeurs. test &#233;galement si la valeur et comprise entre 2 bornes; et le nobre de valeur attendu.
-Returns list
+pour une chaine de plusieurs valeurs.
     </td>
   </tr>
 <tr>
@@ -179,8 +176,7 @@ Returns list
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="MODULES_SEB.LetterList-class.html" class="summary-name">LetterList</a><br />
-      Class which derives from list. Checks that the string added to the object (list) contains only the letters from the list &quot;Letters&quot;
-Returns list
+      Class which derives from list.
     </td>
   </tr>
 </table>
@@ -452,7 +448,7 @@ Returns list
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInListCol" class="summary-sig-name">loadInListCol</a>(<span class="summary-sig-arg">filename</span>,
         <span class="summary-sig-arg">col</span>)</span><br />
-      Load file in list() and then remove n at end of line</td>
+      Load a column of file in list() and remove n at end of line</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInListCol">source&nbsp;code</a></span>
             
@@ -464,12 +460,12 @@ Returns list
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">str(), list()</span>
+      <span class="summary-type">list(), list()</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInListWithHeader" class="summary-sig-name">loadInListWithHeader</a>(<span class="summary-sig-arg">filename</span>)</span><br />
-      Load file in list() and then remove n at end of line</td>
+      Load file in two list(): return header list and rows list</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInListWithHeader">source&nbsp;code</a></span>
             
@@ -525,6 +521,23 @@ Returns list
       Load file in Dict() and then remove n at end of line, then add first column in key of dict and valueare other column.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInDictLine">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">dict()</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#loadInDictDict" class="summary-sig-name">loadInDictDict</a>(<span class="summary-sig-arg">filename</span>)</span><br />
+      Load a file with header in dictDict().</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInDictDict">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -720,7 +733,7 @@ Returns list
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'21-07-2016'"><code class="variable-quote">'</code><code class="variable-string">21-07-2016</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'30-01-2017'"><code class="variable-quote">'</code><code class="variable-string">30-01-2017</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -1296,7 +1309,7 @@ Returns list
     </td>
   </tr></table>
   
-  <p>Load file in list() and then remove n at end of line</p>
+  <p>Load a column of file in list() and remove n at end of line</p>
 <dl class="rst-docutils">
 <dt>Example:</dt>
 <dd><pre class="py-doctest">
@@ -1309,10 +1322,11 @@ Returns list
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>filename</code></strong> (file) - a file</li>
+        <li><strong class="pname"><code>col</code></strong> (int) - a int of keep column</li>
     </ul></dd>
     <dt>Returns: list()</dt>
         <dd><ul class="rst-simple">
-<li>list of row's file without n</li>
+<li>list of row's file from column without n if end column</li>
 </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Warning:</strong>
@@ -1334,15 +1348,15 @@ Returns list
     </td>
   </tr></table>
   
-  <p>Load file in list() and then remove n at end of line</p>
+  <p>Load file in two list(): return header list and rows list</p>
 <dl class="rst-docutils">
 <dt>Example:</dt>
 <dd><pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>header, rows = loadInListWithHeader(filename)
 <span class="py-prompt">&gt;&gt;&gt; </span>header
-<span class="py-output">&quot;head1  head2   head3&quot;</span>
+<span class="py-output">&quot;['head1','head2','head3']</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>rows
-<span class="py-output">[&quot;i like pears, but apples scare me&quot;,&quot;i like apples, but pears scare me&quot;,&quot;End of file&quot;]</span></pre>
+<span class="py-output">[[&quot;line1col1&quot;,&quot;line1col2&quot;,&quot;line1col3&quot;],[&quot;line2col1&quot;,&quot;line2col2&quot;,&quot;line2col3&quot;]]</span></pre>
 </dd>
 </dl>
   <dl class="fields">
@@ -1350,10 +1364,10 @@ Returns list
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>filename</code></strong> (file) - a file</li>
     </ul></dd>
-    <dt>Returns: str(), list()</dt>
+    <dt>Returns: list(), list()</dt>
         <dd><ul class="rst-simple">
 <li>header liste</li>
-<li>list of row's file without</li>
+<li>list of list of row's file</li>
 </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Warning:</strong>
@@ -1484,6 +1498,48 @@ Returns list
     <dt>Returns: dict()</dt>
         <dd><ul class="rst-simple">
 <li>dict of row's file without n with key is first column and value list of other column</li>
+</ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Warning:</strong>
+        Use this function with small file !!! except more RAM are use and crash systeme.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="loadInDictDict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">loadInDictDict</span>(<span class="sig-arg">filename</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#loadInDictDict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Load a file with header in dictDict().</p>
+<dl class="rst-docutils">
+<dt>Example:</dt>
+<dd><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>dico = loadInDictDict(filename, columnkey)
+<span class="py-prompt">&gt;&gt;&gt; </span>dico
+<span class="py-output">{</span>
+<span class="py-output">&quot;indiv1&quot;,{&quot;headerCol2&quot;:&quot;toto&quot;,&quot;headerCol3&quot;:&quot;tata&quot;},</span>
+<span class="py-output">&quot;indiv2&quot;,{&quot;headerCol2&quot;:&quot;tutu&quot;,&quot;headerCol3&quot;:&quot;titi&quot;},</span>
+<span class="py-output">&quot;indiv3&quot;,{&quot;headerCol2&quot;:&quot;tete&quot;,&quot;headerCol3&quot;:&quot;tata&quot;},</span>
+<span class="py-output">}</span></pre>
+</dd>
+</dl>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>filename</code></strong> (file) - a file</li>
+    </ul></dd>
+    <dt>Returns: dict()</dt>
+        <dd><ul class="rst-simple">
+<li>dict of dict</li>
 </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Warning:</strong>
@@ -1857,8 +1913,7 @@ Returns list
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1
-    on Thu Jul 21 14:20:15 2016
+    Generated by Epydoc 3.0.1 on Mon Jan 30 15:53:02 2017
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

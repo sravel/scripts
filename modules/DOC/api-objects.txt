@@ -9,6 +9,7 @@ MODULES_SEB._test	MODULES_SEB-module.html#_test
 MODULES_SEB.relativeToAbsolutePath	MODULES_SEB-module.html#relativeToAbsolutePath
 MODULES_SEB.lsFastaInDirToList	MODULES_SEB-module.html#lsFastaInDirToList
 MODULES_SEB.dict2txt	MODULES_SEB-module.html#dict2txt
+MODULES_SEB.loadInDictDict	MODULES_SEB-module.html#loadInDictDict
 MODULES_SEB.loadInDictCol	MODULES_SEB-module.html#loadInDictCol
 MODULES_SEB.loadInDict	MODULES_SEB-module.html#loadInDict
 MODULES_SEB.readable_dir	MODULES_SEB-module.html#readable_dir
@@ -53,6 +54,7 @@ MODULES_SEB.StrSpaceList.testItem	MODULES_SEB.StrSpaceList-class.html#testItem
 MODULES_SEB.StrSpaceList.__init__	MODULES_SEB.StrSpaceList-class.html#__init__
 MODULES_SEB.StrSpaceList.insert	MODULES_SEB.StrSpaceList-class.html#insert
 MODULES_SEB.directory	MODULES_SEB.directory-class.html
+MODULES_SEB.directory.__str__	MODULES_SEB.directory-class.html#__str__
 MODULES_SEB.directory.__init__	MODULES_SEB.directory-class.html#__init__
 MODULES_SEB.directory.lsInDir	MODULES_SEB.directory-class.html#lsInDir
 MODULES_SEB.directory.lsExtInDirToList	MODULES_SEB.directory-class.html#lsExtInDirToList
