@@ -580,6 +580,41 @@ def loadInDictLine(filename):
 				dicoOut[tabLine[0]] = line
 	return dicoOut
 
+def loadInDictDict(filename):
+	"""
+	Load a file with header in dictDict().
+
+	:param filename: a file
+	:type filename: file
+	:rtype: dict()
+	:return: - dict of dict
+	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
+
+	Example:
+		>>> dico = loadInDictDict(filename, columnkey)
+		>>> dico
+		{
+		"indiv1",{"headerCol2":"toto","headerCol3":"tata"},
+		"indiv2",{"headerCol2":"tutu","headerCol3":"titi"},
+		"indiv3",{"headerCol2":"tete","headerCol3":"tata"},
+		}
+	"""
+
+	dicoOut={}
+	with open(filename) as filein:
+		header = filein.readline().rstrip().split("\t")
+		for line in filein:
+			tabLine = line.rstrip().split("\t")
+			if tabLine[0] not in dicoOut.keys():
+				dicoOut[tabLine[0]] = {}
+				i=1
+				for head in header[1:]:
+					dicoOut[tabLine[0]][head] = tabLine[i]
+					i+=1
+			else:
+				print("ERROR key %s already load exit" % tabLine[0])
+	return dicoOut
+
 
 def extractListFromFasta(sequenceFile,FileList ):
 	"""
