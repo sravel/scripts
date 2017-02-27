@@ -591,7 +591,7 @@ def loadInDictDict(filename):
 	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
 
 	Example:
-		>>> dico = loadInDictDict(filename, columnkey)
+		>>> dico = loadInDictDict(filename)
 		>>> dico
 		{
 		"indiv1",{"headerCol2":"toto","headerCol3":"tata"},
@@ -1092,23 +1092,23 @@ class printCol():
 
 	@classmethod
 	def red(cls, s):
-		print(cls.RED + s + cls.END)
+		print(cls.RED + str(s) + cls.END)
 
 	@classmethod
 	def green(cls, s):
-		print(cls.GREEN + s + cls.END)
+		print(cls.GREEN + str(s) + cls.END)
 
 	@classmethod
 	def yellow(cls, s):
-		print(cls.YELLOW + s + cls.END)
+		print(cls.YELLOW + str(s) + cls.END)
 
 	@classmethod
 	def lightPurple(cls, s):
-		print(cls.LIGHT_PURPLE + s + cls.END)
+		print(cls.LIGHT_PURPLE + str(s) + cls.END)
 
 	@classmethod
 	def purple(cls, s):
-		print(cls.PURPLE + s + cls.END)
+		print(cls.PURPLE + str(s) + cls.END)
 
 class AutoVivification(dict):
 	"""
