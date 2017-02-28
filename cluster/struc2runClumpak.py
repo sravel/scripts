@@ -194,7 +194,7 @@ if __name__ == "__main__":
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
 	filesreq.add_argument('-d', '--directory', metavar="<path/to/directory>",type = directory, required=True, dest = 'dirPath', help = 'path of result structure')
 	filesreq.add_argument('-c', '--clumpak', metavar="<path/to/directory/clumpak>",type = directory, required=True, dest = 'dirPathClumpak', help = 'path of clumpak directory')
-	filesreq.add_argument('-l', '--label', metavar="<filename>",type=existant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, first column name, second top label info')
+	filesreq.add_argument('-l', '--label', metavar="<filename>",type=existant_file, required=True, dest = 'labelFileParam', help = 'File with LABEL, first column name, second top label info (not name label.txt)')
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-dp', '--drawparams', metavar="<filename>",type=existant_file, required=False, dest = 'drawparamsParam', help = 'Check your own drawparams file')

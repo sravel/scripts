@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
 	filesReq = parser.add_argument_group('Input mandatory infos for running')
 	filesReq.add_argument('-d', '--dir', metavar="<path/to/directory/>", type=directory, required=True, dest = 'fastaFileDir', help = 'path to files files')
-	filesReq.add_argument('-e', '--extention', metavar="<string>", choices=["bam", "vcf"], required=True, dest = 'extentionFile', help = 'file you want to build')
+	filesReq.add_argument('-e', '--extention', metavar="<string>", choices=["bam", "vcf", "gz"], required=True, dest = 'extentionFile', help = 'file you want to build')
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-k', '--key', metavar="<string>", type = str, default="",required=False, dest = 'keyInfo', help = 'name of track')
@@ -135,7 +135,7 @@ key  = {2}{0}
 
 				trackFile.write(strTrack)
 
-			if extentionFile == "vcf":
+			if extentionFile in ["gz","vcf"]:
 				strTrack = """
 [ tracks.{0}]
 storeClass     = JBrowse/Store/SeqFeature/VCFTabix
