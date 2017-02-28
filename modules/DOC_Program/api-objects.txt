@@ -163,6 +163,11 @@ struc2runClumpak.version	struc2runClumpak-module.html#version
 struc2runClumpak.buildLabelFile	struc2runClumpak-module.html#buildLabelFile
 struc2runClumpak.VERSION_DATE	struc2runClumpak-module.html#VERSION_DATE
 struc2runClumpak.current_dir	struc2runClumpak-module.html#current_dir
+vcfToTab	vcfToTab-module.html
+vcfToTab.__package__	vcfToTab-module.html#__package__
+vcfToTab.version	vcfToTab-module.html#version
+vcfToTab.VERSION_DATE	vcfToTab-module.html#VERSION_DATE
+vcfToTab.current_dir	vcfToTab-module.html#current_dir
 run_pyinstaller.directory	run_pyinstaller.directory-class.html
 run_pyinstaller.directory.__init__	run_pyinstaller.directory-class.html#__init__
 run_pyinstaller.directory.lsInDir	run_pyinstaller.directory-class.html#lsInDir

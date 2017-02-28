@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>grepMotifFromAlignment</title>
+  <title>vcfToTab</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;grepMotifFromAlignment
+        Module&nbsp;vcfToTab
       </span>
     </td>
     <td>
@@ -44,22 +44,22 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="grepMotifFromAlignment-module.html"
+            >]&nbsp;|&nbsp;<a href="vcfToTab-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module grepMotifFromAlignment</h1><p class="nomargin-top"><span class="codelink"><a href="grepMotifFromAlignment-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module vcfToTab</h1><p class="nomargin-top"><span class="codelink"><a href="vcfToTab-pysrc.html">source&nbsp;code</a></span></p>
 <div class="rst-section" id="rst-script-description">
 <h1 class="heading">Script description</h1>
-<p>This Programme parse Aligment info to build motif table of SNP in gene's</p>
+<p>This Programme read vcf file (compress or not) and build filter SNP tab</p>
 </div>
 <div class="rst-section" id="rst-example">
 <h1 class="heading">Example</h1>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>grepMotifFromAlignment.py -d path/to/fasta -o filenameout</pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>vcfToTab.py -vcf /work/mthierry/89souches_seter_vcf/vcf/ -o ./</pre>
 </div>
 <div class="rst-section" id="rst-help-programm">
 <h1 class="heading">Help Programm</h1>
@@ -74,7 +74,7 @@
 </li>
 <li><dl class="rst-first rst-docutils">
 <dt>-v, --version</dt>
-<dd><p class="rst-first rst-last">display grepMotifFromAlignment.py version number and exit</p>
+<dd><p class="rst-first rst-last">display compress.py version number and exit</p>
 </dd>
 </dl>
 </li>
@@ -83,14 +83,8 @@
 <dt>Input mandatory infos for running:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-d &lt;path/to/directory&gt;, --directory &lt;path/to/directory&gt;</dt>
-<dd><p class="rst-first rst-last">path to directory fasta files</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-o &lt;filename&gt;, --out &lt;filename&gt;</dt>
-<dd><p class="rst-first rst-last">Name of output file</p>
+<dt>-vcf &lt;path/to/vcfFileDir&gt;, --vcf &lt;path/to/vcfFileDir&gt;</dt>
+<dd><p class="rst-first rst-last">path to file VCF (compress with gzip or not)</p>
 </dd>
 </dl>
 </li>
@@ -99,8 +93,20 @@
 <dt>Input infos for running with default values:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-l &lt;filename&gt;, --list &lt;filename&gt;</dt>
-<dd><p class="rst-first rst-last">File with Strain to keep (one per row), default keep all strains</p>
+<dt>-d &lt;int&gt;, --depth &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">Depth threshold (default = 10)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-r &lt;int&gt;, --ratioAD &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">RatioAD threshold (default = 0.9)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-o &lt;path/to/outputDir&gt;, --out &lt;path/to/outputDir&gt;</dt>
+<dd><p class="rst-first rst-last">Name of output directory</p>
 </dd>
 </dl>
 </li>
@@ -117,7 +123,7 @@
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        08/07/2016
+        28/02/2017
       </p>
       <p><strong>Version:</strong>
         0.1
@@ -157,14 +163,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'04/03/2015'"><code class="variable-quote">'</code><code class="variable-string">04/03/2015</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="debug"></a><span class="summary-name">debug</span> = <code title="'False'"><code class="variable-quote">'</code><code class="variable-string">False</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'28/02/2017'"><code class="variable-quote">'</code><code class="variable-string">28/02/2017</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
