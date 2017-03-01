@@ -14,8 +14,8 @@
 	Script description
 	------------------
 
-	 Programme extract U from Tab file and build 3 tab:
-	 -prefilter: without N for all samples
+	Programme extract U from Tab file and build 3 tab:
+	-prefilter: without N for all samples
 	- withoutN: not missing data allow for all samples
 	- withoutNandR: only line with one or more SNP
 
