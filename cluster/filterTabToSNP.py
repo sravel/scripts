@@ -138,7 +138,7 @@ if __name__ == "__main__":
 			nbtotal, withoutN, prefilter,withoutNandR = 0, 0, 0, 0
 			for line in tabFileIn:
 				chrom, pos, ref = line.rstrip().split("\t")[:3]
-				genotypes = line.rstrip().split("\t")[4:]
+				genotypes = line.rstrip().split("\t")[3:]
 
 				nbN = genotypes.count("N")
 				nbRef = genotypes.count(ref)
