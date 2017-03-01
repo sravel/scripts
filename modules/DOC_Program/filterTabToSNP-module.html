@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>mappingOnRef</title>
+  <title>filterTabToSNP</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;mappingOnRef
+        Module&nbsp;filterTabToSNP
       </span>
     </td>
     <td>
@@ -44,50 +44,58 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="mappingOnRef-module.html"
+            >]&nbsp;|&nbsp;<a href="filterTabToSNP-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module mappingOnRef</h1><p class="nomargin-top"><span class="codelink"><a href="mappingOnRef-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module filterTabToSNP</h1><p class="nomargin-top"><span class="codelink"><a href="filterTabToSNP-pysrc.html">source&nbsp;code</a></span></p>
 <div class="rst-section" id="rst-script-description">
 <h1 class="heading">Script description</h1>
-<p>This Programme map fasta with bwa mem on reference file</p>
+<blockquote>
+Programme extract U from Tab file and build 3 tab:
+-prefilter: without N for all samples</blockquote>
+<ul class="rst-simple">
+<li>withoutN: not missing data allow for all samples</li>
+<li>withoutNandR: only line with one or more SNP</li>
+</ul>
 </div>
 <div class="rst-section" id="rst-example">
 <h1 class="heading">Example</h1>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>mappingOnRef.py -f fasta/ -r referance.fasta -o output/</pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>/filterTabToSNP.py -t ./ -o ./</pre>
 </div>
 <div class="rst-section" id="rst-help-programm">
 <h1 class="heading">Help Programm</h1>
 <dl class="rst-docutils">
+<dt>usage: ./filterTabToSNP.py [-h] [-v] -t &lt;path/to/tabFileDir&gt;</dt>
+<dd>[-o &lt;path/to/outputDir&gt;]</dd>
+</dl>
+<p>This Programme extract U from Tab file</p>
+<dl class="rst-docutils">
 <dt>optional arguments:</dt>
-<dd><ul class="rst-first rst-last rst-simple">
-<li>-h, --help            show this help message and exit</li>
-<li>-v, --version         display ./mappingOnRef.py version number and exit</li>
-<li>-dd, --debug          enter verbose/debug mode</li>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-h, --help</dt>
+<dd><p class="rst-first rst-last">show this help message and exit</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-v, --version</dt>
+<dd><p class="rst-first rst-last">display ./filterTabToSNP.py version number and exit</p>
+</dd>
+</dl>
+</li>
 </ul>
 </dd>
 <dt>Input mandatory infos for running:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-f &lt;path/to/directory/fasta&gt;, --fasta &lt;path/to/directory/fasta&gt;</dt>
-<dd><p class="rst-first rst-last">path to fasta files</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-r &lt;path/to/dreference&gt;, --ref &lt;path/to/dreference&gt;</dt>
-<dd><p class="rst-first rst-last">path to reference fasta files</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-o &lt;path/to/directory&gt;, --out &lt;path/to/directory&gt;</dt>
-<dd><p class="rst-first rst-last">Name of output file directory</p>
+<dt>-t &lt;path/to/tabFileDir&gt;, --tab &lt;path/to/tabFileDir&gt;</dt>
+<dd><p class="rst-first rst-last">path to file tab</p>
 </dd>
 </dl>
 </li>
@@ -96,14 +104,8 @@
 <dt>Input infos for running with default values:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-j &lt;int&gt;, --nbjob &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">Number of job array lunch (default = 100)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-th &lt;int&gt;, --thread &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">number of threads for mapping (default = 4)</p>
+<dt>-o &lt;path/to/outputDir&gt;, --out &lt;path/to/outputDir&gt;</dt>
+<dd><p class="rst-first rst-last">Name of output directory</p>
 </dd>
 </dl>
 </li>
@@ -120,7 +122,7 @@
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        08/11/2016
+        28/02/2017
       </p>
       <p><strong>Version:</strong>
         0.1
@@ -160,14 +162,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'16/06/2016'"><code class="variable-quote">'</code><code class="variable-string">16/06/2016</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="debug"></a><span class="summary-name">debug</span> = <code title="'False'"><code class="variable-quote">'</code><code class="variable-string">False</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'01/03/2017'"><code class="variable-quote">'</code><code class="variable-string">01/03/2017</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -201,7 +196,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed Mar  1 15:24:24 2017
+    Generated by Epydoc 3.0.1 on Wed Mar  1 15:24:23 2017
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
