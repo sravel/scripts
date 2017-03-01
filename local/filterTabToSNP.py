@@ -2,6 +2,52 @@
 # -*- coding: utf-8 -*-
 ## @package filterTabToSNP.py
 # @author Sebastien Ravel
+"""
+	The compress script
+	=========================
+
+	:author: Sebastien Ravel
+	:contact: sebastien.ravel@cirad.fr
+	:date: 28/02/2017
+	:version: 0.1
+
+	Script description
+	------------------
+
+	 Programme extract U from Tab file and build 3 tab:
+	 -prefilter: without N for all samples
+	- withoutN: not missing data allow for all samples
+	- withoutNandR: only line with one or more SNP
+
+
+	Example
+	-------
+
+	>>> /filterTabToSNP.py -t ./ -o ./
+
+	Help Programm
+	-------------
+
+	usage: ./filterTabToSNP.py [-h] [-v] -t <path/to/tabFileDir>
+						[-o <path/to/outputDir>]
+
+	This Programme extract U from Tab file
+
+	optional arguments:
+		- \-h, --help
+					show this help message and exit
+		- \-v, --version
+					display ./filterTabToSNP.py version number and exit
+
+	Input mandatory infos for running:
+		- \-t <path/to/tabFileDir>, --tab <path/to/tabFileDir>
+					path to file tab
+
+	Input infos for running with default values:
+		- \-o <path/to/outputDir>, --out <path/to/outputDir>
+					Name of output directory
+"""
+
 
 ##################################################
 ## Modules
@@ -33,7 +79,10 @@ if __name__ == "__main__":
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog=__file__, description='''This Programme extract U from Tab file''')
+	parser = argparse.ArgumentParser(prog=__file__, description='''Programme extract U from Tab file and build 3 tab:
+	- prefilter: without N for all samples
+	- withoutN: not missing data allow for all samples
+	- withoutNandR: only line with one or more SNP''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display '+__file__+' version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
@@ -42,7 +91,7 @@ if __name__ == "__main__":
 	filesreq.add_argument('-t', '--tab', metavar="<path/to/tabFileDir>",type = directory, required=True, dest = 'filesDir', help = 'path to file tab ')
 
 	files = parser.add_argument_group('Input infos for running with default values')
-	files.add_argument('-o', '--out', metavar="<path/to/outputDir>",type = directory, default="./", dest = 'pathOut', help = 'Name of output directory')
+	files.add_argument('-o', '--out', metavar="<path/to/outputDir>",type = directory, default="./", dest = 'pathOut', help = 'Name of output directory (must exist)')
 
 
 	# Check parameters
