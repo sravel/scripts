@@ -122,7 +122,7 @@ if __name__ == "__main__":
 	basename = tabFileParam.split("/")[-1].split(".")[0]
 	print(basename)
 
-	if IDParam != None:
+	if outFastaParam == None:
 		outFastaParam= relativeToAbsolutePath(basename+".fasta")
 
 	# resume value to user
@@ -130,13 +130,13 @@ if __name__ == "__main__":
 	print("\t - TAB files is : %s" % tabFileParam)
 	if IDParam != None:
 		print("\t - Change Individual ID with custom ID provied table : %s" % IDParam)
+		dicoCustomID = loadInDictCol(IDParam,0,1)
 
 	print(" - Output Info:")
 	if compress:
 		print("\t - Output fasta will be gzip")
 	print("\t - Output fasta is:  %s\n\n" % outFastaParam)
 
-	dicoCustomID = loadInDictCol(IDParam,0,1)
 
 	if ".gz" in tabFileParam:
 		tabFileIn =  gzip.open(tabFileParam, "r")
