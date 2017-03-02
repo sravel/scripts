@@ -8,7 +8,7 @@
 	======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 30-01-2017
+	:date: 28-02-2017
 	:version: 0.2
 
 	Use it to import very handy functions.
@@ -59,7 +59,7 @@ import urllib
 ##################################################
 ## Variables Globales
 version="0.1"
-VERSION_DATE='30-01-2017'
+VERSION_DATE='28-02-2017'
 
 ##################################################
 ## Fonctions
