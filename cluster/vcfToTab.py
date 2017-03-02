@@ -61,7 +61,6 @@ from MODULES_SEB import dict2txt, loadInList, dictDict2txt, printCol, relativeTo
 import argparse
 from time import localtime, strftime
 import gzip
-import shutil
 
 try:
 	import egglib3 as egglib
@@ -269,10 +268,6 @@ if __name__ == "__main__":
 			#else:
 				#print "INDEL at %s %s" % (chrom, pos)
 	outputFile.close()
-
-
-
-
 
 	print("\n\n#################################################################")
 	print("#                        End of execution                       #")
