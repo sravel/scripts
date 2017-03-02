@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>tabToFasta</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Module&nbsp;tabToFasta
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="tabToFasta-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="tabToFasta-module.html">Module tabToFasta</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#!/usr/bin/python3.5</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-comment"># -*- coding: utf-8 -*-</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-comment"># @package tabToFasta.py</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># @author Sebastien Ravel</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">        The tabToFasta script</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">        ===========================</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">        :author: Sebastien Ravel</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">        :contact: sebastien.ravel@cirad.fr</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">        :date: 02/03/2017</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">        :version: 0.1</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">        Script description</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">        ------------------</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">        This Programme build fasta from tab file Adapt the RAM according to the size of the array (eg for 33127958 line and 48 individuals uses 34GB of RAM)</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">        Example</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">        -------</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; tabToFasta.py t 48Mo_table_withoutN.tab</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">        Help Programm</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        -------------</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">        optional arguments:</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">                - \-h, --help</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">                                                show this help message and exit</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">                - \-v, --version</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">                                                display tabToFasta.py version number and exit</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">        Input mandatory infos for running:</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt class="py-docstring">                - \-t &lt;filename&gt;, --tab &lt;filename&gt;</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"><tt class="py-docstring">                                                Tab file</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        Input infos for running with default values:</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">                - \-f &lt;filename&gt;, --fasta &lt;filename&gt;</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">                                                fasta Out (default = TabBasename.fasta)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt class="py-comment">## Modules</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-comment">#Import MODULES_SEB</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">sys</tt><tt class="py-op">,</tt> <tt class="py-name">os</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable addSample.current_dir=addSample-module.html#current_dir,Variable buildSNPtoFasta.current_dir=buildSNPtoFasta-module.html#current_dir,Variable buildTracks.current_dir=buildTracks-module.html#current_dir,Variable compress.current_dir=compress-module.html#current_dir,Variable concatFastasFile.current_dir=concatFastasFile-module.html#current_dir,Variable countCDSStartStop.current_dir=countCDSStartStop-module.html#current_dir,Variable extractColfromList.current_dir=extractColfromList-module.html#current_dir,Variable extractFromProteineOrtho.current_dir=extractFromProteineOrtho-module.html#current_dir,Variable extractSeqFasta.current_dir=extractSeqFasta-module.html#current_dir,Variable extractSeqFastaCorresponding.current_dir=extractSeqFastaCorresponding-module.html#current_dir,Variable extractSeqFastaFromLen.current_dir=extractSeqFastaFromLen-module.html#current_dir,Variable filterTabToSNP.current_dir=filterTabToSNP-module.html#current_dir,Variable getdistrgenotypeTAB.current_dir=getdistrgenotypeTAB-module.html#current_dir,Variable grepMotifFromAlignment.current_dir=grepMotifFromAlignment-module.html#current_dir,Variable grepUTRgene.current_dir=grepUTRgene-module.html#current_dir,Variable make_ldhatfiles.current_dir=make_ldhatfiles-module.html#current_dir,Variable make_structure_dir.current_dir=make_structure_dir-module.html#current_dir,Variable mappingOnRef.current_dir=mappingOnRef-module.html#current_dir,Variable parseWithEgglib.current_dir=parseWithEgglib-module.html#current_dir,Variable plot_barplot_DAPC.current_dir=plot_barplot_DAPC-module.html#current_dir,Variable renameFile.current_dir=renameFile-module.html#current_dir,Variable run_Assembly.current_dir=run_Assembly-module.html#current_dir,Variable run_multiblast.current_dir=run_multiblast-module.html#current_dir,Variable run_raxml.current_dir=run_raxml-module.html#current_dir,Variable splitMultiFasta.current_dir=splitMultiFasta-module.html#current_dir,Variable struc2runClumpak.current_dir=struc2runClumpak-module.html#current_dir,Variable tabToFasta.current_dir=tabToFasta-module.html#current_dir,Variable vcfToTab.current_dir=vcfToTab-module.html#current_dir"><a title="addSample.current_dir
+buildSNPtoFasta.current_dir
+buildTracks.current_dir
+compress.current_dir
+concatFastasFile.current_dir
+countCDSStartStop.current_dir
+extractColfromList.current_dir
+extractFromProteineOrtho.current_dir
+extractSeqFasta.current_dir
+extractSeqFastaCorresponding.current_dir
+extractSeqFastaFromLen.current_dir
+filterTabToSNP.current_dir
+getdistrgenotypeTAB.current_dir
+grepMotifFromAlignment.current_dir
+grepUTRgene.current_dir
+make_ldhatfiles.current_dir
+make_structure_dir.current_dir
+mappingOnRef.current_dir
+parseWithEgglib.current_dir
+plot_barplot_DAPC.current_dir
+renameFile.current_dir
+run_Assembly.current_dir
+run_multiblast.current_dir
+run_raxml.current_dir
+splitMultiFasta.current_dir
+struc2runClumpak.current_dir
+tabToFasta.current_dir
+vcfToTab.current_dir" class="py-name" href="#" onclick="return doclink('link-0', 'current_dir', 'link-0');">current_dir</a></tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">abspath</tt><tt class="py-op">(</tt><tt class="py-name">__file__</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"/"</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-name">sys</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">insert</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">,</tt><tt id="link-1" class="py-name"><a title="addSample.current_dir
+buildSNPtoFasta.current_dir
+buildTracks.current_dir
+compress.current_dir
+concatFastasFile.current_dir
+countCDSStartStop.current_dir
+extractColfromList.current_dir
+extractFromProteineOrtho.current_dir
+extractSeqFasta.current_dir
+extractSeqFastaCorresponding.current_dir
+extractSeqFastaFromLen.current_dir
+filterTabToSNP.current_dir
+getdistrgenotypeTAB.current_dir
+grepMotifFromAlignment.current_dir
+grepUTRgene.current_dir
+make_ldhatfiles.current_dir
+make_structure_dir.current_dir
+mappingOnRef.current_dir
+parseWithEgglib.current_dir
+plot_barplot_DAPC.current_dir
+renameFile.current_dir
+run_Assembly.current_dir
+run_multiblast.current_dir
+run_raxml.current_dir
+splitMultiFasta.current_dir
+struc2runClumpak.current_dir
+tabToFasta.current_dir
+vcfToTab.current_dir" class="py-name" href="#" onclick="return doclink('link-1', 'current_dir', 'link-0');">current_dir</a></tt><tt class="py-op">+</tt><tt class="py-string">'../modules/'</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">MODULES_SEB</tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Class run_pyinstaller.directory=run_pyinstaller.directory-class.html"><a title="run_pyinstaller.directory" class="py-name" href="#" onclick="return doclink('link-2', 'directory', 'link-2');">directory</a></tt><tt class="py-op">,</tt> <tt id="link-3" class="py-name" targets="Function run_pyinstaller.relativeToAbsolutePath()=run_pyinstaller-module.html#relativeToAbsolutePath"><a title="run_pyinstaller.relativeToAbsolutePath" class="py-name" href="#" onclick="return doclink('link-3', 'relativeToAbsolutePath', 'link-3');">relativeToAbsolutePath</a></tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Function run_pyinstaller.existant_file()=run_pyinstaller-module.html#existant_file"><a title="run_pyinstaller.existant_file" class="py-name" href="#" onclick="return doclink('link-4', 'existant_file', 'link-4');">existant_file</a></tt><tt class="py-op">,</tt> <tt id="link-5" class="py-name" targets="Class run_pyinstaller.printCol=run_pyinstaller.printCol-class.html"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-5', 'printCol', 'link-5');">printCol</a></tt><tt class="py-op">,</tt> <tt class="py-name">dict2txt</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-comment">## Python modules</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">argparse</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">time</tt> <tt class="py-keyword">import</tt> <tt class="py-name">localtime</tt><tt class="py-op">,</tt> <tt class="py-name">strftime</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-comment">## BIO Python modules</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">Bio</tt> <tt class="py-keyword">import</tt> <tt class="py-name">SeqIO</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">Bio</tt><tt class="py-op">.</tt><tt class="py-name">SeqRecord</tt> <tt class="py-keyword">import</tt> <tt class="py-name">SeqRecord</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">Bio</tt><tt class="py-op">.</tt><tt class="py-name">Seq</tt> <tt class="py-keyword">import</tt> <tt class="py-name">Seq</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">Bio</tt><tt class="py-op">.</tt><tt class="py-name">Alphabet</tt> <tt class="py-keyword">import</tt> <tt class="py-name">SingleLetterAlphabet</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"><tt class="py-comment">## Variables Globales</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable addSample.version=addSample-module.html#version,Variable buildSNPtoFasta.version=buildSNPtoFasta-module.html#version,Variable buildTracks.version=buildTracks-module.html#version,Variable compress.version=compress-module.html#version,Variable concatFastasFile.version=concatFastasFile-module.html#version,Variable countCDSStartStop.version=countCDSStartStop-module.html#version,Variable extractColfromList.version=extractColfromList-module.html#version,Variable extractFromProteineOrtho.version=extractFromProteineOrtho-module.html#version,Variable extractSeqFasta.version=extractSeqFasta-module.html#version,Variable extractSeqFastaCorresponding.version=extractSeqFastaCorresponding-module.html#version,Variable extractSeqFastaFromLen.version=extractSeqFastaFromLen-module.html#version,Variable filterTabToSNP.version=filterTabToSNP-module.html#version,Variable getdistrgenotypeTAB.version=getdistrgenotypeTAB-module.html#version,Variable grepMotifFromAlignment.version=grepMotifFromAlignment-module.html#version,Variable grepUTRgene.version=grepUTRgene-module.html#version,Variable make_hapmapfile2.version=make_hapmapfile2-module.html#version,Variable make_ldhatfiles.version=make_ldhatfiles-module.html#version,Variable make_structure_dir.version=make_structure_dir-module.html#version,Variable mappingOnRef.version=mappingOnRef-module.html#version,Variable parseWithEgglib.version=parseWithEgglib-module.html#version,Variable plot_barplot_DAPC.version=plot_barplot_DAPC-module.html#version,Variable renameFile.version=renameFile-module.html#version,Variable run_Assembly.version=run_Assembly-module.html#version,Variable run_multiblast.version=run_multiblast-module.html#version,Variable run_pyinstaller.version=run_pyinstaller-module.html#version,Variable run_raxml.version=run_raxml-module.html#version,Variable splitMultiFasta.version=splitMultiFasta-module.html#version,Variable struc2runClumpak.version=struc2runClumpak-module.html#version,Variable tabToFasta.version=tabToFasta-module.html#version,Variable vcfToTab.version=vcfToTab-module.html#version"><a title="addSample.version
+buildSNPtoFasta.version
+buildTracks.version
+compress.version
+concatFastasFile.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaCorresponding.version
+extractSeqFastaFromLen.version
+filterTabToSNP.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+grepUTRgene.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+mappingOnRef.version
+parseWithEgglib.version
+plot_barplot_DAPC.version
+renameFile.version
+run_Assembly.version
+run_multiblast.version
+run_pyinstaller.version
+run_raxml.version
+splitMultiFasta.version
+struc2runClumpak.version
+tabToFasta.version
+vcfToTab.version" class="py-name" href="#" onclick="return doclink('link-6', 'version', 'link-6');">version</a></tt><tt class="py-op">=</tt><tt class="py-string">"0.1"</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Variable addSample.VERSION_DATE=addSample-module.html#VERSION_DATE,Variable buildSNPtoFasta.VERSION_DATE=buildSNPtoFasta-module.html#VERSION_DATE,Variable buildTracks.VERSION_DATE=buildTracks-module.html#VERSION_DATE,Variable compress.VERSION_DATE=compress-module.html#VERSION_DATE,Variable concatFastasFile.VERSION_DATE=concatFastasFile-module.html#VERSION_DATE,Variable countCDSStartStop.VERSION_DATE=countCDSStartStop-module.html#VERSION_DATE,Variable extractColfromList.VERSION_DATE=extractColfromList-module.html#VERSION_DATE,Variable extractFromProteineOrtho.VERSION_DATE=extractFromProteineOrtho-module.html#VERSION_DATE,Variable extractSeqFasta.VERSION_DATE=extractSeqFasta-module.html#VERSION_DATE,Variable extractSeqFastaCorresponding.VERSION_DATE=extractSeqFastaCorresponding-module.html#VERSION_DATE,Variable extractSeqFastaFromLen.VERSION_DATE=extractSeqFastaFromLen-module.html#VERSION_DATE,Variable filterTabToSNP.VERSION_DATE=filterTabToSNP-module.html#VERSION_DATE,Variable getdistrgenotypeTAB.VERSION_DATE=getdistrgenotypeTAB-module.html#VERSION_DATE,Variable grepMotifFromAlignment.VERSION_DATE=grepMotifFromAlignment-module.html#VERSION_DATE,Variable grepUTRgene.VERSION_DATE=grepUTRgene-module.html#VERSION_DATE,Variable make_hapmapfile2.VERSION_DATE=make_hapmapfile2-module.html#VERSION_DATE,Variable make_ldhatfiles.VERSION_DATE=make_ldhatfiles-module.html#VERSION_DATE,Variable make_structure_dir.VERSION_DATE=make_structure_dir-module.html#VERSION_DATE,Variable mappingOnRef.VERSION_DATE=mappingOnRef-module.html#VERSION_DATE,Variable parseWithEgglib.VERSION_DATE=parseWithEgglib-module.html#VERSION_DATE,Variable plot_barplot_DAPC.VERSION_DATE=plot_barplot_DAPC-module.html#VERSION_DATE,Variable renameFile.VERSION_DATE=renameFile-module.html#VERSION_DATE,Variable run_Assembly.VERSION_DATE=run_Assembly-module.html#VERSION_DATE,Variable run_multiblast.VERSION_DATE=run_multiblast-module.html#VERSION_DATE,Variable run_pyinstaller.VERSION_DATE=run_pyinstaller-module.html#VERSION_DATE,Variable run_raxml.VERSION_DATE=run_raxml-module.html#VERSION_DATE,Variable splitMultiFasta.VERSION_DATE=splitMultiFasta-module.html#VERSION_DATE,Variable struc2runClumpak.VERSION_DATE=struc2runClumpak-module.html#VERSION_DATE,Variable tabToFasta.VERSION_DATE=tabToFasta-module.html#VERSION_DATE,Variable vcfToTab.VERSION_DATE=vcfToTab-module.html#VERSION_DATE"><a title="addSample.VERSION_DATE
+buildSNPtoFasta.VERSION_DATE
+buildTracks.VERSION_DATE
+compress.VERSION_DATE
+concatFastasFile.VERSION_DATE
+countCDSStartStop.VERSION_DATE
+extractColfromList.VERSION_DATE
+extractFromProteineOrtho.VERSION_DATE
+extractSeqFasta.VERSION_DATE
+extractSeqFastaCorresponding.VERSION_DATE
+extractSeqFastaFromLen.VERSION_DATE
+filterTabToSNP.VERSION_DATE
+getdistrgenotypeTAB.VERSION_DATE
+grepMotifFromAlignment.VERSION_DATE
+grepUTRgene.VERSION_DATE
+make_hapmapfile2.VERSION_DATE
+make_ldhatfiles.VERSION_DATE
+make_structure_dir.VERSION_DATE
+mappingOnRef.VERSION_DATE
+parseWithEgglib.VERSION_DATE
+plot_barplot_DAPC.VERSION_DATE
+renameFile.VERSION_DATE
+run_Assembly.VERSION_DATE
+run_multiblast.VERSION_DATE
+run_pyinstaller.VERSION_DATE
+run_raxml.VERSION_DATE
+splitMultiFasta.VERSION_DATE
+struc2runClumpak.VERSION_DATE
+tabToFasta.VERSION_DATE
+vcfToTab.VERSION_DATE" class="py-name" href="#" onclick="return doclink('link-7', 'VERSION_DATE', 'link-7');">VERSION_DATE</a></tt><tt class="py-op">=</tt><tt class="py-string">'27/01/2017'</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-comment">## Functions</tt> </tt>
+<a name="transpose_matrix"></a><div id="transpose_matrix-def"><a name="L71"></a><tt class="py-lineno"> 71</tt> <a class="py-toggle" href="#" id="transpose_matrix-toggle" onclick="return toggle('transpose_matrix');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="tabToFasta-module.html#transpose_matrix">transpose_matrix</a><tt class="py-op">(</tt><tt class="py-param">matrix</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="transpose_matrix-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="transpose_matrix-expanded"><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">mt</tt> <tt class="py-op">=</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt> <tt class="py-name">map</tt><tt class="py-op">(</tt><tt class="py-name">list</tt><tt class="py-op">,</tt> <tt class="py-name">zip</tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-name">matrix</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">mt</tt> </tt>
+</div><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">                <tt class="py-comment">#zip(*matrix)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">                        <tt class="py-comment">#return matrix</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-comment">## Main code</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">"__main__"</tt><tt class="py-op">:</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-comment"># Initializations</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-name">start_time</tt> <tt class="py-op">=</tt> <tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d-%m-%Y_%H:%M:%S"</tt><tt class="py-op">,</tt> <tt class="py-name">localtime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-comment"># Parameters recovery</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-name">parser</tt> <tt class="py-op">=</tt> <tt class="py-name">argparse</tt><tt class="py-op">.</tt><tt class="py-name">ArgumentParser</tt><tt class="py-op">(</tt><tt class="py-name">prog</tt><tt class="py-op">=</tt><tt class="py-name">__file__</tt><tt class="py-op">,</tt> <tt class="py-name">description</tt><tt class="py-op">=</tt><tt class="py-string">'''This Programme build fasta from tab file Adapt the RAM according to the size of the array (eg for 33127958 line and 48 individuals uses 34GB of RAM)'''</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-v'</tt><tt class="py-op">,</tt> <tt class="py-string">'--version'</tt><tt class="py-op">,</tt> <tt class="py-name">action</tt><tt class="py-op">=</tt><tt class="py-string">'version'</tt><tt class="py-op">,</tt> <tt id="link-8" class="py-name"><a title="addSample.version
+buildSNPtoFasta.version
+buildTracks.version
+compress.version
+concatFastasFile.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaCorresponding.version
+extractSeqFastaFromLen.version
+filterTabToSNP.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+grepUTRgene.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+mappingOnRef.version
+parseWithEgglib.version
+plot_barplot_DAPC.version
+renameFile.version
+run_Assembly.version
+run_multiblast.version
+run_pyinstaller.version
+run_raxml.version
+splitMultiFasta.version
+struc2runClumpak.version
+tabToFasta.version
+vcfToTab.version" class="py-name" href="#" onclick="return doclink('link-8', 'version', 'link-6');">version</a></tt><tt class="py-op">=</tt><tt class="py-string">'You are using %(prog)s version: '</tt> <tt class="py-op">+</tt> <tt id="link-9" class="py-name"><a title="addSample.version
+buildSNPtoFasta.version
+buildTracks.version
+compress.version
+concatFastasFile.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaCorresponding.version
+extractSeqFastaFromLen.version
+filterTabToSNP.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+grepUTRgene.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+mappingOnRef.version
+parseWithEgglib.version
+plot_barplot_DAPC.version
+renameFile.version
+run_Assembly.version
+run_multiblast.version
+run_pyinstaller.version
+run_raxml.version
+splitMultiFasta.version
+struc2runClumpak.version
+tabToFasta.version
+vcfToTab.version" class="py-name" href="#" onclick="return doclink('link-9', 'version', 'link-6');">version</a></tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt>\ </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                                                <tt class="py-string">'display '</tt><tt class="py-op">+</tt><tt class="py-name">__file__</tt><tt class="py-op">+</tt><tt class="py-string">' version number and exit'</tt><tt class="py-op">)</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-dd'</tt><tt class="py-op">,</tt> <tt class="py-string">'--debug'</tt><tt class="py-op">,</tt> <tt class="py-name">action</tt><tt class="py-op">=</tt><tt class="py-string">'store_true'</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt><tt class="py-op">=</tt><tt class="py-string">'debug'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt><tt class="py-op">=</tt><tt class="py-string">'enter verbose/debug mode'</tt><tt class="py-op">)</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-name">filesreq</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument_group</tt><tt class="py-op">(</tt><tt class="py-string">'Input mandatory infos for running'</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">        <tt class="py-name">filesreq</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-t'</tt><tt class="py-op">,</tt> <tt class="py-string">'--tab'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;filename&gt;"</tt><tt class="py-op">,</tt><tt class="py-name">type</tt><tt class="py-op">=</tt><tt id="link-10" class="py-name"><a title="run_pyinstaller.existant_file" class="py-name" href="#" onclick="return doclink('link-10', 'existant_file', 'link-4');">existant_file</a></tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'tabFileParam'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'Tab file'</tt><tt class="py-op">)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-name">files</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">add_argument_group</tt><tt class="py-op">(</tt><tt class="py-string">'Input infos for running with default values'</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">files</tt><tt class="py-op">.</tt><tt class="py-name">add_argument</tt><tt class="py-op">(</tt><tt class="py-string">'-f'</tt><tt class="py-op">,</tt> <tt class="py-string">'--fasta'</tt><tt class="py-op">,</tt> <tt class="py-name">metavar</tt><tt class="py-op">=</tt><tt class="py-string">"&lt;filename&gt;"</tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-string">'outFastaParam'</tt><tt class="py-op">,</tt> <tt class="py-name">help</tt> <tt class="py-op">=</tt> <tt class="py-string">'fasta Out (default = TabBasename.fasta)'</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-comment"># Check parameters</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">args</tt> <tt class="py-op">=</tt> <tt class="py-name">parser</tt><tt class="py-op">.</tt><tt class="py-name">parse_args</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-comment">#Welcome message</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#           Welcome in %s (Version %s)            #"</tt> <tt class="py-op">%</tt><tt class="py-op">(</tt><tt class="py-name">__file__</tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name"><a title="addSample.version
+buildSNPtoFasta.version
+buildTracks.version
+compress.version
+concatFastasFile.version
+countCDSStartStop.version
+extractColfromList.version
+extractFromProteineOrtho.version
+extractSeqFasta.version
+extractSeqFastaCorresponding.version
+extractSeqFastaFromLen.version
+filterTabToSNP.version
+getdistrgenotypeTAB.version
+grepMotifFromAlignment.version
+grepUTRgene.version
+make_hapmapfile2.version
+make_ldhatfiles.version
+make_structure_dir.version
+mappingOnRef.version
+parseWithEgglib.version
+plot_barplot_DAPC.version
+renameFile.version
+run_Assembly.version
+run_multiblast.version
+run_pyinstaller.version
+run_raxml.version
+splitMultiFasta.version
+struc2runClumpak.version
+tabToFasta.version
+vcfToTab.version" class="py-name" href="#" onclick="return doclink('link-11', 'version', 'link-6');">version</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">'Start time: '</tt><tt class="py-op">,</tt> <tt class="py-name">start_time</tt><tt class="py-op">,</tt><tt class="py-string">'\n'</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-comment"># R&#233;cup&#232;re les infos passer en argument</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">tabFileParam</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">tabFileParam</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-name">outFastaParam</tt> <tt class="py-op">=</tt> <tt class="py-name">args</tt><tt class="py-op">.</tt><tt class="py-name">outFastaParam</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">basename</tt> <tt class="py-op">=</tt> <tt class="py-name">tabFileParam</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"/"</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"."</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-name">basename</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">outFastaParam</tt> <tt class="py-op">==</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                <tt class="py-name">outFastaParam</tt><tt class="py-op">=</tt> <tt id="link-12" class="py-name"><a title="run_pyinstaller.relativeToAbsolutePath" class="py-name" href="#" onclick="return doclink('link-12', 'relativeToAbsolutePath', 'link-3');">relativeToAbsolutePath</a></tt><tt class="py-op">(</tt><tt class="py-name">basename</tt><tt class="py-op">+</tt><tt class="py-string">".fasta"</tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-comment"># resume value to user</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">" - Intput Info:"</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\t - TAB files is : %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">tabFileParam</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">" - Output Info:"</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\t - Output fasta is:  %s\n\n"</tt> <tt class="py-op">%</tt> <tt class="py-name">outFastaParam</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-comment">#with open(tabFileParam, "r") as tabFileIn:</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"> </tt>
+<a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                <tt class="py-comment">#header = tabFileIn.readline()</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                <tt class="py-comment">#samples = header.rstrip().split("\t")[2:]</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                <tt class="py-comment">#nbSample = len(samples)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">                <tt class="py-comment">#dicoSeq = {}</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                <tt class="py-comment">#for sample in samples:</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">                        <tt class="py-comment">#dicoSeq[sample] = ""</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">                <tt class="py-comment">#printCol.green('number of samples: %s\n' % nbSample)</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">                <tt class="py-comment">#printCol.green('samples: %s' % "\t".join(samples))</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">                <tt class="py-comment">#for line in tabFileIn:</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">                        <tt class="py-comment">#genotypes = line.rstrip().split("\t")[2:]</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line"> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">                        <tt class="py-comment">#i=0</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">                        <tt class="py-comment">#for genotype in genotypes:</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">                                <tt class="py-comment">#sample = samples[i]</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">                                <tt class="py-comment">#dicoSeq[sample]+=genotype</tt> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">                                <tt class="py-comment">#i+=1</tt> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-comment">##print(dict2txt(dicoSeq))</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-comment">#with open(outFastaParam, "w") as outFile:</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">                <tt class="py-comment">#for sample, seq in dicoSeq.items():</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">                        <tt class="py-comment">#record = SeqRecord(Seq(seq),id=sample,name=sample, description="")</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">                        <tt class="py-comment">#SeqIO.write(record,outFile, "fasta")</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line"> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">tabFileParam</tt><tt class="py-op">,</tt> <tt class="py-string">"r"</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">tabFileIn</tt><tt class="py-op">,</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">outFastaParam</tt><tt class="py-op">,</tt> <tt class="py-string">"w"</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">outFile</tt><tt class="py-op">:</tt> </tt>
+<a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt>
+<a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">                <tt class="py-comment">#header = tabFileIn.readline()</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">                <tt class="py-comment">#samples = header.rstrip().split("\t")[2:]</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">                <tt class="py-comment">#nbSample = len(samples)</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">                <tt class="py-comment">#printCol.green('number of samples: %s\n' % nbSample)</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">                <tt class="py-comment">#printCol.green('samples: %s' % "\t".join(samples))</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">                <tt class="py-name">matrice</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">line</tt><tt class="py-op">.</tt><tt class="py-name">rstrip</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">split</tt><tt class="py-op">(</tt><tt class="py-string">"\t"</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">line</tt> <tt class="py-keyword">in</tt> <tt class="py-name">tabFileIn</tt><tt class="py-op">]</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">                <tt class="py-name">matriceT</tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name" targets="Function tabToFasta.transpose_matrix()=tabToFasta-module.html#transpose_matrix"><a title="tabToFasta.transpose_matrix" class="py-name" href="#" onclick="return doclink('link-13', 'transpose_matrix', 'link-13');">transpose_matrix</a></tt><tt class="py-op">(</tt><tt class="py-name">matrice</tt><tt class="py-op">)</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">                <tt class="py-name">matrice</tt><tt class="py-op">=</tt><tt class="py-string">""</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">listSample</tt> <tt class="py-keyword">in</tt> <tt class="py-name">matriceT</tt><tt class="py-op">[</tt><tt class="py-number">2</tt><tt class="py-op">:</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">                        <tt class="py-name">sample</tt> <tt class="py-op">=</tt> <tt class="py-name">listSample</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line">                        <tt class="py-name">seq</tt> <tt class="py-op">=</tt> <tt class="py-string">""</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt class="py-name">listSample</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line"> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">                        <tt class="py-name">record</tt> <tt class="py-op">=</tt> <tt class="py-name">SeqRecord</tt><tt class="py-op">(</tt><tt class="py-name">Seq</tt><tt class="py-op">(</tt><tt class="py-name">seq</tt><tt class="py-op">)</tt><tt class="py-op">,</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">sample</tt><tt class="py-op">,</tt><tt class="py-name">name</tt><tt class="py-op">=</tt><tt class="py-name">sample</tt><tt class="py-op">,</tt> <tt class="py-name">description</tt><tt class="py-op">=</tt><tt class="py-string">""</tt><tt class="py-op">)</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">                        <tt class="py-name">SeqIO</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">record</tt><tt class="py-op">,</tt><tt class="py-name">outFile</tt><tt class="py-op">,</tt> <tt class="py-string">"fasta"</tt><tt class="py-op">)</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line"> </tt>
+<a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\n\nExecution summary:"</tt><tt class="py-op">)</tt> </tt>
+<a name="L177"></a><tt class="py-lineno">177</tt>  <tt class="py-line"> </tt>
+<a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line"> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\nStop time: "</tt><tt class="py-op">,</tt> <tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d-%m-%Y_%H:%M:%S"</tt><tt class="py-op">,</tt> <tt class="py-name">localtime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#                        End of execution                       #"</tt><tt class="py-op">)</tt> </tt>
+<a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L183"></a><tt class="py-lineno">183</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Thu Mar  2 10:28:50 2017
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

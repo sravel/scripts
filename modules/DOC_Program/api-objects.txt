@@ -168,6 +168,12 @@ struc2runClumpak.version	struc2runClumpak-module.html#version
 struc2runClumpak.buildLabelFile	struc2runClumpak-module.html#buildLabelFile
 struc2runClumpak.VERSION_DATE	struc2runClumpak-module.html#VERSION_DATE
 struc2runClumpak.current_dir	struc2runClumpak-module.html#current_dir
+tabToFasta	tabToFasta-module.html
+tabToFasta.version	tabToFasta-module.html#version
+tabToFasta.__package__	tabToFasta-module.html#__package__
+tabToFasta.transpose_matrix	tabToFasta-module.html#transpose_matrix
+tabToFasta.VERSION_DATE	tabToFasta-module.html#VERSION_DATE
+tabToFasta.current_dir	tabToFasta-module.html#current_dir
 vcfToTab	vcfToTab-module.html
 vcfToTab.__package__	vcfToTab-module.html#__package__
 vcfToTab.version	vcfToTab-module.html#version
