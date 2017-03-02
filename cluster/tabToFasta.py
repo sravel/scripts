@@ -48,7 +48,7 @@
 import sys, os
 current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
 sys.path.insert(1,current_dir+'../modules/')
-from MODULES_SEB import directory, relativeToAbsolutePath, existant_file, printCol, dict2txt
+from MODULES_SEB import directory, relativeToAbsolutePath, existant_file, printCol, dict2txt, loadInDict
 
 ## Python modules
 import argparse
@@ -94,6 +94,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-f', '--fasta', metavar="<filename>", required=False, dest = 'outFastaParam', help = 'fasta Out (default = TabBasename.fasta)')
+	files.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=False, dest = 'IDParam', help = 'Change Individual ID with custom ID provied table (tab with fisrt col ID, second col custom ID)')
 
 
 	# Check parameters
@@ -108,6 +109,7 @@ if __name__ == "__main__":
 	# Récupère les infos passer en argument
 	tabFileParam = args.tabFileParam
 	outFastaParam = args.outFastaParam
+	IDParam = args.IDParam
 
 	basename = tabFileParam.split("/")[-1].split(".")[0]
 	print(basename)
@@ -118,9 +120,13 @@ if __name__ == "__main__":
 	# resume value to user
 	print(" - Intput Info:")
 	print("\t - TAB files is : %s" % tabFileParam)
+	if IDParam != None:
+		print("\t - Change Individual ID with custom ID provied table : %s" % IDParam)
 
 	print(" - Output Info:")
 	print("\t - Output fasta is:  %s\n\n" % outFastaParam)
+
+	dicoCustomID = loadInDict(IDParam)
 
 	#with open(tabFileParam, "r") as tabFileIn:
 
@@ -169,6 +175,8 @@ if __name__ == "__main__":
 			sample = listSample[0]
 			seq = "".join(listSample[1:])
 
+			if IDParam != None:
+				sample = dicoCustomID[sample]
 			record = SeqRecord(Seq(seq),id=sample,name=sample, description="")
 			SeqIO.write(record,outFile, "fasta")
 

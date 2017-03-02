@@ -61,6 +61,7 @@ from MODULES_SEB import dict2txt, loadInList, dictDict2txt, printCol, relativeTo
 ## Python modules
 import argparse
 from time import localtime, strftime
+import gzip
 
 ##################################################
 ## Variables Globales
@@ -92,6 +93,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-o', '--out', metavar="<path/to/outputDir>",type = directory, default="./", dest = 'pathOut', help = 'Name of output directory (must exist)')
+	files.add_argument('-c', '--compress',action ='store_true', dest = 'compress', help = 'gzip output file')
 
 
 	# Check parameters
@@ -109,14 +111,14 @@ if __name__ == "__main__":
 	# resume value to user
 	print(" - Intput Info:")
 	print("\t - TAB files are in : %s" % pathFiles.pathDirectory)
-	print("\t - %s TAB file count" % len(pathFiles.lsExtInDirToList(["tab"])))
+	print("\t - %s TAB file count" % len(pathFiles.lsExtInDirToList(["tab","gz"])))
 
 	print(" - Output Info:")
 	print("\t - Output tab created into directory:  %s\n\n" % pathFilesOut.pathDirectory)
 
 
 
-	for tabFile in pathFiles.lsExtInDirToList(["tab"]):
+	for tabFile in pathFiles.lsExtInDirToList(["tab","gz"]):
 
 		# récupère le nom du fichier tab In
 		basename = tabFile.split("/")[-1].split(".")[0]
