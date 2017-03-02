@@ -40,6 +40,8 @@
 		- \-l <filename>, --list <filename>
 						Change Individual ID with custom ID provied table (tab
 						with fisrt col ID, second col custom ID)
+		- \-c, --compress
+						gzip output file
 
 """
 
