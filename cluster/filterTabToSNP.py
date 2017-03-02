@@ -129,8 +129,9 @@ if __name__ == "__main__":
 			 open(outFileNameWithoutN, "w") as outFileNameWithoutNFile, open(outFileNamewithoutNandR, "w") as outFileNamewithoutNandRFile:
 
 			header = tabFileIn.readline()
-			samples = header.rstrip().split("\t")[4:]
+			samples = header.rstrip().split("\t")[3:]
 			nbSample = len(samples)
+
 
 			outFileNamePrefilterNFile.write(header)
 			outFileNameWithoutNFile.write(header)
