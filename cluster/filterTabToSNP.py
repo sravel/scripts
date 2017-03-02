@@ -134,30 +134,32 @@ if __name__ == "__main__":
 		outFileNamewithoutNandR = pathFilesOut.pathDirectory+basename+"_withoutNandR.tab"
 
 		if compress:
-			outFileNamePrefilterNFile = gzip.open(outFileNamePrefilterN+".gz", "w")
-			outFileNameWithoutNFile = gzip.open(outFileNameWithoutN+".gz", "w")
-			outFileNamewithoutNandRFile = gzip.open(outFileNamewithoutNandR+".gz", "w")
+			outFileNamePrefilterNFile = gzip.open(outFileNamePrefilterN+".gz", "wb")
+			outFileNameWithoutNFile = gzip.open(outFileNameWithoutN+".gz", "wb")
+			outFileNamewithoutNandRFile = gzip.open(outFileNamewithoutNandR+".gz", "wb")
 		else:
-			outFileNamePrefilterNFile = open(outFileNamePrefilterN, "w")
-			outFileNameWithoutNFile = open(outFileNameWithoutN, "w")
-			outFileNamewithoutNandRFile = open(outFileNamewithoutNandR, "w")
+			outFileNamePrefilterNFile = open(outFileNamePrefilterN, "wb")
+			outFileNameWithoutNFile = open(outFileNameWithoutN, "wb")
+			outFileNamewithoutNandRFile = open(outFileNamewithoutNandR, "wb")
 
 		if '.gz' in tabFile:
-			tabFileIn = gzip.open(tabFile, "rU")
+			tabFileIn = gzip.open(tabFile, "rb")
 		else:
-			tabFileIn = open(tabFile, "rU")
+			tabFileIn = open(tabFile, "rb")
 
-		header = tabFileIn.readline()
+		header = tabFileIn.readline().decode("utf-8")
+		print(header)
 		samples = header.rstrip().split("\t")[3:]
 		nbSample = len(samples)
 
 
-		outFileNamePrefilterNFile.write(header)
-		outFileNameWithoutNFile.write(header)
-		outFileNamewithoutNandRFile.write(header)
+			outFileNamePrefilterNFile.write(bytes(header,"utf-8"))
+			outFileNameWithoutNFile.write(bytes(header,"utf-8"))
+			outFileNamewithoutNandRFile.write(bytes(header,"utf-8"))
 
 		nbtotal, withoutN, prefilter,withoutNandR = 0, 0, 0, 0
 		for line in tabFileIn:
+			line = line.decode("utf-8")
 			chrom, pos, ref = line.rstrip().split("\t")[:3]
 			genotypes = line.rstrip().split("\t")[3:]
 
@@ -166,14 +168,14 @@ if __name__ == "__main__":
 			if nbN != nbSample:
 				if nbN == 0:
 					withoutN+=1
-					outFileNameWithoutNFile.write(line)
+					outFileNameWithoutNFile.write(bytes(line,"utf-8"))
 
 					if nbRef!= nbSample:
 						withoutNandR+=1
-						outFileNamewithoutNandRFile.write(line)
+						outFileNamewithoutNandRFile.write(bytes(line,"utf-8"))
 				else:
 					prefilter+=1
-					outFileNamePrefilterNFile.write(line)
+					outFileNamePrefilterNFile.write(bytes(line,"utf-8"))
 			nbtotal+=1
 		outFileNamePrefilterNFile.close()
 		outFileNameWithoutNFile.close()
