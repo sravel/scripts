@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-f', '--fasta', metavar="<filename>", required=False, dest = 'outFastaParam', help = 'fasta Out (default = TabBasename.fasta)')
-	files.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=False, dest = 'IDParam', help = 'Change Individual ID with custom ID provied table (tab with fisrt col ID, second col custom ID)')
+	files.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=False, dest = 'IDParam', help = 'Change Individual ID with custom ID provied table (tab with fisrt col ID, second col custom ID), include Reference ID')
 	files.add_argument('-c', '--compress',action ='store_true', dest = 'compress', help = 'gzip output file')
 
 
@@ -122,7 +122,7 @@ if __name__ == "__main__":
 	basename = tabFileParam.split("/")[-1].split(".")[0]
 	print(basename)
 
-	if outFastaParam == None:
+	if outFastaParam != None:
 		outFastaParam= relativeToAbsolutePath(basename+".fasta")
 
 	# resume value to user
