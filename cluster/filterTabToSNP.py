@@ -147,34 +147,34 @@ if __name__ == "__main__":
 		else:
 			tabFileIn = open(tabFile, "r")
 
-			header = tabFileIn.readline()
-			samples = header.rstrip().split("\t")[3:]
-			nbSample = len(samples)
+		header = tabFileIn.readline()
+		samples = header.rstrip().split("\t")[3:]
+		nbSample = len(samples)
 
 
-			outFileNamePrefilterNFile.write(header)
-			outFileNameWithoutNFile.write(header)
-			outFileNamewithoutNandRFile.write(header)
+		outFileNamePrefilterNFile.write(header)
+		outFileNameWithoutNFile.write(header)
+		outFileNamewithoutNandRFile.write(header)
 
-			nbtotal, withoutN, prefilter,withoutNandR = 0, 0, 0, 0
-			for line in tabFileIn:
-				chrom, pos, ref = line.rstrip().split("\t")[:3]
-				genotypes = line.rstrip().split("\t")[3:]
+		nbtotal, withoutN, prefilter,withoutNandR = 0, 0, 0, 0
+		for line in tabFileIn:
+			chrom, pos, ref = line.rstrip().split("\t")[:3]
+			genotypes = line.rstrip().split("\t")[3:]
 
-				nbN = genotypes.count("N")
-				nbRef = genotypes.count(ref)
-				if nbN != nbSample:
-					if nbN == 0:
-						withoutN+=1
-						outFileNameWithoutNFile.write(line)
+			nbN = genotypes.count("N")
+			nbRef = genotypes.count(ref)
+			if nbN != nbSample:
+				if nbN == 0:
+					withoutN+=1
+					outFileNameWithoutNFile.write(line)
 
-						if nbRef!= nbSample:
-							withoutNandR+=1
-							outFileNamewithoutNandRFile.write(line)
-					else:
-						prefilter+=1
-						outFileNamePrefilterNFile.write(line)
-				nbtotal+=1
+					if nbRef!= nbSample:
+						withoutNandR+=1
+						outFileNamewithoutNandRFile.write(line)
+				else:
+					prefilter+=1
+					outFileNamePrefilterNFile.write(line)
+			nbtotal+=1
 		outFileNamePrefilterNFile.close()
 		outFileNameWithoutNFile.close()
 		outFileNamewithoutNandRFile.close()
