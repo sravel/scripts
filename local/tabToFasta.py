@@ -58,6 +58,7 @@ from MODULES_SEB import directory, relativeToAbsolutePath, existant_file, printC
 ## Python modules
 import argparse
 from time import localtime, strftime
+import gzip
 
 ## BIO Python modules
 from Bio import SeqIO
