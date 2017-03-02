@@ -41,11 +41,14 @@
 
 	Input mandatory infos for running:
 		- \-t <path/to/tabFileDir>, --tab <path/to/tabFileDir>
-					path to file tab
+					path to file tab (gzip or not)
 
 	Input infos for running with default values:
 		- \-o <path/to/outputDir>, --out <path/to/outputDir>
 					Name of output directory
+		- \-c, --compress
+						gzip output file
+
 """
 
 
@@ -89,7 +92,7 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
-	filesreq.add_argument('-t', '--tab', metavar="<path/to/tabFileDir>",type = directory, required=True, dest = 'filesDir', help = 'path to file tab ')
+	filesreq.add_argument('-t', '--tab', metavar="<path/to/tabFileDir>",type = directory, required=True, dest = 'filesDir', help = 'path to file tab (gzip or not) ')
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-o', '--out', metavar="<path/to/outputDir>",type = directory, default="./", dest = 'pathOut', help = 'Name of output directory (must exist)')
@@ -114,6 +117,8 @@ if __name__ == "__main__":
 	print("\t - %s TAB file count" % len(pathFiles.lsExtInDirToList(["tab","gz"])))
 
 	print(" - Output Info:")
+	if compress:
+		print("\t - Output tab will be gzip")
 	print("\t - Output tab created into directory:  %s\n\n" % pathFilesOut.pathDirectory)
 
 
@@ -127,8 +132,19 @@ if __name__ == "__main__":
 		outFileNameWithoutN = pathFilesOut.pathDirectory+basename+"_withoutN.tab"
 		outFileNamewithoutNandR = pathFilesOut.pathDirectory+basename+"_withoutNandR.tab"
 
-		with open(tabFile, "r") as tabFileIn, open(outFileNamePrefilterN, "w") as outFileNamePrefilterNFile,\
-			 open(outFileNameWithoutN, "w") as outFileNameWithoutNFile, open(outFileNamewithoutNandR, "w") as outFileNamewithoutNandRFile:
+		if compress:
+			outFileNamePrefilterNFile = gzip.open(outFileNamePrefilterN+".gz", "w")
+			outFileNameWithoutNFile = gzip.open(outFileNameWithoutN+".gz", "w")
+			outFileNamewithoutNandRFile = gzip.open(outFileNamewithoutNandR+".gz", "w")
+		else:
+			outFileNamePrefilterNFile = open(outFileNamePrefilterN, "w")
+			outFileNameWithoutNFile = open(outFileNameWithoutN, "w")
+			outFileNamewithoutNandRFile = open(outFileNamewithoutNandR, "w")
+
+		if '.gz' in tabFile:
+			tabFileIn = gzip.open(tabFile, "r")
+		else:
+			tabFileIn = open(tabFile, "r")
 
 			header = tabFileIn.readline()
 			samples = header.rstrip().split("\t")[3:]
@@ -158,6 +174,10 @@ if __name__ == "__main__":
 						prefilter+=1
 						outFileNamePrefilterNFile.write(line)
 				nbtotal+=1
+		outFileNamePrefilterNFile.close()
+		outFileNameWithoutNFile.close()
+		outFileNamewithoutNandRFile.close()
+		tabFileIn.close()
 
 		print("NBligne total: "+str(nbtotal))
 		print("NBligne prefilter: "+str(prefilter))
