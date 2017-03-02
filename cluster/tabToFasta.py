@@ -122,7 +122,7 @@ if __name__ == "__main__":
 	basename = tabFileParam.split("/")[-1].split(".")[0]
 	print(basename)
 
-	if outFastaParam != None:
+	if IDParam != None:
 		outFastaParam= relativeToAbsolutePath(basename+".fasta")
 
 	# resume value to user
