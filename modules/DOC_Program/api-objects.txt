@@ -65,9 +65,8 @@ extractSeqFastaFromLen.version	extractSeqFastaFromLen-module.html#version
 extractSeqFastaFromLen.VERSION_DATE	extractSeqFastaFromLen-module.html#VERSION_DATE
 extractSeqFastaFromLen.current_dir	extractSeqFastaFromLen-module.html#current_dir
 filterTabToSNP	filterTabToSNP-module.html
-filterTabToSNP.__package__	filterTabToSNP-module.html#__package__
-filterTabToSNP.version	filterTabToSNP-module.html#version
 filterTabToSNP.VERSION_DATE	filterTabToSNP-module.html#VERSION_DATE
+filterTabToSNP.version	filterTabToSNP-module.html#version
 filterTabToSNP.current_dir	filterTabToSNP-module.html#current_dir
 getdistrgenotypeTAB	getdistrgenotypeTAB-module.html
 getdistrgenotypeTAB.__package__	getdistrgenotypeTAB-module.html#__package__
@@ -170,8 +169,8 @@ struc2runClumpak.VERSION_DATE	struc2runClumpak-module.html#VERSION_DATE
 struc2runClumpak.current_dir	struc2runClumpak-module.html#current_dir
 tabToFasta	tabToFasta-module.html
 tabToFasta.version	tabToFasta-module.html#version
-tabToFasta.__package__	tabToFasta-module.html#__package__
 tabToFasta.transpose_matrix	tabToFasta-module.html#transpose_matrix
+tabToFasta.__package__	tabToFasta-module.html#__package__
 tabToFasta.VERSION_DATE	tabToFasta-module.html#VERSION_DATE
 tabToFasta.current_dir	tabToFasta-module.html#current_dir
 vcfToTab	vcfToTab-module.html
