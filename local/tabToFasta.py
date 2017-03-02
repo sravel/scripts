@@ -140,14 +140,14 @@ if __name__ == "__main__":
 
 
 	if ".gz" in tabFileParam:
-		tabFileIn =  gzip.open(tabFileParam, "r")
+		tabFileIn =  gzip.open(tabFileParam, "rb")
 	else:
-		tabFileIn =  open(tabFileParam, "r")
+		tabFileIn =  open(tabFileParam, "rb")
 
 	if compress:
-		outFile = gzip.open(outFastaParam, "w")
+		outFile = gzip.open(outFastaParam, "wb")
 	else:
-		outFile = open(outFastaParam, "w")
+		outFile = open(outFastaParam, "wb")
 
 	matrice = [line.rstrip().split("\t") for line in tabFileIn]
 	matriceT = transpose_matrix(matrice)
