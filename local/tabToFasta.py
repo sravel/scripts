@@ -149,7 +149,7 @@ if __name__ == "__main__":
 	else:
 		outFile = open(outFastaParam, "wb")
 
-	matrice = [line.rstrip().split("\t") for line in tabFileIn]
+	matrice = [line.decode("utf-8").rstrip().split("\t") for line in tabFileIn]
 	matriceT = transpose_matrix(matrice)
 	matrice=""
 
