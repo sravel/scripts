@@ -145,9 +145,9 @@ if __name__ == "__main__":
 		tabFileIn =  open(tabFileParam, "rb")
 
 	if compress:
-		outFile = gzip.open(outFastaParam, "wb")
+		outFile = gzip.open(outFastaParam, "w")
 	else:
-		outFile = open(outFastaParam, "wb")
+		outFile = open(outFastaParam, "w")
 
 	matrice = [line.decode("utf-8").rstrip().split("\t") for line in tabFileIn]
 	matriceT = transpose_matrix(matrice)
