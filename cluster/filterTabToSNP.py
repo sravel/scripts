@@ -135,6 +135,7 @@ if __name__ == "__main__":
 
 			outFileNamePrefilterNFile.write(header)
 			outFileNameWithoutNFile.write(header)
+			outFileNamewithoutNandRFile.write(header)
 
 			nbtotal, withoutN, prefilter,withoutNandR = 0, 0, 0, 0
 			for line in tabFileIn:
