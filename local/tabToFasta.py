@@ -37,6 +37,9 @@
 	Input infos for running with default values:
 		- \-f <filename>, --fasta <filename>
 						fasta Out (default = TabBasename.fasta)
+		- \-l <filename>, --list <filename>
+						Change Individual ID with custom ID provied table (tab
+						with fisrt col ID, second col custom ID)
 
 """
 
