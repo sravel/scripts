@@ -117,6 +117,7 @@ if __name__ == "__main__":
 	tabFileParam = args.tabFileParam
 	outFastaParam = args.outFastaParam
 	IDParam = args.IDParam
+	compress = args.compress
 
 	basename = tabFileParam.split("/")[-1].split(".")[0]
 	print(basename)

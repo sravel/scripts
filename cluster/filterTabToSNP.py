@@ -143,9 +143,9 @@ if __name__ == "__main__":
 			outFileNamewithoutNandRFile = open(outFileNamewithoutNandR, "w")
 
 		if '.gz' in tabFile:
-			tabFileIn = gzip.open(tabFile, "r")
+			tabFileIn = gzip.open(tabFile, "rU")
 		else:
-			tabFileIn = open(tabFile, "r")
+			tabFileIn = open(tabFile, "rU")
 
 		header = tabFileIn.readline()
 		samples = header.rstrip().split("\t")[3:]
