@@ -110,6 +110,7 @@ if __name__ == "__main__":
 
 	pathFiles = args.filesDir
 	pathFilesOut = args.pathOut
+	compress = args.compress
 
 	# resume value to user
 	print(" - Intput Info:")
