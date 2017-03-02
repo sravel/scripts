@@ -4,6 +4,8 @@
 # @author Sebastien Ravel
 
 
+chmod 755 ./local/*
+chmod 755 ./cluster/*
 
 cp ./local/* ./cluster/
 
@@ -22,5 +24,5 @@ do
 	sed -i -e "s|#!/usr/bin/Rscript --vanilla|#!/usr/local/bioinfo/R/3.2.2/bin/Rscript --vanilla|" $f
 done
 
-
+git add ./cluster/*
 git commit -m "update Cluster scripts" ./cluster/*
