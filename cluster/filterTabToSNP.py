@@ -15,9 +15,9 @@
 	------------------
 
 	Programme extract U from Tab file and build 3 tab:
-	-prefilter: without N for all samples
+	- prefilter: without N for all samples
 	- withoutN: not missing data allow for all samples
-	- withoutNandR: only line with one or more SNP
+	- withoutNandR: only line with one or more SNP without N
 
 
 	Example

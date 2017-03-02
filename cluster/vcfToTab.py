@@ -128,7 +128,6 @@ if __name__ == "__main__":
 		print("\t - Output tab will be gzip")
 	print("\t - Output tab created into directory:  %s\n\n" % pathFilesOut.pathDirectory)
 
-	exit()
 
 	for vcfFile in pathFiles.lsExtInDirToList(["vcf","gz"]):
 		# récupère le nom du fichier vcf In
