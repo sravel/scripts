@@ -58,7 +58,7 @@ from MODULES_SEB import directory, relativeToAbsolutePath, existant_file, printC
 ## Python modules
 import argparse
 from time import localtime, strftime
-import gzip
+import gzip, shutil
 
 ## BIO Python modules
 from Bio import SeqIO
@@ -101,7 +101,7 @@ if __name__ == "__main__":
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-f', '--fasta', metavar="<filename>", required=False, dest = 'outFastaParam', help = 'fasta Out (default = TabBasename.fasta)')
 	files.add_argument('-l', '--list', metavar="<filename>", type=existant_file, required=False, dest = 'IDParam', help = 'Change Individual ID with custom ID provied table (tab with fisrt col ID, second col custom ID), include Reference ID')
-	files.add_argument('-c', '--compress',action ='store_true', dest = 'compress', help = 'gzip output file')
+	files.add_argument('-c', '--compress',action ='store_true', dest = 'compress', help = 'gzip output file ')
 
 
 
@@ -144,10 +144,7 @@ if __name__ == "__main__":
 	else:
 		tabFileIn =  open(tabFileParam, "rb")
 
-	if compress:
-		outFile = gzip.open(outFastaParam, "w")
-	else:
-		outFile = open(outFastaParam, "w")
+	outFile = open(outFastaParam, "w")
 
 	matrice = [line.decode("utf-8").rstrip().split("\t") for line in tabFileIn]
 	matriceT = transpose_matrix(matrice)
@@ -166,6 +163,10 @@ if __name__ == "__main__":
 	tabFileIn.close()
 	outFile.close()
 
+	if compress:
+		with open(outFile, 'rb') as f_in:
+			with gzip.open(outFile+'.gz', 'wb') as f_out:
+				shutil.copyfileobj(f_in, f_out)
 
 	############### Other Methode
 
