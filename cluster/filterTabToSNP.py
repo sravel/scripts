@@ -129,18 +129,18 @@ if __name__ == "__main__":
 		# récupère le nom du fichier tab In
 		basename = tabFile.split("/")[-1].split(".")[0]
 		print(basename)
-		outFileNamePrefilterN = pathFilesOut.pathDirectory+basename+"_prefilterN.tab"
+		outFileNameSNPwithMissing = pathFilesOut.pathDirectory+basename+"_SNPwithMissing.tab"
 		outFileNameWithoutN = pathFilesOut.pathDirectory+basename+"_withoutN.tab"
-		outFileNamewithoutNandR = pathFilesOut.pathDirectory+basename+"_withoutNandR.tab"
+		outFileNameOnlySNP = pathFilesOut.pathDirectory+basename+"_onlySNP.tab"
 
 		if compress:
-			outFileNamePrefilterNFile = gzip.open(outFileNamePrefilterN+".gz", "wb")
+			outFileNameSNPwithMissingFile = gzip.open(outFileNameSNPwithMissing+".gz", "wb")
 			outFileNameWithoutNFile = gzip.open(outFileNameWithoutN+".gz", "wb")
-			outFileNamewithoutNandRFile = gzip.open(outFileNamewithoutNandR+".gz", "wb")
+			outFileNameOnlySNPFile = gzip.open(outFileNameOnlySNP+".gz", "wb")
 		else:
-			outFileNamePrefilterNFile = open(outFileNamePrefilterN, "wb")
+			outFileNameSNPwithMissingFile = open(outFileNameSNPwithMissing, "wb")
 			outFileNameWithoutNFile = open(outFileNameWithoutN, "wb")
-			outFileNamewithoutNandRFile = open(outFileNamewithoutNandR, "wb")
+			outFileNameOnlySNPFile = open(outFileNameOnlySNP, "wb")
 
 		if '.gz' in tabFile:
 			tabFileIn = gzip.open(tabFile, "rb")
@@ -153,11 +153,11 @@ if __name__ == "__main__":
 		nbSample = len(samples)
 
 
-		outFileNamePrefilterNFile.write(bytes(header,"utf-8"))
+		outFileNameSNPwithMissingFile.write(bytes(header,"utf-8"))
 		outFileNameWithoutNFile.write(bytes(header,"utf-8"))
-		outFileNamewithoutNandRFile.write(bytes(header,"utf-8"))
+		outFileNameOnlySNPFile.write(bytes(header,"utf-8"))
 
-		nbtotal, withoutN, prefilter,withoutNandR = 0, 0, 0, 0
+		nbtotal, withoutN, SNPwithMissing,withoutNandR = 0, 0, 0, 0
 		for line in tabFileIn:
 			line = line.decode("utf-8")
 			chrom, pos, ref = line.rstrip().split("\t")[:3]
@@ -172,20 +172,22 @@ if __name__ == "__main__":
 
 					if nbRef!= nbSample:
 						withoutNandR+=1
-						outFileNamewithoutNandRFile.write(bytes(line,"utf-8"))
+						outFileNameOnlySNPFile.write(bytes(line,"utf-8"))
 				else:
-					prefilter+=1
-					outFileNamePrefilterNFile.write(bytes(line,"utf-8"))
+					if nbRef+nbN != nbSample:
+						SNPwithMissing+=1
+						outFileNameSNPwithMissingFile.write(bytes(line,"utf-8"))
+
 			nbtotal+=1
-		outFileNamePrefilterNFile.close()
+		outFileNameSNPwithMissingFile.close()
 		outFileNameWithoutNFile.close()
-		outFileNamewithoutNandRFile.close()
+		outFileNameOnlySNPFile.close()
 		tabFileIn.close()
 
 		print("NBligne total: "+str(nbtotal))
-		print("NBligne prefilter: "+str(prefilter))
+		print("NBligne SNPwithMissing: "+str(SNPwithMissing))
 		print("NBligne withoutN: "+str(withoutN))
-		print("NBligne withoutNandR: "+str(withoutNandR))
+		print("NBligne onlySNP: "+str(withoutNandR))
 
 
 
