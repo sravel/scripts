@@ -164,8 +164,8 @@ if __name__ == "__main__":
 	outFile.close()
 
 	if compress:
-		with open(outFile, 'rb') as f_in:
-			with gzip.open(outFile+'.gz', 'wb') as f_out:
+		with open(outFastaParam, 'rb') as f_in:
+			with gzip.open(outFastaParam+'.gz', 'wb') as f_out:
 				shutil.copyfileobj(f_in, f_out)
 
 	############### Other Methode
