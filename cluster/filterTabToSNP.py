@@ -171,7 +171,9 @@ if __name__ == "__main__":
 
 					if nbRef!= nbSample:
 						withoutNandR+=1
+						SNPwithMissing+=1
 						outFileNameOnlySNPFile.write(bytes(line,"utf-8"))
+						outFileNameSNPwithMissingFile.write(bytes(line,"utf-8"))
 				else:
 					if nbRef+nbN != nbSample:
 						SNPwithMissing+=1
@@ -184,8 +186,8 @@ if __name__ == "__main__":
 		tabFileIn.close()
 
 		print("NBligne total: "+str(nbtotal))
-		print("NBligne SNPwithMissing: "+str(SNPwithMissing))
 		print("NBligne withoutN: "+str(withoutN))
+		print("NBligne SNPwithMissing: "+str(SNPwithMissing))
 		print("NBligne onlySNP: "+str(withoutNandR))
 
 
