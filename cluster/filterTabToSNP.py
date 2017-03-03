@@ -153,9 +153,9 @@ if __name__ == "__main__":
 		nbSample = len(samples)
 
 
-			outFileNamePrefilterNFile.write(bytes(header,"utf-8"))
-			outFileNameWithoutNFile.write(bytes(header,"utf-8"))
-			outFileNamewithoutNandRFile.write(bytes(header,"utf-8"))
+		outFileNamePrefilterNFile.write(bytes(header,"utf-8"))
+		outFileNameWithoutNFile.write(bytes(header,"utf-8"))
+		outFileNamewithoutNandRFile.write(bytes(header,"utf-8"))
 
 		nbtotal, withoutN, prefilter,withoutNandR = 0, 0, 0, 0
 		for line in tabFileIn:
