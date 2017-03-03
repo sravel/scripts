@@ -1,6 +1,6 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-## @package filterTabToSNP.py
+# @package filterTabToSNP.py
 # @author Sebastien Ravel
 """
 	The compress script
@@ -15,15 +15,14 @@
 	------------------
 
 	Programme extract U from Tab file and build 3 tab:
-	- prefilter: without N for all samples
-	- withoutN: not missing data allow for all samples
-	- withoutNandR: only line with one or more SNP without N
-
+		- SNPwithMissing: only line with one or more SNP with N
+		- withoutN: not missing data allow for all samples but ref ok
+		- onlySNP: only line with one or more SNP without N
 
 	Example
 	-------
 
-	>>> /filterTabToSNP.py -t ./ -o ./
+	>>> /filterTabToSNP.py -t ./ -o ./ -c
 
 	Help Programm
 	-------------
@@ -84,9 +83,9 @@ if __name__ == "__main__":
 
 	# Parameters recovery
 	parser = argparse.ArgumentParser(prog=__file__, description='''Programme extract U from Tab file and build 3 tab:
-	- prefilter: without N for all samples
-	- withoutN: not missing data allow for all samples
-	- withoutNandR: only line with one or more SNP''')
+	- SNPwithMissing: only line with one or more SNP with N
+	- withoutN: not missing data allow for all samples but ref ok
+	- onlySNP: only line with one or more SNP without N''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display '+__file__+' version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
