@@ -25,26 +25,21 @@
 	Help Programm
 	-------------
 
-	usage: ./filterTabToSNP.py [-h] [-v] -t <path/to/tabFileDir>
-						[-o <path/to/outputDir>]
-
-	This Programme extract U from Tab file
+	usage: vcfSummaryDepthandRatioAD.py [-h] [-v] -vcf <path/to/vcfFile> [-o <path/to/pdfFile>]
 
 	optional arguments:
 		- \-h, --help
 					show this help message and exit
 		- \-v, --version
-					display ./filterTabToSNP.py version number and exit
+					display vcfSummaryDepthandRatioAD.py version number and exit
 
 	Input mandatory infos for running:
-		- \-t <path/to/tabFileDir>, --tab <path/to/tabFileDir>
-					path to file tab (gzip or not)
+		- \-vcf <path/to/vcfFile>, --vcf <path/to/vcfFile>
+					path to file VCF File
 
 	Input infos for running with default values:
-		- \-o <path/to/outputDir>, --out <path/to/outputDir>
-					Name of output directory
-		- \-c, --compress
-						gzip output file
+		- \-o <path/to/pdfFile>, --out <path/to/pdfFile>
+					Name of output pdf file (default = multipage_pdf.pdf)
 
 """
 
@@ -53,12 +48,10 @@
 ##################################################
 #Import MODULES_SEB
 
-import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
-from pylab import *
 
 import sys, os
 from MODULES_SEB import dict2txt, loadInList, dictDict2txt, printCol, relativeToAbsolutePath, existant_file, directory
