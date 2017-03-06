@@ -113,9 +113,10 @@ mappingOnRef.VERSION_DATE	mappingOnRef-module.html#VERSION_DATE
 mappingOnRef.current_dir	mappingOnRef-module.html#current_dir
 mergeTabFiles	mergeTabFiles-module.html
 mergeTabFiles.join_dfs	mergeTabFiles-module.html#join_dfs
-mergeTabFiles.VERSION_DATE	mergeTabFiles-module.html#VERSION_DATE
-mergeTabFiles.version	mergeTabFiles-module.html#version
+mergeTabFiles.__package__	mergeTabFiles-module.html#__package__
 mergeTabFiles.make_df	mergeTabFiles-module.html#make_df
+mergeTabFiles.version	mergeTabFiles-module.html#version
+mergeTabFiles.VERSION_DATE	mergeTabFiles-module.html#VERSION_DATE
 mergeTabFiles.current_dir	mergeTabFiles-module.html#current_dir
 parseWithEgglib	parseWithEgglib-module.html
 parseWithEgglib.__package__	parseWithEgglib-module.html#__package__
