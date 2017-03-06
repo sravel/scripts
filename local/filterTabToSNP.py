@@ -3,7 +3,7 @@
 # @package filterTabToSNP.py
 # @author Sebastien Ravel
 """
-	The compress script
+	The filterTabToSNP script
 	=========================
 
 	:author: Sebastien Ravel
