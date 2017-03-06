@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>make_ldhatfiles</title>
+  <title>mergeTabFiles</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;make_ldhatfiles
+        Module&nbsp;mergeTabFiles
       </span>
     </td>
     <td>
@@ -44,22 +44,22 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="make_ldhatfiles-module.html"
+            >]&nbsp;|&nbsp;<a href="mergeTabFiles-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module make_ldhatfiles</h1><p class="nomargin-top"><span class="codelink"><a href="make_ldhatfiles-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module mergeTabFiles</h1><p class="nomargin-top"><span class="codelink"><a href="mergeTabFiles-pysrc.html">source&nbsp;code</a></span></p>
 <div class="rst-section" id="rst-script-description">
 <h1 class="heading">Script description</h1>
-<p>This Program takes a tab file and returns LDhat .sites and .locs files</p>
+<p>This Programme merged files (compress or not) into one file (compress or not)</p>
 </div>
 <div class="rst-section" id="rst-example">
 <h1 class="heading">Example</h1>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>make_ldhatfiles.py -wd outPath -t SNP_table.tab -st chomosomeSize.txt</pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>mergeTabFiles.py -f /work/ali/89_Mo/ -o ./mergeTabFile.tab.gz -e tab gz -m N</pre>
 </div>
 <div class="rst-section" id="rst-help-programm">
 <h1 class="heading">Help Programm</h1>
@@ -74,7 +74,7 @@
 </li>
 <li><dl class="rst-first rst-docutils">
 <dt>-v, --version</dt>
-<dd><p class="rst-first rst-last">display make_ldhatfiles.py version number and exit</p>
+<dd><p class="rst-first rst-last">display compress.py version number and exit</p>
 </dd>
 </dl>
 </li>
@@ -83,24 +83,21 @@
 <dt>Input mandatory infos for running:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-wd &lt;path&gt;, --workdir &lt;path&gt;</dt>
-<dd><p class="rst-first rst-last">Path of the directory where files will be created</p>
+<dt>-f &lt;path/to/fileDir&gt;, --files &lt;path/to/fileDir&gt;</dt>
+<dd><p class="rst-first rst-last">Path to files to be merged (compress with gzip or not)</p>
 </dd>
 </dl>
 </li>
 <li><dl class="rst-first rst-docutils">
-<dt>-t &lt;filename&gt;, --tab &lt;filename&gt;</dt>
-<dd><p class="rst-first rst-last">Name of tab file in (input whole path if file is not
-in the current working directory</p>
+<dt>-o &lt;path/to/outputFileName&gt;, --out &lt;path/to/outputFileName&gt;</dt>
+<dd><p class="rst-first rst-last">Name of output file merged if .gz in name autocompress file</p>
 </dd>
 </dl>
 </li>
 <li><dl class="rst-first rst-docutils">
-<dt>-st &lt;filename&gt;, --size_tab &lt;filename&gt;</dt>
-<dd><p class="rst-first rst-last">Name of a tab file containing the identifiers of the
-subunits of division (chromosome/scaffold/contig) and
-their total size. If some scaffolds are not wanted,
-comment the line.</p>
+<dt>-e &lt;str&gt; [&lt;str&gt; ...], --extension &lt;str&gt; [&lt;str&gt; ...]</dt>
+<dd><p class="rst-first rst-last">loop to extension files (multiple format allows, eg:
+-e tab gz for tab and gz files)</p>
 </dd>
 </dl>
 </li>
@@ -109,20 +106,8 @@ comment the line.</p>
 <dt>Input infos for running with default values:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-dt &lt;int&gt;, --datatype &lt;int&gt;</dt>
-<dd><p class="rst-first rst-last">1 for haplotypic data (default), 2 for genotypic</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-m &lt;char&gt;, --methode &lt;char&gt;</dt>
-<dd><p class="rst-first rst-last">rhomap or interval (default)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-f &lt;char&gt;, --flag &lt;char&gt;</dt>
-<dd><p class="rst-first rst-last">L for CO (default), C pour gene conversion</p>
+<dt>-m &lt;string&gt;, --missing &lt;string&gt;</dt>
+<dd><p class="rst-first rst-last">remplace missing data with input value</p>
 </dd>
 </dl>
 </li>
@@ -133,13 +118,13 @@ comment the line.</p>
 
 <hr />
 <div class="fields">      <p><strong>Author:</strong>
-        Sebastien Ravel, Lea Picard
+        Sebastien Ravel
       </p>
       <p><strong>Contact:</strong>
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        08/07/2016
+        02/03/2017
       </p>
       <p><strong>Version:</strong>
         0.1
@@ -167,11 +152,26 @@ comment the line.</p>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="build_sites"></a><span class="summary-sig-name">build_sites</span>(<span class="summary-sig-arg">paramfilename</span>,
-        <span class="summary-sig-arg">dataType</span>)</span><br />
-      fonction adapt&#233;e du script build_concensusV2.py pour fichier .sites LDHAT</td>
+          <td><span class="summary-sig"><a name="make_df"></a><span class="summary-sig-name">make_df</span>(<span class="summary-sig-arg">filename</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="make_ldhatfiles-pysrc.html#build_sites">source&nbsp;code</a></span>
+            <span class="codelink"><a href="mergeTabFiles-pysrc.html#make_df">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="join_dfs"></a><span class="summary-sig-name">join_dfs</span>(<span class="summary-sig-arg">ldf</span>,
+        <span class="summary-sig-arg">rdf</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="mergeTabFiles-pysrc.html#join_dfs">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -201,42 +201,21 @@ comment the line.</p>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="current_dir"></a><span class="summary-name">current_dir</span> = <code title="'/media/sebastien/Bayer/ScriptsSEB/scripts/local/'"><code class="variable-quote">'</code><code class="variable-string">/media/sebastien/Bayer/ScriptsSEB/scripts/local/</code><code class="variable-quote">'</code></code>
+        <a name="current_dir"></a><span class="summary-name">current_dir</span> = <code title="os.path.dirname(os.path.abspath(__file__))+ &quot;/&quot;">os.path.dirname(os.path.abspath(__file__))+ &quot;/&quot;</code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="version"></a><span class="summary-name">version</span> = <code title="'0.1'"><code class="variable-quote">'</code><code class="variable-string">0.1</code><code class="variable-quote">'</code></code>
+        <a name="version"></a><span class="summary-name">version</span> = <code title="&quot;0.1&quot;">&quot;0.1&quot;</code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'15/03/2016'"><code class="variable-quote">'</code><code class="variable-string">15/03/2016</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="completeLDhatPATH"></a><span class="summary-name">completeLDhatPATH</span> = <code title="'completeLDhat'"><code class="variable-quote">'</code><code class="variable-string">completeLDhat</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="statLDhatPATH"></a><span class="summary-name">statLDhatPATH</span> = <code title="'statLDhat'"><code class="variable-quote">'</code><code class="variable-string">statLDhat</code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="None">None</code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'27/01/2017'">'27/01/2017'</code>
     </td>
   </tr>
 </table>
