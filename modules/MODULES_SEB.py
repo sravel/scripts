@@ -1187,8 +1187,7 @@ listFiles=%s\n
 	def testDirExist(self):
 		"""Test l'existance du répertoire"""
 		if os.path.isdir(self.pathDirectory) != True :
-			print("ERROR MODULES_SEB::Class-directory : path '%s' is not valid path" % self.pathDirectory )
-			exit()
+			raise ValueError("ERROR MODULES_SEB::Class-directory : path '%s' is not valid path" % self.pathDirectory )
 
 	def lsInDir(self):
 		"""List all in directory"""
@@ -1229,8 +1228,8 @@ listFiles=%s\n
 				elif os.path.exists(fichier) == True :	# C'est un fichier
 					self.listFiles.append(str(fichier))
 			except:
-				print("ERROR MODULES_SEB::Class-directory : path '%s' is not valide path contain other type (not files or directory)" % self.pathDirectory)
-				exit()
+				raise ValueError("ERROR MODULES_SEB::Class-directory : path '%s' is not valide path contain other type (not files or directory)" % self.pathDirectory)
+
 
 
 
