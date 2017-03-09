@@ -29,11 +29,11 @@
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display compress.py version number and exit
+						display vcfToTab.py version number and exit
 
 	Input mandatory infos for running:
 		- \-vcf <path/to/vcfFileDir>, --vcf <path/to/vcfFileDir>
-						path to file VCF (compress with gzip or not)
+						path to file VCF or directory with VCF  (compress with gzip or not)
 
 	Input infos for running with default values:
 		- \-d <int>, --depth <int>
@@ -91,7 +91,8 @@ if __name__ == "__main__":
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
-	filesreq.add_argument('-vcf', '--vcf', metavar="<path/to/vcfFileDir>",type = directory, required=True, dest = 'filesDir', help = 'path to file VCF (compress with gzip or not)')
+	#filesreq.add_argument('-vcf', '--vcf', metavar="<path/to/vcfFileDir>",type = directory, required=True, dest = 'filesDir', help = 'path to file VCF (compress with gzip or not)')
+	filesreq.add_argument('-vcf', '--vcf', metavar="<path/to/vcfFile>",type = existant_file, required=True, dest = 'filesDir', help = 'path to file VCF or directory with VCF (compress with gzip or not)')
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-d', '--depth', metavar="<int>",type=int, default=10, dest = 'thresholdDepth', help = 'Depth threshold (default = 10)')
@@ -109,16 +110,30 @@ if __name__ == "__main__":
 	print("#              Welcome on vcfToTab (Version " + version + ")               #")
 	print("#################################################################\n\n")
 
+
+	# resume value to user
+	print(" - Intput Info:")
+
 	pathFiles = args.filesDir
+	try:
+		pathFiles = directory(args.filesDir)
+		pathVcfFiles = pathFiles.pathDirectory
+		vcfFiles = pathFiles.lsExtInDirToList(["vcf","gz"])
+		print("\t - VCF files are in : %s" % pathVcfFiles)
+		print("\t - %s vcf file count" % len(vcfFiles))
+	except Exception as e:
+		pathVcfFiles = "/".join(pathFiles.split("/")[:-1])
+		vcfFiles = [pathFiles]
+		print("\t - VCF file is : %s" % pathFiles)
+
+
 	pathFilesOut = args.pathOut
 	compress = args.compress
 	thresholdDepth = args.thresholdDepth
 	thresholdRatio = args.thresholdRatio
 
-	# resume value to user
-	print(" - Intput Info:")
-	print("\t - VCF files are in : %s" % pathFiles.pathDirectory)
-	print("\t - %s vcf file count" % len(pathFiles.lsExtInDirToList(["vcf","gz"])))
+
+
 
 	print("\t - Depth threshold : %s" % thresholdDepth)
 	print("\t - RatioAD threshold : %s" % thresholdRatio)
@@ -129,7 +144,8 @@ if __name__ == "__main__":
 	print("\t - Output tab created into directory:  %s\n\n" % pathFilesOut.pathDirectory)
 
 
-	for vcfFile in pathFiles.lsExtInDirToList(["vcf","gz"]):
+
+	for vcfFile in vcfFiles:
 		# récupère le nom du fichier vcf In
 		basename = vcfFile.split("/")[-1].split(".")[0]
 		extention = vcfFile.split("/")[-1].split(".")[-1]
