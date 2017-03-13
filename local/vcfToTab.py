@@ -199,10 +199,15 @@ if __name__ == "__main__":
 			pos+=1											# egglib commence la position à 0 donc on ajoute 1
 
 
-			if chrom not in dicoAlreadyFind.keys() or reset == 10:
+			if chrom not in dicoAlreadyFind.keys() or reset == 100:
+				try:
+					oldPos = dicoAlreadyFind[chrom][-1]
+				except Exception as e:
+					oldPos = 0
+
 				dicoAlreadyFind[chrom] = []
 				reset = 0
-			if pos not in dicoAlreadyFind[chrom]:
+			if pos not in dicoAlreadyFind[chrom] and oldPos != pos:
 				reset+=1
 				dicoAlreadyFind[chrom].append(pos)
 
