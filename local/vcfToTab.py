@@ -189,6 +189,7 @@ if __name__ == "__main__":
 		outputFile.write(txtout)
 
 		dicoAlreadyFind = {}
+		reset = 0
 		for line in vcfFileOpen:
 			if extention == "gz":							# Parcours des positions du vcf si compresser
 				chrom, pos, nall = vcf.read_line(line)
@@ -198,9 +199,11 @@ if __name__ == "__main__":
 			pos+=1											# egglib commence la position à 0 donc on ajoute 1
 
 
-			if chrom not in dicoAlreadyFind.keys():
+			if chrom not in dicoAlreadyFind.keys() or reset == 10:
 				dicoAlreadyFind[chrom] = []
+				reset = 0
 			if pos not in dicoAlreadyFind[chrom]:
+				reset+=1
 				dicoAlreadyFind[chrom].append(pos)
 
 				variant = vcf.last_variant()					# récupère la ligne du vcf
