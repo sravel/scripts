@@ -54,6 +54,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 import sys, os
+current_dir = os.path.dirname(os.path.abspath(__file__))+"/"
+sys.path.insert(1,current_dir+'../modules/')
 from MODULES_SEB import dict2txt, loadInList, dictDict2txt, printCol, relativeToAbsolutePath, existant_file, directory
 
 ## Python modules
