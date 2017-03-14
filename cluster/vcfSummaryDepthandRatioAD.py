@@ -47,7 +47,7 @@
 ## Modules
 ##################################################
 #Import MODULES_SEB
-
+import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -144,8 +144,7 @@ if __name__ == "__main__":
 		pos+=1
 		variant = vcf.last_variant()
 
-		#listDepth = []
-		#listADratio = []
+
 		i=0
 		for dico in variant.samples:							# variant.samples retourne une liste de dictionnaire / individu (dictionnaire avec 'GT' minimum)
 			sample = samples[i]
@@ -153,7 +152,6 @@ if __name__ == "__main__":
 			if "DP" in dico:
 				if dico ['DP'] != ():
 					dicoDepthRatio[sample]["depth"].append(dico['DP'][0])
-					#listDepth.append(dico['DP'][0])
 			else:
 				#listDepth.append(0)
 				dicoDepthRatio[sample]["depth"].append(0)
@@ -165,13 +163,7 @@ if __name__ == "__main__":
 				if nbReadsAlt != 0:
 					ADratio = float(nbReadsRef)/float(nbReadsAlt)
 					dicoDepthRatio[sample]["ratioAD"].append(ADratio)
-					#listADratio.append(ADratio)
-		#i=0
-		#for depth, ratioADindiv in zip(listDepth, listADratio):
-			#sample = samples[i]
-			#dicoDepthRatio[sample]["depth"].append(depth)
-			#dicoDepthRatio[sample]["ratioAD"].append(ratioADindiv)
-			#i+=1
+			i+=1
 
 
 	# Create the PdfPages object to which we will save the pages:
@@ -181,25 +173,36 @@ if __name__ == "__main__":
 				print sample
 				listDepth = dicoDepthRatio[sample]["depth"]
 				listADratio = dicoDepthRatio[sample]["ratioAD"]
+				#print len(listDepth)
+				#print len(listADratio)
 
-				fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=False, figsize=(15,7), facecolor='w', edgecolor='w')
-				fig.subplots_adjust(hspace=0.2)
+				if len(listDepth) !=0 or len(listADratio):
+					fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=False, figsize=(15,7), facecolor='w', edgecolor='w')
+					fig.subplots_adjust(hspace=0.2)
 
-				bins = range(0,260,5)
-				ax1.hist(listDepth,bins)										#histogramme des longueurs
-				ax1.set_title("%s -- Depth" % sample, size='large', weight='bold')
-				ax1.set_xlabel("Coverage", size='large')
-				ax1.set_ylabel("Frequency", size='large')
-				#plt.close()
-				#pdf.savefig()
+					if len(listDepth) !=0 :
+						#print ">>>> TEST listDepth for sample: " ,sample
+						bins = range(0,260,5)
+						ax1.hist(listDepth,bins)										#histogramme des longueurs
+						ax1.set_title("%s -- Depth" % sample, size='large', weight='bold')
+						ax1.set_xlabel("Coverage", size='large')
+						ax1.set_ylabel("Frequency", size='large')
+					else:
+						#print ">>>> ERROR listDepth for sample: " ,sample
 
-				bins = np.arange(0,1,0.1)
-				ax2.hist(listADratio,bins)										#histogramme des longueurs
-				ax2.set_title("%s -- ratio nbReadsRef/nbReadsAlt" % sample, size='large', weight='bold')
-				ax2.set_xlabel("nbReadsRef/nbReadsAlt", size='large')
-				ax2.set_ylabel("Frequency", size='large')
-				pdf.savefig()
-				plt.close()
+					if len(listADratio):
+						#print ">>>> TEST listADratio for sample: " ,sample
+						bins = np.arange(0,1,0.1)
+						ax2.hist(listADratio,bins)										#histogramme des longueurs
+						ax2.set_title("%s -- ratio nbReadsRef/nbReadsAlt" % sample, size='large', weight='bold')
+						ax2.set_xlabel("nbReadsRef/nbReadsAlt", size='large')
+						ax2.set_ylabel("Frequency", size='large')
+					else:
+						#print ">>>> ERROR listADratio for sample: " ,sample
+
+					pdf.savefig()
+					plt.close()
+
 			except Exception as e:
 				print e
 				print ">>>> ERROR for sample: " ,sample
