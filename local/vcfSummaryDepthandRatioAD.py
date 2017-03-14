@@ -177,28 +177,33 @@ if __name__ == "__main__":
 	# Create the PdfPages object to which we will save the pages:
 	with PdfPages(outFile) as pdf:
 		for sample, dico in dicoDepthRatio.items():
-			print sample
-			listDepth = dicoDepthRatio[sample]["depth"]
-			listADratio = dicoDepthRatio[sample]["ratioAD"]
+			try:
+				print sample
+				listDepth = dicoDepthRatio[sample]["depth"]
+				listADratio = dicoDepthRatio[sample]["ratioAD"]
 
-			fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=False, figsize=(15,7), facecolor='w', edgecolor='w')
-			fig.subplots_adjust(hspace=0.2)
+				fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, sharey=False, figsize=(15,7), facecolor='w', edgecolor='w')
+				fig.subplots_adjust(hspace=0.2)
 
-			bins = range(0,260,5)
-			ax1.hist(listDepth,bins)										#histogramme des longueurs
-			ax1.set_title("%s -- Depth" % sample, size='large', weight='bold')
-			ax1.set_xlabel("Coverage", size='large')
-			ax1.set_ylabel("Frequency", size='large')
-			#plt.close()
-			#pdf.savefig()
+				bins = range(0,260,5)
+				ax1.hist(listDepth,bins)										#histogramme des longueurs
+				ax1.set_title("%s -- Depth" % sample, size='large', weight='bold')
+				ax1.set_xlabel("Coverage", size='large')
+				ax1.set_ylabel("Frequency", size='large')
+				#plt.close()
+				#pdf.savefig()
 
-			bins = np.arange(0,1,0.1)
-			ax2.hist(listADratio,bins)										#histogramme des longueurs
-			ax2.set_title("%s -- ratio nbReadsRef/nbReadsAlt" % sample, size='large', weight='bold')
-			ax2.set_xlabel("nbReadsRef/nbReadsAlt", size='large')
-			ax2.set_ylabel("Frequency", size='large')
-			pdf.savefig()
-			plt.close()
+				bins = np.arange(0,1,0.1)
+				ax2.hist(listADratio,bins)										#histogramme des longueurs
+				ax2.set_title("%s -- ratio nbReadsRef/nbReadsAlt" % sample, size='large', weight='bold')
+				ax2.set_xlabel("nbReadsRef/nbReadsAlt", size='large')
+				ax2.set_ylabel("Frequency", size='large')
+				pdf.savefig()
+				plt.close()
+			except Exception as e:
+				print e
+				print ">>>> ERROR for sample: " ,sample
+
 
 
 	print("\n\n#################################################################")
