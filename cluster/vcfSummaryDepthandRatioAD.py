@@ -187,7 +187,7 @@ if __name__ == "__main__":
 						ax1.set_title("%s -- Depth" % sample, size='large', weight='bold')
 						ax1.set_xlabel("Coverage", size='large')
 						ax1.set_ylabel("Frequency", size='large')
-					else:
+					#else:
 						#print ">>>> ERROR listDepth for sample: " ,sample
 
 					if len(listADratio):
@@ -197,7 +197,7 @@ if __name__ == "__main__":
 						ax2.set_title("%s -- ratio nbReadsRef/nbReadsAlt" % sample, size='large', weight='bold')
 						ax2.set_xlabel("nbReadsRef/nbReadsAlt", size='large')
 						ax2.set_ylabel("Frequency", size='large')
-					else:
+					#else:
 						#print ">>>> ERROR listADratio for sample: " ,sample
 
 					pdf.savefig()
