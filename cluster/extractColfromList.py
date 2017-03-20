@@ -55,11 +55,12 @@ from MODULES_SEB import loadInList, relativeToAbsolutePath, existant_file
 from time import localtime, strftime
 ## Python modules
 import argparse
+import gzip
 
 ##################################################
 ## Variables Globales
-version="0.1"
-VERSION_DATE='04/01/2016'
+version="0.2"
+VERSION_DATE='20/03/2017'
 #debug="False"
 #debug="True"
 
@@ -103,10 +104,14 @@ if __name__ == "__main__":
 	#loading IDs to be kept in a list
 	listNameKeep = loadInList(IDlist)
 
-	fichier = open(tableFile,"r")
+	if ".gz" in tableFile:
+		fichier = gzip.open(tableFile,"rb")
+	else:
+		fichier = open(tableFile,"rb")
+
 
 	#loading column IDs in a list
-	header = fichier.readline().rstrip().split("\t")
+	header = fichier.readline().decode("utf-8").rstrip().split("\t")
 
 	indice = 0
 	listIndiceKeep = []
@@ -120,6 +125,7 @@ if __name__ == "__main__":
 	txtListIndiceKeep = ",".join(listIndiceKeep)
 	#print(txtListIndiceKeep)
 
+	print("\n\ncut -f"+txtListIndiceKeep+" "+tableFile+" > "+tableFileOut)
 	os.system("cut -f"+txtListIndiceKeep+" "+tableFile+" > "+tableFileOut)
 
 	print("\n\nExecution summary:")
