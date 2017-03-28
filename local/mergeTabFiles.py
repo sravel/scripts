@@ -146,7 +146,7 @@ if __name__ == "__main__":
 	print(final_df.head())
 
 	# sauvegarder la dataframe dans un fichier
-	if ".gz" in outFile:
+	if "gz" in outFile.split(".")[-1]:
 		final_df.to_csv(outFile, sep="\t", index=False, compression="gzip", na_rep=missingParam)
 	else:
 		final_df.to_csv(outFile, sep="\t", index=False, na_rep=missingParam)
