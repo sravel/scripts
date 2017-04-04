@@ -96,7 +96,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-d', '--depth', metavar="<int>",type=int, default=10, dest = 'thresholdDepth', help = 'Depth threshold (default = 10)')
-	files.add_argument('-r', '--ratioAD', metavar="<int>",type=float, default=0.9, dest = 'thresholdRatio', help = 'RatioAD threshold (default = 0.9)')
+	files.add_argument('-r', '--ratioAD', metavar="<float>",type=float, default=0.9, dest = 'thresholdRatio', help = 'RatioAD threshold (default = 0.9)')
 	files.add_argument('-o', '--out', metavar="<path/to/outputDir>",type = directory, default="./", dest = 'pathOut', help = 'Name of output directory')
 	files.add_argument('-c', '--compress',action ='store_true', dest = 'compress', help = 'gzip output file')
 
