@@ -590,6 +590,9 @@ class DAPC( formDAPC, baseDAPC ):
 			# Comptage du nombre d'individus, de markers et ncode:
 			self.nbindParam = len(self.dicoMatrice.keys())-1
 
+			if self.nbindParam != len(self.orderList):
+				txtInfo += "WARNING: More individu in Matrice file (%s) than Order label file (%s)!!!\n" % (self.nbindParam, len(self.orderList))
+
 			fileMat = open(self.matricePathFile,"r")
 			header = fileMat.readline()
 			self.nbmarkParam = len(header.split("\t"))
