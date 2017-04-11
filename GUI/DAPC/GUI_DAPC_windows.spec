@@ -6,7 +6,7 @@ block_cipher = None
 added_files = [ ('includes/\\*', 'includes'), ]
 
 a = Analysis(['GUI_DAPC.py'],
-             pathex=['E:\\Bayer\\01-interface\\DAPC\\'],
+             pathex=['E:\\Bayer\\ScriptsSEB\\scripts\\GUI\\DAPC\\'],
              binaries=None,
              datas=added_files,
              hiddenimports=[],
