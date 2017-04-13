@@ -259,16 +259,17 @@ if __name__ == "__main__":
 
 					# Pour récupérer la liste des génotypes de toute nos souches
 					genotypes = vcf.get_genotypes()
+					alleles = [variant.alleles[i] for i in genotypes.alleles()]
 					#print "genotype",genotypes.as_list()
 
 					# transforme egglib list (0,1) to ref/alt
-					variantList = [ str(vartmp[0]).replace("0",ref).replace("1",alt).replace("2",alt2).replace("3",alt3).replace("None","N") for vartmp in genotypes.as_list()[0]]
+					variantList = ['N' if i is None else alleles[i] for i in genotypes.as_list(flat=True)[0]]
 
 					try:
 						# filtre sur la profondeur et le ratio AD:
 						variantFilterList = []
 						i=0
-						for variant in variantList[0:vcf.num_samples]:
+						for variant in variantList:
 							depth = listDepth[i]
 							ratioAD = listADratio[i]
 							if int(depth) >= thresholdDepth:
