@@ -64,7 +64,7 @@ from MODULES_SEB import replace_all, relativeToAbsolutePath, existant_file, prin
 
 
 ## Python modules
-import argparse
+import argparse, randomInt
 from time import localtime, strftime
 
 ##################################################
@@ -278,6 +278,8 @@ if __name__ == "__main__":
 			shOut=open(outputSHDir+"/"+str(count)+"_structure.sh","w")
 			shOut.write("module load bioinfo/structure/2.3.4\n")
 			shOut.write("cd "+workingDir+"/repetition_"+str(rep)+"/population_"+str(pop)+"/\n")
+			randomInt = randint(1, 60)
+			shOut.write("sleep %s" % randomInt)
 			shOut.write("structure")
 			shOut.close()
 			count+=1
