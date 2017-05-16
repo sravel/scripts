@@ -88,20 +88,33 @@ s.class(pca1$li, W$pop, sub = "PCA 1-2", csub = 2) #graphique de la PCA
 add.scatter.eig(pca1$eig[1:5], nf = 3, xax = 1, yax = 2, posi = "top") #ajout des valeurs propres en cartouche sur le graphique précédent
 dev.off()
 
+
+####################################################
+## manual select value for PCA DA value and view BIC graph
+####################################################
 # For the first time, if you keep PCA value to NULL, change n.clust=2 to n.clust=NULL, then run line
 # this use intercative mode to help choose the PCA retains value with graphic.
 # then produce BIC graphic to choose number of pop optimal.
-# When you are choose the PCA value, go to GUI_DAPC to rebuild script and then run with source()
+
+fcl.BIC <- find.clusters(W, n.pca=NULL,n.clust=NULL, stat="BIC", n.iter=5000, n.start=30, scale=FALSE)
+dapc <- dapc(W, pop=fcl.BIC$grp, n.pca=NULL,n.da=NULL, scale=FALSE, pca.select="nbEig")
+
+# When you are choose the PCA and DA value, add to variable or go to GUI_DAPC and rebuild R script with value
 
 """
 
 DAPCchange = """
+# Change value for all K
+PCARETAINValue <- **PCARETAIN**
+DARETAINValue <- **DARETAIN**
+
+
 ####################################################
 ## TEST K = **pop** value
 ####################################################
 #Kmeans
-fcl.BIC <- find.clusters(W, n.pca=**PCARETAIN**,n.clust=**pop**, stat="BIC", n.iter=5000, n.start=30, scale=FALSE)
-dapc <- dapc(W, pop=fcl.BIC$grp, n.pca=**PCARETAIN**,n.da=**DARETAIN**, scale=FALSE, pca.select="nbEig")
+fcl.BIC <- find.clusters(W, n.pca=PCARETAINValue,n.clust=**pop**, stat="BIC", n.iter=5000, n.start=30, scale=FALSE)
+dapc <- dapc(W, pop=fcl.BIC$grp, n.pca=PCARETAINValue,n.da=DARETAINValue, scale=FALSE, pca.select="nbEig")
 
 #graphique de la DAPC
 png("**current_dir**DAPC_K**pop**.png",width = 1500, height = 1000, res=200)
