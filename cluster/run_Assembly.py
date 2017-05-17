@@ -143,7 +143,7 @@ if __name__ == "__main__":
 		if basename not in listFiles:
 			listFiles.append(basename)
 			txt = cmd2
-			txt += """/NAS/BAILLARGUET/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+pathFileOut.pathDirectory+basename+""" --outdir """+pathFileOut.pathDirectory+basename+""" --outprefix """+basename+""" --log """+pathFileOut.pathDirectory+basename+"""/log.txt\n"""
+			txt += """/gs7k1/projects/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+pathFileOut.pathDirectory+basename+""" --outdir """+pathFileOut.pathDirectory+basename+""" --outprefix """+basename+""" --log """+pathFileOut.pathDirectory+basename+"""/log.txt\n"""
 			with open(outputSHDir+"/"+str(count)+"-assembly.sh","w") as shScript:
 				shScript.write(txt)
 			count+=1
