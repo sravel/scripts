@@ -19,7 +19,7 @@
 	Example
 	-------
 
-	>>> extractColfromList.py -pi NT_ALIGN/
+	>>> extractColfromList.py -ti tabFile.tab -l listID -to newTabFile.tab
 
 	Help Programm
 	-------------
