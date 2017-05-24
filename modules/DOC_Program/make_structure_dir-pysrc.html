@@ -178,7 +178,7 @@ vcfToTabSplit.current_dir" class="py-name" href="#" onclick="return doclink('lin
 <a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
 <a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
 <a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-comment">## Python modules</tt> </tt>
-<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">argparse</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">argparse</tt><tt class="py-op">,</tt> <tt class="py-name">randomInt</tt> </tt>
 <a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">time</tt> <tt class="py-keyword">import</tt> <tt class="py-name">localtime</tt><tt class="py-op">,</tt> <tt class="py-name">strftime</tt> </tt>
 <a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"> </tt>
 <a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-comment">##################################################</tt> </tt>
@@ -582,51 +582,53 @@ vcfToTabSplit.current_dir" class="py-name" href="#" onclick="return doclink('lin
 <a name="L278"></a><tt class="py-lineno">278</tt>  <tt class="py-line">                        <tt class="py-name">shOut</tt><tt class="py-op">=</tt><tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">outputSHDir</tt><tt class="py-op">+</tt><tt class="py-string">"/"</tt><tt class="py-op">+</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">count</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"_structure.sh"</tt><tt class="py-op">,</tt><tt class="py-string">"w"</tt><tt class="py-op">)</tt> </tt>
 <a name="L279"></a><tt class="py-lineno">279</tt>  <tt class="py-line">                        <tt class="py-name">shOut</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">"module load bioinfo/structure/2.3.4\n"</tt><tt class="py-op">)</tt> </tt>
 <a name="L280"></a><tt class="py-lineno">280</tt>  <tt class="py-line">                        <tt class="py-name">shOut</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">"cd "</tt><tt class="py-op">+</tt><tt class="py-name">workingDir</tt><tt class="py-op">+</tt><tt class="py-string">"/repetition_"</tt><tt class="py-op">+</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">rep</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"/population_"</tt><tt class="py-op">+</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">pop</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"/\n"</tt><tt class="py-op">)</tt> </tt>
-<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">                        <tt class="py-name">shOut</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">"structure"</tt><tt class="py-op">)</tt> </tt>
-<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">                        <tt class="py-name">shOut</tt><tt class="py-op">.</tt><tt class="py-name">close</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
-<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">                        <tt class="py-name">count</tt><tt class="py-op">+=</tt><tt class="py-number">1</tt> </tt>
-<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line">                        <tt class="py-comment">#  &#233;criture du scripts qsub</tt> </tt>
-<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line"> </tt>
-<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line"> </tt>
+<a name="L281"></a><tt class="py-lineno">281</tt>  <tt class="py-line">                        <tt class="py-name">randomInt</tt> <tt class="py-op">=</tt> <tt class="py-name">randint</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-number">60</tt><tt class="py-op">)</tt> </tt>
+<a name="L282"></a><tt class="py-lineno">282</tt>  <tt class="py-line">                        <tt class="py-name">shOut</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">"sleep %s"</tt> <tt class="py-op">%</tt> <tt class="py-name">randomInt</tt><tt class="py-op">)</tt> </tt>
+<a name="L283"></a><tt class="py-lineno">283</tt>  <tt class="py-line">                        <tt class="py-name">shOut</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-string">"structure"</tt><tt class="py-op">)</tt> </tt>
+<a name="L284"></a><tt class="py-lineno">284</tt>  <tt class="py-line">                        <tt class="py-name">shOut</tt><tt class="py-op">.</tt><tt class="py-name">close</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L285"></a><tt class="py-lineno">285</tt>  <tt class="py-line">                        <tt class="py-name">count</tt><tt class="py-op">+=</tt><tt class="py-number">1</tt> </tt>
+<a name="L286"></a><tt class="py-lineno">286</tt>  <tt class="py-line">                        <tt class="py-comment">#  &#233;criture du scripts qsub</tt> </tt>
 <a name="L287"></a><tt class="py-lineno">287</tt>  <tt class="py-line"> </tt>
-<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line">        <tt class="py-comment">#shqsub=open(workingDir+"sh_scripts/Qsub_all_structure.sh","w")                                                                                         # cr&#233;ation d'un script qsub pour lancer les sous-scripts</tt> </tt>
-<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line">                        <tt class="py-comment">#shqsub.write(qsubtxt+workingDir+"/sh_scripts/repetition_"+str(rep)+"_population_"+str(pop)+".sh\n")</tt> </tt>
-<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">        <tt class="py-comment">#shqsub.close()</tt> </tt>
-<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line"> </tt>
-<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line">        <tt class="py-name">headerSGE</tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
-<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line"><tt class="py-string">#!/bin/bash</tt> </tt>
-<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
-<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line"><tt class="py-string">#$ -N structure</tt> </tt>
-<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line"><tt class="py-string">#$ -cwd</tt> </tt>
-<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line"><tt class="py-string">#$ -V</tt> </tt>
-<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line"><tt class="py-string">#$ -e """</tt><tt class="py-op">+</tt><tt class="py-name">outputTrashDir</tt><tt class="py-op">+</tt><tt class="py-string">"""</tt> </tt>
-<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line"><tt class="py-string">#$ -o """</tt><tt class="py-op">+</tt><tt class="py-name">outputTrashDir</tt><tt class="py-op">+</tt><tt class="py-string">"""</tt> </tt>
-<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line"><tt class="py-string">#$ -q long.q</tt> </tt>
-<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line"><tt class="py-string">#$ -t 1-"""</tt><tt class="py-op">+</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">count</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"""</tt> </tt>
-<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line"><tt class="py-string">#$ -tc 100</tt> </tt>
-<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line"><tt class="py-string">#$ -S /bin/bash</tt> </tt>
-<a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
-<a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line"><tt class="py-string">/bin/bash """</tt><tt class="py-op">+</tt><tt class="py-name">outputSHDir</tt><tt class="py-op">+</tt><tt class="py-string">"""${SGE_TASK_ID}_structure.sh"""</tt> </tt>
-<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line"> </tt>
-<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line"> </tt>
-<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">SGENameFile</tt><tt class="py-op">,</tt> <tt class="py-string">"w"</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">SGEFile</tt><tt class="py-op">:</tt> </tt>
-<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line">                <tt class="py-name">SGEFile</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">headerSGE</tt><tt class="py-op">)</tt> </tt>
-<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line"> </tt>
-<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line"> </tt>
-<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line">                <tt class="py-comment">## Display a summary of the execution</tt> </tt>
-<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\n Execution summary:"</tt><tt class="py-op">)</tt> </tt>
-<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"  - %i directories have been created corresponding to the number repeats,\n   each with %i subdirectories corresponding to the variation number of populations (K).\n"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">nbRepmParam</tt><tt class="py-op">,</tt> <tt class="py-name">nbpopmParam</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
-<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line"> </tt>
-<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line">        <tt id="link-22" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-22', 'printCol', 'link-5');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Class Method run_pyinstaller.printCol.purple()=run_pyinstaller.printCol-class.html#purple"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-23', 'purple', 'link-23');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"  - To launch Structure execute: \n\</tt> </tt>
-<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line"><tt class="py-string">\tqsub %s\n"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">SGEFile</tt><tt class="py-op">.</tt><tt class="py-name">name</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
-<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line"> </tt>
-<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">" on the cluster."</tt><tt class="py-op">)</tt> </tt>
+<a name="L288"></a><tt class="py-lineno">288</tt>  <tt class="py-line"> </tt>
+<a name="L289"></a><tt class="py-lineno">289</tt>  <tt class="py-line"> </tt>
+<a name="L290"></a><tt class="py-lineno">290</tt>  <tt class="py-line">        <tt class="py-comment">#shqsub=open(workingDir+"sh_scripts/Qsub_all_structure.sh","w")                                                                                         # cr&#233;ation d'un script qsub pour lancer les sous-scripts</tt> </tt>
+<a name="L291"></a><tt class="py-lineno">291</tt>  <tt class="py-line">                        <tt class="py-comment">#shqsub.write(qsubtxt+workingDir+"/sh_scripts/repetition_"+str(rep)+"_population_"+str(pop)+".sh\n")</tt> </tt>
+<a name="L292"></a><tt class="py-lineno">292</tt>  <tt class="py-line">        <tt class="py-comment">#shqsub.close()</tt> </tt>
+<a name="L293"></a><tt class="py-lineno">293</tt>  <tt class="py-line"> </tt>
+<a name="L294"></a><tt class="py-lineno">294</tt>  <tt class="py-line">        <tt class="py-name">headerSGE</tt> <tt class="py-op">=</tt> <tt class="py-string">"""</tt> </tt>
+<a name="L295"></a><tt class="py-lineno">295</tt>  <tt class="py-line"><tt class="py-string">#!/bin/bash</tt> </tt>
+<a name="L296"></a><tt class="py-lineno">296</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L297"></a><tt class="py-lineno">297</tt>  <tt class="py-line"><tt class="py-string">#$ -N structure</tt> </tt>
+<a name="L298"></a><tt class="py-lineno">298</tt>  <tt class="py-line"><tt class="py-string">#$ -cwd</tt> </tt>
+<a name="L299"></a><tt class="py-lineno">299</tt>  <tt class="py-line"><tt class="py-string">#$ -V</tt> </tt>
+<a name="L300"></a><tt class="py-lineno">300</tt>  <tt class="py-line"><tt class="py-string">#$ -e """</tt><tt class="py-op">+</tt><tt class="py-name">outputTrashDir</tt><tt class="py-op">+</tt><tt class="py-string">"""</tt> </tt>
+<a name="L301"></a><tt class="py-lineno">301</tt>  <tt class="py-line"><tt class="py-string">#$ -o """</tt><tt class="py-op">+</tt><tt class="py-name">outputTrashDir</tt><tt class="py-op">+</tt><tt class="py-string">"""</tt> </tt>
+<a name="L302"></a><tt class="py-lineno">302</tt>  <tt class="py-line"><tt class="py-string">#$ -q long.q</tt> </tt>
+<a name="L303"></a><tt class="py-lineno">303</tt>  <tt class="py-line"><tt class="py-string">#$ -t 1-"""</tt><tt class="py-op">+</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">count</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">+</tt><tt class="py-string">"""</tt> </tt>
+<a name="L304"></a><tt class="py-lineno">304</tt>  <tt class="py-line"><tt class="py-string">#$ -tc 100</tt> </tt>
+<a name="L305"></a><tt class="py-lineno">305</tt>  <tt class="py-line"><tt class="py-string">#$ -S /bin/bash</tt> </tt>
+<a name="L306"></a><tt class="py-lineno">306</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L307"></a><tt class="py-lineno">307</tt>  <tt class="py-line"><tt class="py-string">/bin/bash """</tt><tt class="py-op">+</tt><tt class="py-name">outputSHDir</tt><tt class="py-op">+</tt><tt class="py-string">"""${SGE_TASK_ID}_structure.sh"""</tt> </tt>
+<a name="L308"></a><tt class="py-lineno">308</tt>  <tt class="py-line"> </tt>
+<a name="L309"></a><tt class="py-lineno">309</tt>  <tt class="py-line"> </tt>
+<a name="L310"></a><tt class="py-lineno">310</tt>  <tt class="py-line">        <tt class="py-keyword">with</tt> <tt class="py-name">open</tt><tt class="py-op">(</tt><tt class="py-name">SGENameFile</tt><tt class="py-op">,</tt> <tt class="py-string">"w"</tt><tt class="py-op">)</tt> <tt class="py-keyword">as</tt> <tt class="py-name">SGEFile</tt><tt class="py-op">:</tt> </tt>
+<a name="L311"></a><tt class="py-lineno">311</tt>  <tt class="py-line">                <tt class="py-name">SGEFile</tt><tt class="py-op">.</tt><tt class="py-name">write</tt><tt class="py-op">(</tt><tt class="py-name">headerSGE</tt><tt class="py-op">)</tt> </tt>
+<a name="L312"></a><tt class="py-lineno">312</tt>  <tt class="py-line"> </tt>
+<a name="L313"></a><tt class="py-lineno">313</tt>  <tt class="py-line"> </tt>
+<a name="L314"></a><tt class="py-lineno">314</tt>  <tt class="py-line">                <tt class="py-comment">## Display a summary of the execution</tt> </tt>
+<a name="L315"></a><tt class="py-lineno">315</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\n Execution summary:"</tt><tt class="py-op">)</tt> </tt>
+<a name="L316"></a><tt class="py-lineno">316</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"  - %i directories have been created corresponding to the number repeats,\n   each with %i subdirectories corresponding to the variation number of populations (K).\n"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">nbRepmParam</tt><tt class="py-op">,</tt> <tt class="py-name">nbpopmParam</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L317"></a><tt class="py-lineno">317</tt>  <tt class="py-line"> </tt>
+<a name="L318"></a><tt class="py-lineno">318</tt>  <tt class="py-line">        <tt id="link-22" class="py-name"><a title="run_pyinstaller.printCol" class="py-name" href="#" onclick="return doclink('link-22', 'printCol', 'link-5');">printCol</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Class Method run_pyinstaller.printCol.purple()=run_pyinstaller.printCol-class.html#purple"><a title="run_pyinstaller.printCol.purple" class="py-name" href="#" onclick="return doclink('link-23', 'purple', 'link-23');">purple</a></tt><tt class="py-op">(</tt><tt class="py-string">"  - To launch Structure execute: \n\</tt> </tt>
+<a name="L319"></a><tt class="py-lineno">319</tt>  <tt class="py-line"><tt class="py-string">\tqsub %s\n"</tt> <tt class="py-op">%</tt> <tt class="py-op">(</tt><tt class="py-name">SGEFile</tt><tt class="py-op">.</tt><tt class="py-name">name</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
 <a name="L320"></a><tt class="py-lineno">320</tt>  <tt class="py-line"> </tt>
-<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\033[0m\nStop time: "</tt><tt class="py-op">,</tt> <tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d-%m-%Y_%H:%M:%S"</tt><tt class="py-op">,</tt> <tt class="py-name">localtime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
-<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
-<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#                        End of execution                       #"</tt><tt class="py-op">)</tt> </tt>
+<a name="L321"></a><tt class="py-lineno">321</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">" on the cluster."</tt><tt class="py-op">)</tt> </tt>
+<a name="L322"></a><tt class="py-lineno">322</tt>  <tt class="py-line"> </tt>
+<a name="L323"></a><tt class="py-lineno">323</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"\033[0m\nStop time: "</tt><tt class="py-op">,</tt> <tt class="py-name">strftime</tt><tt class="py-op">(</tt><tt class="py-string">"%d-%m-%Y_%H:%M:%S"</tt><tt class="py-op">,</tt> <tt class="py-name">localtime</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
 <a name="L324"></a><tt class="py-lineno">324</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
-<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L325"></a><tt class="py-lineno">325</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#                        End of execution                       #"</tt><tt class="py-op">)</tt> </tt>
+<a name="L326"></a><tt class="py-lineno">326</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt><tt class="py-op">(</tt><tt class="py-string">"#################################################################"</tt><tt class="py-op">)</tt> </tt>
+<a name="L327"></a><tt class="py-lineno">327</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->
@@ -656,7 +658,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Tue Apr 11 13:45:08 2017
+    Generated by Epydoc 3.0.1 on Wed May 24 15:55:44 2017
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

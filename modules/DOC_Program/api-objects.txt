@@ -99,11 +99,10 @@ make_ldhatfiles.VERSION_DATE	make_ldhatfiles-module.html#VERSION_DATE
 make_ldhatfiles.current_dir	make_ldhatfiles-module.html#current_dir
 make_ldhatfiles.build_sites	make_ldhatfiles-module.html#build_sites
 make_structure_dir	make_structure_dir-module.html
-make_structure_dir.version	make_structure_dir-module.html#version
-make_structure_dir.__package__	make_structure_dir-module.html#__package__
-make_structure_dir.mainparams	make_structure_dir-module.html#mainparams
-make_structure_dir.qsubtxt	make_structure_dir-module.html#qsubtxt
 make_structure_dir.VERSION_DATE	make_structure_dir-module.html#VERSION_DATE
+make_structure_dir.mainparams	make_structure_dir-module.html#mainparams
+make_structure_dir.version	make_structure_dir-module.html#version
+make_structure_dir.qsubtxt	make_structure_dir-module.html#qsubtxt
 make_structure_dir.current_dir	make_structure_dir-module.html#current_dir
 mappingOnRef	mappingOnRef-module.html
 mappingOnRef.__package__	mappingOnRef-module.html#__package__
