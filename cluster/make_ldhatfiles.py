@@ -339,7 +339,7 @@ if __name__ == "__main__":
 	dictThetaInfo = {}
 
 	cs = egglib.stats.ComputeStats()
-	cs.add_stats('Pi','thetaW','ls_o')
+	cs.add_stats('Pi','thetaW')
 
 	# load alignement
 	for nameFasta in listFasta:
