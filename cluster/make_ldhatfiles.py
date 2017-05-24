@@ -339,7 +339,7 @@ if __name__ == "__main__":
 	dictThetaInfo = {}
 
 	cs = egglib.stats.ComputeStats()
-	cs.add_stats('Pi','thetaW','ls','ls_o')
+	cs.add_stats('Pi','thetaW','ls_o')
 
 	# load alignement
 	for nameFasta in listFasta:
@@ -356,8 +356,8 @@ if __name__ == "__main__":
 
 		# print results
 		if scaffold not in dictThetaInfo:
-			dictThetaInfo[scaffold] = {	"Theta_SNP":stats['thetaW']/stats['ls'],
-										"Pi":stats['Pi']/stats['ls'],
+			dictThetaInfo[scaffold] = {	"Theta_SNP":stats['thetaW']/align.ls],
+										"Pi":stats['Pi']/align.ls,
 										"Nb_SNPs":nbSNP,
 										"Theta_allSNPs":stats['thetaW'],
 										"Theta_scaffold":stats['thetaW']/int(dictSizes[scaffold])
