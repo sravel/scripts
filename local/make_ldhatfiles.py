@@ -231,8 +231,6 @@ if __name__ == "__main__":
 	print("#################################################################")
 	print("#          Welcome in make_ldhatfiles (Version " + version + ")            #")
 	print("#################################################################")
-	print('Start time: ', start_time,'\n')
-
 	# get arguments
 	workingObjDir = args.workdir
 	tabFile = relativeToAbsolutePath(args.tabFile)
@@ -445,7 +443,7 @@ if __name__ == "__main__":
 	#- %s\n\
 	#- %s\n\n" % (tabFileOut.name,listKeepFile.name,correspondingCDSDir) )
 
-	print("\nStop time: ", strftime("%d-%m-%Y_%H:%M:%S", localtime()))
+
 	print("#################################################################")
 	print("#                        End of execution                       #")
 	print("#################################################################")
