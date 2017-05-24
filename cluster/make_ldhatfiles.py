@@ -344,7 +344,7 @@ if __name__ == "__main__":
 	# load alignement
 	for nameFasta in listFasta:
 
-		scaffold = nameFasta.split("/")[-1].split(".")[0].replace(basename+"_","")
+		scaffold = nameFasta.split("/")[-1].replace(".fasta","").replace(basename+"_","")
 
 		# use egglib
 		align = egglib.io.from_fasta(nameFasta, groups=False)
