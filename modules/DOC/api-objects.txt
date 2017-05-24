@@ -9,6 +9,7 @@ MODULES_SEB._test	MODULES_SEB-module.html#_test
 MODULES_SEB.relativeToAbsolutePath	MODULES_SEB-module.html#relativeToAbsolutePath
 MODULES_SEB.lsFastaInDirToList	MODULES_SEB-module.html#lsFastaInDirToList
 MODULES_SEB.dict2txt	MODULES_SEB-module.html#dict2txt
+MODULES_SEB.loadInDictList	MODULES_SEB-module.html#loadInDictList
 MODULES_SEB.loadInDictDict	MODULES_SEB-module.html#loadInDictDict
 MODULES_SEB.loadInDictCol	MODULES_SEB-module.html#loadInDictCol
 MODULES_SEB.loadInDict	MODULES_SEB-module.html#loadInDict
