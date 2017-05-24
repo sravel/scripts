@@ -351,12 +351,12 @@ if __name__ == "__main__":
 		stats = cs.process_align(align)		# extract polymorphism data
 
 		# get number of SNPs in file
-		nbSNP = stats['ls']
+		nbSNP = align.ls
 		#nbSNP = stats['ls_o']
 
 		# print results
 		if scaffold not in dictThetaInfo:
-			dictThetaInfo[scaffold] = {	"Theta_SNP":stats['thetaW']/align.ls],
+			dictThetaInfo[scaffold] = {	"Theta_SNP":stats['thetaW']/align.ls,
 										"Pi":stats['Pi']/align.ls,
 										"Nb_SNPs":nbSNP,
 										"Theta_allSNPs":stats['thetaW'],
