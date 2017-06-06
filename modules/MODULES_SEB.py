@@ -8,7 +8,7 @@
 	======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 28-02-2017
+	:date: 24-05-2017
 	:version: 0.2
 
 	Use it to import very handy functions.
@@ -59,7 +59,7 @@ import urllib
 ##################################################
 ## Variables Globales
 version="0.1"
-VERSION_DATE='28-02-2017'
+VERSION_DATE='24-05-2017'
 
 ##################################################
 ## Fonctions
@@ -244,7 +244,9 @@ def dictDict2txt(dico,first="Info"):
 			txtoutput += "%s\n" % str(value)
 			headerc=1
 
-		value = "\t".join([ str(dico[key][key2]) for key2 in header])
+		value = "\t".join([ str(dico[key][key2]) if key2 in dico[key].keys() else "NA" for key2 in header])
+
+		#['N' if i is None else alleles[i] for i in genotypes.as_list(flat=True)[0]]
 		txtoutput += "%s\t%s\n" % (str(key),str(value))
 	return txtoutput
 
@@ -516,6 +518,36 @@ def loadInDict(filename):
 				dicoOut[tabLine[0]] = []+tabLine[1:]
 			#else:
 				#dicoOut[tabLine[0]].append(tabLine[1])
+	return dicoOut
+
+def loadInDictList(filename):
+	"""
+	Load file in Dict() and remove \\n at end of line, then add first column in key of dict and value are list of column 2.
+
+	:param filename: a file
+	:type filename: file
+	:rtype: dict()
+	:return: - dict of row's file without \\n with key is first column and value list of other column
+	:warn: Use this function with small file !!! except more RAM are use and crash systeme.
+
+	Example:
+		>>> dico = loadInDictList(filename)
+		>>> dico
+		{
+		"scaffold1",["1000","2000"],
+		"scaffold12",["2000","5000"]
+		}
+	"""
+
+	dicoOut={}
+	with open(filename) as filein:
+		for line in filein:
+			tabLine = line.rstrip().split("\t")
+
+			if tabLine[0] not in dicoOut.keys():
+				dicoOut[tabLine[0]] = []+tabLine[1:]
+			else:
+				dicoOut[tabLine[0]].append(tabLine[1])
 	return dicoOut
 
 def loadInDictCol(filename,columnkey, columnvalue):
