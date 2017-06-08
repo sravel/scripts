@@ -25,8 +25,8 @@
 	>>> blastx -query FILEIN -db /work/BANK/biomaj/nr/current/flat/nr -outfmt 5  -out BASENAMEOUTEXTOUT
 
 	By default script buildJobArray.py replace
-		- \-FILEIN by file name in loop
-		- \-BASENAMEOUT by basePath+basename (basename is name of file in loop (use only one . in file name)
+		- FILEIN by file name in loop
+		- BASENAMEOUT by basePath+basename (basename is name of file in loop (use only one . in file name)
 
 	Example
 	-------
