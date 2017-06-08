@@ -4,6 +4,12 @@ addSample.debug	addSample-module.html#debug
 addSample.version	addSample-module.html#version
 addSample.VERSION_DATE	addSample-module.html#VERSION_DATE
 addSample.current_dir	addSample-module.html#current_dir
+buildJobArray	buildJobArray-module.html
+buildJobArray.listTuple	buildJobArray-module.html#listTuple
+buildJobArray.__package__	buildJobArray-module.html#__package__
+buildJobArray.version	buildJobArray-module.html#version
+buildJobArray.VERSION_DATE	buildJobArray-module.html#VERSION_DATE
+buildJobArray.current_dir	buildJobArray-module.html#current_dir
 buildSNPtoFasta	buildSNPtoFasta-module.html
 buildSNPtoFasta.__package__	buildSNPtoFasta-module.html#__package__
 buildSNPtoFasta.debug	buildSNPtoFasta-module.html#debug

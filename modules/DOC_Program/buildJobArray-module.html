@@ -3,7 +3,7 @@
           "DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>run_Assembly</title>
+  <title>buildJobArray</title>
   <link rel="stylesheet" href="epydoc.css" type="text/css" />
   <script type="text/javascript" src="epydoc.js"></script>
 </head>
@@ -34,7 +34,7 @@
   <tr valign="top">
     <td width="100%">
       <span class="breadcrumbs">
-        Module&nbsp;run_Assembly
+        Module&nbsp;buildJobArray
       </span>
     </td>
     <td>
@@ -44,53 +44,79 @@
     onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
-            >]&nbsp;|&nbsp;<a href="run_Assembly-module.html"
+            >]&nbsp;|&nbsp;<a href="buildJobArray-module.html"
             target="_top">no&nbsp;frames</a>]</span></td></tr>
       </table>
     </td>
   </tr>
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
-<h1 class="epydoc">Module run_Assembly</h1><p class="nomargin-top"><span class="codelink"><a href="run_Assembly-pysrc.html">source&nbsp;code</a></span></p>
+<h1 class="epydoc">Module buildJobArray</h1><p class="nomargin-top"><span class="codelink"><a href="buildJobArray-pysrc.html">source&nbsp;code</a></span></p>
 <div class="rst-section" id="rst-script-description">
 <h1 class="heading">Script description</h1>
-<p>This Programme run assembly of Jerome Gouzi pipeline for fastq file</p>
+<p>This Programme run bash script in buildJobArray</p>
+<p>directory 'fasta' contains x fasta files with extention fasta.</p>
+<p>script.sh is:</p>
+<p>#!/bin/bash
+module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30
+blastx -query FILEIN -db /work/BANK/biomaj/nr/current/flat/nr -outfmt 5  -out BASENAMEOUTEXTOUT</p>
+<p>By default script buildJobArray.py replace FILEIN by file name in loop and BASENAMEOUT by basePath+basename (basename is name of file in loop (use only one . in file name)</p>
 </div>
 <div class="rst-section" id="rst-example">
 <h1 class="heading">Example</h1>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>run_Assembly.py -f fastq/ -o assemblyFinal</pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>buildJobArray.py -f fasta/ -e fasta -o ./ -s script.sh -r EXTOUT,.blast</pre>
 </div>
 <div class="rst-section" id="rst-help-programm">
 <h1 class="heading">Help Programm</h1>
 <dl class="rst-docutils">
 <dt>optional arguments:</dt>
-<dd><ul class="rst-first rst-last">
-<li><dl class="rst-first rst-docutils">
-<dt>-h, --help</dt>
-<dd><p class="rst-first rst-last">show this help message and exit</p>
-</dd>
-</dl>
-</li>
-<li><dl class="rst-first rst-docutils">
-<dt>-v, --version</dt>
-<dd><p class="rst-first rst-last">display run_Assembly version number and exit</p>
-</dd>
-</dl>
-</li>
+<dd><ul class="rst-first rst-last rst-simple">
+<li>-h, --help            show this help message and exit</li>
+<li>-v, --version         display buildJobArray.py version number and exit</li>
+<li>-dd, --debug          enter verbose/debug mode</li>
 </ul>
 </dd>
 <dt>Input mandatory infos for running:</dt>
 <dd><ul class="rst-first rst-last">
 <li><dl class="rst-first rst-docutils">
-<dt>-f &lt;path/to/directory&gt;, --directory &lt;path/to/directory&gt;</dt>
-<dd><p class="rst-first rst-last">path with Fastq files</p>
+<dt>-f &lt;path/to/directory&gt;, --files &lt;path/to/directory&gt;</dt>
+<dd><p class="rst-first rst-last">Path to loop files</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-e str, --extention str</dt>
+<dd><p class="rst-first rst-last">extention for select files to loop</p>
 </dd>
 </dl>
 </li>
 <li><dl class="rst-first rst-docutils">
 <dt>-o &lt;path/to/directory&gt;, --out &lt;path/to/directory&gt;</dt>
-<dd><p class="rst-first rst-last">Output Path</p>
+<dd><p class="rst-first rst-last">Name of output file directory (must exist)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-s &lt;path/to/shScriptOut&gt;, --sh &lt;path/to/shScriptOut&gt;</dt>
+<dd><p class="rst-first rst-last">Name sh file with programme loop for jobArray</p>
+</dd>
+</dl>
+</li>
+<li><dl class="rst-first rst-docutils">
+<dt>-r FILEIN:fileName [FILEIN:fileName ...], --replace FILEIN:fileName [FILEIN:fileName ...]</dt>
+<dd><p class="rst-first rst-last">Replace any word in sh script (from -s) by second
+value, for example: EXTENTIONOUT,.txt</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>nput infos for running with default values:</dt>
+<dd><ul class="rst-first rst-last">
+<li><dl class="rst-first rst-docutils">
+<dt>-j &lt;int&gt;, --nbjob &lt;int&gt;</dt>
+<dd><p class="rst-first rst-last">Number of job array lunch (default = 100)</p>
 </dd>
 </dl>
 </li>
@@ -107,12 +133,46 @@
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        03/05/2016
+        08/06/2017
       </p>
       <p><strong>Version:</strong>
         0.1
       </p>
-</div><!-- ==================== VARIABLES ==================== -->
+</div><!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="listTuple"></a><span class="summary-sig-name">listTuple</span>(<span class="summary-sig-arg">s</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="buildJobArray-pysrc.html#listTuple">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== VARIABLES ==================== -->
 <a name="section-Variables"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
@@ -147,7 +207,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'03/05/2016'"><code class="variable-quote">'</code><code class="variable-string">03/05/2016</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'27/01/2017'"><code class="variable-quote">'</code><code class="variable-string">27/01/2017</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
