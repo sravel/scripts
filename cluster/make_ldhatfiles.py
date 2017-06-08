@@ -393,9 +393,9 @@ if __name__ == "__main__":
 		runSHFile.write("%s\n" % cmdLookTable)
 		for scaff in sorted(objDir.listDir):
 			scaffObjDir = directory(scaff)
-			#print scaffObjDir.__repr__
-			siteFile =	 [s for s in scaffObjDir.listFiles if ".site" in s][0]
-			locsFile =	 [s for s in scaffObjDir.listFiles if ".locs" in s][0]
+			print scaffObjDir.__repr__
+			siteFile =	 [s for s in scaffObjDir.listFiles if ".site" in s]
+			locsFile =	 [s for s in scaffObjDir.listFiles if ".locs" in s]
 			basenameScaff = siteFile.split("/")[-1].split(".")[0]
 			#print basename
 
