@@ -16,15 +16,17 @@
 
 	This Programme run bash script in buildJobArray
 
-	directory 'fasta' contains x fasta files with extention fasta.
+		- \-directory 'fasta' contains x fasta files with extention fasta.
 
-	script.sh is:
+		- \-script.sh is:
 
-	#!/bin/bash
-	module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30
-	blastx -query FILEIN -db /work/BANK/biomaj/nr/current/flat/nr -outfmt 5  -out BASENAMEOUTEXTOUT
+	>>> #!/bin/bash
+	>>> module load compiler/gcc/4.9.2 bioinfo/ncbi-blast/2.2.30
+	>>> blastx -query FILEIN -db /work/BANK/biomaj/nr/current/flat/nr -outfmt 5  -out BASENAMEOUTEXTOUT
 
-	By default script buildJobArray.py replace FILEIN by file name in loop and BASENAMEOUT by basePath+basename (basename is name of file in loop (use only one . in file name)
+	By default script buildJobArray.py replace
+		- \-FILEIN by file name in loop
+		- \-BASENAMEOUT by basePath+basename (basename is name of file in loop (use only one . in file name)
 
 	Example
 	-------
