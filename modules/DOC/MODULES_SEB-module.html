@@ -91,7 +91,7 @@
         <a class="rst-reference external" href="mailto:sebastien.ravel&#64;cirad.fr" target="_top">sebastien.ravel&#64;cirad.fr</a>
       </p>
       <p><strong>Date:</strong>
-        24-05-2017
+        28-06-2017
       </p>
       <p><strong>Version:</strong>
         0.2
@@ -197,6 +197,23 @@ pour une chaine de plusieurs valeurs.
     </table>
   </td>
 </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">key</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#maxKeyInDict" class="summary-sig-name">maxKeyInDict</a>(<span class="summary-sig-arg">dico</span>)</span><br />
+      Function return the key of max value in dico values()</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="MODULES_SEB-pysrc.html#maxKeyInDict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">common, u1, u2</span>
@@ -322,11 +339,12 @@ pour une chaine de plusieurs valeurs.
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">fasta str()</span>
+      <span class="summary-type">file file()</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#dict2fasta" class="summary-sig-name">dict2fasta</a>(<span class="summary-sig-arg">dico</span>)</span><br />
+          <td><span class="summary-sig"><a href="MODULES_SEB-module.html#dict2fasta" class="summary-sig-name">dict2fasta</a>(<span class="summary-sig-arg">dico</span>,
+        <span class="summary-sig-arg">fileName</span>)</span><br />
       Function that takes a dictionary with key are ID and value Seq, and returns a fasta string.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="MODULES_SEB-pysrc.html#dict2fasta">source&nbsp;code</a></span>
@@ -750,7 +768,7 @@ pour une chaine de plusieurs valeurs.
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'24-05-2017'"><code class="variable-quote">'</code><code class="variable-string">24-05-2017</code><code class="variable-quote">'</code></code>
+        <a name="VERSION_DATE"></a><span class="summary-name">VERSION_DATE</span> = <code title="'28-06-2017'"><code class="variable-quote">'</code><code class="variable-string">28-06-2017</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -780,6 +798,40 @@ pour une chaine de plusieurs valeurs.
   </td>
 </tr>
 </table>
+<a name="maxKeyInDict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">maxKeyInDict</span>(<span class="sig-arg">dico</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="MODULES_SEB-pysrc.html#maxKeyInDict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Function return the key of max value in dico values()</p>
+<dl class="rst-docutils">
+<dt>Example:</dt>
+<dd><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>dico = [<span class="py-string">&quot;A&quot;</span>:0.5, <span class="py-string">&quot;C&quot;</span>:0.7, <span class="py-string">&quot;T&quot;</span>:0.01, <span class="py-string">&quot;G&quot;</span>:0.9]
+<span class="py-prompt">&gt;&gt;&gt; </span>keymax = maxKeyInDict(dico)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span>(keymax)
+<span class="py-output">G</span></pre>
+</dd>
+</dl>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>dico</code></strong> (dict()) - a python dict</li>
+    </ul></dd>
+    <dt>Returns: key</dt>
+        <dd>key</dd>
+  </dl>
+</td></tr></table>
+</div>
 <a name="compareList"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1036,7 +1088,8 @@ pour une chaine de plusieurs valeurs.
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">dict2fasta</span>(<span class="sig-arg">dico</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">dict2fasta</span>(<span class="sig-arg">dico</span>,
+        <span class="sig-arg">fileName</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="MODULES_SEB-pysrc.html#dict2fasta">source&nbsp;code</a></span>&nbsp;
@@ -1061,9 +1114,10 @@ pour une chaine de plusieurs valeurs.
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>dico</code></strong> (dict()) - a python dictionary</li>
+        <li><strong class="pname"><code>fileName</code></strong> (str()) - a file name for fasta</li>
     </ul></dd>
-    <dt>Returns: fasta str()</dt>
-        <dd>string with format fasta</dd>
+    <dt>Returns: file file()</dt>
+        <dd>file format fasta</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -1971,7 +2025,7 @@ pour une chaine de plusieurs valeurs.
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Wed May 24 15:54:52 2017
+    Generated by Epydoc 3.0.1 on Wed Jun 28 10:28:22 2017
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
