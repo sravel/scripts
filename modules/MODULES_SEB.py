@@ -8,7 +8,7 @@
 	======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
-	:date: 24-05-2017
+	:date: 28-06-2017
 	:version: 0.2
 
 	Use it to import very handy functions.
@@ -59,7 +59,7 @@ import urllib
 ##################################################
 ## Variables Globales
 version="0.1"
-VERSION_DATE='24-05-2017'
+VERSION_DATE='28-06-2017'
 
 ##################################################
 ## Fonctions
@@ -72,6 +72,7 @@ def maxKeyInDict(dico):
 	:type dico: dict()
 	:return: key
 	:rtype: key
+
 	Example:
 		>>> dico = ["A":0.5, "C":0.7, "T":0.01, "G":0.9]
 		>>> keymax = maxKeyInDict(dico)
