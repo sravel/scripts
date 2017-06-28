@@ -64,6 +64,24 @@ VERSION_DATE='24-05-2017'
 ##################################################
 ## Fonctions
 
+def maxKeyInDict(dico):
+	"""
+	Function return the key of max value in dico values()
+
+	:param dico: a python dict
+	:type dico: dict()
+	:return: key
+	:rtype: key
+	Example:
+		>>> dico = ["A":0.5, "C":0.7, "T":0.01, "G":0.9]
+		>>> keymax = maxKeyInDict(dico)
+		>>> print(keymax)
+		G
+	"""
+	return max(dico, key=dico.get)
+
+
+
 def compareList(list1, list2):
 	"""
 	Function to compare two list and return common, uniq1 and uniq2
@@ -250,14 +268,16 @@ def dictDict2txt(dico,first="Info"):
 		txtoutput += "%s\t%s\n" % (str(key),str(value))
 	return txtoutput
 
-def dict2fasta(dico):
+def dict2fasta(dico, fileName):
 	"""
 	Function that takes a dictionary with key are ID and value Seq, and returns a fasta string.
 
 	:param dico: a python dictionary
 	:type dico: dict()
-	:rtype: fasta str()
-	:return: string with format fasta
+	:param fileName: a file name for fasta
+	:type fileName: str()
+	:rtype: file file()
+	:return: file format fasta
 
 	Example:
 		>>> dico = {"Seq1":"ATGCTGCAGTAG","Seq2":"ATGCCGATCGATG","Seq3":"ATGCTCAGTCAGTAG"}
@@ -269,11 +289,16 @@ def dict2fasta(dico):
 		>Seq3
 		ATGCTCAGTCAGTAG
 	"""
+	with open(fileName, "w") as output_handle:
+		for seqName in sorted(dico.keys(), key=sort_human):
+			seqObj = dico[seqName]
+			record = SeqRecord(seqObj,id=seqName,name=seqName, description="")
+			SeqIO.write(record,output_handle, "fasta")
 
-	txtoutput = ""
-	for key, value in dico.items():
-		txtoutput += ">%s\n%s\n" % (str(key),str(value[0]))
-	return txtoutput
+	#txtoutput = ""
+	#for key, value in dico.items():
+		#txtoutput += ">%s\n%s\n" % (str(key),str(value[0]))
+	#return txtoutput
 
 def fasta2dict(filename):
 	"""
@@ -1115,32 +1140,32 @@ class printCol():
 
 	"""
 
-	RED = '\033[91m'
-	GREEN = '\033[92m'
-	YELLOW = '\033[93m'
-	LIGHT_PURPLE = '\033[94m'
-	PURPLE = '\033[95m'
-	END = '\033[0m'
+	__RED = '\033[91m'
+	__GREEN = '\033[92m'
+	__YELLOW = '\033[93m'
+	__LIGHT_PURPLE = '\033[94m'
+	__PURPLE = '\033[95m'
+	__END = '\033[0m'
 
 	@classmethod
 	def red(cls, s):
-		print(cls.RED + str(s) + cls.END)
+		print(cls.__RED + str(s) + cls.__END)
 
 	@classmethod
 	def green(cls, s):
-		print(cls.GREEN + str(s) + cls.END)
+		print(cls.__GREEN + str(s) + cls.__END)
 
 	@classmethod
 	def yellow(cls, s):
-		print(cls.YELLOW + str(s) + cls.END)
+		print(cls.__YELLOW + str(s) + cls.__END)
 
 	@classmethod
 	def lightPurple(cls, s):
-		print(cls.LIGHT_PURPLE + str(s) + cls.END)
+		print(cls.__LIGHT_PURPLE + str(s) + cls.__END)
 
 	@classmethod
 	def purple(cls, s):
-		print(cls.PURPLE + str(s) + cls.END)
+		print(cls.__PURPLE + str(s) + cls.__END)
 
 class AutoVivification(dict):
 	"""
