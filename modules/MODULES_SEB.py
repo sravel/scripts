@@ -427,7 +427,7 @@ def readable_dir(prospective_dir):
 	if os.access(prospective_dir, os.R_OK) == False :
 		raise argparse.ArgumentTypeError(" :{0} is not a readable dir".format(prospective_dir))
 
-def replace_all(repls, str):
+def replace_all(dico=repls, string=str):
 	"""
 	Function that take a dictionnary and text variable and return text variable with replace 'Key' from dictionnary with 'Value'.
 
