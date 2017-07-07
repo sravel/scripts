@@ -101,13 +101,13 @@ dapc <- dapc(W, pop=fcl.BIC$grp, n.pca=NULL,n.da=NULL, scale=FALSE, pca.select="
 
 # When you are choose the PCA and DA value, add to variable or go to GUI_DAPC and rebuild R script with value
 
-"""
-
-DAPCchange = """
 # Change value for all K
 PCARETAINValue <- **PCARETAIN**
 DARETAINValue <- **DARETAIN**
 
+"""
+
+DAPCchange = """
 
 ####################################################
 ## TEST K = **pop** value
