@@ -224,7 +224,7 @@ def dictList2txt(dico):
 
 	txtoutput = ""
 	for key in sorted(dico.keys(), key=sort_human):
-		value = "\t".join(dico[key])
+		value = "\t".join(sorted(dico[key], key=sort_human))
 		txtoutput += "%s\t%s\n" % (str(key),str(value))
 	return txtoutput
 
