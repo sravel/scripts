@@ -1,11 +1,11 @@
 #!/usr/local/bioinfo/python/3.4.3_build2/bin/python
 # -*- coding: utf-8 -*-
-# @package run_Assembly.py
+# @package run_assembly.py
 # @author Sebastien Ravel
 #__docformat__ = "restructuredtext en"
 
 """
-	The run_Assembly script
+	The run_assembly script
 	=======================
 	:author: Sebastien Ravel
 	:contact: sebastien.ravel@cirad.fr
@@ -20,7 +20,7 @@
 	Example
 	-------
 
-	>>> run_Assembly.py -f fastq/ -o assemblyFinal
+	>>> run_assembly.py -f fastq/ -o assemblyFinal
 
 	Help Programm
 	-------------
@@ -29,7 +29,7 @@
 		- \-h, --help
 						show this help message and exit
 		- \-v, --version
-						display run_Assembly version number and exit
+						display run_assembly version number and exit
 
 	Input mandatory infos for running:
 		- \-f <path/to/directory>, --directory <path/to/directory>
@@ -67,9 +67,9 @@ if __name__ == "__main__":
 	# Initializations
 	start_time = strftime("%d-%m-%Y_%H:%M:%S", localtime())
 	# Parameters recovery
-	parser = argparse.ArgumentParser(prog='run_Assembly.py', description='''This Programme run assembly of Jerome Gouzi pipeline for fastq file, fastq MUST be ?z format''')
+	parser = argparse.ArgumentParser(prog='run_assembly.py', description='''This Programme run assembly of Jerome Gouzi pipeline for fastq file, fastq MUST be ?z format''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
-						'display run_Assembly version number and exit')
+						'display run_assembly version number and exit')
 	#parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
 
 	filesreq = parser.add_argument_group('Input mandatory infos for running')
@@ -80,7 +80,7 @@ if __name__ == "__main__":
 
 	#Welcome message
 	print("#################################################################")
-	print("#            Welcome in run_Assembly (Version " + version + ")              #")
+	print("#            Welcome in run_assembly (Version " + version + ")              #")
 	print("#################################################################")
 	print('Start time: ', start_time,'\n')
 
@@ -114,6 +114,9 @@ if __name__ == "__main__":
 	count=1
 	listFiles = []
 
+	if not os.path.exists(pathFileOut.pathDirectory+"AllAssemblyFasta"):
+		os.mkdir(pathFileOut.pathDirectory+"AllAssemblyFasta")
+
 	for fileIn in pathFastqFile.listFiles:
 		cmd2 = ""
 		txt = ""
@@ -143,7 +146,10 @@ if __name__ == "__main__":
 		if basename not in listFiles:
 			listFiles.append(basename)
 			txt = cmd2
-			txt += """/gs7k1/projects/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir """+pathFileOut.pathDirectory+basename+""" --outdir """+pathFileOut.pathDirectory+basename+""" --outprefix """+basename+""" --log """+pathFileOut.pathDirectory+basename+"""/log.txt\n"""
+			txt += """/gs7k1/projects/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir {0}{1} --outdir {0}{1} --outprefix {1} --log {0}{1}/log.txt\n""".format(pathFileOut.pathDirectory, basename)
+
+			txt += """mv {0}{1}/{1}.fa* {0}{3}""".format(pathFileOut.pathDirectory, basename, "AllAssemblyFasta")
+
 			with open(outputSHDir+"/"+str(count)+"-assembly.sh","w") as shScript:
 				shScript.write(txt)
 			count+=1
