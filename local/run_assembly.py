@@ -148,7 +148,7 @@ if __name__ == "__main__":
 			txt = cmd2
 			txt += """/gs7k1/projects/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir {0}{1} --outdir {0}{1} --outprefix {1} --log {0}{1}/log.txt\n""".format(pathFileOut.pathDirectory, basename)
 
-			txt += """mv {0}{1}/{1}.fa* {0}{2}""".format(pathFileOut.pathDirectory, basename, "AllAssemblyFasta")
+			txt += """mv {0}{1}/{1}.fa* {0}{2}""".format(pathFileOut.pathDirectory, basename, "AllAssemblyFasta/")
 
 			with open(outputSHDir+"/"+str(count)+"-assembly.sh","w") as shScript:
 				shScript.write(txt)
