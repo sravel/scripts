@@ -76,6 +76,10 @@ if __name__ == "__main__":
 	filesreq.add_argument('-f', '--fastq', metavar="<path/to/directory>", type = directory, required=True, dest = 'dirPath', help = 'path With Fastq files')
 	filesreq.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=True, dest = 'outPath', help = 'Output Path')
 
+	files = parser.add_argument_group('Input infos for running with default values')
+	files.add_argument('-p', '--params', metavar="--mink ", type = str, default="",required=False, dest = 'paramsAss', help = 'set other params for assembly (ex --mink 90')
+
+
 	args = parser.parse_args()
 
 	#Welcome message
@@ -87,6 +91,7 @@ if __name__ == "__main__":
 	# Récupère le fichier de conf passer en argument
 	pathFastqFile = args.dirPath
 	pathFileOut = args.outPath
+	otherParams = args.paramsAss
 
 	outputSHDir = pathFileOut.pathDirectory+"sh/"
 	outputTrashDir = pathFileOut.pathDirectory+"trash/"
@@ -97,6 +102,8 @@ if __name__ == "__main__":
 	print(" - Intput Info:")
 	print("\t - Working in directory: %s" % pathFileOut.pathDirectory)
 	print("\t - Fastq were in directory: %s" % pathFastqFile.pathDirectory)
+
+	if otherParams != None: print("\t - Other params are: %s" % otherParams)
 
 	print(" - Output Info:")
 	print("\t - Output were in directory: %s" % pathFileOut.pathDirectory)
@@ -146,7 +153,7 @@ if __name__ == "__main__":
 		if basename not in listFiles:
 			listFiles.append(basename)
 			txt = cmd2
-			txt += """/gs7k1/projects/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir {0}{1} --outdir {0}{1} --outprefix {1} --log {0}{1}/log.txt\n""".format(pathFileOut.pathDirectory, basename)
+			txt += """/gs7k1/projects/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir {0}{1} --outdir {0}{1} --outprefix {1} --log {0}{1}/log.txt {2}\n""".format(pathFileOut.pathDirectory, basename, " ".join(otherParams))
 
 			txt += """mv {0}{1}/{1}.fa* {0}{2}""".format(pathFileOut.pathDirectory, basename, "AllAssemblyFasta/")
 
