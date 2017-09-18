@@ -153,7 +153,7 @@ if __name__ == "__main__":
 		if basename not in listFiles:
 			listFiles.append(basename)
 			txt = cmd2
-			txt += """/gs7k1/projects/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir {0}{1} --outdir {0}{1} --outprefix {1} --log {0}{1}/log.txt {2}\n""".format(pathFileOut.pathDirectory, basename, " ".join(otherParams))
+			txt += """/gs7k1/projects/BGPI/tools/lipm_assembly/bin/lipm_assemble_solexa_pe.pl --datadir {0}{1} --outdir {0}{1} --outprefix {1} --log {0}{1}/log.txt {2}\n""".format(pathFileOut.pathDirectory, basename, otherParams)
 
 			txt += """mv {0}{1}/{1}.fa* {0}{2}""".format(pathFileOut.pathDirectory, basename, "AllAssemblyFasta/")
 
