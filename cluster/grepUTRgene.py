@@ -100,6 +100,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-u', '--utr', metavar="<int>", type = int, default=3000,required=False, dest = 'UTRlen', help = 'len of UTR keep (default = 3000)')
+	files.add_argument('-ud', '--upAnddown', metavar="<up,down,both>", choices=("up","down","both") , default="both",required=False, dest = 'UTRchoice', help = 'add len only for up or down or both (default = both)')
 	#files.add_argument('-th', '--thread', metavar="<int>",type = int, default=4, required=False, dest = 'nbThreads', help = 'number of threads for mapping (default = 4)')
 
 
@@ -118,6 +119,7 @@ if __name__ == "__main__":
 	gffFile = args.gffFile
 	outFile = args.outFile
 	UTRlen = args.UTRlen
+	UTRchoice = args.UTRchoice
 
 
 	# resume value to user
@@ -126,6 +128,7 @@ if __name__ == "__main__":
 	print("\t - List of gene file is: %s" % listGeneFile)
 	print("\t - GFF file is : %s" % gffFile)
 	print("\t - UTRlen is : %s" % UTRlen)
+	print("\t - UTRchoice is : %s" % UTRchoice)
 	print("\t - TAG is : %s" % args.idTag)
 
 	print(" - Output Info:")
@@ -155,7 +158,12 @@ if __name__ == "__main__":
 
 				if geneName in keepGeneList:
 					start, stop = record.start, record.end
-					UTRstart, UTRstop = int(record.start)-UTRlen, int(record.end)+UTRlen
+					if UTRchoice == "both":
+						UTRstart, UTRstop = int(record.start)-UTRlen, int(record.end)+UTRlen
+					elif UTRchoice == "up":
+						UTRstart, UTRstop = int(record.start)-UTRlen, int(record.end)
+					elif UTRchoice == "down":
+						UTRstart, UTRstop = int(record.start), int(record.end)+UTRlen
 					#print("%s\t%s\t%s" %(geneName,UTRstart, UTRstop))
 
 					if UTRstart <= 0:
