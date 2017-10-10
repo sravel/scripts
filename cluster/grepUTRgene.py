@@ -19,7 +19,7 @@
 	Example
 	-------
 
-	>>> grepUTRgene.py -c chromosome.fasta -r listGenesID.txt -g gffFile.gff -o genesUTR.fasta -i ID [-u 3000]
+	>>> grepUTRgene.py -c chromosome.fasta -r listGenesID.txt -g gffFile.gff -o genesUTR.fasta -i ID [-u 3000 -ud up]
 
 	Help Programm
 	-------------
@@ -45,7 +45,8 @@
 	Input infos for running with default values:
 		- \-u <int>, --utr <int>
 						len of UTR keep (default = 3000)
-
+		- \-ud <up,down,both>, --upAnddown <up,down,both>
+						add len only for up or down or both (default = both)
 """
 
 ##################################################
