@@ -269,6 +269,48 @@ def dictDict2txt(dico,first="Info"):
 		txtoutput += "%s\t%s\n" % (str(key),str(value))
 	return txtoutput
 
+def dictDict2txtSum(dico,first="Info"):
+	"""
+	Function that takes a dictionary and returns a tabular string with sum of table column:
+
+		"key\\tvalue\\n".
+
+	:param dico: a python dictionary
+	:type dico: dict()
+	:param first: string for name first column
+	:type first: str()
+	:rtype: str()
+	:return: string with "key\\tvalue\\n
+
+	Example:
+		>>> dico = {"1":{"A":0,"C":21,"G":10,"T":30, "N":3},
+					"2":{"A":20,"C":1,"G":5,"T":15, "N":0}}
+		>>> dictDict2txtSum(dico,"position")
+		position	A	C	G	N	T	Sum
+		1			0	21	10	3	30	64
+		2			20	1	5	0	15	46
+
+	"""
+
+	txtoutput = ""
+	headerc=0
+	for key in sorted(dico.keys(), key=sort_human):
+		dicoInfosValues = list(dico[key].values())
+		sumValues = sum(dicoInfosValues)
+		dicoInfosValues = [ str(k) for k in dicoInfosValues]
+
+		if headerc == 0:
+			header = [ str(k) for k in sorted(dico[key].keys(), key=sort_human) ]
+			value = first+"\t" + "\t".join(header)
+			txtoutput += "%s\n" % str(value)
+			headerc=1
+
+		value = "\t".join([ str(dico[key][key2]) if key2 in dico[key].keys() else "NA" for key2 in header])
+
+		#['N' if i is None else alleles[i] for i in genotypes.as_list(flat=True)[0]]
+		txtoutput += "{}\t{}\t{}\n".format(key, value, sumValues)
+	return txtoutput
+
 def dict2fasta(dico, fileName):
 	"""
 	Function that takes a dictionary with key are ID and value Seq, and returns a fasta string.
