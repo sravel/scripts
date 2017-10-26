@@ -302,7 +302,7 @@ def dictDict2txtSum(dico,first="Info"):
 		if headerc == 0:
 			header = [ str(k) for k in sorted(dico[key].keys(), key=sort_human) ]
 			value = first+"\t" + "\t".join(header)
-			txtoutput += "%s\n" % str(value)
+			txtoutput += "{}\tSum\n".format(value)
 			headerc=1
 
 		value = "\t".join([ str(dico[key][key2]) if key2 in dico[key].keys() else "NA" for key2 in header])
