@@ -751,7 +751,7 @@ def extractListFromFasta(sequenceFile,FileList ):
 		record = dictSequences[ID]
 		if ID in listKeep:
 			keep +=1
-			dicoOutput[record] = record
+			dicoOutput[ID] = record
 		else:
 			noKeepID.append(ID)
 			noKeep += 1
@@ -796,7 +796,7 @@ def extractInverseListFromFasta(sequenceFile,FileList ):
 		record = dictSequences[ID]
 		if ID not in listnotKeep:
 			keep +=1
-			dicoOutput[record] = record
+			dicoOutput[ID] = record
 		else:
 			noKeepID.append(ID)
 			noKeep += 1
