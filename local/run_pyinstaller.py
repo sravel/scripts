@@ -306,6 +306,7 @@ if __name__ == "__main__":
 
 	files = parser.add_argument_group('Input infos for running with default values')
 	files.add_argument('-o', '--out', metavar="<path/to/directory>", type = directory, required=False, dest = 'pathOut', help = 'Name of output file directory')
+	files.add_argument('-py', '--pythonVersion', metavar="2/3", type = int, default=3, required=False, dest = 'pyversion', help = 'python version (default 3)')
 
 
 	# Check parameters
@@ -392,7 +393,10 @@ if __name__ == "__main__":
 		shutil.rmtree(buildPath)
 
 	# run PyInstaller
-	os.system("python -m PyInstaller %s" %specFile.name)
+	if args.pyversion == 2:
+		os.system("python -m PyInstaller %s" %specFile.name)
+	if args.pyversion == 3:
+		os.system("python3 -m PyInstaller %s" %specFile.name)
 
 	# if PyInstaller run correctly
 	buildFile = os.listdir(distPath)[0]			# list dist file
