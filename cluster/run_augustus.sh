@@ -132,6 +132,7 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
 		((compteur++))
 		name=$(basename ${f%%.fasta})
 		echo " "$name
+		echo "module load bioinfo/augustus/3.2.3" > $SHPath"/"$name-augustus.sh
 		echo "augustus --species=$species $f --codingseq=on --protein=on --outfile="$gffPath"/"$name".gff" > $SHPath"/"$name-augustus.sh
 		echo "getAnnoFasta.pl "$gffPath"/"$name".gff" >> $SHPath"/"$name-augustus.sh
 		echo "mv "$gffPath"/"$name".aa "$AAPath"/" >> $SHPath"/"$name-augustus.sh
@@ -149,7 +150,7 @@ if [ $fasta != "" ] && [ $species != "" ] ; then
  The script are created all fasta-augustus.sh for all fasta into "$pathAnalysis"sh,\n
  For run all sub-script in qsub, a runAllQsub_Augustus.sh was created, It lunch programm make:\n"
 
-	printf "\033[35m \n\tmodule load compiler/gcc/4.9.2 bioinfo/bamtools/8a5d650 bioinfo/augustus/3.0.3\n"
+	printf "\033[35m \n\tmodule load bioinfo/augustus/3.2.3\n"
 	printf "\033[35m \tsh "$pathAnalysis"runAllQsub_Augustus.sh\n\n"
 
 	# Print end

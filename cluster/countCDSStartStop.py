@@ -126,10 +126,10 @@ if __name__ == "__main__":
 		record_dict = fasta2dict(fileCDS)
 		for name in sorted(record_dict.keys(), key=sort_human):
 			record = record_dict[name]
-			#oldNumID = record.id
-			#new_record_name = fileName+"_"+oldNumID
-			#record.id = new_record_name
-			#record.name = ""
+			oldNumID = record.id
+			new_record_name = fileName+"_"+oldNumID
+			record.id = new_record_name
+			record.name = ""
 			seq = record.seq.upper()
 			firstCodon = seq[:3]
 			endCodon = seq[-3:]
