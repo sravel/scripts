@@ -19,6 +19,7 @@ import shutil, re
 import subprocess
 from shutil import rmtree
 
+exit()
 from PyQt4.QtCore import QObject, SIGNAL
 from PyQt4.QtGui import QFileDialog, QApplication, QIcon, QPixmap, QPlainTextEdit
 from PyQt4 import uic

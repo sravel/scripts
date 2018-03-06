@@ -6,7 +6,7 @@ block_cipher = None
 added_files = [ ('includes/*', 'includes'), ]
 
 a = Analysis(['GUI_structure.py'],
-             pathex=['/homedir/sravel/programme/ScriptsSEB/scripts/GUI/structure/'],
+             pathex=['/media/sebastien/Bayer/ScriptsSEB/scripts/GUI/structure/'],
              binaries=None,
              datas=added_files,
              hiddenimports=[],
