@@ -1,4 +1,4 @@
-#!/usr/bin/python2.7
+#!/usr/bin/python3.5
 # -*- coding: utf-8 -*-
 ## @package GUI_DAPC.py
 # @author Sebastien Ravel
@@ -19,9 +19,23 @@ import shutil, re
 import subprocess
 from shutil import rmtree
 
-from PyQt4.QtCore import QObject, SIGNAL
-from PyQt4.QtGui import QFileDialog, QApplication, QIcon, QPixmap, QPlainTextEdit
-from PyQt4 import uic
+#from PyQt4.QtCore import QObject, SIGNAL
+#from PyQt4.QtGui import QFileDialog, QApplication, QIcon, QPixmap, QPlainTextEdit
+#from PyQt4 import uic
+#from PyQt5.QtCore import QObject, SIGNAL
+#from PyQt5.QtGui import QFileDialog, QApplication, QIcon, QPixmap, QPlainTextEdit
+#from PyQt5 import uic
+
+from PyQt5.QtWidgets import *
+
+from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5 import uic
+
+
 import syntax
 
 ##################################################
@@ -63,7 +77,7 @@ library(adegenet)
 library(ggplot2)
 
 # Load data into dataframe
-mvdata <- read.table("**PATHTOFILE**", header=TRUE,sep="\\t",na.string="-9")
+mvdata <- read.table("**PATHTOFILE**", header=**HEADERVALUE**,sep="\\t",na.string="-9")
 attach(mvdata)
 
 vect=c(rep(1,**INDIV**))
@@ -145,9 +159,10 @@ png("**current_dir**K**pop**.png",width = 30000, height = 1500, res=200)
 compoplot(dapc, only.grp=NULL,# affiche que le groupe selectionné
           subset=NULL,      # pour affichier un sous ensemble des données
           new.pred=NULL,
-          col=c("red","green","blue","purple","orange","cyan","burlywood3","darkorchid3","deeppink2","gray35","chartreuse"),    #couleurs
+          col.pal=c("red","green","blue","purple","orange","cyan","burlywood3","darkorchid3","deeppink2","gray35","chartreuse"),    #couleurs
           lab=name,
-          cex.names = 0.6,
+          show.lab = TRUE,
+          cex.names = 0.7,
           legend=TRUE,
           txt.leg=NULL,
           ncol=**pop**,
@@ -300,6 +315,8 @@ class DAPC( formDAPC, baseDAPC ):
 		self.app = app
 		self.initialiseVariables()
 		self.createWidgets()
+		self.ui.show()
+		self.setFocusPolicy(QtCore.Qt.StrongFocus)
 
 
 	def initialiseVariables(self):
@@ -318,6 +335,7 @@ class DAPC( formDAPC, baseDAPC ):
 		self.DAPCchange = DAPCchange
 		self.expertMode = "False"
 		self.graphType = "1"
+		self.header = False
 
 
 
@@ -343,26 +361,29 @@ class DAPC( formDAPC, baseDAPC ):
 
 		self.resizeWindows()
 
+		#self.ui.category1OpenLineEdit.editingFinished.connect(lambda: self.loadFolder(inputCat = "cat1", methode="write"))
+
+
 		## Edition des connect:
-		QObject.connect(self.ui.loadMatriceFilePushButton,SIGNAL("clicked()"),self.loadMatriceFile)
-		QObject.connect(self.ui.loadOrderFilePushButton,SIGNAL("clicked()"),self.loadOrderFile)
+		self.ui.loadMatriceFilePushButton.clicked.connect(self.loadMatriceFile)
+		self.ui.loadOrderFilePushButton.clicked.connect(self.loadOrderFile)
 
-		QObject.connect(self.ui.resetPushButton,SIGNAL("clicked()"),self.resetPress)
-		QObject.connect(self.ui.runPushButton,SIGNAL("clicked()"),self.run)
+		self.ui.resetPushButton.clicked.connect(self.resetPress)
+		self.ui.runPushButton.clicked.connect(self.run)
 
-		QObject.connect(self.ui.updateColorPushButton,SIGNAL("clicked()"),self.actualizeDAPCColor)
+		self.ui.updateColorPushButton.clicked.connect(self.actualizeDAPCColor)
 
-		QObject.connect(self.ui.rmOldCheckBox,SIGNAL("stateChanged(int)"),self.actualizeRmOld)
-		QObject.connect(self.ui.expertCheckBox,SIGNAL("stateChanged(int)"),self.actualizeExpertMode)
+		self.ui.rmOldCheckBox.stateChanged[int].connect(self.actualizeRmOld)
+		self.ui.headerCheckBox.stateChanged[int].connect(self.actualizeHeader)
+		self.ui.expertCheckBox.stateChanged[int].connect(self.actualizeExpertMode)
 
-		QObject.connect(self.ui.graphTypeComboBox,SIGNAL("currentIndexChanged(int)"),self.actualizeGraph)
+		self.ui.graphTypeComboBox.currentIndexChanged[int].connect(self.actualizeGraph)
 
-		QObject.connect(self.ui.PCAlineEdit,SIGNAL("editingFinished()"),self.actualizePCA)
-		QObject.connect(self.ui.DAlineEdit,SIGNAL("editingFinished()"),self.actualizeDA)
-		QObject.connect(self.ui.popMinLineEdit,SIGNAL("editingFinished()"),self.actualizePopMin)
-		QObject.connect(self.ui.popMaxLineEdit,SIGNAL("editingFinished()"),self.actualizePopMax)
-		#QObject.connect(self.ui.DAPCfixPlainTextEdit,SIGNAL("blockCountChanged()"),self.actualizeDAPCFix)
-		#QObject.connect(self.ui.DAPCchangePlainTextEdit,SIGNAL("blockCountChanged()"),self.actualizeDAPCChange)
+		self.ui.PCAlineEdit.editingFinished.connect(self.actualizePCA)
+		self.ui.DAlineEdit.editingFinished.connect(self.actualizeDA)
+		self.ui.popMinLineEdit.editingFinished.connect(self.actualizePopMin)
+		self.ui.popMaxLineEdit.editingFinished.connect(self.actualizePopMax)
+
 
 	def resizeWindows(self):
 		"""change la taille de fenetre"""
@@ -431,6 +452,13 @@ class DAPC( formDAPC, baseDAPC ):
 		else:
 			self.rmOld = "False"
 
+	def actualizeHeader(self):
+		"""change la valeur du choix quand changer"""
+		if self.ui.headerCheckBox.isChecked():
+			self.header = True
+		else:
+			self.header = False
+
 	def actualizePCA(self):
 		"""change la valeur du choix quand changer"""
 		currentValue = str(self.ui.PCAlineEdit.text())
@@ -491,7 +519,7 @@ class DAPC( formDAPC, baseDAPC ):
 
 	def loadMatriceFile(self):
 		"""Méthode qui permet de charger un fichier et afficher dans le plainText"""
-		filename = QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text files (*.txt *.tab);;All (*.*)")
+		filename, _ = QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text files (*.txt *.tab);;All (*.*)")
 		if filename == "" and self.matricePathFile == "":
 			self.displayError(error = "\"%s\" is not a valid file \n" % (filename))
 		else:
@@ -501,7 +529,7 @@ class DAPC( formDAPC, baseDAPC ):
 
 	def loadOrderFile(self):
 		"""Méthode qui permet de charger un fichier et afficher dans le plainText"""
-		filename = QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text files (*.txt *.tab);;All (*.*)")
+		filename, _ = QFileDialog.getOpenFileName(self, caption="Load the File", directory=os.getcwd(), filter="Text files (*.txt *.tab);;All (*.*)")
 		if filename == "" and self.orderPathFile == "":
 			self.displayError(error = "\"%s\" is not a valid file \n" % (filename))
 		else:
@@ -534,6 +562,7 @@ class DAPC( formDAPC, baseDAPC ):
 		self.ui.popMaxLineEdit.setText("10")
 
 		self.ui.rmOldCheckBox.setChecked(False)
+		self.ui.headerCheckBox.setChecked(False)
 		self.ui.expertCheckBox.setChecked(False)
 
 		#self.ui.progressbar.hide()
@@ -546,6 +575,7 @@ class DAPC( formDAPC, baseDAPC ):
 		self.ui.popMinLineEdit.setEnabled(True)
 		self.ui.popMaxLineEdit.setEnabled(True)
 		self.ui.rmOldCheckBox.setEnabled(True)
+		self.ui.headerCheckBox.setEnabled(True)
 		self.ui.expertCheckBox.setEnabled(True)
 		self.ui.expertFrame.setEnabled(True)
 		self.ui.graphTypeComboBox.setEnabled(True)
@@ -571,6 +601,7 @@ class DAPC( formDAPC, baseDAPC ):
 			self.ui.popMinLineEdit.setDisabled(True)
 			self.ui.popMaxLineEdit.setDisabled(True)
 			self.ui.rmOldCheckBox.setDisabled(True)
+			self.ui.headerCheckBox.setDisabled(True)
 			self.ui.expertCheckBox.setDisabled(True)
 			self.ui.expertFrame.setDisabled(True)
 			self.ui.graphTypeComboBox.setDisabled(True)
@@ -601,16 +632,22 @@ class DAPC( formDAPC, baseDAPC ):
 			self.dicoMatrice = loadInDictLine(self.matricePathFile)
 
 			# Comptage du nombre d'individus, de markers et ncode:
-			self.nbindParam = len(self.dicoMatrice.keys())-1
+			if self.header:
+				self.nbindParam = len(self.dicoMatrice.keys())-1
+			else:
+				self.nbindParam = len(self.dicoMatrice.keys())
 
 			if self.nbindParam != len(self.orderList):
 				txtInfo += "WARNING: More individu in Matrice file (%s) than Order label file (%s)!!!\n" % (self.nbindParam, len(self.orderList))
 
 			fileMat = open(self.matricePathFile,"r")
-			header = fileMat.readline()
-			self.nbmarkParam = len(header.split("\t"))
-			header = " \t"+"\t".join(header.split("\t")[1:])
-
+			if self.header:
+				header = fileMat.readline()
+				self.nbmarkParam = len(header.split("\t"))
+				header = " \t"+"\t".join(header.split("\t")[1:])
+			else:
+				indiv1 = fileMat.readline()
+				self.nbmarkParam = len(indiv1.split("\t")[1:])
 
 			nbcode = fileMat.readline().split("\t")[1]
 			while nbcode == "-9":
@@ -620,7 +657,8 @@ class DAPC( formDAPC, baseDAPC ):
 
 			# ouverture du nouveau fichier trier
 			with open(self.pathFileOut+self.basename+"_Reorder.tab","w") as reorderMatriceFile:
-				reorderMatriceFile.write(header)
+				if self.header:
+					reorderMatriceFile.write(header)
 				for ind in self.orderList:
 					if ind not in self.dicoMatrice.keys():
 						error = "ERROR: The individu %s define in label file was not in the matrice file !!! Exit programme" % ind
@@ -647,7 +685,10 @@ class DAPC( formDAPC, baseDAPC ):
 			"**INDIV**"	:			str(self.nbindParam),
 			"**PATHTOFILE**":		str(reorderMatriceFile.name),
 			"**current_dir**"	:	str(self.pathFileOut),
-			"**GRAPH**"	:	str(self.graphType)
+			"**GRAPH**"	:			str(self.graphType),
+			"**PCARETAIN**":		str(self.PCAvalue),
+			"**DARETAIN**":			str(self.DAvalue),
+			"**HEADERVALUE**":			str(self.header).upper()
 			}
 
 			DAPCfixModif = replace_all(dictToReplace, self.DAPCfix)
@@ -659,7 +700,7 @@ class DAPC( formDAPC, baseDAPC ):
 			for pop in range(int(self.popMinValue),int(self.popMaxValue)+1):
 				#print(pop)
 				popstr=str(pop)
-				DAPCchange2 = self.DAPCchange.replace("**pop**",popstr).replace("**current_dir**",str(self.pathFileOut)).replace("**PCARETAIN**",str(self.PCAvalue)).replace("**DARETAIN**",str(self.DAvalue))
+				DAPCchange2 = self.DAPCchange.replace("**pop**",popstr).replace("**current_dir**",str(self.pathFileOut))
 				#print(DAPCchange2)
 				Rscript.write(DAPCchange2)
 
@@ -696,7 +737,7 @@ class DAPC( formDAPC, baseDAPC ):
 
 def main():
 
-	#print sys.argv+["-cmd", "-gnome-terminal"]
+	#print(sys.argv+["-cmd", "-gnome-terminal"])
 	nargv = sys.argv
 
 	# instanciation des objets principaux
@@ -713,7 +754,7 @@ def main():
 
 
 def cmd():
-	#print sys.argv+["-cmd", "-gnome-terminal"]
+	#print(sys.argv+["-cmd", "-gnome-terminal"])
 	nargv = sys.argv
 	# instanciation des objets principaux
 	app = QApplication(nargv)
@@ -778,7 +819,7 @@ if __name__ == '__main__':
 
 	if args.cmdMode:
 		if args.matriceParam == "" or args.orderMatriceParam == "":
-			print "ERROR: You must enter require arguments"
+			print("ERROR: You must enter require arguments")
 			exit()
 		cmd()
 	else:

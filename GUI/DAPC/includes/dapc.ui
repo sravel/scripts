@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>dapc</class>
  <widget class="QMainWindow" name="dapc">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>958</width>
-    <height>807</height>
+    <width>952</width>
+    <height>874</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -75,7 +78,7 @@
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>80</height>
+           <height>150</height>
           </size>
          </property>
          <property name="toolTip">
@@ -252,8 +255,33 @@
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout">
-             <item>
+            <layout class="QGridLayout" name="gridLayout_4">
+             <item row="4" column="0" colspan="2">
+              <widget class="QPushButton" name="loadOrderFilePushButton">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load tabular order keep file (with 2 columns serapte by tabular)&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0035&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0036&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Load Order file</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QPushButton" name="runPushButton">
+               <property name="toolTip">
+                <string>Run making R script</string>
+               </property>
+               <property name="text">
+                <string>Run</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" rowspan="2" colspan="2">
               <widget class="QPushButton" name="loadMatriceFilePushButton">
                <property name="toolTip">
                 <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -275,7 +303,7 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
-             <item>
+             <item row="3" column="0" colspan="2">
               <widget class="QPlainTextEdit" name="matricePlainTextEdit">
                <property name="enabled">
                 <bool>false</bool>
@@ -300,22 +328,7 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="loadOrderFilePushButton">
-               <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load tabular order keep file (with 2 columns serapte by tabular)&lt;/p&gt;
-&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0035&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0036&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="whatsThis">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="text">
-                <string>Load Order file</string>
-               </property>
-              </widget>
-             </item>
-             <item>
+             <item row="5" column="0" colspan="2">
               <widget class="QPlainTextEdit" name="orderPlainTextEdit">
                <property name="enabled">
                 <bool>false</bool>
@@ -340,17 +353,7 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
-             <item>
-              <widget class="QPushButton" name="runPushButton">
-               <property name="toolTip">
-                <string>Run making R script</string>
-               </property>
-               <property name="text">
-                <string>Run</string>
-               </property>
-              </widget>
-             </item>
-             <item>
+             <item row="7" column="0">
               <widget class="QPushButton" name="resetPushButton">
                <property name="toolTip">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset to default value all  programm's options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -366,6 +369,22 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="checkable">
                 <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QCheckBox" name="headerCheckBox">
+               <property name="acceptDrops">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If the directory already exist, use checkbox to remove it. &lt;\br&gt;Be careful it will be definitively remove !!!!&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="layoutDirection">
+                <enum>Qt::RightToLeft</enum>
+               </property>
+               <property name="text">
+                <string>matrice have HEADER</string>
                </property>
               </widget>
              </item>
@@ -794,7 +813,7 @@ Modifie the graph build by R script. See below to select value&lt;br/&gt;&lt;/p&
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>958</width>
+     <width>952</width>
      <height>19</height>
     </rect>
    </property>
