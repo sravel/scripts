@@ -276,7 +276,7 @@ if __name__ == "__main__":
 			extraparamsOut.close()
 			#  écriture des scripts pour lancer les annalyses
 			shOut=open(outputSHDir+"/"+str(count)+"_structure.sh","w")
-			#shOut.write("module load bioinfo/structure/2.3.4\n")
+			shOut.write("module load bioinfo/structure/2.3.4\n")
 			shOut.write("cd "+workingDir+"/repetition_"+str(rep)+"/population_"+str(pop)+"/\n")
 			randomInt = random.randint(1, 60)
 			shOut.write("sleep %s\n" % randomInt)
@@ -303,6 +303,8 @@ if __name__ == "__main__":
 #$ -t 1-"""+str(count-1)+"""
 #$ -tc 100
 #$ -S /bin/bash
+
+module load bioinfo/structure/2.3.4
 
 /bin/bash """+outputSHDir+"""${SGE_TASK_ID}_structure.sh"""
 
