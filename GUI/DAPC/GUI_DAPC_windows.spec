@@ -3,7 +3,7 @@
 
 block_cipher = None
 
-added_files = [ ('includes/\\*', 'includes'), ]
+added_files = [ ('E:\\Bayer\\ScriptsSEB\\scripts\\GUI\\DAPC\\includes\\*', 'includes'), ]
 
 a = Analysis(['GUI_DAPC.py'],
              pathex=['E:\\Bayer\\ScriptsSEB\\scripts\\GUI\\DAPC\\'],
@@ -27,6 +27,6 @@ exe = EXE(pyz,
           debug=False,
           strip=False,
           upx=True,
-          console=False , icon='includes/icon.ico', resources=['dapc.ui'])
+          console=False , icon='E:\Bayer\ScriptsSEB\scripts\GUI\DAPC\includes\icon.ico', resources=['E:\\Bayer\\ScriptsSEB\\scripts\\GUI\\DAPC\\includes\\dapc.ui'])
 
 

@@ -247,7 +247,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="2">
+          <item row="1" column="0">
            <widget class="QFrame" name="loadFrame">
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
@@ -256,79 +256,26 @@
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout_4">
-             <item row="4" column="0" colspan="2">
-              <widget class="QPushButton" name="loadOrderFilePushButton">
-               <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load tabular order keep file (with 2 columns serapte by tabular)&lt;/p&gt;
-&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0035&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0036&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="whatsThis">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="text">
-                <string>Load Order file</string>
-               </property>
-              </widget>
-             </item>
              <item row="6" column="0">
-              <widget class="QPushButton" name="runPushButton">
+              <widget class="QPushButton" name="resetPushButton">
                <property name="toolTip">
-                <string>Run making R script</string>
-               </property>
-               <property name="text">
-                <string>Run</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0" rowspan="2" colspan="2">
-              <widget class="QPushButton" name="loadMatriceFilePushButton">
-               <property name="toolTip">
-                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open file dialog to load matrice file (tabular)&lt;\br&gt;EXEMPLE&lt;\br&gt;:&lt;/p&gt;
-&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt; &lt;/th&gt;&lt;th&gt;Pyrms37&lt;/th&gt;&lt;th&gt;Pyrms47&lt;/th&gt;&lt;th&gt;Pyrms63&lt;/th&gt;&lt;th&gt;Pyrms77B&lt;/th&gt;&lt;th&gt;Pyrms83B&lt;/th&gt;&lt;th&gt;Pyrms233&lt;/th&gt;&lt;th&gt;Pyrms319&lt;/th&gt;&lt;th&gt;Pyrms427&lt;/th&gt;&lt;th&gt;Pyrms607&lt;/th&gt;&lt;th&gt;Pyrms657&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;199&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;167&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;124&lt;/td&gt;&lt;td&gt;259&lt;/td&gt;&lt;td&gt;281&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;278&lt;/td&gt;&lt;td&gt;166&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;115&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;211&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;103&lt;/td&gt;&lt;td&gt;250&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;210&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;103&lt;/td&gt;&lt;td&gt;250&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;211&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;112&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;196&lt;/td&gt;&lt;td&gt;112&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;\br&gt;
-&lt;\br&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Empty data must be encode with '999'&lt;/p&gt;
-&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset to default value all  programm's options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="whatsThis">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="text">
-                <string>Load Matrice file</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0" colspan="2">
-              <widget class="QPlainTextEdit" name="matricePlainTextEdit">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="acceptDrops">
-                <bool>false</bool>
-               </property>
-               <property name="toolTip">
-                <string/>
-               </property>
-               <property name="whatsThis">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load or Add list of NCBI Accession&lt;/p&gt;&lt;p&gt;of nucleotide and or proteique database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;reset the programm&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="accessibleName">
-                <string>plainTxtAccession</string>
+                <string>buttonReset</string>
                </property>
-               <property name="frameShape">
-                <enum>QFrame::WinPanel</enum>
+               <property name="text">
+                <string>Reset</string>
                </property>
-               <property name="plainText">
-                <string/>
+               <property name="checkable">
+                <bool>false</bool>
                </property>
               </widget>
              </item>
-             <item row="5" column="0" colspan="2">
+             <item row="4" column="0">
               <widget class="QPlainTextEdit" name="orderPlainTextEdit">
                <property name="enabled">
                 <bool>false</bool>
@@ -353,26 +300,29 @@ p, li { white-space: pre-wrap; }
                </property>
               </widget>
              </item>
-             <item row="7" column="0">
-              <widget class="QPushButton" name="resetPushButton">
+             <item row="0" column="0">
+              <widget class="QPushButton" name="loadMatriceFilePushButton">
                <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset to default value all  programm's options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Open file dialog to load matrice file (tabular)&lt;\br&gt;EXEMPLE&lt;\br&gt;:&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt; &lt;/th&gt;&lt;th&gt;Pyrms37&lt;/th&gt;&lt;th&gt;Pyrms47&lt;/th&gt;&lt;th&gt;Pyrms63&lt;/th&gt;&lt;th&gt;Pyrms77B&lt;/th&gt;&lt;th&gt;Pyrms83B&lt;/th&gt;&lt;th&gt;Pyrms233&lt;/th&gt;&lt;th&gt;Pyrms319&lt;/th&gt;&lt;th&gt;Pyrms427&lt;/th&gt;&lt;th&gt;Pyrms607&lt;/th&gt;&lt;th&gt;Pyrms657&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;199&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;167&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;124&lt;/td&gt;&lt;td&gt;259&lt;/td&gt;&lt;td&gt;281&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;278&lt;/td&gt;&lt;td&gt;166&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;115&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;211&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;103&lt;/td&gt;&lt;td&gt;250&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;210&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;163&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;103&lt;/td&gt;&lt;td&gt;250&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;211&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;194&lt;/td&gt;&lt;td&gt;112&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;197&lt;/td&gt;&lt;td&gt;165&lt;/td&gt;&lt;td&gt;151&lt;/td&gt;&lt;td&gt;196&lt;/td&gt;&lt;td&gt;112&lt;/td&gt;&lt;td&gt;253&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;213&lt;/td&gt;&lt;td&gt;284&lt;/td&gt;&lt;td&gt;168&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;\br&gt;
+&lt;\br&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Empty data must be encode with '999'&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="whatsThis">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;reset the programm&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="accessibleName">
-                <string>buttonReset</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="text">
-                <string>Reset</string>
-               </property>
-               <property name="checkable">
-                <bool>false</bool>
+                <string>Load Matrice file</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
+             <item row="1" column="0">
               <widget class="QCheckBox" name="headerCheckBox">
                <property name="acceptDrops">
                 <bool>false</bool>
@@ -385,6 +335,56 @@ p, li { white-space: pre-wrap; }
                </property>
                <property name="text">
                 <string>matrice have HEADER</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QPlainTextEdit" name="matricePlainTextEdit">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="acceptDrops">
+                <bool>false</bool>
+               </property>
+               <property name="toolTip">
+                <string/>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Load or Add list of NCBI Accession&lt;/p&gt;&lt;p&gt;of nucleotide and or proteique database&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="accessibleName">
+                <string>plainTxtAccession</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::WinPanel</enum>
+               </property>
+               <property name="plainText">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QPushButton" name="runPushButton">
+               <property name="toolTip">
+                <string>Run making R script</string>
+               </property>
+               <property name="text">
+                <string>Run</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QPushButton" name="loadOrderFilePushButton">
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load tabular order keep file (with 2 columns serapte by tabular)&lt;/p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;td&gt;BD0009&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BD0024&lt;/td&gt;&lt;td&gt;Burundi&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0030&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0031&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0033&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0034&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0035&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;BF0036&lt;/td&gt;&lt;td&gt;Burkina Faso&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="whatsThis">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open file dialog to load list accession file (.txt)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="text">
+                <string>Load Order file</string>
                </property>
               </widget>
              </item>

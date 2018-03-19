@@ -110,7 +110,7 @@ dev.off()
 # this use intercative mode to help choose the PCA retains value with graphic.
 # then produce BIC graphic to choose number of pop optimal.
 
-fcl.BIC <- find.clusters(W, n.pca=NULL,n.clust=NULL, stat="BIC", n.iter=5000, n.start=30, scale=FALSE)
+fcl.BIC <- find.clusters(W, n.pca=NULL,n.clust=2, stat="BIC", n.iter=5000, n.start=30, scale=FALSE)
 dapc <- dapc(W, pop=fcl.BIC$grp, n.pca=NULL,n.da=NULL, scale=FALSE, pca.select="nbEig")
 
 # When you are choose the PCA and DA value, add to variable or go to GUI_DAPC and rebuild R script with value
@@ -224,13 +224,16 @@ def loadInDictLine(filename):
 	"""
 
 	dicoOut={}
+	duplicate = []
 	with open(filename) as filein:
 		for line in filein:
 			tabLine = line.rstrip().split("\t")
 			#print(tabLine[0], tabLine[1])
 			if tabLine[0] not in dicoOut.keys():
 				dicoOut[tabLine[0]] = line
-	return dicoOut
+			else:
+				duplicate.append(tabLine[0])
+	return dicoOut, duplicate
 
 def replace_all(repls, str):
 	"""
@@ -330,7 +333,7 @@ class DAPC( formDAPC, baseDAPC ):
 		self.orderPathFile = ""
 		self.workingDir = ""
 		self.basename = ""
-		self.rmOld = "False"
+		self.rmOld = False
 		self.DAPCfix = DAPCfix
 		self.DAPCchange = DAPCchange
 		self.expertMode = "False"
@@ -448,9 +451,9 @@ class DAPC( formDAPC, baseDAPC ):
 	def actualizeRmOld(self):
 		"""change la valeur du choix quand changer"""
 		if self.ui.rmOldCheckBox.isChecked():
-			self.rmOld = "True"
+			self.rmOld = True
 		else:
-			self.rmOld = "False"
+			self.rmOld = False
 
 	def actualizeHeader(self):
 		"""change la valeur du choix quand changer"""
@@ -612,7 +615,7 @@ class DAPC( formDAPC, baseDAPC ):
 			"""to run programme"""
 			# création du pathout
 			if os.path.isdir(self.pathFileOut):
-				if self.rmOld == "True":
+				if self.rmOld:
 					shutil.rmtree(str(self.pathFileOut))
 					os.mkdir(self.pathFileOut)
 				else:
@@ -626,10 +629,13 @@ class DAPC( formDAPC, baseDAPC ):
 			###############################################
 
 			# charge l'ordre a refaire
-			self.orderList = loadInListCol(self.orderPathFile, 0)
+			self.orderList = loadInListCol(self.orderPathFile, 0).replace("\r\n","\n")
+
+			# add duplicate in order list:
+			self.duplicateOrderList = set([x for x in self.orderList if self.orderList.count(x) > 1])
 
 			# copie de la matrice dans un dico
-			self.dicoMatrice = loadInDictLine(self.matricePathFile)
+			self.dicoMatrice, self.duplicateMatrice = loadInDictLine(self.matricePathFile)
 
 			# Comptage du nombre d'individus, de markers et ncode:
 			if self.header:
@@ -637,14 +643,23 @@ class DAPC( formDAPC, baseDAPC ):
 			else:
 				self.nbindParam = len(self.dicoMatrice.keys())
 
+			if len(self.duplicateMatrice) != 0 and  len(self.duplicateMatrice) != len(self.dicoMatrice.keys()):
+				warning += "WARNING: Duplicate sample(s) into Matrice file:\n%s !!!\n" % ("\n".join(self.duplicateMatrice))
+				raise Exception(warning)
+
+			if len(self.duplicateOrderList) != 0 and len(self.duplicateOrderList) != len(self.orderList):
+				warning += "WARNING: Duplicate sample(s) into Order file:\n%s !!!\n" % ("\n".join(self.duplicateOrderList))
+				raise Exception(warning)
+
 			if self.nbindParam != len(self.orderList):
-				txtInfo += "WARNING: More individu in Matrice file (%s) than Order label file (%s)!!!\n" % (self.nbindParam, len(self.orderList))
+				warning += "WARNING: More individu in Matrice file (%s) than Order label file (%s)!!!\n" % (self.nbindParam, len(self.orderList))
+				raise Exception(warning)
 
 			fileMat = open(self.matricePathFile,"r")
 			if self.header:
 				header = fileMat.readline()
 				self.nbmarkParam = len(header.split("\t"))
-				header = " \t"+"\t".join(header.split("\t")[1:])
+				header = " \t"+"\t".join(header.split("\t")[1:]).replace(" ","_").replace(".","_").replace("\r\n","\n")
 			else:
 				indiv1 = fileMat.readline()
 				self.nbmarkParam = len(indiv1.split("\t")[1:])
@@ -665,7 +680,7 @@ class DAPC( formDAPC, baseDAPC ):
 						raise Exception(error)
 
 					line = self.dicoMatrice[ind].split("\t")[0]+"\t"+"\t".join(self.dicoMatrice[ind].split("\t")[1:]).replace("999","-9")
-					reorderMatriceFile.write(line)
+					reorderMatriceFile.write(line.replace("\r\n","\n"))
 
 			txtInfo += "Nb individus: %i\tNb markers: %i\tncodeParam: %i\tGraph type: %s\n" % (self.nbindParam,int(self.nbmarkParam)-1,self.ncodeParam, self.graphType)
 			if args.cmdMode:
@@ -729,7 +744,8 @@ class DAPC( formDAPC, baseDAPC ):
 			# Grise les cases pour ne pas relancer dessus et faire un reset
 			self.ui.runPushButton.setDisabled(True)
 			txtError = str(error)
-			self.ui.statusbar.showMessage(txtError,7200)
+			self.ui.statusbar.showMessage(txtError,9600)
+			self.ui.runningPlainTextEdit.setPlainText(txtError)
 
 
 
@@ -775,16 +791,21 @@ def cmd():
 	myapp.popMaxValue = args.nbpopmParam
 	# pgraph value
 	myapp.graphType = args.graphParam
+	# header value
+	myapp.header = args.headerParam
+
+	print(args.matriceParam)
+	print(args.orderMatriceParam)
 
 	# working dir path
-	workingDir = "/".join(relativeToAbsolutePath(args.orderMatriceParam).encode("utf-8").split("/")[:-1])+"/"
-	myapp.workingDir = workingDir.encode("utf-8")
+	workingDir = "/".join(relativeToAbsolutePath(args.orderMatriceParam).split("/")[:-1])+"/"
+	myapp.workingDir = workingDir
 	# basename
-	basename = relativeToAbsolutePath(args.orderMatriceParam).encode("utf-8").split("/")[-1].split(".")[0]
-	myapp.basename = basename.encode("utf-8")
+	basename = relativeToAbsolutePath(args.orderMatriceParam).split("/")[-1].split(".")[0]
+	myapp.basename = basename
 	# pathFileOut dir path
 	pathFileOut = workingDir+basename+"/"
-	myapp.pathFileOut = pathFileOut.encode("utf-8")
+	myapp.pathFileOut = pathFileOut
 
 	# rm old folder
 	myapp.rmOld = args.rmOldParam
@@ -801,7 +822,7 @@ if __name__ == '__main__':
 																				#If use on cluster you can run in commande line with option -c and args''')
 	parser.add_argument('-v', '--version', action='version', version='You are using %(prog)s version: ' + version, help=\
 						'display GUI_DAPC.py version number and exit')
-	parser.add_argument('-dd', '--debug',choices=("False","True"), dest='debug', help='enter verbose/debug mode', default = "False")
+	parser.add_argument('-dd', '--debug',action ='store_true', dest='debug', help='enter verbose/debug mode')
 
 	filesReq = parser.add_argument_group('Input mandatory infos for running if -c use')
 	filesReq.add_argument('-c', '--cmd', action='store_true', dest = 'cmdMode', help = 'If used, programme run in CMD without interface')
@@ -813,8 +834,9 @@ if __name__ == '__main__':
 	files.add_argument('-da', '--danum', metavar="<int>", required=False, default = "NULL", dest = 'daParam', help = 'Number value of DA retains (default = NULL)')
 	files.add_argument('-pi', '--popi', metavar="<int>", type = int, default=2, required=False, dest = 'nbpopiParam', help = 'Number of pop Min (default = 2)')
 	files.add_argument('-pm', '--popm', metavar="<int>", type = int, default=10, required=False, dest = 'nbpopmParam', help = 'Number of pop Max (default = 10)')	## Check parameters
-	files.add_argument('-r', '--rm', metavar="<True/False>", choices=("True","False"), default="False", required=False, dest = 'rmOldParam', help = 'if directory exist remove (default = False)')	## Check parameters
+	files.add_argument('-r', '--rm', action ='store_true', required=False, dest = 'rmOldParam', help = 'if directory exist remove (default = False)')	## Check parameters
 	files.add_argument('-g', '--graph', metavar="<1/2/3>", choices=("1","2","3"), default="1", required=False, dest = 'graphParam', help = 'type of graph (default = 1)')	## Check parameters
+	files.add_argument('-head', '--header', action ='store_true', required=False, dest = 'headerParam', help = 'add if header in matrice (default = False)')	## Check parameters
 	args = parser.parse_args()
 
 	if args.cmdMode:
