@@ -321,13 +321,14 @@ if __name__ == "__main__":
 	## defaults option
 	if args.pathOut != None:
 		pathOut = args.pathOut
+	includePath = str(os.path.realpath(args.includePath)).replace('\\','\\\\')
 
 	# Récupère les arguments
 	if "win" in sys.platform :
 		workingDir = os.path.dirname(os.path.realpath(args.pythonFile))+"\\"
 		distPath = workingDir+"dist\\"
 		buildPath = workingDir+"build\\"
-		txtADD = "('%s\\\*', 'includes')," % args.includePath
+		txtADD = "('%s\\\*', 'includes')," % includePath
 		os_run = "windows"
 		if args.pathOut == None:
 			pathOut = workingDir+"\windows\\"
@@ -342,7 +343,7 @@ if __name__ == "__main__":
 		workingDir = os.path.dirname(os.path.realpath(args.pythonFile))+"/"
 		distPath = workingDir+"dist/"
 		buildPath = workingDir+"build/"
-		txtADD = "('%s*', 'includes')," % args.includePath
+		txtADD = "('%s*', 'includes')," % includePath
 		os_run = "linux"
 		if args.pathOut == None:
 			pathOut = workingDir+"/linux/"
@@ -357,20 +358,20 @@ if __name__ == "__main__":
 	printCol.purple("\t - Python main script is: %s" % args.pythonFile)
 	printCol.purple("\t - UI file is: %s" % args.uiFile)
 	printCol.purple("\t - icon file is: %s" % args.iconFile)
-	printCol.purple("\t - all file in directory '%s' were use" % args.includePath)
+	printCol.purple("\t - all file in directory '%s' were use" % includePath)
 
 	printCol.purple(" - Output Info:")
 	printCol.purple("\t - Working directory: %s" % workingDir)
 	printCol.purple("\t - Output executable were in directory: %s\n\n" % pathOut)
 
 	icon = os.path.basename(args.iconFile)
-	ui = os.path.basename(args.uiFile)
+	ui = os.path.realpath(args.uiFile).replace("\\","\\\\")
 	pythonFileBase = os.path.basename(args.pythonFile)
 	nameGUI = "%s_%s" % (pythonFileBase.split(".")[0], os_run )
 
 	dictToReplace = {
 	"**ADD**"		:	str(txtADD),
-	"**ICON**"	:	str(args.iconFile),
+	"**ICON**"	:	str(os.path.realpath(args.iconFile)),
 	"**UI**"		:	str(ui),
 	"**PYTHON**"		:	str(pythonFileBase),
 	"**NAME**"		:	str(nameGUI),
