@@ -109,7 +109,7 @@ class EBimage( formEBimage, baseEBimage ):
 		self.ui = self
 		self.ui.setupUi(self)
 		self.ui.setFocus(True)
-		self.ui..setWindowTitle("GUI_EBimage")
+		self.ui.setWindowTitle("GUI_EBimage")
 		self.ui.show()
 		self.setFocusPolicy(QtCore.Qt.StrongFocus)
 		self.activateWindow()
