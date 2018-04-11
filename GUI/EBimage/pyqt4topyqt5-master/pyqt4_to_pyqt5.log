@@ -1,6 +1,0 @@
-**  pyqt4_to_pyqt5.log  Friday 02. February 2018 10:11  **
-Args: ['./pyqt4topyqt5.py', '../GUI_EBimage.py', '-o', '../GUI_EBimage5.py']
-
-Processing file: `/media/sebastien/Bayer/ScriptsSEB/scripts/GUI/EBimage/GUI_EBimage.py`
-  File updated.
-
