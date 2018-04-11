@@ -41,7 +41,7 @@ import syntax
 ##################################################
 ## Variables Globales
 version = '1.0'
-VERSION_DATE = '31/08/2016'
+VERSION_DATE = '23/03/2018'
 
 
 ##################################################
@@ -413,16 +413,16 @@ class DAPC( formDAPC, baseDAPC ):
 	def actualizeDAPCFix(self):
 		"""change la valeur du choix quand changer"""
 		#print("changeFix")
-		currentValue = str(self.ui.DAPCfixPlainTextEdit.toPlainText().toUtf8())
+		currentValue = str(self.ui.DAPCfixPlainTextEdit.toPlainText())
 		highlight = syntax.PythonHighlighter(self.ui.DAPCfixPlainTextEdit.document())
-		self.ui.DAPCfixPlainTextEdit.setPlainText(currentValue.decode("utf-8"))
+		self.ui.DAPCfixPlainTextEdit.setPlainText(currentValue)
 
 	def actualizeDAPCChange(self):
 		"""change la valeur du choix quand changer"""
 		#print("changeChange")
-		currentValue = str(self.ui.DAPCchangePlainTextEdit.toPlainText().toUtf8())
+		currentValue = str(self.ui.DAPCchangePlainTextEdit.toPlainText())
 		highlight = syntax.PythonHighlighter(self.ui.DAPCchangePlainTextEdit.document())
-		self.ui.DAPCchangePlainTextEdit.setPlainText(currentValue.decode("utf-8"))
+		self.ui.DAPCchangePlainTextEdit.setPlainText(currentValue)
 
 	def actualizeDAPCColor(self):
 		"""change la valeur du choix quand changer"""
@@ -442,8 +442,8 @@ class DAPC( formDAPC, baseDAPC ):
 			highlight = syntax.PythonHighlighter(self.ui.DAPCfixPlainTextEdit.document())
 			highlight2 = syntax.PythonHighlighter(self.ui.DAPCchangePlainTextEdit.document())
 
-			self.ui.DAPCfixPlainTextEdit.setPlainText(DAPCfix.decode("utf-8"))
-			self.ui.DAPCchangePlainTextEdit.setPlainText(DAPCchange.decode("utf-8"))
+			self.ui.DAPCfixPlainTextEdit.setPlainText(DAPCfix)
+			self.ui.DAPCchangePlainTextEdit.setPlainText(DAPCchange)
 		else:
 			self.expertMode = "False"
 			self.ui.expertFrame.hide()
@@ -609,8 +609,8 @@ class DAPC( formDAPC, baseDAPC ):
 			self.ui.expertFrame.setDisabled(True)
 			self.ui.graphTypeComboBox.setDisabled(True)
 			if self.expertMode == "True":
-				self.DAPCfix = str(self.ui.DAPCfixPlainTextEdit.toPlainText().toUtf8())
-				self.DAPCchange = str(self.ui.DAPCchangePlainTextEdit.toPlainText().toUtf8())
+				self.DAPCfix = str(self.ui.DAPCfixPlainTextEdit.toPlainText())
+				self.DAPCchange = str(self.ui.DAPCchangePlainTextEdit.toPlainText())
 
 			"""to run programme"""
 			# création du pathout
@@ -629,7 +629,7 @@ class DAPC( formDAPC, baseDAPC ):
 			###############################################
 
 			# charge l'ordre a refaire
-			self.orderList = loadInListCol(self.orderPathFile, 0).replace("\r\n","\n")
+			self.orderList = [x.replace("\r\n","\n") for x in loadInListCol(self.orderPathFile, 0)]
 
 			# add duplicate in order list:
 			self.duplicateOrderList = set([x for x in self.orderList if self.orderList.count(x) > 1])
@@ -679,8 +679,10 @@ class DAPC( formDAPC, baseDAPC ):
 						error = "ERROR: The individu %s define in label file was not in the matrice file !!! Exit programme" % ind
 						raise Exception(error)
 
-					line = self.dicoMatrice[ind].split("\t")[0]+"\t"+"\t".join(self.dicoMatrice[ind].split("\t")[1:]).replace("999","-9")
-					reorderMatriceFile.write(line.replace("\r\n","\n"))
+					line = self.dicoMatrice[ind].split("\t")[0]+"\t"+"\t".join(self.dicoMatrice[ind].split("\t")[1:]).replace("999","-9").replace("\r\n","\n")
+					if line[-1] != "\n":
+						line = line+"\n"
+					reorderMatriceFile.write(line)
 
 			txtInfo += "Nb individus: %i\tNb markers: %i\tncodeParam: %i\tGraph type: %s\n" % (self.nbindParam,int(self.nbmarkParam)-1,self.ncodeParam, self.graphType)
 			if args.cmdMode:
