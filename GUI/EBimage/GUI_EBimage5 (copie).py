@@ -6,25 +6,29 @@
 ##################################################
 ## Modules
 ##################################################
+
+
+
 import argparse
 import sys, os
+import glob
 
 # Python QT modules
-from PyQt5.QtWidgets import *
-#from PyQt5.QtWidgets import QApplication, QFileSystemModel, QTableWidget, QFileDialog, QMessageBox, QTableWidgetItem
-from PyQt5 import QtCore
+from PyQt5.QtWidgets import QApplication, QFileSystemModel, QTableWidget, QFileDialog
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5 import uic
-from PyQt5.QtCore import Qt
 
-#import rpy2
+#import syntax
+from rpy2.robjects.packages import importr
 from rpy2.robjects.packages import SignatureTranslatedAnonymousPackage
 
 #exit()
 ##################################################
 ## Variables Globales
 version = '1.0'
-VERSION_DATE = '09/04/2018'
+VERSION_DATE = '02/10/2017'
 
 ##################################################
 ## Functions
@@ -82,36 +86,43 @@ class EBimage( formEBimage, baseEBimage ):
 		self.initializationCommonVariables()
 		self.createWidgets()
 
+
 	def initializationCalibrationVariables(self):
 		"""Initialize calibration variables with defaults values"""
-		self.calibrationInOutPath = None
-		self.calibrationBasename = None
-		self.calibrationOpenLineEdit.setText("")
-		self.ui.runCalibrationFrame.hide()
-		self.ui.calibrationOutFrame.hide()
-		self.ui.runCalibrationPushButton.setDisabled(True)
-		self.ui.treeView.reset()
+		self.dicoFoldersCalibration =	{"leaf": None,
+							 "symptom": None,
+							 "background": None,
+							}
+							#"cat1": None,
+							#"cat2": None,
+
+		self.futherCat = 0
+		self.dicoObjectOpenLineEditCalibration = {
+						"leaf": self.ui.leafOpenLineEdit,
+						"symptom": self.ui.symptomOpenLineEdit,
+						"background": self.ui.backgroundOpenLineEdit,
+					 }
+						#"cat1": self.ui.category1OpenLineEdit,
+						#"cat2": self.ui.category2OpenLineEdit
+		self.dicoObjectOpenPushButtonCalibration = {
+						"leaf": self.ui.loadLeafPushButton,
+						"symptom": self.ui.loadSymptomPushButton,
+						"background": self.ui.loadBackgroundPushButton,
+					 }
+						#"cat1": self.ui.loadCategory1PushButton,
+						#"cat2": self.ui.loadCategoryPushButton
+		self.calibrationOutPath = ""
+		self.calibrationBasename = ""
 		self.actualizeOutFiles()
 
 	def initializationAnalysisVariables(self):
 		"""Initialize analysis variables with defaults values"""
-		self.dicoAnalysisValues = {	"leafSize" : 1000,
-								"leafBorderSize" : 3,
-								"lesionSize" : 10,
-								"lesionBorderSize" : 3,
-								"lesionColor" : 0					# 0 = black 1 = white
-							}
-		self.dicoObjectOpenLineEditAnalysis = {
-								"leafSize" : self.leafSizeLineEdit,
-								"leafBorderSize" : self.leafBorderSizeLineEdit,
-								"lesionSize" : self.lesionSizeLineEdit,
-								"lesionBorderSize" : self.lesionBorderLineEdit,
-												}
-
-
+		self.leafMinSize = 1000
+		self.leafBorderSize = 3
+		self.symptomMinSize = 10
+		self.symptomBorderSize = 3
 		self.inputAnalyseFolder = ""
 		self.outputAnalyseFolder = ""
-		self.ui.runAnalysisPushButton.setDisabled(True)
 
 	def initializationCommonVariables(self):
 		"""Initialize common variables with defaults values"""
@@ -121,156 +132,202 @@ class EBimage( formEBimage, baseEBimage ):
 
 	def actualizeOutFiles(self):
 		"""actualise path of out files"""
-		if self.calibrationInOutPath != None:
-			self.calibrationFilesOut = {
-								"RData": self.calibrationInOutPath+"/"+self.calibrationBasename+".RData",
-								"png": self.calibrationInOutPath+"/"+self.calibrationBasename+".png",
-								"txt": self.calibrationInOutPath+"/"+self.calibrationBasename+".txt",
-								"info": self.calibrationInOutPath+"/"+self.calibrationBasename+"_info.txt"
-								}
+		self.calibrationFilesOut = {
+							"RData": self.calibrationOutPath+"/"+self.calibrationBasename+".RData",
+							"png": self.calibrationOutPath+"/"+self.calibrationBasename+".png",
+							"txt": self.calibrationOutPath+"/"+self.calibrationBasename+".txt",
+							"info": self.calibrationOutPath+"/"+self.calibrationBasename+"_info.txt"
+							}
 
 	def createWidgets(self):
 		"""Mise en place du masquage des frames et des connections de l'interface"""
+		## Initialisation des frames et bouttons
+		self.ui.runAnalysisPushButton.setDisabled(True)
+		self.ui.runCalibrationPushButton.setDisabled(True)
+		self.ui.runCalibrationFrame.hide()
+		self.ui.calibrationOutFrame.hide()
+		self.ui.futherFrame.hide()
+		self.ui.cat1Frame.hide()
+		self.ui.cat2Frame.hide()
+
 		self.setWindowIcon(QIcon(resource_path("./includes/icon.ico")))
 		self.ui.statusbar.setStyleSheet("color: rgb(255, 107, 8);font: 8pt 'Arial Black';")
 
-		## Edition des connect callibration:
-		self.ui.loadCalibrationPushButton.clicked.connect(lambda: self.loadFolder(inputCat = "calibration", methode="clicked"))
-		self.ui.calibrationOpenLineEdit.editingFinished.connect(lambda: self.loadFolder(inputCat = "calibration", methode="write"))
+		#self.resizeWindows()
+
+		## Edition des connect:
+		self.ui.loadCategory1PushButton.clicked.connect(lambda: self.loadFolder(inputCat = "cat1", methode="clicked"))
+		self.ui.category1OpenLineEdit.editingFinished.connect(lambda: self.loadFolder(inputCat = "cat1", methode="write"))
+
+		self.ui.loadCategoryPushButton.clicked.connect(lambda: self.loadFolder(inputCat = "cat2", methode="clicked"))
+		self.ui.category2OpenLineEdit.editingFinished.connect(lambda: self.loadFolder(inputCat = "cat2", methode="write"))
+
+		self.ui.loadLeafPushButton.clicked.connect(lambda: self.loadFolder(inputCat = "leaf", methode="clicked"))
+		self.ui.leafOpenLineEdit.editingFinished.connect(lambda: self.loadFolder(inputCat = "leaf", methode="write"))
+
+		self.ui.loadBackgroundPushButton.clicked.connect(lambda: self.loadFolder(inputCat = "background", methode="clicked"))
+		self.ui.backgroundOpenLineEdit.editingFinished.connect(lambda: self.loadFolder(inputCat = "background", methode="write"))
+
+		self.ui.loadSymptomPushButton.clicked.connect(lambda: self.loadFolder(inputCat = "symptom", methode="clicked"))
+		self.ui.symptomOpenLineEdit.editingFinished.connect(lambda: self.loadFolder(inputCat = "symptom", methode="write"))
+
+		self.ui.futherCategoriesComboBox.currentIndexChanged[int].connect(self.actualizeFutherCat)
 
 		self.ui.runCalibrationPushButton.clicked.connect(self.run)
 		self.ui.resetCalibrationPushButton.clicked.connect(self.resetLoadFolder)
 
-		## Edition des connect analysis:
-		self.ui.leafSizeLineEdit.editingFinished.connect(lambda: self.actualizeAnalysisValues(inputLabel = "leafSize"))
-		self.ui.leafBorderSizeLineEdit.editingFinished.connect(lambda: self.actualizeAnalysisValues(inputLabel = "leafBorderSize"))
-		self.ui.lesionSizeLineEdit.editingFinished.connect(lambda: self.actualizeAnalysisValues(inputLabel = "lesionSize"))
-		self.ui.lesionBorderLineEdit.editingFinished.connect(lambda: self.actualizeAnalysisValues(inputLabel = "lesionBorderSize"))
-		self.ui.lesionColorComboBox.currentIndexChanged[int].connect(lambda: self.actualizeAnalysisValues(inputLabel = "lesionColor"))
-
-		self.ui.loadAnalysisPushButton.clicked.connect(lambda: self.loadInputAnalysis(inputCat = "inputAnalysis", methode="clicked"))
-		self.ui.analysisOpenLineEdit.editingFinished.connect(lambda: self.loadInputAnalysis(inputCat = "inputAnalysis", methode="write"))
-
-		self.ui.loadPathOutPushButton.clicked.connect(lambda: self.loadOutputAnalysis(inputCat = "outputAnalysis", methode="clicked"))
-		self.ui.pathOutlineEdit.editingFinished.connect(lambda: self.loadOutputAnalysis(inputCat = "outputAnalysis", methode="write"))
-
-		self.ui.loadCalibrationFilePushButton.clicked.connect(lambda: self.loadFoldersAnalysis(inputCat = "calibrationAnalysis", methode="clicked"))
-		self.ui.calibrationFileOpenLineEdit.editingFinished.connect(lambda: self.loadFoldersAnalysis(inputCat = "calibrationAnalysis", methode="write"))
-
-
-	def testInt(self,inputLabel, value):
-		try:
-			return int(value)
-		except:
-			self.displayError(typeError="WARNING:", message = "\"%s\" is not a int value \n" % (value))
-			self.dicoObjectOpenLineEditAnalysis[inputLabel].setText(str(self.dicoAnalysisValues[inputLabel]))
-
-	def actualizeAnalysisValues(self, inputLabel = None):
-		"""actualize values for analysis"""
-		print(self.dicoAnalysisValues)
-		if inputLabel == "lesionColor":
-			dicoColor = {"Black":0, "White":1}
-			self.dicoAnalysisValues[inputLabel] = dicoColor[self.lesionColorComboBox.currentText()]
-		else:
-			self.dicoAnalysisValues[inputLabel] = self.testInt(inputLabel, self.dicoObjectOpenLineEditAnalysis[inputLabel].text())
-
-		print(inputLabel, self.dicoAnalysisValues[inputLabel])
+	def resizeWindows(self):
+		"""change la taille de fenetre"""
+		# resize
+		size = self.ui.centralwidget.sizeHint()
+		self.ui.setGeometry(800,600,size.width(), size.height())
 
 	def resetLoadFolder(self):
 		"""To reset if delete of change value"""
+		for inputCat in self.dicoFoldersCalibration.keys():
+			self.dicoFoldersCalibration[inputCat] = None
+			self.dicoObjectOpenLineEditCalibration[inputCat].setText("")
 		self.actualizeRunButton()
 		self.initializationCalibrationVariables()
 		self.enableButtonsCalibration()
 		self.ui.calibrationOutFrame.hide()
 		self.viewLayout.removeWidget(self.tableWidget)
 
-	def loadInputAnalysis(self,inputCat = None, methode = None):
-		"""Méthode qui permet de charger un fichier et afficher dans le plainText"""
-		directoryToOpen = os.getcwd()
-		if methode == "clicked":
-			pathdir = QFileDialog.getExistingDirectory(self, caption="Load the directory "+inputCat, directory=directoryToOpen)
-			self.analysisOpenLineEdit.setText(pathdir)
-		elif methode == "write":
-			pathdir = str(self.analysisOpenLineEdit.text())
-		if pathdir != "" and os.path.isdir(pathdir):
-			print(pathdir)
-
-	def loadOutputAnalysis(self,inputCat = None, methode = None):
-		"""Méthode qui permet de charger un fichier et afficher dans le plainText"""
-		directoryToOpen = os.getcwd()
-		if methode == "clicked":
-			pathdir = QFileDialog.getExistingDirectory(self, caption="Load the directory "+inputCat, directory=directoryToOpen)
-			self.pathOutlineEdit.setText(pathdir)
-		elif methode == "write":
-			pathdir = str(self.pathOutlineEdit.text())
-		if pathdir != "" and os.path.isdir(pathdir):
-			print(pathdir)
-
 	def loadFolder(self,inputCat = None, methode = None):
 		"""Méthode qui permet de charger un fichier et afficher dans le plainText"""
 		directoryToOpen = os.getcwd()
+		for key, folder in self.dicoFoldersCalibration.items():
+			if folder != None:
+				#print(key, folder)
+				directoryToOpen = folder
+				break
+
 		if methode == "clicked":
 			pathdir = QFileDialog.getExistingDirectory(self, caption="Load the directory "+inputCat, directory=directoryToOpen)
-			self.calibrationOpenLineEdit.setText(pathdir)
+			self.dicoObjectOpenLineEditCalibration[inputCat].setText(pathdir)
 		elif methode == "write":
-			pathdir = str(self.calibrationOpenLineEdit.text())
+			pathdir = str(self.dicoObjectOpenLineEditCalibration[inputCat].text())
 
 		if pathdir != "" and os.path.isdir(pathdir):
-			self.calibrationInOutPath = pathdir
-			self.calibrationBasename = self.calibrationInOutPath.split("/")[-1]
-
-			for root, dirs, files in os.walk(pathdir):
-				if "leaf" in dirs and "background" in dirs and "lesion" in dirs:
-					#-- Modèle
-					self.myModel = QFileSystemModel()
-					self.myModel.setReadOnly(True)
-					self.myModel.setRootPath(pathdir)
-
-					self.treeView.setModel(self.myModel)
-					rootModelIndex = self.myModel.index(pathdir)
-					self.treeView.setRootIndex(rootModelIndex)
-
-					# ajuste to contents
-					self.treeView.setColumnWidth(0,400)
-					self.treeView.setSortingEnabled(True)
-					self.treeView.setAlternatingRowColors(True)
-					self.treeView.setAnimated(True)
-					self.actualizeRunButton()
-					break
-				else:
-					self.displayError(typeError="WARNING:", message = "\"%s\" not containt mandatory directory \n" % (pathdir))
-					self.calibrationInOutPath = None
-					self.calibrationOpenLineEdit.setText("")
-					break
-
+			self.dicoFoldersCalibration[inputCat] = pathdir
 
 		else:
-			self.calibrationInOutPath = None
-			self.calibrationOpenLineEdit.setText("")
-			self.displayError(typeError="WARNING:",message = "\"%s\" is not a valid Path \n" % (pathdir))
-		#print(self.calibrationInOutPath)
+			self.dicoFoldersCalibration[inputCat] = ""
+			self.dicoObjectOpenLineEditCalibration[inputCat].setText("")
+			self.displayError(error = "\"%s\" is not a valid Path \n" % (pathdir))
+		self.actualizeRunButton()
+		self.autocomplete_Folder()
+		#print(self.dicoFoldersCalibration[inputCat])
+
+	def autocomplete_Folder(self):
+		"""autocomplet les répertoires si un déja remplit"""
+		directoryToOpen = None
+		for key, folder in self.dicoFoldersCalibration.items():
+			if folder != None:
+				directoryToOpen = "/".join(str(folder).split("/")[:-1])
+				break
+		if directoryToOpen != None:
+			for root, dirs, files in os.walk(directoryToOpen):
+				#if args.debug: print(root, dirs, files)
+				for inputCat in self.dicoFoldersCalibration.keys():
+					if inputCat in dirs:
+						pathdir = "{}/{}".format(root,inputCat)
+						self.dicoFoldersCalibration[inputCat] = pathdir
+						self.dicoObjectOpenLineEditCalibration[inputCat].setText(pathdir)
+
+		print(directoryToOpen)
+		# répertoire racine pour le QTreeView
+		rephome = directoryToOpen
+
+		#-- Modèle
+		self.myModel = QFileSystemModel()
+		self.myModel.setReadOnly(False)
+		self.myModel.setRootPath(rephome)
+
+		#-- treeview
+		self.treeView.setModel(self.myModel)
+
+		rootModelIndex = self.myModel.index(rephome)
+		self.treeView.setRootIndex(rootModelIndex)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		self.actualizeRunButton()
+
+
+	def actualizeFutherCat(self):
+		"""masque les autres catégorie quand changer"""
+		oldState = self.futherCat
+		self.futherCat  = str(self.ui.futherCategoriesComboBox.currentText())
+		if self.futherCat == "0":
+			self.ui.cat1Frame.hide()
+			self.ui.cat2Frame.hide()
+			self.dicoFoldersCalibration["cat1"] = None
+			self.dicoFoldersCalibration["cat2"] = None
+			self.dicoObjectOpenLineEditCalibration["cat1"].setText("")
+			self.dicoObjectOpenLineEditCalibration["cat2"].setText("")
+			self.displayError(error = "Reset Futher categories path !! \n")
+		elif self.futherCat == "1":
+			self.ui.cat1Frame.show()
+			self.ui.cat2Frame.hide()
+			if oldState == "2":
+				self.dicoObjectOpenLineEditCalibration["cat2"].setText("")
+				self.displayError(error = "Reset categories 2 path !! \n")
+			self.dicoFoldersCalibration["cat2"] = None
+		elif self.futherCat == "2":
+			self.ui.cat1Frame.show()
+			self.ui.cat2Frame.show()
+		self.actualizeRunButton()
+
+
 
 	def actualizeRunButton(self):
 		"""de grise le bouton run si rempli matrice et order"""
-		if self.calibrationInOutPath != None:
-			self.ui.runCalibrationPushButton.setEnabled(True)
+		if self.futherCat == 0:
+			for key, folder in self.dicoFoldersCalibration.items():
+				#print(key, folder)
+				if folder != None :
+					self.ui.runCalibrationPushButton.setEnabled(True)
+				elif key not in ["cat1", "cat2"]:
+					self.ui.runCalibrationPushButton.setDisabled(True)
+					break
 		else:
-			self.ui.runCalibrationPushButton.setDisabled(True)
+			if self.futherCat == "1" and self.dicoFoldersCalibration["cat1"] != None:
+				self.ui.runCalibrationPushButton.setEnabled(True)
+			elif self.futherCat == "2" and self.dicoFoldersCalibration["cat1"] != None and self.dicoFoldersCalibration["cat2"] != None:
+				self.ui.runCalibrationPushButton.setEnabled(True)
+			else:
+				self.ui.runCalibrationPushButton.setDisabled(True)
 
 
 	def infoDialogue(self, status): ## Method to open a message box
-			infoBox = QMessageBox()
-			infoBox.setFixedSize(10000,100000)
+			infoBox = QMessageBox() ##Message Box that doesn't run
+			infoBox.setFixedSize(1000,1000)
 			infoBox.setIcon(QMessageBox.Information)
 			infoBox.setText("Calibration OK")
-			filestxt = "Files:\n"
+			if status == "new":
+				infoBox.setInformativeText("all files created")
+			if status == "already":
+				infoBox.setInformativeText("all files already exist")
+			infoBox.setWindowTitle("Good Calibration")
+			filestxt = "Files created:\n"
 			for key, path in self.calibrationFilesOut.items():
 				filestxt += "- {}\n".format(path)
-			if status == "new":
-				infoBox.setInformativeText("All files created\n"+filestxt)
-			if status == "already":
-				infoBox.setInformativeText("All files already exist\n"+filestxt)
-			infoBox.setWindowTitle("Good Calibration")
+			infoBox.setDetailedText(filestxt)
 			infoBox.setStandardButtons(QMessageBox.Ok)
 			infoBox.setEscapeButton(QMessageBox.Close)
 			infoBox.exec_()
@@ -280,36 +337,47 @@ class EBimage( formEBimage, baseEBimage ):
 	def disalbledButtonsCalibration(self):
 		"""Disable buttons when run calibration"""
 		self.ui.runCalibrationPushButton.setDisabled(True)
-		self.ui.loadCalibrationPushButton.setDisabled(True)
-		self.ui.calibrationOpenLineEdit.setDisabled(True)
-
+		for values in self.dicoObjectOpenPushButtonCalibration.values():
+			values.setDisabled(True)
+		for values in self.dicoObjectOpenLineEditCalibration.values():
+			values.setDisabled(True)
 
 	def enableButtonsCalibration(self):
 		"""enable buttons when finish run calibration or already do"""
 		self.ui.runCalibrationPushButton.setDisabled(True)
-		self.ui.loadCalibrationPushButton.setEnabled(True)
-		self.ui.calibrationOpenLineEdit.setEnabled(True)
-
+		for values in self.dicoObjectOpenPushButtonCalibration.values():
+			values.setEnabled(True)
+		for values in self.dicoObjectOpenLineEditCalibration.values():
+			values.setEnabled(True)
+			self.ui.resetCalibrationPushButton.setEnabled(True)
 
 	def run(self):
-
 		try:
+			warning = ""	# initialise le nombre d'erreur
+			val = 0			# initialise le nombre d'erreur
+			txtInfo = ""
 			result = "0"
 			# grise
 			self.disalbledButtonsCalibration()
 			self.ui.resetCalibrationPushButton.setDisabled(True)
-			self.actualizeOutFiles()
+
+			# import R's "base" package
+			base = importr('base')
 
 			with open("fonctions_apprentissage.r", "r", encoding="utf-8") as apprentissageRopen:
 				apprentissage = "".join(apprentissageRopen.readlines())
 
 			apprentissage = SignatureTranslatedAnonymousPackage(apprentissage, "apprentissage")
 
+			self.calibrationOutPath = "/".join(str(self.dicoFoldersCalibration["leaf"]).split("/")[:-1])
+			self.calibrationBasename = self.calibrationOutPath.split("/")[-1]
+			self.actualizeOutFiles()
+
 			if args.debug: print("{}\n{}".format(apprentissage, dir(apprentissage)))
 
 			# test if Rdata file already exist, if yes remove file if user say yes, or stop analyse
 			if os.path.exists(self.calibrationFilesOut["RData"]):
-				reply = QMessageBox.question(self, 'WARNING', 'File will be overwritten.\nDo you still want to proceed?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+				reply = QMessageBox.question(self, 'Warning', 'File will be overwritten.\nDo you still want to proceed?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 				if reply == QMessageBox.Yes:
 					for key, path in self.calibrationFilesOut.items():
 						os.remove(path)
@@ -321,14 +389,15 @@ class EBimage( formEBimage, baseEBimage ):
 
 			if reloadCalibration:
 				self.ui.statusbar.showMessage(str("Running calibration, please waiting ...."),9600)
+				#result , self.calibrationFilesOut["RData"] = apprentissage.apprentissage(self.dicoObjectOpenLineEditCalibration["leaf"],self.dicoObjectOpenLineEditCalibration["symptom"],self.dicoObjectOpenLineEditCalibration["background"]).r_repr().replace('"','').replace("c(","").replace(")","").split(",")
 				#doivent être (dans cet ordre) le nom (relatif) des sous-répertoires fond, limbe, lésions
-				result , good = apprentissage.apprentissage(self.calibrationInOutPath,"background", "leaf", "lesion").r_repr().replace('"','').replace("c(","").replace(")","").split(",")
+				backName, leafName, symptomName = self.dicoFoldersCalibration["background"].split("/")[-1], self.dicoFoldersCalibration["leaf"].split("/")[-1], self.dicoFoldersCalibration["symptom"].split("/")[-1]
+				result , good = apprentissage.apprentissage(self.calibrationOutPath,backName,leafName,symptomName).r_repr().replace('"','').replace("c(","").replace(")","").split(",")
 				self.calibrationFileOpenLineEdit.setText(self.calibrationFilesOut["RData"])
-				#print(result, good)
 			if result == "1" and os.path.exists(self.calibrationFilesOut["RData"]):
 				print(result, self.calibrationFilesOut["RData"])
 				self.infoDialogue(status = "new")
-				self.ui.statusbar.showMessage(str("FINISH, files were product on : %s" % self.calibrationInOutPath),9600)
+				self.ui.statusbar.showMessage(str("FINISH, files were product on : %s" % self.calibrationOutPath),9600)
 				self.ui.resetCalibrationPushButton.setEnabled(True)
 			elif  result == "0" and os.path.exists(self.calibrationFilesOut["RData"]):
 				self.infoDialogue(status = "already")
@@ -338,13 +407,10 @@ class EBimage( formEBimage, baseEBimage ):
 				self.resetLoadFolder()
 				self.enableButtonsCalibration()
 			elif result == "0" and not os.path.exists(self.calibrationFilesOut["RData"]):
-				self.displayError(typeError = "ERROR:", message = "Error when running R code....")
-				self.resetLoadFolder()
-		except Exception as e:
-				self.displayError(typeError = "ERROR:", message = "Error when running R code....\n"+e)
-				self.resetLoadFolder()
-				self.ui.resetCalibrationPushButton.setEnabled(True)
+				self.displayError(error = "Error when running R code....")
 
+		except Exception as e:
+			self.displayError(error = e)
 
 	def openCalibrationTable(self):
 		"""View result of calibration"""
@@ -382,31 +448,16 @@ class EBimage( formEBimage, baseEBimage ):
 		self.ui.imgLabel.setPixmap(pic)
 
 
-	def displayError(self,typeError,message):
+	def displayError(self, error):
 		""" affiche les erreurs dans la zone de text"""
 		if args.cmdMode:
-			print(typeError,message)
+				print(error)
 		else:
 			# Grise les cases pour ne pas relancer dessus et faire un reset
 			#self.ui.runPushButton.setDisabled(True)
-			print(typeError,message)
-			txtError = str(message)
+			print(error)
+			txtError = str(error)
 			self.ui.statusbar.showMessage(txtError,7200)
-			self.errorPopUp(typeError, message)
-
-	def errorPopUp(self, typeError, message): ## Method to open a message box
-		infoBox = QMessageBox()
-		infoBox.setFixedSize(10000,100000)
-		infoBox.setWindowTitle(typeError)
-		if "ERROR" in typeError:
-			infoBox.setIcon(QMessageBox.Critical)
-		else:
-			infoBox.setIcon(QMessageBox.Warning)
-		infoBox.setTextFormat(Qt.RichText)
-		infoBox.setText("{} {}".format(typeError,message))
-		infoBox.setTextInteractionFlags(Qt.TextSelectableByMouse)
-
-		infoBox.exec_()
 
 
 def main():

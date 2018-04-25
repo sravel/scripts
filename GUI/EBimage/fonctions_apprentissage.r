@@ -17,13 +17,15 @@ load.group <- function(g,path.sample) {
     do.call(rbind, li)
 }
 
-apprentissage <- function(path.sample) {
-
-#	print(path.sample)
-
+apprentissage <- function(path.sample,...) {
+    ## Les arguments passés dans "..." doivent être (dans cet ordre) le nom (relatif) des sous-répertoires fond, limbe, lésions
     ## Recherche des sous-répertoires de path.sample
-    group <- list.dirs(path.sample,full.names=FALSE)[-1] ## -1 pour supprimer le premier nom (toujours vide)
-	print(group)
+    dirs <- list.dirs(path.sample,full.names=FALSE)[-1] ## -1 pour supprimer le premier nom (toujouts vide)
+
+    ## vérification de l'existence des sous-répertoires passés en argument
+    group <- list(...)
+    if (any(is.na(match(unlist(group),dirs)))) stop("Répertoire(s) inexistant(s).")
+
     ## constitution du data.frame des pixels des échantillons
     li <- lapply(group,load.group,path.sample)
     df2 <- do.call(rbind, li)
@@ -34,7 +36,7 @@ apprentissage <- function(path.sample) {
     ## nom commun aux 3 fichiers de sortie, identique au nom du réprtoire
     filename <- tail(strsplit(path.sample,'/')[[1]],1)
 
-    ## écriture du fichier texte des résultats
+## écriture du fichier texte des résultats
     file.txt <- paste(path.sample,paste0(filename,".txt"),sep='/') ## fichier de sortie texte
     sink(file.txt)
     print(table(df2$group))
@@ -45,7 +47,7 @@ apprentissage <- function(path.sample) {
     file_info.txt <- paste(path.sample,paste0(filename,"_info.txt"),sep='/') ## fichier de sortie texte
     sink(file_info.txt)
     print(table(df2$group, df2$predict))
-    sink()
+sink()
 
     ## graphe des groupes dans le plan discriminant
     file.png <- paste(path.sample,paste0(filename,".png"),sep='/') ## fichier de sortie png

@@ -1,0 +1,5 @@
+            
+             background  leaf symptom
+  background       8331     0       0
+  leaf                0 10964       0
+  symptom             0     0    4078
