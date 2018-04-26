@@ -6,7 +6,7 @@ library(shinyFiles)
 
 
 source("fonctions_apprentissage.r")
-
+source("fonctions_analyse.r")
 
 existDirCalibration <- function(datapath){
   list(

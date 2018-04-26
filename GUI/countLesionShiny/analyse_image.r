@@ -1,7 +1,7 @@
 ## détection de lésions sur image couleur
 ## phase 2 : analyse d'image
 
-source("fonctions_analyse_V4.r")
+source("fonctions_analyse.r")
 
 ## -------------------- Paramètres de l'analyse -----------------------------------
 surface.feuille.mini <- 1000 ## surface minimum d'une feuille

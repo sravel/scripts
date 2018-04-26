@@ -8,7 +8,7 @@ if (exists("fileRData")){
 shinyDirChoose(
   input,'dirIn',
   roots = c(home = homeDir),
-  filetypes = c('', "png", "*")
+  filetypes = c('', "png", "PNG","jpg","JPG","jpeg","JPEG")
 )
 
 dirIn <- reactive(input$dirIn)
@@ -25,26 +25,19 @@ updateDirAnalysis <- eventReactive(input$dirIn,{
 })
 
 #### For RData file
-shinyFileChoose(
-  input, 'files', 
-  roots=c(home = AnalysisDir), filetypes=c('.RData')
-)
-
 RDataIn <- reactive({
   infile <- input$datafile
   if (is.null(infile)) {
     # User has not uploaded a file yet
     return(NULL)
-  }
-  objectsLoaded <<- load(input$datafile$name) 
-  # the above returns a char vector with names of objects loaded
-  df <- eval(parse(text=objectsLoaded[1])) 
-  # the above finds the first object and returns it
-  return(df)}
+  }else{
+    parseDirPath(c(home = homeDir), infile)
+    print(infile)
+   }
+  })
   
-)
 
-output$RDataText <- renderText({
+output$RDataText <- renderPrint({
   RDataIn()
 })
 
