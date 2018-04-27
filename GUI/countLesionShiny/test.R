@@ -69,29 +69,38 @@
 
 
 
-ui <- shinyUI(
-  fileInput("inFile", label="Choose a file", multiple=F)
+library(shiny)
+library(shinyFiles)
+
+
+ui <- fluidPage( 
+  shinyFilesButton('files', label='File select', title='Please select a file', multiple=T) ,
+  verbatimTextOutput('rawInputValue'),
+  verbatimTextOutput('filepaths') ,
+  downloadButton("downloadFiles", "Download Files")
 )
 
-server <- shinyServer(function(input, output, session) {
-  values <- reactiveValues()
+server <- function(input, output) {
   
-  dat <- reactive({
-    if (is.null(inFile$datapath)) {
-      dat <- read.file("Samples.RData")
-      values$file_name = "Samples.RData"
-      values$file_type = "RData"
-      values$file_size = file.size("Samples.RData")
-      values$file_path = "Samples.RData"
-    } else {
-      print(inFile$datapath)
-      dat <- read.file(inFile$datapath)
-      values$file_name = inFile$name
-      values$file_size = inFile$size
-      values$file_type = inFile$type
-      values$file_path = inFile$datapath
+  roots =  c(wd = '~')
+  
+  shinyFileChoose(input, 'files', 
+                  roots =  roots, 
+                  filetypes=c('', 'txt' , 'gz' , 'md5' , 'pdf' , 'fasta' , 'fastq' , 'aln'))
+  
+  output$rawInputValue <- renderPrint({str(input$files)})
+  
+  output$filepaths <- renderPrint({parseFilePaths(roots, input$files)})
+  
+  output$downloadFiles <- downloadHandler(
+    filename = function() {
+      as.character(parseFilePaths(roots, input$files)$name)
+    },
+    content = function(file) {
+      fullName <- as.character(parseFilePaths(roots, input$files)$datapath)
+      file.copy(fullName, file)
     }
-  })
-})
+  )
+}
 
-shinyApp(ui=ui, server=server)
+shinyApp(ui = ui , server = server)

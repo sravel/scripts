@@ -41,7 +41,7 @@ body <- dashboardBody(
 
 
 shinyUI(
-  dashboardPage(skin = "green", header, sidebar, body)
+  dashboardPage(skin = "blue", header, sidebar, body)
 )
 
 

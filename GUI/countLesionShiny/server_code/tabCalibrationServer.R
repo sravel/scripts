@@ -1,5 +1,6 @@
 # dir
-homeDir = '~'
+# homeDir = '~'
+homeDir = '~/Bayer/AnalyseImagesV4'
 
 shinyDirChoose(
   input,
@@ -30,8 +31,7 @@ result <- eventReactive(input$runButton,{
       exitStatus <<- apprentissage(datapath,"background","limbe","lesion")
       incProgress(3/3, detail = "End of calibration")
     })
-    ## Les arguments passés dans "..." doivent être (dans cet ordre) le nom (relatif) des sous-répertoires fond, limbe, lésions
-    
+    return(fileRData)
   }
   else{
     # print(paste("else inputdir",datapath))

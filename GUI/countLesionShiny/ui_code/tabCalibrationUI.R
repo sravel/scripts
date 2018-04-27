@@ -5,7 +5,7 @@ tabItem(
     box(
       title = "Calibration Input", status = "primary",solidHeader = TRUE, collapsible = TRUE, width = 12,
       column(4,
-             tags$div("Calibration input directory must include sub-folders:",  tags$br(),
+             tags$div(class = "calibrationTXT", "Calibration input directory must include sub-folders:",  tags$br(),
                       tags$ul(
                         tags$li("limbe"),
                         tags$li("background"),
