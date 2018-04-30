@@ -4,6 +4,8 @@ library(shiny)
 library(shinythemes)
 library(shinydashboard)
 library(shinyFiles)
+library(shinyBS)
+library(DT)
 
 source("fonctions_apprentissage.r")
 
@@ -30,6 +32,7 @@ body <- dashboardBody(
     tabItem(
       tabName = "tabTheme",
       h1("Theme"),
+      verbatimTextOutput("debug"),
       shinythemes::themeSelector()  # <--- Add this somewhere in the UI
     )
   )

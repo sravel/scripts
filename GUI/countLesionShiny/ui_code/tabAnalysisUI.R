@@ -6,10 +6,17 @@ tabItem(
       title = "Analysis Input", status = "primary",solidHeader = TRUE, collapsible = TRUE, width = 12,
       column(width = 4,
              fluidRow(
-               shinyDirButton(id = 'dirIn', label = 'Select Images Folder', title = 'Please select a folder', FALSE, class = "btn-info"),
+               shinyDirButton(id = 'dirIn', label = 'Select images folder', title = 'Please select a folder', FALSE, class = "btn-info"),
                conditionalPanel(
                  condition = "input.dirIn", br(),
                  verbatimTextOutput("dirInAnalysis", placeholder = TRUE)
+               )
+             ),             
+             fluidRow(
+               shinyDirButton(id = 'dirOut', label = 'Select output results folder', title = 'Please select a folder', FALSE, class = "btn-info"),
+               conditionalPanel(
+                 condition = "input.dirOut", br(),
+                 verbatimTextOutput("dirOutAnalysis", placeholder = TRUE)
                )
              ),
              fluidRow(
@@ -17,7 +24,7 @@ tabItem(
                verbatimTextOutput('fileRdata', placeholder = TRUE),
                
                conditionalPanel(
-                 condition = "input.dirIn && output.fileRdata && output.codeAnalysis == 1", br(),
+                 condition = "input.dirIn && output.fileRdata && output.codeValidationInt == 1", br(),
                  actionButton("runButtonAnalysis", "run Analysis!")
                )
              )
@@ -41,7 +48,7 @@ tabItem(
   ),
   fluidRow(
     conditionalPanel(
-      condition = 'output.codeAnalysis==0',
+      condition = 'output.codeValidationInt==0',
       box(
         title = "Warning", status = "warning",solidHeader = TRUE,
         uiOutput("warning")
@@ -50,10 +57,12 @@ tabItem(
   ),
   fluidRow(
     conditionalPanel(
-      condition = "output.codeAnalysis == 1",
+      condition = "output.analysisFinish==1",
       box(
         title = "Analysis output", status = "success",solidHeader = TRUE, width = 12,
-        verbatimTextOutput("analysisFinish",placeholder = FALSE)
+        verbatimTextOutput("analysisFinish",placeholder = FALSE),
+        div(style="display:inline-block",uiOutput("infoButton")),
+        DT::dataTableOutput("table2")
       )
     )
   )

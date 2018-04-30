@@ -1,106 +1,110 @@
 # library(shiny)
-# library(shinyFiles)
+# library(shinyBS)
+# shinyApp(
+#   ui =
+#     fluidPage(
+#       sidebarLayout(
+#         sidebarPanel(
+#           sliderInput("bins",
+#                       "Number of bins:",
+#                       min = 1,
+#                       max = 50,
+#                       value = 30),
+#           bsTooltip("bins", "The wait times will be broken into this many equally spaced bins",
+#                     "right", options = list(container = "body"))
+#         ),
+#         mainPanel(
+#           plotOutput("distPlot")
+#         )
+#       )
+#     ),
+#   server =
+#     function(input, output, session) {
+#       output$distPlot <- renderPlot({
+#         
+#         # generate bins based on input$bins from ui.R
+#         x    <- faithful[, 2]
+#         bins <- seq(min(x), max(x), length.out = input$bins + 1)
+#         
+#         # draw the histogram with the specified number of bins
+#         hist(x, breaks = bins, col = 'darkgray', border = 'white')
+#         
+#       })
+#       addPopover(session, "distPlot", "Data", content = paste0("
 # 
-# # Define UI for application that draws a histogram
-# ui <- fluidPage( # Application title
-#   mainPanel(
-#     shinyDirButton("dir", "Input directory", "Upload"),
-#     verbatimTextOutput("dir", placeholder = TRUE)  # added a placeholder
-#   ))
+# Waiting time between ",
+#                                                                "eruptions and the duration of the eruption for the Old Faithful geyser ",
+#                                                                "in Yellowstone National Park, Wyoming, USA.
 # 
-# server <- function(input, output) {
-#   shinyDirChoose(
-#     input,
-#     'dir',
-#     roots = c(home = '~'),
-#     filetypes = c('', 'txt', 'bigWig', "tsv", "csv", "bw")
-#   )
-#   
-#   dir <- reactive(input$dir)
-#   output$dir <- renderText({  # use renderText instead of renderPrint
-#     parseDirPath(c(home = '~'), dir())
-#   })
-#   
-#   observeEvent(ignoreNULL = TRUE,
-#                eventExpr = {
-#                  input$dir
-#                },
-#                handlerExpr = {
-#                  home <- normalizePath("~")
-#                  datapath <<-
-#                    file.path(home, paste(unlist(dir()$path[-1]), collapse = .Platform$file.sep))
-#                })
-# }
-# 
-# # Run the application
-# shinyApp(ui = ui, server = server)
+# Azzalini, A. and ",
+#                                                                "Bowman, A. W. (1990). A look at some data on the Old Faithful geyser. ",
+#                                                                "Applied Statistics 39, 357-365.
+# "), trigger = 'click')
+#     }
+# )
 # 
 # library(shiny)
 # library(shinyFiles)
 # 
-# ui <-   fluidPage(
-#   
-#   shinyFilesButton("blue", "blue band" ,
-#                    title = "Please select a folder:",
-#                    buttonType = "default", class = NULL, multiple = F)
+# 
+# ui <- fluidPage( 
+#   shinyFilesButton('files', label='File select', title='Please select a file', multiple=T) ,
+#   verbatimTextOutput('rawInputValue'),
+#   verbatimTextOutput('filepaths') ,
+#   downloadButton("downloadFiles", "Download Files")
 # )
 # 
-# 
-# server <- function(input,output,session){
+# server <- function(input, output) {
 #   
+#   roots =  c(wd = '~')
 #   
-#   volumes = getVolumes() 
-#   observe({
-#     
-#     shinyFileChoose(input, "blue", roots = c(home = "~"), session = session)
-#     if(!is.null(input$blue)){
-#       myOutput1 <<- parseFilePaths(c(home = '~'),input$blue)
-#       print(myOutput1)
-#       print(myOutput1$datapath)
-#       # myblue <- path.expand(myOutput1) #myblue isthen my file path that I can use in my function
+#   shinyFileChoose(input, 'files', 
+#                   roots =  roots, 
+#                   filetypes=c('', 'txt' , 'gz' , 'md5' , 'pdf' , 'fasta' , 'fastq' , 'aln'))
+#   
+#   output$rawInputValue <- renderPrint({str(input$files)})
+#   
+#   output$filepaths <- renderPrint({parseFilePaths(roots, input$files)})
+#   
+#   output$downloadFiles <- downloadHandler(
+#     filename = function() {
+#       as.character(parseFilePaths(roots, input$files)$name)
+#     },
+#     content = function(file) {
+#       fullName <- as.character(parseFilePaths(roots, input$files)$datapath)
+#       file.copy(fullName, file)
 #     }
-#   })
+#   )
 # }
 # 
-# shinyApp(ui = ui, server = server)
+# shinyApp(ui = ui , server = server)
 # 
 # 
 # 
-
-
-
 library(shiny)
-library(shinyFiles)
+library(DT)
 
+pathImages <- "/home/sebastien/Bayer/AnalyseImagesV4/Images/"
 
-ui <- fluidPage( 
-  shinyFilesButton('files', label='File select', title='Please select a file', multiple=T) ,
-  verbatimTextOutput('rawInputValue'),
-  verbatimTextOutput('filepaths') ,
-  downloadButton("downloadFiles", "Download Files")
+ui <- shinyUI(
+  fluidPage(
+    actionButton("run", "RUN"),
+    DT::dataTableOutput("table")
+  )
 )
 
-server <- function(input, output) {
+server <- shinyServer(function(input, output) {
   
-  roots =  c(wd = '~')
+  files <- eventReactive(input$run, {
+    images <- list.files(pathImages, full.names=TRUE)
+    return(images)
+  })
   
-  shinyFileChoose(input, 'files', 
-                  roots =  roots, 
-                  filetypes=c('', 'txt' , 'gz' , 'md5' , 'pdf' , 'fasta' , 'fastq' , 'aln'))
+  output$table <- DT::renderDataTable({
+    
+    dat <-  data.frame(image =sprintf('<img src=%s height="150px"></img>', files()))
+    datatable(dat, escape=FALSE)
+  })
   
-  output$rawInputValue <- renderPrint({str(input$files)})
-  
-  output$filepaths <- renderPrint({parseFilePaths(roots, input$files)})
-  
-  output$downloadFiles <- downloadHandler(
-    filename = function() {
-      as.character(parseFilePaths(roots, input$files)$name)
-    },
-    content = function(file) {
-      fullName <- as.character(parseFilePaths(roots, input$files)$datapath)
-      file.copy(fullName, file)
-    }
-  )
-}
-
+})
 shinyApp(ui = ui , server = server)

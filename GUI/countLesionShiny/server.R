@@ -24,6 +24,8 @@ shinyServer(function(input, output, session) {
   
   # Load functions for tab analysis
   source(file.path("server_code", "tabAnalysisServer.R"), local = TRUE)$value
-  
+  output$debug <- renderPrint({
+    sessionInfo()
+  })
   session$onSessionEnded(stopApp)
 })

@@ -88,6 +88,7 @@ analyseFiles <- function(fileRdata=NA,pathResult,pathImages,onefileImage=NA,leaf
     analyseUniqueFile(pathResult,pathImages,image,leafMinSize,leafBorderSize,lesionBorderSize,lesionMinSize,colorLesion)
     c <- c + 1
   }
+return(1)
 }
 
 analyseUniqueFile <- function(pathResult,pathImages,onefileImage,leafMinSize,leafBorderSize,lesionBorderSize,lesionMinSize,colorLesion) {
@@ -147,16 +148,16 @@ analyseUniqueFile <- function(pathResult,pathImages,onefileImage,leafMinSize,lea
   analyse.li <- lapply(li, analyseLeaf, lda1, lesion)
 
   filename <- strsplit(onefileImage,'\\.')[[1]][1]
-  pdfname <- paste(filename,".pdf",sep='')
+  pngname <- paste(filename,".png",sep='')
   txtname1 <- paste(filename,"_1.txt",sep='')
   txtname2 <- paste(filename,"_2.txt",sep='')
   if (!file.exists(pathResult)) dir.create(pathResult)
-  pdffile <- paste(pathResult,'/',pdfname,sep='')
+  pngfile <- paste(pathResult,'/',pngname,sep='')
   txtfile1 <- paste(pathResult,'/',txtname1,sep='')
   txtfile2 <- paste(pathResult,'/',txtname2,sep='')
 
-  pdf(pdffile)
-  display(image, method="raster")
+  png(pngfile)
+  # display(image, method="raster")
 
   ## sortie des résultats et coloration des lésions
   result <- NULL
@@ -176,7 +177,7 @@ analyseUniqueFile <- function(pathResult,pathImages,onefileImage,leafMinSize,lea
   write.table(result,file=txtfile1,quote=FALSE,row.names=FALSE,sep='\t')
 
   ag.count <- aggregate(result$surfaceLesion,result[c("fichier","leaf", "surfaceLeaf")],length)
-  names(ag.count)[4] <- "nb.lesions"
+  names(ag.count)[4] <- "nbLesions"
   ag.surface <- aggregate(result$surfaceLesion,result[c("fichier","leaf", "surfaceLeaf")],sum)
   names(ag.surface)[4] <- "surfaceLesions"
   ag <- merge(ag.count,ag.surface)

@@ -15,6 +15,7 @@ tabItem(
       ),
       column(8,
              shinyDirButton(id = 'dir', label = 'Select Data Folder', title = 'Please select a folder', FALSE, class = "btn-info"),
+             bsPopover(id = "dir", "Select Input folder", "the input folder must have sub-folders", trigger="hover", options = NULL),
              conditionalPanel(
                condition = "input.dir", br(),
                verbatimTextOutput("dir", placeholder = FALSE),
