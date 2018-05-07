@@ -21,7 +21,7 @@ tabItem(
              ),
              fluidRow(
                shinyFilesButton('files', label='Load Rdata build in Calibration', title='Please select Rdata file', multiple=T, class = "btn-info"),
-               verbatimTextOutput('fileRdata', placeholder = TRUE),
+               verbatimTextOutput('fileRdata', placeholder = FALSE),
                
                conditionalPanel(
                  condition = "input.dirIn && output.fileRdata && output.codeValidationInt == 1", br(),
@@ -56,14 +56,13 @@ tabItem(
     )
   ),
   fluidRow(
-    conditionalPanel(
-      condition = "output.analysisFinish==1",
+    # conditionalPanel(
+      # condition = "output.analysisFinish==1",
       box(
         title = "Analysis output", status = "success",solidHeader = TRUE, width = 12,
         verbatimTextOutput("analysisFinish",placeholder = FALSE),
-        div(style="display:inline-block",uiOutput("infoButton")),
         DT::dataTableOutput("table2")
-      )
+      # )
     )
   )
   

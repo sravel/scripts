@@ -1,5 +1,15 @@
 #UI.R
 #loading shiny library
+##list of packages required
+list.of.packages <- c("shiny","shinythemes","shinydashboard","shinyFiles","shinyBS","DT","EBImage","MASS","lattice")
+
+#checking missing packages from list
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+
+#install missing ones
+if(length(new.packages)) install.packages(new.packages, dependencies = TRUE)
+
+
 library(shiny)
 library(shinythemes)
 library(shinydashboard)

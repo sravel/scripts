@@ -1,4 +1,4 @@
-options(width=160)
+# options(width=160)
 
 ## packages nécessaires
 library(EBImage)

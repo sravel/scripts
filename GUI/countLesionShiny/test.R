@@ -81,30 +81,63 @@
 # 
 # 
 # 
+# library(shiny)
+# library(DT)
+# 
+# pathImages <- "/home/sebastien/Bayer/AnalyseImagesV4/Images/"
+# 
+# ui <- shinyUI(
+#   fluidPage(
+#     actionButton("run", "RUN"),
+#     DT::dataTableOutput("table")
+#   )
+# )
+# 
+# server <- shinyServer(function(input, output) {
+#   
+#   files <- eventReactive(input$run, {
+#     images <- list.files(pathImages, full.names=TRUE)
+#     return(images)
+#   })
+#   
+#   output$table <- DT::renderDataTable({
+#     
+#     dat <-  data.frame(image =sprintf('<img src=%s height="150px"></img>', files()))
+#     datatable(dat, escape=FALSE)
+#   })
+#   
+# })
+# shinyApp(ui = ui , server = server)
+# 
+
+
+
+
+
 library(shiny)
-library(DT)
+library(shinyFiles)
 
-pathImages <- "/home/sebastien/Bayer/AnalyseImagesV4/Images/"
-
-ui <- shinyUI(
-  fluidPage(
-    actionButton("run", "RUN"),
-    DT::dataTableOutput("table")
-  )
+ui <-     fluidPage(    
+  shinyFilesButton('file', 'Load Dataset', 'Please select a dataset', FALSE),
+  textOutput("txt")
+  
 )
 
-server <- shinyServer(function(input, output) {
+
+server <- function(input,output,session){
   
-  files <- eventReactive(input$run, {
-    images <- list.files(pathImages, full.names=TRUE)
-    return(images)
+  
+  shinyFileChoose(input,'file', session=session,roots=c(wd='~'))
+  
+  observeEvent(input$file, {
+    inFile <- parseFilePaths(roots=c(wd='~'), input$file)
+    load(as.character(inFile$datapath), envir=.GlobalEnv)
   })
   
-  output$table <- DT::renderDataTable({
-    
-    dat <-  data.frame(image =sprintf('<img src=%s height="150px"></img>', files()))
-    datatable(dat, escape=FALSE)
-  })
+  output$txt=renderPrint({
+    input$file
+    if(exists("lda1")) lda1})
   
-})
-shinyApp(ui = ui , server = server)
+}
+
+shinyApp(ui = ui, server = server)

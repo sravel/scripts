@@ -1,24 +1,23 @@
 # dir
-# homeDir = '~'
-homeDir = '~/Bayer/AnalyseImagesV4'
 
 shinyDirChoose(
   input,
   'dir',
-  roots = c(home = homeDir),
-  filetypes = c('', 'txt', 'Rdata', "png", "csv", "*")
+  filetypes = c('', 'txt', 'Rdata', "png", "csv", "*"),
+  roots = allVolumesAvail,
+  session = session,
+  restrictions = system.file(package = 'base')
 )
 
+# dir
 dir <- reactive(input$dir)
-output$dir <- renderText({
-  updateDir()
-  parseDirPath(c(home = '~'), dir())
-})
+output$dir <- renderText(updateDir())
 
 updateDir <- eventReactive(input$dir,{
-  home <- normalizePath(homeDir)
-  datapath <<- file.path(home, paste(unlist(dir()$path[-1]), collapse = .Platform$file.sep))
+  home <- normalizePath(allVolumesAvail[input$dir$root])
+  datapath <<- file.path(home,paste(unlist(dir()$path[-1]), collapse = .Platform$file.sep))
   exitStatus <<- list(code=-1, mess = "NULL", err = "NULL")
+  return(datapath)
 })
 
 result <- eventReactive(input$runButton,{

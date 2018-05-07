@@ -1,24 +1,28 @@
-library(shiny)
-library(ggvis)
+mymtcars = head(mtcars)
+for_pop_up = 1:6
 
-source("fonctions_apprentissage.r")
-
-path <- "/media/sebastien/Bayer/AnalyseImagesV4/Exemple2/Samples"
-
-apprentissage(path,"background","limbe","lesion")
-
-
-# runApp(list(
-#   ui = bootstrapPage(
-#     ggvisOutput("p"),
-#     uiOutput("p_ui")
-#   ),
-#   server = function(..., session) {
-#     
-#     df4 %>%
-#       ggvis(~LD2, ~LD1) %>%
-#       layer_points(fill = ~group) %>%
-#       bind_shiny("p", "p_ui")
-# 
-#   }
-# ))
+app <- shinyApp(
+  ui = fluidPage(
+    
+    DT::dataTableOutput("mydatatable")
+  ),
+  
+  
+  server =  shinyServer(function(input, output, session) {
+    
+    mycars = head(mtcars)
+    output$mydatatable = DT::renderDataTable(mycars, selection = 'single',  
+                                             rownames = FALSE, options = list(dom = 't'))
+    
+    observeEvent(input$mydatatable_rows_selected,
+                 {
+                   showModal(modalDialog(
+                     title = "You have selected a row!",
+                     mycars[input$mydatatable_rows_selected,]
+                   ))
+                 })
+    
+    
+    
+  })
+)
