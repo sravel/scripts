@@ -168,8 +168,8 @@ output$analysisFinish <- renderText({
 
 output$table2<-DT::renderDataTable({
   # resultAnalysis()
-  datapathAnalysis <- "~/Bayer/AnalyseImagesV4/Exemple1/Images/"
-  datapathOutAnalysis <- "~/Bayer/AnalyseImagesV4/Exemple1/"
+  # datapathAnalysis <- "~/Bayer/AnalyseImagesV4/Exemple1/Images/"
+  # datapathOutAnalysis <- "~/Bayer/AnalyseImagesV4/Exemple1/"
   addResourcePath("Original",datapathAnalysis) # Images are located outside shiny App
   addResourcePath("LesionColor",datapathOutAnalysis) # Images are located outside shiny App
 

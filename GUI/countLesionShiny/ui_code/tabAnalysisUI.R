@@ -56,13 +56,13 @@ tabItem(
     )
   ),
   fluidRow(
-    # conditionalPanel(
-      # condition = "output.analysisFinish==1",
+    conditionalPanel(
+      condition = "output.analysisFinish==1",
       box(
         title = "Analysis output", status = "success",solidHeader = TRUE, width = 12,
         verbatimTextOutput("analysisFinish",placeholder = FALSE),
         DT::dataTableOutput("table2")
-      # )
+      )
     )
   )
   
