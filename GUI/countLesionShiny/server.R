@@ -8,12 +8,15 @@ library(shinyFiles)
 source("fonctions_apprentissage.r")
 source("fonctions_analyse.r")
 
-getOwnVolume <- function (exclude=NULL) 
+getOwnVolume <- function (exclude=NULL)
 {
   osSystem <- Sys.info()["sysname"]
   if (osSystem == "Darwin") {
-    volumes <- list.files("/Volumes/", full.names = T)
-    names(volumes) <- basename(volumes)
+    # disk <- list.files("/Volumes/", full.names = T)
+    # names(disk) <- disk
+    home <- c(home = "~")
+    # volumes <- c(home, disk)
+    volumes <- home
   }
   else if (osSystem == "Linux") {
     volumes <- c(root = "/")
@@ -27,11 +30,11 @@ getOwnVolume <- function (exclude=NULL)
     volumes <- sub(" *\\r$", "", volumes)
     keep <- !tolower(volumes) %in% c("caption", "")
     volumes <- volumes[keep]
-    volNames <- system("wmic logicaldisk get VolumeName", 
+    volNames <- system("wmic logicaldisk get VolumeName",
                        intern = T)
     volNames <- sub(" *\\r$", "", volNames)
     volNames <- volNames[keep]
-    volNames <- paste0(volNames, ifelse(volNames == "", 
+    volNames <- paste0(volNames, ifelse(volNames == "",
                                         "", " "))
     volNames <- paste0(volNames, "(", volumes, ")")
     names(volumes) <- volNames
@@ -45,7 +48,7 @@ getOwnVolume <- function (exclude=NULL)
   volumes
 }
 
-allVolumesAvail = getOwnVolume()
+allVolumesAvail <<- getOwnVolume()
 
 
 existDirCalibration <- function(datapath){
@@ -61,7 +64,7 @@ shinyServer(function(input, output, session) {
 
   # Load functions for tab calibration
   source(file.path("server_code", "tabCalibrationServer.R"), local = TRUE)$value
-  
+
   # Load functions for tab analysis
   source(file.path("server_code", "tabAnalysisServer.R"), local = TRUE)$value
   output$debug <- renderPrint({
