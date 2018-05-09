@@ -8,7 +8,8 @@ new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"
 
 #install missing ones
 if(length(new.packages)) install.packages(new.packages, dependencies = TRUE)
-
+# source("https://bioconductor.org/biocLite.R")
+# biocLite("EBImage")
 
 library(shiny)
 library(shinythemes)
