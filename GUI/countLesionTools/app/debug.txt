@@ -1,0 +1,31 @@
+2018-05-29 13:31:23 
+starting worker pid=120752 on localhost:11361 at 13:31:49.820
+starting worker pid=120753 on localhost:11361 at 13:31:49.829
+starting worker pid=120754 on localhost:11361 at 13:31:49.837
+starting worker pid=120755 on localhost:11361 at 13:31:49.846
+starting worker pid=120756 on localhost:11361 at 13:31:49.854
+starting worker pid=120757 on localhost:11361 at 13:31:49.861
+starting worker pid=120758 on localhost:11361 at 13:31:49.868
+starting worker pid=120759 on localhost:11361 at 13:31:49.876
+starting worker pid=120760 on localhost:11361 at 13:31:49.915
+starting worker pid=120761 on localhost:11361 at 13:31:49.922
+[1][1][1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi11.jpg"
+ "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi10.jpg" "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi14.jpg"
+
+[1][1][1][1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi15.jpg"
+ "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi16.jpg"
+ "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi12.jpg"
+ "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi13.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi17.jpg"
+[1][1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi19.jpg"
+ "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi18.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi1.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi20.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi2.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi3.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi4.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi5.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi6.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi7.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi8.jpg"
+[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi9.jpg"

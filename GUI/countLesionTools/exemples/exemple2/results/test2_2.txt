@@ -1,0 +1,2 @@
+fichier	leaf	surfaceLeaf	nbLesions	surfaceLesions	pourcent.lesions	nb.lesions
+test2	1	666395	215	45409	6.81412675665334	NA
