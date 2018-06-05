@@ -30,7 +30,7 @@
 
 # fileRdata = "/media/sebastien/Bayer/ScriptsSEB/scripts/GUI/countLesionTools/exemples/Images/Apprentissage/Apprentissage.RData"
 # pathResult = "/media/sebastien/Bayer/ScriptsSEB/scripts/GUI/countLesionTools/exemples/Images/Result"
-# pathImages = "/media/sebastien/Bayer/ScriptsSEB/scripts/GUI/countLesionTools/exemples/Images/Samples"
+# pathImages = "/media/sebastien/Bayer/ScriptsSEB/scripts/GUI/countLesionTools/exemples/Images/samples1"
 # onefileImage = NA
 # leafMinSize = 1000
 # leafBorderSize = 3
@@ -38,8 +38,11 @@
 # lesionMinSize = 10
 # colorLesion = 0
 
+rm(list = ls())
+gc()
+
 runCountLesion <- function(port=NULL) {
   if(Sys.getenv('SHINY_PORT') == "") options(shiny.maxRequestSize=10000*1024^2)
   runApp(appDir = getwd(),launch.browser = TRUE)
 }
-}
+
