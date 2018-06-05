@@ -36,7 +36,7 @@ library(future)
 # library(doSNOW)
 # Calculate the number of cores
 # no_cores <- max(1, detectCores() - 1)
-no_cores <- 10
+no_cores <- 8
 
 ## retourne les indices extrêmes de la valeur objet dans le vecteur x
 ## (appelé par bounding.rectangle)
@@ -63,7 +63,7 @@ extrait.leaf <- function(i, mask, image.fond.noir) {
 }
 
 ## analyse d'une leaf
-analyseLeaf <- function(x, lda1, lesion) {
+analyse.leaf <- function(x, lda1, lesion) {
   f <- x$leaf
   df6 <-
     data.frame(
@@ -134,7 +134,7 @@ analyseFiles <- function(fileRdata = NA, pathResult, pathImages, onefileImage = 
   # cl = makeCluster(no_cores, type = "SOCK")
   # registerDoSNOW(cl)
   
-
+  
   cl <<- makeCluster(no_cores, type = "FORK", outfile = logfilename)
   registerDoParallel(cl, cores = no_cores)
   
@@ -143,7 +143,7 @@ analyseFiles <- function(fileRdata = NA, pathResult, pathImages, onefileImage = 
   progress$set(message = 'Making Analysis, please wait\n', value = 0)
   
   progress$inc(c/nbfiles, detail = paste("start parallel analysis with ", no_cores, " cores"))
-  foreach(image = listFiles,
+  foreach(imageFile = listFiles,
           .packages='parallel',
           #.export = c("progress"),
           .combine = c)  %dopar%
@@ -151,7 +151,7 @@ analyseFiles <- function(fileRdata = NA, pathResult, pathImages, onefileImage = 
             tryCatch({
               # incProgress(c / nbfiles, detail = paste("analysis leaf ", c, "/", nbfiles))
               #progress$inc(c/nbfiles, detail = paste("Image", c))
-              analyseUniqueFile(pathResult, pathImages, image, leafMinSize, leafBorderSize, lesionBorderSize, lesionMinSize, colorLesion)
+              analyseUniqueFile(pathResult, pathImages, imageFile, leafMinSize, leafBorderSize, lesionBorderSize, lesionMinSize, colorLesion)
               # c <- c + 1
               gc()
               
@@ -196,20 +196,19 @@ analyseFiles <- function(fileRdata = NA, pathResult, pathImages, onefileImage = 
   return(1)
 }
 
-analyseUniqueFile <- function(pathResult, pathImages, onefileImage, leafMinSize, leafBorderSize, lesionBorderSize, lesionMinSize, colorLesion) {
+analyseUniqueFile <- function(pathResult, pathImages, imageFile, leafMinSize, leafBorderSize, lesionBorderSize, lesionMinSize, colorLesion) {
+  
   background <- names(lda1$prior)[1]
   limb <- names(lda1$prior)[2]
   lesion <- names(lda1$prior)[3]
+  
   ## lecture de l'image source
-  source.image <- paste(pathImages, '/', onefileImage, sep = '')
-  print(source.image)
+  source.image <- paste(pathImages, '/', imageFile, sep = '')
   image <- readImage(source.image)
-  ## imageData(image) <- imageData(image)[,,1:3]
   widthSize = dim(image)[1]
   heightSize = dim(image)[2]
   
-  
-  ## prédiction sur l'image floutée
+  ## prédiction sur l'image (non floutée)
   df5 <-
     data.frame(
       red = as.numeric(imageData(image)[, , 1]),
@@ -227,40 +226,38 @@ analyseUniqueFile <- function(pathResult, pathImages, onefileImage, leafMinSize,
   leaf <- matrix(df5$leaf, nrow = nrow(imageData(mask)))
   imageData(mask) <- leaf
   
-  ## segmentation
-  mask <- bwlabel(mask)
-  features <- computeFeatures.shape(mask)
-  
-  ## suppression des objets plus petits que la surface minimum d'une leaf
-  w <- which(features[, "s.area"] < leafMinSize)
-  ## ligne suivante remplacée car il semble que les objets sont renumérotés dans certaines versions de R
-  ## mask <- rmObjects(mask,w)
-  mask[mask %in% w] <- 0
-  
   ## suppression des vides
   mask <- fillHull(mask)
   
   ## suppression de la bordure par érosion
-  brush <- makeBrush(leafBorderSize, shape = 'disc')
-  mask <- erode(mask, brush)
+  ## remarque : les tests et les calculs sont effectués sur les objets érodés
+  brush <- makeBrush(leafBorderSize,  shape = 'disc')
+  ## ligne suivante ajoutée pour supprimer les lignes parasites dues au scan (supprimer pour scan normal)
+  ## brush2 <- makeBrush(leafBorderSize*2+1,  shape = 'disc') ; mask <- dilate(mask, brush2) ; mask <- erode(mask,  brush2)
+  mask <- erode(mask,  brush)
+  
+  ## segmentation
+  mask <- bwlabel(mask)
+  features <- data.frame(computeFeatures.shape(mask))
+  
+  ## suppression des objets plus petits que la surface minimum d'une leaf
+  w <- which(features[, "s.area"]<leafMinSize)
+  if (length(w) > 0) {
+    mask[mask %in% w] <- 0
+    features <- features[-w, ]
+  }
   
   ## suppression du fond
   image.fond.noir <- image
   image.fond.noir[mask == 0] <- 0
   
   ## séparation des leafs
-  ## ligne suivante supprimée
-  ## mask <- bwlabel(mask)
-  features <- computeFeatures.shape(mask)
-  ## ligne suivante remplacée car le numéro de l'objet ne correspond plus au numéro de ligne
-  ## li <- lapply(1:nrow(features),extrait.leaf,mask,image.fond.noir)
-  li <-
-    lapply(as.numeric(row.names(features)), extrait.leaf, mask, image.fond.noir)
+  li <- lapply(as.numeric(row.names(features)), extrait.leaf, mask, image.fond.noir)
   
   ## analyse des leafs
-  analyse.li <- lapply(li, analyseLeaf, lda1, lesion)
+  analyse.li <- lapply(li,  analyse.leaf,  lda1,  lesion)
   
-  filename <- strsplit(onefileImage, '\\.')[[1]][1]
+  filename <- strsplit(imageFile, ".", fixed = TRUE)[[1]][1]
   jpegname <- paste(filename, "_both.jpeg", sep = '')
   jpegnameOnly <- paste(filename, "_lesion.jpeg", sep = '')
   txtname1 <- paste(filename, "_1.txt", sep = '')
@@ -271,7 +268,6 @@ analyseUniqueFile <- function(pathResult, pathImages, onefileImage, leafMinSize,
   jpegfileOnly <- paste(pathResult, '/', jpegnameOnly, sep = '')
   txtfile1 <- paste(pathResult, '/', txtname1, sep = '')
   txtfile2 <- paste(pathResult, '/', txtname2, sep = '')
-  
   
   # print both sample and lesion images
   jpeg(jpegfile,
@@ -304,7 +300,6 @@ analyseUniqueFile <- function(pathResult, pathImages, onefileImage, leafMinSize,
     image[li[[i]]$b$y, li[[i]]$b$x,] <- tmpimage
   }
   row.names(result) <- NULL
-  
   display(image, method = "raster")
   dev.off()
   
@@ -316,7 +311,7 @@ analyseUniqueFile <- function(pathResult, pathImages, onefileImage, leafMinSize,
   par( mfrow = c(1,1) )
   display(image, method = "raster")
   dev.off()
-  
+
   write.table(
     result,
     file = txtfile1,
@@ -324,7 +319,7 @@ analyseUniqueFile <- function(pathResult, pathImages, onefileImage, leafMinSize,
     row.names = FALSE,
     sep = '\t'
   )
-  
+
   ag.count <-
     aggregate(result$surfaceLesion, result[c("fichier", "leaf", "surfaceLeaf")], length)
   names(ag.count)[4] <- "nbLesions"
@@ -334,7 +329,7 @@ analyseUniqueFile <- function(pathResult, pathImages, onefileImage, leafMinSize,
   ag <- merge(ag.count, ag.surface)
   ag$pourcent.lesions <- ag$surfaceLesions / ag$surfaceLeaf * 100
   ag$nb.lesions[ag$surfaceLesions == 0] <- 0
-  
+  print(paste0("DEBUG6"))
   write.table(
     ag[order(ag$leaf),],
     file = txtfile2,
@@ -342,7 +337,9 @@ analyseUniqueFile <- function(pathResult, pathImages, onefileImage, leafMinSize,
     row.names = FALSE,
     sep = '\t'
   )
+  print(paste0("FINISH: ",source.image,"\n",jpegfileOnly))
   rm(list = ls())
   gc()
+  
   return(1)
 }
