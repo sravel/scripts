@@ -1,2 +1,0 @@
-fichier	leaf	surfaceLeaf	nbLesions	surfaceLesions	pourcent.lesions	nb.lesions
-Chi16	1	9679961	485	105701	1.09195687875189	NA

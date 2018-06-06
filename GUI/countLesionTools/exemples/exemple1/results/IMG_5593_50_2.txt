@@ -1,2 +1,2 @@
 fichier	leaf	surfaceLeaf	nbLesions	surfaceLesions	pourcent.lesions	nb.lesions
-IMG_5593_50	1	609146	105	71026	11.6599304600211	NA
+IMG_5593_50	1	609143	105	71026	11.6599878846182	NA
