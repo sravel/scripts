@@ -26,11 +26,8 @@
 #####################################################################################################
 
 
+#### Calibration Directory path ####
 
-
-############################################
-## Calibration Directory path
-############################################
 # option to load directory path bottom for calibration folder
 shinyDirChoose(
   input,
@@ -42,85 +39,81 @@ shinyDirChoose(
 )
 
 # return to UI path selected for calibration
-output$dirCalibration <- renderText(updateDir())
+output$dirCalibration <- renderText(rv$dirCalibration)
 
 # when click to bottom update path
-updateDir <- eventReactive(input$dirCalibration,{
-  home <- normalizePath(allVolumesAvail[input$dirCalibration$root])
-  datapath <<- file.path(home,paste(unlist(input$dirCalibration$path[-1]), collapse = .Platform$file.sep))
-  exitStatus <<- list(code=-1, mess = "NULL", err = "NULL")
-  return(datapath)
-})
-
-############################################
-## Run action
-############################################
-
-result <- eventReactive(input$runButton,{
-  dirCalibration <- existDirCalibration(datapath)
-  if(dirCalibration$dirLimbe == TRUE && dirCalibration$dirBackground == TRUE && dirCalibration$dirLesion == TRUE){
-    withProgress(message = 'Making calibration, please wait\n', value = 0, {
-
-      # Increment the progress bar, and update the detail text.
-      incProgress(1/3, detail = "Doing calibration")
-      exitStatus <<- apprentissage(datapath,"background","limbe","lesion")
-      incProgress(3/3, detail = "End of calibration")
-    })
-    return(fileRData)
+observeEvent(
+  input$dirCalibration,{
+    home <- normalizePath(allVolumesAvail[input$dirCalibration$root])
+    rv$dirCalibration <- file.path(home,paste(unlist(input$dirCalibration$path[-1]), collapse = .Platform$file.sep))
+    rv$exitStatus <- list(code=-1, mess = "NULL", err = "NULL")
   }
-  else{
-    # print(paste("else inputdir",datapath))
-    errorMess <-tags$div("Error not find all sub-directories !!!!:",  tags$br(),
-                         tags$ul(
-                           tags$li(paste("limbe: ", dirCalibration$dirLimbe)),
-                           tags$li(paste("background: ", dirCalibration$dirBackground)),
-                           tags$li(paste("lesion: ", dirCalibration$dirLesion))
-                         )
-    )
-    exitStatus <<-list(code=0, err=errorMess)
+)
+  ##### Run action  ##### 
+observeEvent(
+  input$runButton,{
+      path <-rv$dirCalibration
+      listdirCalibration <- existDirCalibration(path)
+      if(listdirCalibration$dirLimbe == TRUE && listdirCalibration$dirBackground == TRUE && listdirCalibration$dirLesion == TRUE){
+        withProgress(message = 'Making calibration, please wait\n', value = 0, {
+          # Increment the progress bar, and update the detail text.
+          incProgress(1/3, detail = "Doing calibration")
+          listReturn <- apprentissage(rv$dirCalibration,"background","limbe","lesion")
+          rv$exitStatus <-list(code=listReturn$code, mess=listReturn$mess)
+          rv$outCalibrationTable <- listReturn$outCalibrationTable
+          rv$outCalibrationCSV <- listReturn$outCalibrationCSV
+          rv$fileRData <- listReturn$fileRData
+          rv$plotFileCalibration <- listReturn$plotFileCalibration
+          incProgress(3/3, detail = "End of calibration")
+        })
+      }
+      else{
+        # print(paste("else inputdir",rv$datapath))
+        errorMess <-tags$div("Error not find all sub-directories !!!!:",  tags$br(),
+                           tags$ul(
+                             tags$li(paste("limbe: ", listdirCalibration$dirLimbe)),
+                             tags$li(paste("background: ", listdirCalibration$dirBackground)),
+                             tags$li(paste("lesion: ", listdirCalibration$dirLesion))
+                           )
+        )
+        rv$exitStatus <-list(code=0, err=errorMess)
+      }
   }
-})
+)
 
-
-############################################
-## Output when run click
-############################################
-exitStatus <- observe(result())
+#### Output when run click ####
 
 output$code <- renderText({
-  result()
-  updateDir()
-  exitStatus$code
+  rv$exitStatus$code
 
 })
 
 output$mess <- renderText({
-  result()
-  fileRData
+  rv$exitStatus$mess
 })
 output$err <- renderPrint({
-  result()
-  exitStatus$err
+  rv$exitStatus$err
 })
 
 output$img <- renderImage({
-  result()
-  # Return a list containing the filename
-  list(src = plotFileCalibration,
-       width = 400,
-       height = 400,
-       alt = "plot img")
-
+  if (rv$exitStatus$code == -1 && is.null(rv$plotFileCalibration)){
+    return(NULL)
+  }
+  else{
+    # Return a list containing the filename
+    return(list(src = rv$plotFileCalibration,
+         width = 400,
+         height = 400,
+         filetype = "image/jpeg",
+         alt = "plot img"))
+   
+  }
 }, deleteFile = FALSE)
 
 output$table <- renderTable({
-  result()
-  outCalibrationTable
+  rv$outCalibrationTable
 
 },striped = TRUE, bordered = TRUE,
 align = 'c',
 rownames = TRUE)
 
-outputOptions(output, 'code', suspendWhenHidden = FALSE)
-outputOptions(output, 'mess', suspendWhenHidden = FALSE)
-outputOptions(output, 'err', suspendWhenHidden = FALSE)
