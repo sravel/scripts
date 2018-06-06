@@ -71,12 +71,12 @@ apprentissage <- function(pathCalibration,...) {
   df2$predict <- predict(lda1, df2[2:4])$class
   sink()
   
-  outCalibrationCSV <<- paste(pathCalibration,paste0(basename,"_info.csv"),sep='/') ## fichier de sortie csv
-  outCalibrationTable <<- as.data.frame.matrix(table(df2$group, df2$predict))
+  outCalibrationCSV <- paste(pathCalibration,paste0(basename,"_info.csv"),sep='/') ## fichier de sortie csv
+  outCalibrationTable <- as.data.frame.matrix(table(df2$group, df2$predict))
   write.csv2(outCalibrationTable, file = outCalibrationCSV)
   
   ## graphe des groupes dans le plan discriminant
-  plotFileCalibration <<- paste(pathCalibration,paste0(basename,".png"),sep='/') ## fichier de sortie png
+  plotFileCalibration <- paste(pathCalibration,paste0(basename,".png"),sep='/') ## fichier de sortie png
   df4 <- cbind(df2, as.data.frame(as.matrix(df2[2:4])%*%lda1$scaling))
   
   png(plotFileCalibration)
@@ -84,9 +84,9 @@ apprentissage <- function(pathCalibration,...) {
   dev.off()
   
   ## sauvegarde de l'analyse
-  fileRData <<- paste(pathCalibration,paste0(basename,".RData"),sep='/')
+  fileRData <- paste(pathCalibration,paste0(basename,".RData"),sep='/')
   save(lda1,file=fileRData)
-  return(list(code = 1, mess = fileRData))
+  return(list(code = 1, mess = fileRData,outCalibrationTable = outCalibrationTable, outCalibrationCSV = outCalibrationCSV, fileRData = fileRData,plotFileCalibration = plotFileCalibration))
 }
 
 ## Fin de fichier
