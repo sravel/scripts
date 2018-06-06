@@ -1,31 +1,33 @@
-2018-05-29 13:31:23 
-starting worker pid=120752 on localhost:11361 at 13:31:49.820
-starting worker pid=120753 on localhost:11361 at 13:31:49.829
-starting worker pid=120754 on localhost:11361 at 13:31:49.837
-starting worker pid=120755 on localhost:11361 at 13:31:49.846
-starting worker pid=120756 on localhost:11361 at 13:31:49.854
-starting worker pid=120757 on localhost:11361 at 13:31:49.861
-starting worker pid=120758 on localhost:11361 at 13:31:49.868
-starting worker pid=120759 on localhost:11361 at 13:31:49.876
-starting worker pid=120760 on localhost:11361 at 13:31:49.915
-starting worker pid=120761 on localhost:11361 at 13:31:49.922
-[1][1][1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi11.jpg"
- "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi10.jpg" "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi14.jpg"
-
-[1][1][1][1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi15.jpg"
- "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi16.jpg"
- "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi12.jpg"
- "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi13.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi17.jpg"
-[1][1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi19.jpg"
- "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi18.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi1.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi20.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi2.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi3.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi4.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi5.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi6.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi7.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi8.jpg"
-[1] "/home/sebastien/Bayer/00_exemples/Images/Samples/Chi9.jpg"
+2018-06-06 09:54:16 
+starting worker pid=85713 on localhost:11397 at 09:54:48.068
+starting worker pid=85714 on localhost:11397 at 09:54:48.076
+starting worker pid=85715 on localhost:11397 at 09:54:48.084
+starting worker pid=85716 on localhost:11397 at 09:54:48.092
+starting worker pid=85717 on localhost:11397 at 09:54:48.101
+starting worker pid=85718 on localhost:11397 at 09:54:48.109
+starting worker pid=85719 on localhost:11397 at 09:54:48.117
+starting worker pid=85720 on localhost:11397 at 09:54:48.124
+[1] "DEBUG6"
+[1] "FINISH: /home/sebastien/Bayer/00_exemples/exemple1/samples/IMG_5598_50.jpg\n/home/sebastien/Bayer/00_exemples/exemple1/results/IMG_5598_50_lesion.jpeg"
+[1] "DEBUG6"
+[1] "FINISH: /home/sebastien/Bayer/00_exemples/exemple1/samples/IMG_5583_50.jpg\n/home/sebastien/Bayer/00_exemples/exemple1/results/IMG_5583_50_lesion.jpeg"
+[1] "DEBUG6"
+[1] "FINISH: /home/sebastien/Bayer/00_exemples/exemple1/samples/IMG_5593_50.jpg\n/home/sebastien/Bayer/00_exemples/exemple1/results/IMG_5593_50_lesion.jpeg"
+[1] "DEBUG6"
+[1] "FINISH: /home/sebastien/Bayer/00_exemples/exemple1/samples/IMG_5605_50.jpg\n/home/sebastien/Bayer/00_exemples/exemple1/results/IMG_5605_50_lesion.jpeg"
+starting worker pid=85940 on localhost:11397 at 09:55:14.534
+starting worker pid=85941 on localhost:11397 at 09:55:14.541
+starting worker pid=85942 on localhost:11397 at 09:55:14.549
+starting worker pid=85943 on localhost:11397 at 09:55:14.557
+starting worker pid=85944 on localhost:11397 at 09:55:14.566
+starting worker pid=85945 on localhost:11397 at 09:55:14.576
+starting worker pid=85946 on localhost:11397 at 09:55:14.585
+starting worker pid=85947 on localhost:11397 at 09:55:14.593
+[1] "DEBUG6"
+[1] "FINISH: /home/sebastien/Bayer/00_exemples/exemple1/samples/IMG_5593_50.jpg\n/home/sebastien/Bayer/00_exemples/exemple1/results/IMG_5593_50_lesion.jpeg"
+[1] "DEBUG6"
+[1] "FINISH: /home/sebastien/Bayer/00_exemples/exemple1/samples/IMG_5598_50.jpg\n/home/sebastien/Bayer/00_exemples/exemple1/results/IMG_5598_50_lesion.jpeg"
+[1] "DEBUG6"
+[1] "FINISH: /home/sebastien/Bayer/00_exemples/exemple1/samples/IMG_5583_50.jpg\n/home/sebastien/Bayer/00_exemples/exemple1/results/IMG_5583_50_lesion.jpeg"
+[1] "DEBUG6"
+[1] "FINISH: /home/sebastien/Bayer/00_exemples/exemple1/samples/IMG_5605_50.jpg\n/home/sebastien/Bayer/00_exemples/exemple1/results/IMG_5605_50_lesion.jpeg"
