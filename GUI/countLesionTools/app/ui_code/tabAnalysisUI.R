@@ -68,8 +68,8 @@ tabItem(
              numericInput("lesion_min_size", "Lesion min size:", value = 10, width = "150px"),
              numericInput("lesion_border_size", "Lesion border size:", value = 3, width = "150px"),
              selectInput("lesion_color", label = p("Lesion color output"),
-                         choices = list("Black" = 1, "White" = 2),
-                         selected = 1, width = "150px")
+                         choices = list("Black" = 0, "White" = 1),
+                         selected = 0, width = "150px")
       )
     )
   ),
