@@ -26,7 +26,9 @@
 #####################################################################################################
 
 # list of packages required
-list.of.packages <- c("shiny","shinythemes","shinydashboard","shinyFiles","shinyBS","DT","EBImage","MASS","lattice")
+list.of.packages <- c("shiny","shinythemes","shinydashboard","shinyFiles","shinyBS","DT","EBImage","MASS","lattice",
+                      "parallel","foreach","doParallel","future")
+
 
 #checking missing packages from list
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
@@ -45,9 +47,9 @@ library(shiny)
 library(shinythemes)
 library(shinydashboard)
 library(shinyFiles)
-library(shinyWidgets)
 library(shinyBS)
 library(DT)
+
 
 set_wd <- function() {
   library(rstudioapi) # make sure you have it installed
@@ -75,11 +77,12 @@ for(file in list.files(paste(currentFilePath,"R_code",sep = .Platform$file.sep),
 ############################################
 
 # add header
-header <- dashboardHeader(title = "Lesion Count Tools")
+header <- dashboardHeader(title = "Count Lesion Tools")
 
 # Sidebar for acces to tab
 sidebar <- dashboardSidebar(
   sidebarMenu(
+    menuItem("Home", tabName = "tabHome", icon = icon("home")),
     menuItem("Calibration", tabName = "tabCalibration", icon = icon("balance-scale")),
     menuItem("Analysis", tabName = "tabAnalysis", icon = icon("pagelines")),
     menuItem("Theme", tabName = "tabTheme", icon = icon("dashboard"))
@@ -91,6 +94,9 @@ sidebar <- dashboardSidebar(
 body <- dashboardBody(
   includeCSS('www/styles.css'),
   tabItems(
+    # add tab for Home
+    source(file.path("ui_code", "tabHomeUI.R"), local = TRUE, chdir = TRUE)$value,
+    
     # add tab for calibration
     source(file.path("ui_code", "tabCalibrationUI.R"), local = TRUE, chdir = TRUE)$value,
     
