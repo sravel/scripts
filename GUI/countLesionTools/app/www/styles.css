@@ -38,8 +38,28 @@
 	text-align: left;
 	font-size: medium;
 	font-family: "Times New Roman", Times, serif;
+}
 
+.home {
+	text-align: justify;
+	font-size: medium;
+	font-family: "Times New Roman", Times, serif;
+	margin : 20px 0px 0px 50px;
+}
+.calibrationHome {
+	text-align: justify;
+	text-indent:40px each-line;
+	font-size: medium;
+	font-family: "Times New Roman", Times, serif;
+	margin : 0px 25px 50px 50px;
+}
 
+.analysisHome {
+	text-align: justify;
+	text-indent:40px each-line;
+	font-size: medium;
+	font-family: "Times New Roman", Times, serif;
+	margin : 0px 50px 50px 25px;
 }
 
 .modal-lg {
