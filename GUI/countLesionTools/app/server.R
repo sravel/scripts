@@ -33,6 +33,8 @@
 ## Global functions
 ############################################
 
+rv <<- reactiveValues(exitStatus = list(code=-1, mess = "NULL", err = "NULL"))
+
 # function derive from shinyFiles to load Home on linux and home for MACOS
 getOwnVolume <- function (exclude=NULL)
 {
@@ -80,11 +82,11 @@ allVolumesAvail <<- getOwnVolume()
 listFilesRun <- c()
 
 # function to test if directory pass contain sub-directory limbe, background lesion
-existDirCalibration <- function(datapath){
+existDirCalibration <- function(dirCalibration){
   list(
-    dirLimbe = file.exists(paste(datapath,"/limbe", sep = .Platform$file.sep)),
-    dirBackground = file.exists(paste(datapath,"/background", sep = .Platform$file.sep)),
-    dirLesion = file.exists(paste(datapath,"/lesion", sep = .Platform$file.sep))
+    dirLimbe = file.exists(paste(dirCalibration,"/limbe", sep = .Platform$file.sep)),
+    dirBackground = file.exists(paste(dirCalibration,"/background", sep = .Platform$file.sep)),
+    dirLesion = file.exists(paste(dirCalibration,"/lesion", sep = .Platform$file.sep))
   )
 }
 ############################################
@@ -107,12 +109,12 @@ shinyServer(function(input, output, session) {
   
   # Load functions for tab calibration
   source(file.path("server_code", "tabCalibrationServer.R"), local = TRUE)$value
-
+  
   # Load functions for tab analysis
   source(file.path("server_code", "tabAnalysisServer.R"), local = TRUE)$value
-  output$debug <- renderPrint({
-    sessionInfo()
-  })
+  # output$debug <- renderPrint({
+  #   sessionInfo()
+  # })
   
   observeEvent(input$actu, {
     print("toto")
@@ -121,11 +123,11 @@ shinyServer(function(input, output, session) {
   })
   
   observeEvent(input$close, {
-      unlink(logfilename)
-      closeAllConnections()
-      # stopCluster(cl)
-      registerDoSEQ()
-      stopApp()                             # stop shiny
+    unlink(logfilename)
+    closeAllConnections()
+    # stopCluster(cl)
+    registerDoSEQ()
+    stopApp()                             # stop shiny
   })
   
   session$onSessionEnded( function() {
@@ -134,5 +136,12 @@ shinyServer(function(input, output, session) {
     # stopCluster(cl)
     registerDoSEQ()
     stopApp()
+  })
+  
+  observe({
+    # debug output to show the listN content.
+    output$debug <- renderPrint({
+      rv %>% reactiveValuesToList
     })
+  })
 })
