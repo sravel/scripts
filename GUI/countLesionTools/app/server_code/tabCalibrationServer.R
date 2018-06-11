@@ -52,20 +52,25 @@ observeEvent(
   ##### Run action  ##### 
 observeEvent(
   input$runButton,{
+    
+    show("loading-content")
       path <-rv$dirCalibration
       listdirCalibration <- existDirCalibration(path)
       if(listdirCalibration$dirLimbe == TRUE && listdirCalibration$dirBackground == TRUE && listdirCalibration$dirLesion == TRUE){
-        withProgress(message = 'Making calibration, please wait\n', value = 0, {
-          # Increment the progress bar, and update the detail text.
-          incProgress(1/3, detail = "Doing calibration")
-          listReturn <- apprentissage(rv$dirCalibration,"background","limbe","lesion")
-          rv$exitStatus <-list(code=listReturn$code, mess=listReturn$mess)
-          rv$outCalibrationTable <- listReturn$outCalibrationTable
-          rv$outCalibrationCSV <- listReturn$outCalibrationCSV
-          rv$fileRData <- listReturn$fileRData
-          rv$plotFileCalibration <- listReturn$plotFileCalibration
-          incProgress(3/3, detail = "End of calibration")
-        })
+        
+        progress <<- shiny::Progress$new()
+        on.exit(progress$close())
+        progress$set(message = 'Making calibration, please wait\n', value = 0)
+        progress$inc(1/7, detail = "Start step 1/6")
+        
+        listReturn <- apprentissage(rv$dirCalibration,"background","limbe","lesion")
+        rv$exitStatus <-list(code=listReturn$code, mess=listReturn$mess)
+        rv$outCalibrationTable <- listReturn$outCalibrationTable
+        rv$outCalibrationCSV <- listReturn$outCalibrationCSV
+        rv$fileRData <- listReturn$fileRData
+        rv$plotFileCalibration <- listReturn$plotFileCalibration
+        
+        progress$inc(7/7, detail = "End of calibration 6/6")
       }
       else{
         # print(paste("else inputdir",rv$datapath))
@@ -78,12 +83,16 @@ observeEvent(
         )
         rv$exitStatus <-list(code=0, err=errorMess)
       }
+    hide(id = "loading-content", anim = TRUE, animType = "fade")
   }
 )
 
 #### Output when run click ####
 
 output$code <- renderText({
+  if (rv$exitStatus$code == -1){
+    return(-1)
+  }
   rv$exitStatus$code
 
 })
@@ -106,7 +115,6 @@ output$img <- renderImage({
          height = 400,
          filetype = "image/jpeg",
          alt = "plot img"))
-   
   }
 }, deleteFile = FALSE)
 
