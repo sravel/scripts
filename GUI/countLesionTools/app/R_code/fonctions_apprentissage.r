@@ -47,6 +47,7 @@ load_group <- function(g,pathCalibration) {
 apprentissage <- function(pathCalibration,...) {
   ## Les arguments passés dans "..." doivent être (dans cet ordre) le nom (relatif) des sous-répertoires fond, limbe, lésions
   ## Recherche des sous-répertoires de pathCalibration
+  progress$inc(2/7, detail = "Load sub-directories 2/6")
   dirs <- list.dirs(pathCalibration,full.names=FALSE)[-1] ## -1 pour supprimer le premier nom (toujouts vide)
   
   ## vérification de l'existence des sous-répertoires passés en argument
@@ -54,16 +55,19 @@ apprentissage <- function(pathCalibration,...) {
   if (any(is.na(match(unlist(group),dirs)))) stop("Répertoire(s) inexistant(s).")
   
   ## constitution du data.frame des pixels des échantillons
+  progress$inc(3/7, detail = "Build dataframe with learning 3/6")
   li <- lapply(group,load_group,pathCalibration)
   df2 <- do.call(rbind, li)
   
   ## analyse discriminante
+  progress$inc(4/7, detail = "Build analysis discriminante 4/6")
   lda1 <- lda(df2[2:4], df2$group)
   
   ## nom commun aux 3 fichiers de sortie, identique au nom du réprtoire
   basename <- tail(strsplit(pathCalibration,'/')[[1]],1)
   
   ## écriture du fichier texte des résultats
+  progress$inc(5/7, detail = "Write output files (csv,jpeg) 5/6")
   file.txt <- paste(pathCalibration,paste0(basename,".txt"),sep='/') ## fichier de sortie texte
   sink(file.txt)
   print(table(df2$group))
@@ -76,14 +80,15 @@ apprentissage <- function(pathCalibration,...) {
   write.csv2(outCalibrationTable, file = outCalibrationCSV)
   
   ## graphe des groupes dans le plan discriminant
-  plotFileCalibration <- paste(pathCalibration,paste0(basename,".png"),sep='/') ## fichier de sortie png
+  plotFileCalibration <- paste(pathCalibration,paste0(basename,".jpeg"),sep='/') ## fichier de sortie jpeg
   df4 <- cbind(df2, as.data.frame(as.matrix(df2[2:4])%*%lda1$scaling))
   
-  png(plotFileCalibration)
+  jpeg(plotFileCalibration)
   print(xyplot(LD2~LD1, group=group, cex=0.8, alpha=1, pch=1, asp=1, auto.key=TRUE, data=df4))
   dev.off()
   
   ## sauvegarde de l'analyse
+  progress$inc(6/7, detail = "Save analysis into R file 6/6")
   fileRData <- paste(pathCalibration,paste0(basename,".RData"),sep='/')
   save(lda1,file=fileRData)
   return(list(code = 1, mess = fileRData,outCalibrationTable = outCalibrationTable, outCalibrationCSV = outCalibrationCSV, fileRData = fileRData,plotFileCalibration = plotFileCalibration))
