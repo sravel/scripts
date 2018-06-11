@@ -26,7 +26,7 @@
 #####################################################################################################
 
 # list of packages required
-list.of.packages <- c("shiny","shinythemes","shinydashboard","shinyFiles","shinyBS","DT","EBImage","MASS","lattice",
+list.of.packages <- c("shiny","shinythemes","shinydashboard","shinyFiles","shinyBS","shinyjs", "DT","EBImage","MASS","lattice",
                       "parallel","foreach","doParallel","future")
 
 
@@ -49,6 +49,7 @@ library(shinydashboard)
 library(shinyFiles)
 library(shinyBS)
 library(DT)
+library(shinyjs)
 
 
 set_wd <- function() {
@@ -85,14 +86,16 @@ sidebar <- dashboardSidebar(
     menuItem("Home", tabName = "tabHome", icon = icon("home")),
     menuItem("Calibration", tabName = "tabCalibration", icon = icon("balance-scale")),
     menuItem("Analysis", tabName = "tabAnalysis", icon = icon("pagelines")),
-    menuItem("Theme", tabName = "tabTheme", icon = icon("dashboard"))
-  ),
-  actionButton('close', "Close", class = "btn btn-danger",onclick = "setTimeout(function(){window.close();},500);")
+    menuItem("Debug", tabName = "tabDebug", icon = icon("dashboard"))
+  )
+  # actionButton('close', "Close", class = "btn btn-danger",onclick = "setTimeout(function(){window.close();},500);")
 )
 
 # Boby page
 body <- dashboardBody(
   includeCSS('www/styles.css'),
+  useShinyjs(),
+  
   tabItems(
     # add tab for Home
     source(file.path("ui_code", "tabHomeUI.R"), local = TRUE, chdir = TRUE)$value,
@@ -105,9 +108,17 @@ body <- dashboardBody(
     
     # other tab
     tabItem(
-      tabName = "tabTheme",
-      h1("Theme"),
+      tabName = "tabDebug",
+      h1("DEBUG"),
       verbatimTextOutput("debug"),
+      conditionalPanel(
+        condition = 'input.runButtonAnalysis',
+        box(
+          title = "LOG", status = "info",solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE,
+          actionButton('actu', "actualize", class = "btn "),
+          verbatimTextOutput('log', placeholder = TRUE)
+        )
+      ),
       shinythemes::themeSelector()  # <--- Add this somewhere in the UI
     )
   )
