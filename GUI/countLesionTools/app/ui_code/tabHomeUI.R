@@ -28,21 +28,16 @@
 tabItem(# Tab for Home input/output
   tabName = "tabHome",
   fluidRow(
-    box(
-      title = "Count Lesion tools manual", status = "primary", solidHeader = TRUE, collapsible = FALSE, width = 12,
-      fluidRow(
-        column(4,offset = 0,
-          tags$div(
-            class = "home",
-            "The analysis procedure consists of 2 steps::", tags$br(),
-            tags$ul(tags$li("Calibration"),
-                    tags$li("Analysis")
-                    )
-          )
+    box(title = "Count Lesion tools manual", status = "primary", solidHeader = TRUE, collapsible = FALSE, width = 12,
+      fluidRow(column( 4, offset = 0,
+        tags$div( class = "home",
+          "The analysis procedure consists of 2 steps::",
+          tags$br(),
+          tags$ul(tags$li("Calibration"),
+                  tags$li("Analysis"))
         )
-      ),
-        fluidRow(
-          column(width = 6, offset = 0,
+      )),
+      fluidRow( column( width = 6, offset = 0,
           tags$div(
             class = "calibrationHome",
             tags$h2("Calibration"),
@@ -50,11 +45,14 @@ tabItem(# Tab for Home input/output
             tags$p('The current version accepts these three categories of pixels, but the calibration directory can contain more than three subdirectories since the name of the useful subdirectories is specified.'),
             tags$p('There is no constraint on the name and the number of the calibration image files (the program always reads all the files present in the useful subdirectories).'),
             tags$p('At the end of the learning phase, three files are created in the calibration directory (the first part of the name these files is the name of the directory with the extensions .png (graph of the discriminant analysis), .txt (results of the discriminant analysis), and .RData (file R containing the results of the discriminant analysis, then used by the image analysis procedure).')
-          )
-        ),
-        column(width = 6, offset = 0,
+          ),
           tags$div(
-            class = "analysisHome",
+            tags$p("Output exemple:"),
+            actionButton( "showCalibration", class = "btn-img", img(src = "calibration.png", width = '60%', height = '60%'))
+          )
+      ),
+        column( width = 6, offset = 0,
+          tags$div( class = "analysisHome",
             tags$h2("Analysis"),
             tags$p('Analysis parameters:'),
             tags$ul(
@@ -67,8 +65,15 @@ tabItem(# Tab for Home input/output
               tags$li("Lesion border size: thickness of lesion border to dilate / erode"),
               tags$li("Lesion color output: color of lesions in the analyzed image (0 = black, 1 = white)")
             ),
-            tags$p('There is no constraint on the name and the number of the sample images files.'),
+            tags$p(
+              'There is no constraint on the name and the number of the sample images files.'
+            ),
             tags$p('Note: Surfaces and thicknesses are given in pixels.')
+          ),
+          tags$div(
+            tags$p("Output exemple:"),
+            # tags$img(paste0("exemple.jpeg"))
+            actionButton( "show", class = "btn-img", img(src = "exemple.jpeg", width = '60%', height = '60%'))
           )
         )
       )
