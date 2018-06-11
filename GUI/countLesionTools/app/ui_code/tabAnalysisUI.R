@@ -80,15 +80,7 @@ tabItem(
         title = "Warning", status = "warning",solidHeader = TRUE,
         uiOutput("warning")
       )
-    ),
-    # conditionalPanel(
-      # condition = 'input.runButtonAnalysis',
-      box(
-        title = "LOG", status = "info",solidHeader = TRUE, collapsible = TRUE, collapsed = TRUE,
-        actionButton('actu', "actualize", class = "btn "),
-        verbatimTextOutput('log', placeholder = TRUE)
-      )
-    # )
+    )
   ),
   fluidRow(
     conditionalPanel(
