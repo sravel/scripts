@@ -112,6 +112,9 @@ shinyServer(function(input, output, session) {
   
   # Load functions for tab analysis
   source(file.path("server_code", "tabAnalysisServer.R"), local = TRUE)$value
+
+  # Load functions for tab Home
+    source(file.path("server_code", "tabHomeServer.R"), local = TRUE)$value
   # output$debug <- renderPrint({
   #   sessionInfo()
   # })
