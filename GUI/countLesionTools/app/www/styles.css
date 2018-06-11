@@ -65,3 +65,21 @@
 .modal-lg {
     width: 90%;
 }
+
+.btn-img {
+	background-color: #ffffff;
+	color: #444;
+	border: hidden;
+}
+
+#loading-content {
+position: absolute;
+background: #000000;
+opacity: 0.9;
+z-index: 100;
+left: 0;
+right: 0;
+height: 100%;
+text-align: center;
+color: #FFFFFF;
+}
