@@ -161,7 +161,7 @@ output$value <- renderPrint({
 ############################################
 
 resultAnalysis <- eventReactive(input$runButtonAnalysis,{
-  
+  show("loading-content")
   color <- as.numeric(input$lesion_color)
   values = values()
   code <- analyseFiles(fileRdata=infile,
@@ -173,7 +173,7 @@ resultAnalysis <- eventReactive(input$runButtonAnalysis,{
                            lesionBorderSize=values$lesion_border_size,
                            lesionMinSize=values$lesion_min_size,
                            colorLesion=color)
-
+  hide(id = "loading-content", anim = TRUE, animType = "fade")   
   if (code == 0){
     errorMessAnalysis <-tags$div("Error !!!!:")
     exitStatusAnalysis <<-list(codeAnalysis=0, err=errorMess)
