@@ -1,0 +1,46 @@
+# Master sRNA_pipeline configuration file template
+# ------------------------------------------
+
+####################
+# Input output data options
+'DATA':
+    'directories':
+        'samples_dir': "/work/carlier.j/elisabeth/hilaire/demultiplex-GBSx-All/bipolaris/"       # samples dir
+        'reference_dir': "/work/carlier.j/elisabeth/hilaire/Data/genomes_et_sequences/"       # references dir
+        'out_dir': "/work/carlier.j/elisabeth/mapping_bipolaris/TEST_SNAKE/"       # Out directory
+
+##################
+# Pipeline options
+'PIPE_OPTION':
+    'plotOption': True
+    'size_min': "100"
+    'size_max': 25
+
+##############################
+# Location of various software
+#
+# the variable must load soft on the $PATH environement
+MODULES:
+    "SAMTOOLS": "module load bioinfo/samtools/1.9"         # use for filter reads and convert sam to bam
+    "PYTHON3": "module load system/python/3.7.3"           # Python3 >=3.6 with require libraries
+    "BWA": "module load bioinfo/bwa/0.7.15"                # for make the mapping
+    "ATROPOS": "module load system/python/3.7.3"           # for call atropos
+    "FASTQC": "module load bioinfo/FastQC/0.11.7"          # for controle quality
+
+
+############################
+# Misc. options for programs
+#
+# For advanced users. See
+# https://nanoporetech.github.io/katuali/examples.html#examples
+# for help in contructing bespoke pipelines.
+#
+# For fully specified targets, rather than predefined workflows the below can
+# be used to manipulate how each program is run. Each key acts as a shortcut
+# for a specific parameter set (as well as functioning as a target name).
+# Default parameters are given by the `""` targets
+
+# BWA
+PARAMSTOOLS:
+    "ATROPOSSE": "--minimum-length 35  -q 20  -u 8  -O 10"
+    "ATROPOSPE": "--minimum-length 35  -q 20,20  -U 8  -O 10"
