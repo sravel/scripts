@@ -33,7 +33,7 @@ Use doc to know function implemented on MODULE_SEB:
 * http://nas-bgpi.myds.me/DOC/index.html
 * http://nas-bgpi.myds.me/DOC-PROGRAMME/index.html
 
-<div class='text-justify'>
+<div align="justify">
 Musa NGS Suite, is a collection of script used in different project of Bioversity-France (https://www.bioversityinternational.org/) related to the Musa diversity evolution. It represents the different step of the NGS (Next generation Sequencing) analysis, from the cleaning step to the evolution analysis. This procedure is used in Elan et al, 2020 (https://acsess.onlinelibrary.wiley.com/doi/pdf/10.1002/csc2.20320).</p>
 <p> This tools is composed by two parts, first is common to numerous tools, and the second is more specific and is explained in : A protocol for detection of large chromosome variations in banana using Next Generation Sequencing. Breton Catherine1, Cenci Alberto1, Sardos Julie1, Chase Rachel1, Ruas Max1, Rouard Mathieu1 & Roux Nicolas Published in October.
 </div>
